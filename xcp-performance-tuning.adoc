@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: xcp-performance-tuning.html 
+keywords: netapp, xcp, configure, configuring, how, performing, tuning, nfs, 
+summary: 效能調校（僅限NFS） 
+---
+= 效能調校
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+對於XCP NFS、使用「show」和「shcan」命令規劃移轉之後、您就可以移轉資料。
+
+
+NOTE: 當您以非root使用者身分執行資料移轉時、root使用者可以執行下列步驟。
+
+為獲得最佳效能與可靠性、NetApp建議您在XCP Linux用戶端主機上的「/etc/syscl.conf」中設定下列Linux核心TCP效能參數。執行「syscll -p」或「重新開機」命令來提交變更：
+
+[listing]
+----
+net.core.rmem_default = 1342177
+net.core.rmem_max = 16777216
+net.core.rmem_max = 16777216
+net.core.wmem_default = 1342177
+net.core.wmem_max = 16777216
+net.ipv4.tcp_rmem = 4096 1342177 16777216
+net.ipv4.tcp_wmem = 4096 1342177 16777216
+net.core.netdev_max_backlog = 300000
+net.ipv4.tcp_fin_timeout = 10
+----
+
+NOTE: 對於非root使用者、設定必須由root使用者執行。

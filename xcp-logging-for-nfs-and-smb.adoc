@@ -1,0 +1,155 @@
+---
+sidebar: sidebar 
+permalink: xcp-logging-for-nfs-and-smb.html 
+keywords: netapp, xcp, configure, configuring, how, performing, tuning, nfs, smb 
+summary: XCP NFS和SMB的記錄 
+---
+= NFS和SMB記錄（選用）
+:allow-uri-read: 
+
+
+
+
+== NFS和SMB記錄（選用）
+
+[role="lead"]
+XCP NFS和SMB的記錄。
+
+XCP支援使用「xcpLogConfig.json」Json組態檔來設定多項選用功能。若要僅啟用特定功能、請手動建立「xcpLogConfig.json」組態檔案。您可以使用「xcpLogConfig.json」組態檔來啟用：
+
+* 事件記錄訊息
+* XCP的syslog用戶端
+* 自訂XCP記錄
+
+
+預設組態中會停用事件記錄訊息和syslog用戶端。NFS和SMB的組態都很常見。
+
+|===
+| 設定Json檔案位置 | NFS | 中小企業 
+
+
+| 組態檔預設位置 | /opt/NetApp/xFiles/XCP | C：\NetApp\XCP \ConfigFile 
+
+
+| 自訂位置需要「XCP組態目錄」環境變數 | 錯誤！找不到參考來源。 | 不適用 
+|===
+Json組態檔案選項區分大小寫。XCP NFS和XCP SMB的選項相同。
+
+[cols="20,15,15,50"]
+|===
+| 子選項名稱 | Json資料類型 | 預設 | 說明 
+
+
+| 記錄組態 |  |  | 可自訂XCP記錄的選項。 
+
+
+| 「層級」 | 字串 | 資訊 | 記錄訊息嚴重性篩選層級。XCP記錄訊息依嚴重性降低的順序支援五種嚴重性等級：嚴重、錯誤、警告、資訊、偵錯（NetApp強烈建議使用資訊或偵錯） 
+
+
+| 「最大使用者」 | 整數 | 52428800 | 每個循環記錄檔的大小。支援的旋轉檔案上限為10個。 
+
+
+| 「名稱」 | 字串 | xcp.log | 設定自訂記錄檔名稱的選項。 
+
+
+| 事件記錄 |  |  | 設定事件記錄訊息的選項。 
+
+
+| 「isEnabled」 | 布林值 | 錯 | 此布林選項用於啟用事件訊息。將其設為「假」不會產生任何事件訊息、也不會將事件記錄發佈到事件記錄檔。 
+
+
+| 「層級」 | 字串 | 資訊 | 事件訊息嚴重性篩選器層級。事件訊息可依嚴重性降低的順序支援五種嚴重性等級：嚴重、錯誤、警告、資訊、偵錯 
+
+
+| 系統記錄 |  |  | 設定syslog訊息的選項。 
+
+
+| 「isEnabled」 | 布林值 | 錯 | 此布林選項用於在XCP中啟用syslog用戶端。 
+
+
+| 「層級」 | 字串 | 資訊 | 訊息嚴重性篩選層級。XCP事件日誌訊息依嚴重性降低的順序支援五種嚴重性等級：嚴重、錯誤、警告、資訊、偵錯 
+
+
+| 「serverip」 | 字串 | 無 | 遠端syslog伺服器IP位址或主機名稱。 
+
+
+| 「連接埠」 | 整數 | 514 | 遠端syslog接收器連接埠。在不同連接埠上接受syslog資料報的syslog接收器可以設定連接埠選項udp連接埠514、但您也可以設定為所需的連接埠。 
+
+
+| 「消毒」 | 布林值 | 錯  a| 
+XCP支援的常見選項；將其值設為true、會在要支援的訊息（記錄、事件、syslog等）中隱藏敏感資訊（IP和使用者名稱）。例如、將「儲存」選項設為「假」：*「202020-07-17」03：10：23779 -資訊- 12806XCP XCP路徑：['10.234.104.251:/cat_vol']*「2020-07-17」03：10：23778 -資訊- 12806XCP XCP使用者名稱：根路徑為「1280207-172020202020202020202020202017'、共122020202020202017'資訊」選項、以「X1220202020202020205-5'56'為真的CP'、共12202020202017'、 XX.XX.XX.XX.XX:/cAT_vol']*「202020-07-1703：13：51,595 -資訊- 12859 XCP使用者名稱：*****」
+
+|===
+
+
+= 建立Json組態檔
+
+若要啟用事件記錄訊息、syslog用戶端或客戶記錄、請完成下列步驟。
+
+.步驟
+. 開啟任何文字編輯器、例如記事本或VI。
+. 使用下列Json範本建立新檔案。
++
+[listing]
+----
+{
+  "logConfig": {
+    "level": "INFO",
+    "maxBytes": 52428800,
+    "name": "xcp.log"
+  },
+  "eventlog": {
+    "isEnabled": false,
+    "level": "INFO"
+  },
+  "syslog": {
+    "isEnabled": false,
+    "level": "INFO",
+    "serverIp": "10.234.219.87",
+    "port": 514
+  },
+  "sanitize": false
+}
+----
+. 如果您想要啟用任何功能、請將「isEnabled」值變更為「true」。
+. 將檔案命名為「xcpLogConfig.json」、並將其儲存至*錯誤！找不到參考來源。*
+
+
+|===
+| 預設組態 | json組態檔範例 
+
+
+ a| 
+[listing]
+----
+{
+  "logConfig": {
+    "level": "INFO",
+    "maxBytes": 52428800,
+    "name": "xcp.log"
+  },
+  "sanitize": false
+}
+---- a| 
+[listing]
+----
+{
+  "logConfig": {
+    "level": "INFO",
+    "maxBytes": 52428800,
+    "name": "xcp.log"
+  },
+  "eventlog": {
+    "isEnabled": false,
+    "level": "INFO"
+  },
+  "syslog": {
+    "isEnabled": false,
+    "level": "INFO",
+    "serverIp": "10.234.219.87",
+    "port": 514
+  },
+  "sanitize": false
+}
+----
+|===

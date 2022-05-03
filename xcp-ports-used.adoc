@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: xcp-ports-used.html 
+keywords: ports, xcp 
+summary: 您必須檢查是否使用正確的連接埠進行XCP移轉。 
+---
+= XCP使用的連接埠
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP使用下列連接埠。
+
+[cols="50,50"]
+|===
+| 服務 | 連接埠 
+
+
+| CIFS | 445 TCP / udp 
+
+
+| HTTP（http） | 80 
+
+
+| HTTPS | 443.. 
+
+
+| NFS | 111個TCP/IP和2049個TCP / udp 
+
+
+| PostgreSQL | 5432 
+
+
+| XCP（即檔案分析服務） | 5030 
+
+
+| HDFS | 7222 
+|===

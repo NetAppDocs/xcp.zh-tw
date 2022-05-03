@@ -1,0 +1,199 @@
+---
+sidebar: sidebar 
+permalink: xcp-install-xcp-nfs.html 
+keywords: netapp, xcp, install, installing, nfs 
+summary: 安裝XCP NFS 
+---
+= 安裝XCP NFS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+如果您要升級XCP、請刪除目前的安裝、並以最新版本的新安裝取代。本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。
+
+*系統要求*
+
+[cols="35,65"]
+|===
+| 項目 | 需求 
+
+
+| 系統 | 64位元Intel或AMD伺服器、至少4核心和32 GB RAM 
+
+
+| 作業系統與軟體 | RHEL8：請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 支援的作業系統 
+
+
+| 特殊需求 | 網路連線能力和存取來源和目的地的根層級NFSv3不會匯出其他作用中應用程式 
+
+
+| 儲存設備 | XCP二進位檔案需要20 MB的磁碟空間、而儲存在/opp/NetApp/xFiles/XCP目錄中的記錄則需要至少50 MB的磁碟空間 
+
+
+| 支援的傳輸協定版本 | NFSv3和NFSv4（POSIX和ACL） 
+
+
+| 支援的瀏覽器（僅限檔案分析） | XCP檔案分析支援Google Chrome 76版及更新版本。請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 所有受支援版本瀏覽器的對照表 
+|===
+
+NOTE: 即時來源移轉的建議組態為8核心和64 GB RAM。
+
+
+
+== 為root使用者安裝XCP NFS
+
+您可以使用下列程序為root使用者安裝XCP。
+
+.步驟
+. 以root使用者身分登入Linux機器、然後下載並安裝授權：
++
+[listing]
+----
+[root@scspr1980872003 ~]# ls -l
+total 36188
+-rw-r--r--  1 root root 37043983 Oct  5 09:36 NETAPP_XCP_<version>.tgz
+-rw-------. 1 root root     1994 Sep  4  2019 license
+----
+. 若要擷取工具、請解壓縮XCP：
++
+[listing]
+----
+[root@scspr1980872003 ~]# tar -xvf NETAPP_XCP_<version>.tgz
+[root@scspr1980872003 ~]# ls
+NETAPP_XCP_<version>.tgz license xcp
+[root@scspr1980872003 ~]# cd xcp/linux/
+[root@scspr1980872003 linux]# ls
+xcp
+----
+. 驗證系統上是否有舊版XCP提供的「/opt/NetApp/xFiles/XCP」路徑。
++
+如果可用的是「/opt/NetApp/xFiles/XCP」、請使用「XCP activate」命令啟動授權、然後繼續進行資料移轉。
+
++
+如果無法使用「/opt/NetApp/xFiles/XCP」、當您第一次執行「XCP activate」命令時、系統會在「/opt /NetApp/xFiles/XCP」中建立XCP主機組態目錄。
+
++
+由於未安裝授權、「XCP activate」命令會失敗：
+
++
+[listing]
+----
+[root@scspr1980872003 linux]# ./xcp activate
+(c) yyyy NetApp, Inc.
+xcp: Host config file not found. Creating sample at '/opt/NetApp/xFiles/xcp/xcp.ini'
+
+xcp: ERROR: License file /opt/NetApp/xFiles/xcp/license not found.
+Register for a license at https://xcp.netapp.com
+----
+. 將授權複製到「/opt/NetApp/xFiles/XCP /」：
++
+[listing]
+----
+[root@scspr1980872003 linux]# cp ~/license /opt/NetApp/xFiles/xcp/
+----
+. 確認授權檔案已複製到「/opt /NetApp/xFiles/XCP /」：
++
+[listing]
+----
+[root@ scspr1980872003 ~]# ls -altr /opt/NetApp/xFiles/xcp/
+total 44
+drwxr-xr-x 3 root root    17 Oct  1 06:07 ..
+-rw-r--r-- 1 root root   304 Oct  1 06:07 license
+drwxr-xr-x 2 root root     6 Oct  1 10:16 xcpfalogs
+drwxr-xr-x 2 root root    21 Oct  1 10:16 xcplogs
+-rw-r--r-- 1 root root   110 Oct  5 00:48 xcp.ini
+drwxr-xr-x 4 root root    83 Oct  5 00:48 .
+[root@scspr1978802001 ~]#
+----
+. 啟動XCP：
++
+[listing]
+----
+[root@scspr1980872003 linux]# ./xcp activate
+XCP <version>; (c) yyyy NetApp, Inc.;
+XCP activated
+----
+
+
+
+
+== 為非root使用者安裝XCP
+
+您可以使用下列程序為非root使用者安裝XCP。
+
+.步驟
+. 以非root使用者身分登入Linux機器、然後下載並安裝授權：
++
+[listing]
+----
+[user1@scspr2474004001 ~]$ ls -l
+total 36640
+-rwxr-xr-x 1 user1 user1      352 Sep 20 01:56 license
+-rw-r--r-- 1 user1 user1 37512339 Sep 20 01:56 NETAPP_XCP_Nightly_dev.tgz
+[user1@scspr2474004001 ~]$
+----
+. 若要擷取工具、請解壓縮XCP：
++
+[listing]
+----
+[user1@scspr2474004001 ~]$ tar -xvf NETAPP_XCP_Nightly_dev.tar
+[user1@scspr2474004001 ~]$ cd xcp/linux/
+[user1@scspr2474004001 linux]$ ls
+xcp
+[user1@scspr2474004001 linux]$
+----
+. 驗證系統上的舊版XCP是否提供了「/home/user1/NetApp/xFiles/XCP」路徑。
++
+如果可用的是「/home/user1/NetApp/xFiles/XCP」路徑、請使用「XCP activate」命令啟動授權、然後繼續進行資料移轉。
+
++
+如果無法使用「/home/user1/NetApp/xFiles/XCP」、當您第一次執行「XCP activate」命令時、系統會在「/home/user1/NetApp/xFiles/XCP」中建立XCP主機組態目錄。
+
++
+由於未安裝授權、「XCP activate」命令會失敗：
+
++
+[listing]
+----
+[user1@scspr2474004001 linux]$ /home/user1/xcp/linux/xcp activate
+(c) yyyy NetApp, Inc.
+xcp: Host config file not found. Creating sample at '/home/user1/NetApp/xFiles/xcp/xcp.ini'
+
+xcp: ERROR: License file /home/user1/NetApp/xFiles/xcp/license not found.
+Register for a license at https://xcp.netapp.com
+[user1@scspr2474004001 linux]$
+----
+. 將授權複製到「/home/user1/NetApp/xFiles/XCP」：
++
+[listing]
+----
+[user1@scspr2474004001 linux]$ cp ~/license /home/user1/NetApp/xFiles/xcp/
+[user1@scspr2474004001 linux]$
+----
+. 確認授權檔案已複製到「/home/user1/NetApp/xFiles/XCP /」：
++
+[listing]
+----
+[user1@scspr2474004001 xcp]$ ls -ltr
+total 8
+drwxrwxr-x 2 user1 user1  21 Sep 20 02:04 xcplogs
+-rw-rw-r-- 1 user1 user1  71 Sep 20 02:04 xcp.ini
+-rwxr-xr-x 1 user1 user1 352 Sep 20 02:10 license
+[user1@scspr2474004001 xcp]$
+----
+. 啟動XCP：
++
+[listing]
+----
+[user1@scspr2474004001 linux]$ ./xcp activate
+(c) yyyy NetApp, Inc.
+
+XCP activated
+
+[user1@scspr2474004001 linux]$
+----
+

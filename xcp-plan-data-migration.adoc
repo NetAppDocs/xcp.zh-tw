@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: xcp-plan-data-migration.html 
+keywords: netapp, xcp, plan, planning, data, migration, migrate, migrating, nfs, smb, file, analytics 
+summary: 規劃資料移轉 
+---
+= 規劃資料移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以使用CLI或檔案分析GUI來規劃移轉作業。
+
+使用下列命令來規劃移轉：
+
+* 顯示
+* 掃描
+
+
+使用檔案分析來視覺化顯示匯出和共用的統計資料。

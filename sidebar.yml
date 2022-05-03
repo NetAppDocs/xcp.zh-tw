@@ -1,0 +1,87 @@
+---
+entries:
+- title: 主頁
+  url: "/home.html"
+- title: 版本資訊
+  url: "/releasenotes.html"
+- title: 開始使用XCP
+  url: "/index.html"
+  type: solutions
+  entries:
+  - title: XCP NFS附加功能
+    url: "/xcp-nfs-add-ons.html"
+  - title: 不支援的功能
+    url: "/xcp-unsupported-features.html"
+  - title: 支援的組態
+    url: "/xcp-supported-configurations.html"
+  - title: XCP使用的連接埠
+    url: "/xcp-ports-used.html"
+- title: 安裝XCP
+  url: "/xcp-install-xcp.html"
+  entries:
+  - title: 準備Linux for XCP NFS
+    url: "/xcp-prepare-linux-for-xcp-nfs.html"
+  - title: 為XCP SMB準備Windows
+    url: "/xcp-prepare-windows-for-xcp-smb.html"
+  - title: 準備檔案分析
+    url: "/xcp-prepare-file-analytics.adoc.html"
+  - title: 安裝XCP NFS
+    url: "/xcp-install-xcp-nfs.html"
+  - title: 安裝XCP SMB
+    url: "/xcp-install-xcp-smb.html"
+  - title: 安裝適用於NFS的檔案分析
+    url: "/xcp-install-file-analytics-for-nfs.html"
+  - title: 安裝適用於SMB的檔案分析
+    url: "/xcp-install-file-analytics-for-smb.html"
+- title: 設定XCP
+  entries:
+  - title: 設定XCP NFS的Ini檔案
+    url: "/xcp-configure-the-ini-file-for-xcp-nfs.html"
+  - title: 效能調校
+    url: "/xcp-performance-tuning.html"
+  - title: 環境變數
+    url: "/xcp-environment-variable.html"
+  - title: 設定POSIX連接器
+    url: "/xcp-configure-posix-connector-nfs.html"
+  - title: 設定HDFS連接器
+    url: "/xcp-configure-hdfs-connector-nfs.html"
+  - title: 設定多節點橫向擴充
+    url: "/xcp-configure-multinode-scaleout-nfs.html"
+- title: 規劃資料移轉
+  url: "/xcp-plan-data-migration.html"
+  entries:
+  - title: 規劃NFS資料移轉
+    url: "/xcp-plan-nfs-data-migration.html"
+  - title: 規劃SMB資料移轉
+    url: "/xcp-plan-smb-data-migration.html"
+  - title: 使用檔案分析進行規劃
+    url: "/xcp-using-file-analytics.html"
+    entries:
+    - title: 存取檔案分析
+      url: "/xcp-access-file-analytics.html"
+    - title: 新增檔案伺服器
+      url: "/xcp-add-file-servers.html"
+    - title: 執行掃描
+      url: "/xcp-run-a-scan.html"
+  - title: 篩選器
+    url: "/xcp-filters.html"
+  - title: NFS和SMB記錄（選用）
+    url: "/xcp-logging-for-nfs-and-smb.html"
+- title: 移轉資料
+  entries:
+  - title: 移轉NFS資料
+    url: "/xcp-migrate-nfs-data.html"
+  - title: 移轉SMB資料
+    url: "/xcp-migrate-smb-data.html"
+  - title: 其他NFS功能
+    url: "/xcp-migrate-nfs-additional-features.html"
+- title: 疑難排解
+  entries:
+  - title: 疑難排解XCP NFS錯誤
+    url: "/xcp-troubleshoot-xcp-nfs.html"
+  - title: 排除XCP SMB錯誤
+    url: "/xcp-troubleshoot-xcp-smb-errors.html"
+  - title: 疑難排解XCP檔案分析錯誤
+    url: "/xcp-troubleshoot-xcp-file-analytics-errors.html"
+- title: 取得更多資訊
+  url: "/get-more-information.html"

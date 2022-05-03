@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: xcp-prepare-windows-for-xcp-smb.html 
+keywords: netapp, xcp, prepare, preparing, preparation, windows, 
+summary: 為XCP SMB準備Windows 
+---
+= 為XCP SMB準備Windows
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP SMB使用Windows用戶端主機系統來產生平行I/O串流、並充分運用可用的網路和儲存效能。
+
+
+
+== 設定儲存設備
+
+XCP SMB轉換與移轉具有下列使用者登入需求：
+
+* XCP主機系統：XCP主機使用者必須擁有系統管理員權限（該使用者必須是XCP SMB主機系統上「BUILTIN\Administrators」群組的一部分）。
+* 將移轉或XCP主機使用者新增至Active Directory的稽核和安全性記錄原則。若要在Windows 10上找到「管理稽核與安全性記錄」原則、請依照下列步驟執行：
++
+.步驟
+.. 開啟「*群組原則編輯器*」對話方塊。
+.. 移至*電腦組態> Windows設定>安全性設定>本機原則>使用者權限指派*。
+.. 選取*管理稽核與安全性記錄*。
+.. 若要新增XCP主機使用者、請選取*新增使用者或群組*。
++
+如需詳細資訊、請參閱： link:https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn221953(v%3Dws.11)["管理稽核與安全性記錄"^]。
+
+
+
+* 目標儲存系統：XCP主機使用者必須擁有讀取和寫入存取權。
+* 來源儲存系統：
++
+** 如果使用者是來源儲存系統中「Backup Operators」群組的一部分、則此群組的成員可以在略過安全性規則的情況下讀取檔案、而不論保護這些檔案的任何權限為何。
+** 如果使用者不是來源系統中「Backup Operators」群組的一部分、則使用者必須擁有讀取存取權。
+
+
+
+
+
+NOTE: 來源儲存系統必須具備寫入權限、才能支援XCP選項「-preserve-atime」。
+
+
+
+== 設定Windows用戶端
+
+* 將目的地儲存箱和來源儲存箱新增至主機檔案：
++
+.. 瀏覽至下列位置：「（C：\Windows\System32\Drivers\etc\hosts）」
+.. 以下列格式將下列主機項目插入檔案：
++
+「<來源資料Vserver資料介面IP><來源CIFS伺服器名稱><目的地資料Vserver資料介面IP><目的地CIFS伺服器名稱>」
+
++
+* 範例 *
+
++
+image:xcp_image17.png["主機檔案範例"]
+
+
+
+

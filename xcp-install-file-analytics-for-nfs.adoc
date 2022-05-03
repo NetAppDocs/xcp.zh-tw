@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: xcp-install-file-analytics-for-nfs.html 
+keywords: netapp, xcp, install, installing, file, analytics, nfs, upgrade, upgrading 
+summary: 安裝或升級File Analytics for NFS 
+---
+= 安裝適用於NFS的檔案分析
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+安裝或升級File Analytics for NFS。
+
+如需NFS的系統需求、請參閱 link:xcp-install-xcp-nfs.html["安裝XCP NFS"]。「configure．sh」指令碼會安裝並啟用適用於Linux伺服器的預設HTTPD和PostgreSQL組態。您可以視需要變更或更新至較新的版本、並遵守安全性準則。
+
+.開始之前
+* 您無法在同一部主機上同時執行XCP應用程式和XCP AS服務。如果有任何XCP作業正在執行、請在開始組態之前完成作業。
+* 您的Linux機器必須連線至Yum儲存庫伺服器或網際網路。
+* 如果Linux機器上已設定防火牆、您必須變更防火牆設定、以啟用XCP、XCP服務和XCP檔案分析所使用的服務所使用的連接埠。如需詳細資訊、請前往 xref:xcp-ports-used.html[XCP使用的連接埠]。
+
+
+.步驟
+. 移至您的XCP資料夾、然後執行「./configure .sh」指令碼。指令碼需要三到十分鐘的時間來設定Linux機器、並完成下列工作：
++
+.. 下載PostgreSQL套件
+.. 安裝PostgreSQL伺服器
+.. 安裝HTTPD
+.. 使用開放式SSL建立自我簽署的憑證（「erver.key與server.crt」）
+.. 建立XCP檔案分析資料庫
+
+
+. 從XCP組態功能表中選取「Option 1 Configure Client System」（選項1設定用戶端系統）。
+. 若為新安裝、請更新系統管理員和資料庫使用者的密碼。升級時、系統會提示您停止XCP服務。完成後、選取「選項0」。
+. 啟動XCP服務。使用下列命令檢查XCP服務是否正在執行：服務XCP狀態
+. 在瀏覽器中啟動「檔案分析」：Linux的*\https://<ip位址>/XCP *。
+

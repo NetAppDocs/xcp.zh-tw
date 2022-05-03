@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: xcp-troubleshoot-xcp-nfs.html 
+keywords: netapp, xcp, troubleshoot, troubleshooting, nfs, errors, 
+summary: 疑難排解XCP NFS錯誤 
+---
+= 疑難排解XCP NFS錯誤
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+檢閱解決方案以疑難排解您的問題。
+
+|===
+| XCP問題 | 解決方案 
+
+
+| 「XCP：錯誤」：必須以root執行 | 以root使用者身分執行XCP命令 
+
+
+| 「XCP：錯誤」：找不到授權檔案「/opt / netapp / xFiles/XCP /授權」。 | 從下載授權 link:https://xcp.netapp.com/["XCP網站"^]、複製到「/opt /NetApp/xFiles/XCP」、然後執行「XCP activate」命令加以啟動。 
+
+
+| 「XCP：錯誤」：此授權已過期 | 請向續約或取得新的XCP授權 link:https://xcp.netapp.com/["XCP網站"^]。 
+
+
+| 「XCP：錯誤」：授權無法讀取 | 授權檔案可能毀損。從取得新的XCP授權 link:https://xcp.netapp.com/["XCP網站"^]。 
+
+
+| 「XCP：錯誤」：XCP未啟動、請先執行「activate」 | 執行「XCP activate」命令 
+
+
+| 此複本未經授權 | 取得適當的XCP授權檔案。將XCP授權複製到XCP伺服器上的「/opt/NetApp/xFiles/XCP」目錄。執行「XCP activate」命令以啟動授權。 
+
+
+| 「XCP：錯誤」：無法啟動授權：伺服器無法連線 | 您嘗試啟動線上授權、但主機系統並未連線至網際網路。請確定您的系統已連線至網際網路。 
+
+
+| 「XCP：錯誤」：無法啟動授權：伺服器xcp.netapp.com無法連線、「XCP：提示」：在此主機上設定DNS、或返回授權頁面要求私人授權預期錯誤：無法啟動授權：伺服器xcp.netapp.com無法連線 | 請確定您的主機可以連線至xcp.netapp.com、或是要求離線授權 
+
+
+| 「XCP：錯誤」：無法存取目錄：無法掛載「nfs_server：/EXPLED[:subnet]」 | 在XCP Linux用戶端主機上開啟編輯器、然後以適當的目錄位置更新組態檔。XCP組態檔位於「/opt/NetApp/xFiles/XCP / xcp.ini`」。組態檔的範例項目：「[root@scspr1949387001 ~]# cat /opp/NetApp/xFiles/XCP / xcp.ini`「XCP」「型錄= 10.235.128.153：/catalog」 
+
+
+| 「nfs3錯誤2」：無此類檔案或目錄 | 作業未在目標NFS匯出中找到來源檔案。執行「XCP sync」命令、將遞增更新從來源複製到目的地 
+
+
+| 「XCP：錯誤」：索引空白或無效 | 在建立索引檔案之前、先前的複製作業中斷。使用新索引重新執行相同的命令、並在命令執行時確認統計資料中顯示關鍵字「已建立索引」。 
+
+
+| 「XCP：錯誤」：比較批次：子程序失敗（結束代碼：9）：recv <type 'exates.EOFError'>' | 請依照下列知識庫文章中的指示操作： link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/NetApp_XCP/XCP:_ERROR:_Cannot_allocate_memory_-_when_syncing_NFS_data["在同步NFS資料時無法分配記憶體"^] 
+
+
+| 「XCP：錯誤」：若要讓XCP處理ACL、請使用OS nfs4用戶端掛載「<path>」 | 使用NFSv4在XCP主機上掛載來源和目標、例如「mount -o ves=4.0 10.10.10.10：/SOUR_vol /mnt/SOURS' 
+
+
+| XCP「驗證」命令在移轉期間失敗。狀態顯示為「失敗」。（即時） | XCP「驗證」命令是在來源上線時執行。在最終轉換之後執行XCP「驗證」命令。 
+
+
+| XCP「驗證」命令在轉換之後失敗。（即時） | XCP轉換同步作業可能尚未複製所有資料。在最後轉換之後、重新執行XCP「同步」命令、接著執行「驗證」命令。如果問題持續發生、請聯絡技術支援部門。 
+
+
+| XCP「synch」命令失敗（這適用於移轉期間的所有同步失敗）。（即時） | XCP無法讀取資料、可能是因為XCP問題。命令作業完成後、請檢查XCP狀態訊息。重新執行「shync」命令。如果同步作業再次失敗、請聯絡技術支援部門。 
+
+
+| 由於記憶體不足、XCP「copy」、「resume」和「sh同步」命令會失敗。XCP當機、XCP狀態顯示為「失敗」。（即時） | 主機上的可用記憶體不足、或是發生了巨大的遞增變更。請依照下列知識庫文章中的指示操作： link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/NetApp_XCP/XCP:_ERROR:_Cannot_allocate_memory_-_when_syncing_NFS_data["在同步NFS資料時無法分配記憶體"^] 
+
+
+| 「新界三錯誤13：權限遭拒」 | 身為非root使用者、您沒有存取檔案系統的正確權限。檢查您是否可以存取檔案系統並執行讀寫作業。 
+
+
+| 「XCP：批次1：錯誤：[errno 13]權限遭拒：」 | 身為非root使用者、您沒有存取檔案系統的正確權限。檢查您是否可以存取檔案系統並執行讀寫作業。 
+
+
+| 「MXCP：錯誤：OSMounter 'file:///t/[] 10.234.115.215_SR_vol/DIR'：[errno 2]無此類檔案或目錄 | Linux檔案系統不會掛載路徑「/t/10.234.115.215_SR_vol/ DIR」。檢查路徑是否存在。 
+
+
+| 「錯誤：執行同步處理｛-id：'XCP索引_162426389.3734858'｝：尚未針對HDFS/Posix / s3fs來源與目標提供同步功能-因應措施是複本搭配最近模式的比對篩選條件」 | XCP不支援POSIX和HDFS連接器的「同步」命令。 
+
+
+| 使用不同的修改時間時、「XCP VERIFY」命令會失敗 | 您可以識別檔案、然後手動將檔案複製到目的地。 
+
+
+| 「無法恢復非dir物件複製/同步、請再試一次複製。 「詳情請參閱XCP使用者指南。 | 由於您無法恢復單一檔案、因此建議您再次針對該檔案執行「XCP copy」命令。檔案中的任何變更都會產生檔案的完整複本。因此、效能不會受到影響。 
+
+
+| 「無法同步非dir物件、請再試一次複本。 「詳情請參閱XCP使用者指南。 | 由於您無法同步單一檔案、因此建議您再次針對該檔案執行「XCP copy」命令。檔案中的任何變更都會產生檔案的完整複本。因此、效能不會受到影響。 
+
+
+| 「XCP：錯誤：批次4：無法連線至節點：」 | 驗證是否可以存取「- nodes」參數中指定的節點。請嘗試從主節點使用Secure Shell（SSH）進行連線 
+
+
+| 「[Error 13]權限遭拒」 | 檢查您是否有權在目的地磁碟區上寫入。 
+
+
+| 「XCP：錯誤：批次2：子程序失敗（結束代碼-6）：recv <type 'exates.EOFError'>:' | 增加系統記憶體、然後重新執行測試。 
+|===

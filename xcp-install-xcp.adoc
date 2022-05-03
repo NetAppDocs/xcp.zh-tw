@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: xcp-install-xcp.html 
+keywords: netapp, xcp, install, installing, download, downloading, license, preparing, system 
+summary: 安裝XCP 
+---
+= 安裝XCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+安裝XCP。
+
+
+
+== 安裝及設定工作流程
+
+本文件提供簡易的工作流程、可在NFS和SMB系統上安裝及設定XCP。
+
+image:xcp_image16.PNG["錯誤：缺少圖形影像"]
+
+
+
+== 下載XCP
+
+從NetApp支援網站下載XCP、並從XCP網站取得授權。
+
+您可以從下載XCP link:https://mysupport.netapp.com/products/p/xcp.html["NetApp支援網站"^]。
+
+
+
+== XCP授權
+
+NetApp提供90天免費XCP授權。您可以從取得授權檔案 link:https://xcp.netapp.com/["XCP網站"^]。授權入口網站提供不同的授權選項。90天之後、您可以使用相同的入口網站將授權續約90天。
+
+XCP授權是以離線或線上授權形式提供。若要傳送移轉統計資料、請使用線上授權。線上授權需要網際網路連線。離線授權不需要網際網路連線。
+
+
+
+== 準備您的系統
+
+如果您使用 link:xcp-prepare-linux-for-xcp-nfs.html["Linux系統上的XCP NFS"]、您必須準備目錄和儲存設備。
+
+如果您使用 link:xcp-prepare-windows-for-xcp-smb.html["Microsoft Windows系統上的XCP SMB"]、您必須準備儲存設備。

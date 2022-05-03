@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: xcp-prepare-linux-for-xcp-nfs.html 
+keywords: netapp, xcp, prepare, preparing, preparation, linux, nfs, configure, configuring, catalog, storage, 
+summary: 準備Linux for XCP NFS 
+---
+= 準備Linux for XCP NFS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS使用Linux用戶端主機系統來產生平行I/O串流、並充分運用可用的網路與儲存效能。
+
+您可以設定root和非root使用者的設定、然後根據您的設定、選取任一位使用者。
+
+
+
+== 設定目錄
+
+XCP會將作業報告和中繼資料儲存在NFSv3可存取的目錄中、或儲存在具有所需權限的任何POSIX路徑上。
+
+* 資源配置目錄是一次性的安裝前活動。
+* 每1000萬個物件（目錄加上檔案和硬式連結）會建立約1 GB的空間索引；每個可恢復或同步的複本、以及每個可離線搜尋的掃描都需要索引。
+* 為了支援效能、包含匯出目錄的集合體至少需要十個磁碟或SSD。
+
+
+
+NOTE: 您必須分別儲存XCP目錄。它們不得位於來源或目的地NFS匯出目錄。XCP會維護中繼資料、這些是初始設定期間指定之目錄位置中的報告。在使用XCP執行任何作業之前、您必須指定及更新儲存報告的位置。
+
+
+
+== 設定儲存設備
+
+XCP NFS轉換與移轉具有下列來源與目標儲存需求：
+
+* 來源與目標伺服器必須啟用NFSv3或NFS v4.0傳輸協定服務
++
+** 對於NFSv4 ACL移轉、您必須在目的地伺服器上啟用NFSv4傳輸協定服務和NFSv4 ACL
+
+
+* 來源與目標磁碟區必須以「root」存取權匯出至XCP Linux用戶端主機
+* 對於NFSv4 ACL移轉、NFSv4要求您針對需要ACL移轉的磁碟區使用編碼語言UTF-8。
+
+
+[NOTE]
+====
+* 為了避免系統管理員意外修改來源Volume、您應該將NFSv3和NFSv4匯出目錄的來源Volume設定為唯讀。
+* 在BIOS中ONTAP 、您可以使用診斷「-atime-update」（-atime-update）選項來保留atime。此功能僅在ONTAP 執行XCP時、才能在來源物件中保留atime、而且非常實用。
+
+
+====
+
+
+== root使用者
+
+Linux機器上的root使用者有權掛載來源、目的地及目錄磁碟區。
+
+
+
+== 非root使用者
+
+非root使用者在掛載的磁碟區上具有下列權限：
+
+* 對來源Volume的讀取權限存取
+* 對掛載目的地Volume的讀取/寫入權限
+* 目錄磁碟區的讀取/寫入權限
+

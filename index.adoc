@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+keywords: netapp, xcp, about, migration, file analytics, nfs, smb 
+summary: NetApp XCP可實現可擴充且高效能的資料移轉 
+---
+= 開始使用XCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp XCP可實現可擴充且高效能的資料移轉。
+
+
+
+== 深入瞭解XCP
+
+NetApp XCP是一套用戶端型軟體、適用於任何對NetApp和NetApp對NetApp的資料移轉與檔案分析。XCP的設計旨在利用所有可用的系統資源來管理高容量資料集和高效能移轉、以擴充並達到更高的效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。
+
+使用XCP for NFS或SMB系統做為下列解決方案之一：
+
+* 移轉解決方案
+* 檔案分析解決方案
+
+
+XCP是命令列軟體、可在單一套件中使用、支援NFS和SMB傳輸協定。XCP可做為NFS資料集的Linux二進位檔、並可做為SMB資料集的Windows執行檔。
+
+XCP檔案分析是以主機為基礎的軟體、可偵測檔案共用、在檔案系統上執行掃描、並提供檔案分析儀表板。XCP檔案分析適用於NetApp和協力廠商系統、並可在Linux或Windows主機上執行、為NFS和SMB匯出的檔案系統提供分析功能。檔案分析GUI的二進位檔包含在支援NFS和SMB傳輸協定的單一套件中。
+
+XCP CLI功能強大。如需詳細資訊、請下載上的_XCP Reference link:https://xcp.netapp.com/["XCP網站"^]。
+
+* XCP工作流程*
+
+image:xcp_image1.png["XCP工作流程映像"]

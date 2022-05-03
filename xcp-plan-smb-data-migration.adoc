@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: xcp-plan-smb-data-migration.html 
+keywords: netapp, xcp, plan, planning, data, migration, migrate, migrating, smb, file, analytics, 
+summary: 規劃SMB資料移轉 
+---
+= 規劃SMB資料移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+規劃您的SMB資料移轉。
+
+
+
+=== 顯示
+
+「show」命令會顯示伺服器上所有可用的SMB共用、以及可用的權限和空間。範例：
+
+* 「XCP show \<SMB檔案伺服器IP / FQDN」
+* 「XCP顯示smb_server01.netapp.com`
+
+
+請執行「XCP說明展示」以取得更多詳細資料。
+
+
+
+=== 掃描
+
+「掃描」命令會以遞歸方式掃描整個SMB共用區、並在掃描結束時列出所有檔案。
+
+
+NOTE: 在掃描作業期間、您可以使用「-preserve-atime」旗標搭配「掃描」命令、以保留來源的存取時間。
+
+*範例：*
+
+* 「XCP掃描」\SMB server\share1'
+* 《XCP掃描smb_server01.netapp.com:/share1`》
+
+
+請執行《XCP說明掃描》以取得更多詳細資料。
+
+您也可以選擇使用檔案分析來以圖形方式檢視結果。

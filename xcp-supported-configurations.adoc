@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: xcp-supported-configurations.html 
+keywords: xcp, configurations, supported, supported, hosts 
+summary: XCP支援的組態ONTAP 、例如主機、更新版本和支援的瀏覽器、都會列在IMT 這個功能表中。 
+---
+= 支援的組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+所有XCP支援的組態、例如主機、ONTAP 支援的更新版本和瀏覽器、都會列在中 link:https://mysupport.netapp.com/matrix/["互通性對照表工具IMT （不含）"^]。

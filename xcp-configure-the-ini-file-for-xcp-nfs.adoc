@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: xcp-configure-the-ini-file-for-xcp-nfs.html 
+keywords: netapp, xcp, configure, configuring, how, performing, tuning, nfs, 
+summary: 設定Ini檔案XCP的步驟 
+---
+= 設定Ini檔案
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+設定XCP的Ini檔案的步驟。
+
+
+
+== 設定root使用者的Ini檔案
+
+您可以使用下列程序來設定XCP NFS根使用者的Ini檔案。
+
+.步驟
+. 使用「VI（VI）編輯器：
++
+
+NOTE: 在修改xcp.ini` XCP組態檔案中的詳細資料之前、應該先匯出目錄位置。目錄位置（NFSv3）應可由XCP Linux主機裝載、但不一定要掛載。
+
++
+[listing]
+----
+[root@localhost /]# vi /opt/NetApp/xFiles/xcp/xcp.ini
+----
+. 確認已修改目錄的XCP Linux用戶端主機組態檔項目：
++
+[listing]
+----
+[root@localhost /]# cat /opt/NetApp/xFiles/xcp/xcp.ini
+# Sample xcp config
+[xcp]
+catalog = 10.61.82.210:/vol/xcpvol/
+----
+
+
+
+
+== 為非root使用者設定Ini檔案
+
+身為非root使用者、您沒有掛載NFS檔案系統的權限。root使用者必須先掛載目錄磁碟區、然後以執行XCP的非root使用者身分、如果您擁有目錄磁碟區的讀取/寫入權限、就可以使用POSIX連接器來存取掛載的目錄磁碟區。掛載磁碟區之後、您可以新增目錄路徑：
+
+[listing]
+----
+(t/10.237.170.53_catalog_vol – This is the path where catalog volume is mounted)as follows.
+
+[user1@scspr2474004001 xcp]$ ls -ltr
+total 8
+drwxrwxr-x 2 user1 user1  21 Sep 20 02:04 xcplogs
+-rw-rw-r-- 1 user1 user1  71 Sep 20 02:04 xcp.ini
+-rwxr-xr-x 1 user1 user1 352 Sep 20 02:10 license
+[user1@scspr2474004001 xcp]$ cat /home/user1/NetApp/xFiles/xcp/xcp.ini
+
+Sample xcp config [xcp]
+catalog = file:///t/10.237.170.53_catalog_vol
+----

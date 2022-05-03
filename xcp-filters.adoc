@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: xcp-filters.html 
+keywords: netapp, xcp, filters, 
+summary: XCP提供可在XCP作業中使用的篩選選項 
+---
+= 篩選器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP提供可在XCP作業中使用的篩選選項。
+
+XCP使用篩選器來搭配NFS和SMB的「-MATCH」和「-exclude」選項。
+
+對於NFS、請執行「XCP說明資訊」、並參閱篩選器一節、瞭解如何使用「-MATCH」和「-exclude」篩選器。
+
+對於SMB、請執行「XCP說明-比對」和「XCP說明-exclude」、以取得「匹配」和「排除」篩選器的詳細資料。
+
+如果您想在XCP命令中使用篩選器、請執行「XCP說明<命令>」、查看是否支援這些篩選器選項。

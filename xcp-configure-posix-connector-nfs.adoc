@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: xcp-configure-posix-connector-nfs.html 
+keywords: xcp, configure, nfs, posix, connector 
+summary: POSIX連接器可讓XCP存取任何Linux掛載的檔案系統、例如NFSv4、XFS和Veritas。 
+---
+= 設定POSIX連接器
+:allow-uri-read: 
+
+
+[role="lead"]
+XCP NFS現在支援使用POSIX連接器來提供資料移轉的來源和目的地路徑。
+
+
+
+== 支援的功能
+
+POSIX連接器支援下列功能：
+
+* 對於支援奈秒「atim」、「mtime」和「ctime」的POSIX檔案系統、「shcan」命令會取得完整值（秒和納秒）、而「copy」命令則會設定完整值
+* POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。請參閱 link:xcp-configure-security-nfs.html["設定安全性"]
+
+
+
+
+== 路徑語法
+
+POSIX連接器的路徑語法為「\file//<掛載路徑on Linux >」。
+
+
+
+== 設定POSIX連接器
+
+若要設定POSIX連接器、您必須執行下列工作：
+
+* 掛載來源和目的地Volume
+* 確認目的地路徑具有寫入資料的必要權限
+
+
+目的地和目錄會掛載於下列範例中：
+
+[listing]
+----
+root@scspr2395903001 ~]# findmnt -t nfs4
+TARGET SOURCE FSTYPE OPTIONS
+/t/10.237.170.39_src_vol 10.237.170.39:/source_vol nfs4
+rw,relatime,vers=4.0,rsize=65536,wsize=65536,namlen=255,hard,proto=t
+cp,timeo=600,retrans=2,sec=sys,clien
+/t/10.237.170.53_dest_vol 10.237.170.53:/dest_vol nfs4
+rw,relatime,vers=4.0,rsize=65536,wsize=65536,namlen=255,hard,proto=t
+cp,timeo=600,retrans=2,sec=sys,clien
+/t/10.237.170.53_catalog_vol 10.237.170.53:/xcp_catalog nfs4
+rw,relatime,vers=4.0,rsize=65536,wsize=65536,namlen=255,hard,proto=t
+cp,timeo=600,retrans=2,sec=sys,clien
+[root@scspr2395903001 ~]#
+----
+POSIX連接器使用POSIX語法「file///」來存取來源和目的地Volume。在上述範例中、來源路徑為「\file//t/10.237.170.39_SR_vol'」、目的地路徑為「file///t/10.237.170.53_dest_vol」。
+
+您可以建立適用於XCP使用者的Linux群組、來管理非root使用者共用的XCP目錄範例組態。對於非root使用者、Linux群組使用者執行移轉時必須具備下列權限。
+
+在以下輸出範例中、「demo」是非root使用者、而「/mnt/XCP目錄」是掛載目錄Volume的路徑：
+
+[listing]
+----
+sudo groupadd -g 7711 xcp_users
+sudo usermod -G xcp_users -a demo
+sudo chown -R :xcp_users /mnt/xcp-catalog
+sudo chmod -R g+w /mnt/xcp-catalog
+----
+XCP目錄不會儲存資料、但會儲存掃描與複製檔案名稱、目錄名稱及其他中繼資料。因此、建議您為允許的使用者設定目錄檔案系統權限、讓他們能夠保護儲存的中繼資料。
+
+
+
+== 擁有權（UID和GID）
+
+當您設定為一般使用者時、預設不會嘗試設定POSIX或NFS3目的地的「copy」命令（使用者ID（UID）和群組ID（GID））。設定擁有權通常由系統管理員執行。當使用者A從使用者B複製檔案時、使用者A預期擁有目的地。不過、root使用者複製檔案時、情況並非如此。當root使用者複製檔案時、「-chown」選項會變更行為、讓非root的「copy」命令與「-chown」一起嘗試設定UID和GID。
+
+
+
+== 增加開啟檔案描述元的最大數量
+
+為達到最佳效能與可靠性、您可以增加所有節點上XCP使用者的最大開啟檔案描述元數。
+
+.步驟
+. 使用下列命令開啟檔案：「VI /sital/limits.conf」
+. 將下列行新增至檔案：「<使用者名稱>- nocfile 999999」
+
+
+* 範例 *
+
+[listing]
+----
+root - nofile 999999
+----
+請參閱 link:https://access.redhat.com/solutions/61334^["Red Hat解決方案"] 以取得更多資訊。

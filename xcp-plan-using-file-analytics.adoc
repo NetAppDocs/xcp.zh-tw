@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: xcp-using-file-analytics.html 
+keywords: netapp, xcp, plan, planning, data, migration, migrate, migrating, file, analytics 
+summary: 使用檔案分析進行規劃 
+---
+= 使用檔案分析進行規劃
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用檔案分析來規劃資料移轉。
+
+
+NOTE: XCP是CLI、而檔案分析則是GUI。
+
+*總覽*
+
+XCP檔案分析使用XCP掃描API從NFS或SMB主機收集資料。然後、此資料會顯示在XCP檔案分析GUI上。XCP檔案分析涉及三大要素：
+
+* XCP服務
+* 檔案分析資料庫
+* 檔案分析GUI可管理及檢視資料
+
+
+XCP檔案分析元件的部署方法取決於所需的解決方案：
+
+* 部署適用於NFS檔案系統的XCP檔案分析解決方案：
++
+** 您可以在相同的Linux主機上部署檔案分析GUI、資料庫和XCP服務。
+
+
+* 部署適用於SMB檔案系統的XCP檔案分析解決方案：您必須在Linux主機上部署檔案分析GUI和資料庫、並在Windows主機上部署XCP服務。
+

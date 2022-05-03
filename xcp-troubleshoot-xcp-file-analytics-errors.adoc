@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: xcp-troubleshoot-xcp-file-analytics-errors.html 
+keywords: netapp, xcp, troubleshoot, troubleshooting, errors, file, anyalytics 
+summary: 疑難排解XCP檔案分析錯誤 
+---
+= 疑難排解XCP檔案分析錯誤
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+檢閱解決方案以疑難排解您的問題。
+
+[cols="40,60"]
+|===
+| 問題 | 解決方案 
+
+
+| PostgreSQL服務失敗  a| 
+再次執行configure並選取安裝選項。如果先前的安裝成功、您可以選取修復選項。如果仍出現錯誤、請嘗試下列手動步驟：
+
+. 重新啟動PostgreSQL服務：
++
+「Udo systemcl重新啟動postgresql.service`
+
+. 檢查服務狀態：
++
+「Udo systemctl狀態postgresql.service | grep Active」
+
+
+
+
+
+| httpd服務失敗  a| 
+再次執行configure並選取安裝選項。如果先前的安裝成功、您可以選取修復選項。如果仍出現錯誤、請嘗試下列手動步驟：
+
+. 重新啟動HTTPD服務：
++
+「Udo systemctl restart httpd
+
+. 檢查HTTPD服務狀態：
++
+「Udo systemctl狀態httpd | grep Active」
+
+
+
+
+
+| 安裝成功後、無法開啟登入頁面 | 確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^]。 
+
+
+| 使用者登入失敗  a| 
+* 確認您使用的是支援的瀏覽器版本。請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^]。
+* 確認使用者為「admin」、且密碼正確無誤。
+* 發出「XCP服務狀態」來驗證XCP服務是否正在執行。
+* 確認Linux上的連接埠5030已開啟。開啟應用程式：* https：//<Linux ip>：5030/api/XCP *、然後確認訊息：「Mising Authorization Header」（使用授權標頭）。
+* 檢查「xcp.ini`檔案」是否出現在「/opt/NetApp/xFiles/XCP」位置。若要重設「xcp.ini`」檔案、請執行組態指令碼、然後選取「*修復*」選項。接著、選取功能表選項以*重新建置xcp.ini檔案*。
+* 在CLI上手動執行「XCP --listen」命令、然後嘗試登入。如果您在伺服器上沒有收到要求、請重新檢查安裝及用於與伺服器通訊的連接埠。驗證安裝是否正確後、請執行「service XCP start」命令重新啟動服務。
+
+
+
+
+| XCP GUI未顯示更新的頁面 | 請清除快取、然後再試一次 
+
+
+| XCP服務未啟動 | 若要執行「XCP」服務、請使用「show systemcl start XCP」命令。或者、執行組態指令碼並選取*修復*選項、以啟動停止的服務。 
+
+
+| 無法掃描檔案共用區 | 檔案共用區/磁碟區可能無法讀取。執行「XCP show」命令、手動檢查檔案共用區是否可存取/讀取。此外、請檢查是否刪除了「xcp.ini`檔案」。如果刪除、請使用configure.sh指令碼修復選項來重建「xcp.ini`檔案」。 
+
+
+| 無法載入檔案伺服器 | 請嘗試重新整理頁面。如果問題仍然存在、請在提示字元中手動執行「XCP show」命令、然後檢查您是否可以掃描檔案伺服器。如果成功、請向NetApp客戶支援部門提出問題單。如果失敗、請執行手動檢查、檢查檔案伺服器是否處於作用中狀態。檢查「xcp.ini`檔案和授權檔案是否位於正確位置。若要重設「xcp.ini`」檔案、請執行組態指令碼、然後選取「*修復*」選項。接著、選取功能表選項以*重新建置xcp.ini檔案。*檢查「xcpflixs」記錄、查看授權是否需要續約。 
+
+
+| 系統重新開機後、不會顯示XCP檔案分析頁面 | XCP服務可能已停機。執行組態指令碼、然後選取「*修復*」選項。這會重新啟動所有停止的服務。 
+
+
+| 在指定檔案伺服器上匯出檔案系統的總空間、可能會比配置的實體儲存設備顯示更多空間。 | 當磁碟區內有qtree層級匯出時、就會發生這種情況。例如、如果匯出為「/vol1」的磁碟區大小為10 GB、而且磁碟區內有qtree、則「XCP show」命令會將「vol1」大小顯示為「10 GB」、「qtre1」大小顯示為「10 GB」。XCP檔案分析會加總兩個匯出的空間、並提供總空間、在此案例中為「20 GB」。它不知道"qtree1"是邏輯空間。 
+|===

@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: xcp-environment-variable.html 
+keywords: netapp, xcp, configure, configuring, how, performing, tuning, nfs, enviroment, 
+summary: 環境變數（僅限NFS） 
+---
+= 環境變數
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS系統的選用環境變數組態。
+
+
+NOTE: 非root使用者也可以使用下列變數。
+
+環境變數XCP組態DIR會覆寫預設位置：「/opt / NetApp/xFiles/XCP」。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定自訂組態目錄時、記錄檔會命名為「XCP。hostname.log」、而非預設的「XCP。log」。
+
+[listing]
+----
+[root@localhost /]# export XCP_CONFIG_DIR ='/tmp/xcp_config_dir_path'
+----
+環境變數XCP記錄_DIR會覆寫儲存XCP記錄檔的預設位置、並將其儲存在組態目錄中。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定自訂記錄目錄時、記錄檔會命名為「XCP。hostname.log」、而非預設的「XCP。log」。
+
+[listing]
+----
+[root@localhost /]# export XCP_LOG_DIR='/tmp/xcp_log_dir_path'
+----
+環境變數XCP目錄路徑會覆寫xcp.in中的設定如果設定、則該值應為XCP路徑格式「伺服器：匯出[:subnet]」。
+
+[listing]
+----
+[root@localhost /]# export XCP_CATALOG_PATH='10.61.82.210:/vol/xcpvol/'
+----
+
+NOTE: 對於非root使用者、您必須將匯出路徑中的「XCP目錄路徑」取代為POSIX路徑。

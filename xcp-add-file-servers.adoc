@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: xcp-add-file-servers.html 
+keywords: netapp, xcp, file, servers, access, analytics, learn, about, graphs, hot, cold, count, size, entries in directory, distribution by size, directory depth, file space used by size 
+summary: 新增檔案伺服器 
+---
+= 新增檔案伺服器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以在XCP檔案分析GUI中設定NFS和SMB匯出的檔案系統。
+
+如此一來、XCP檔案分析就能掃描及分析檔案系統上的資料。請使用下列步驟新增NFS或SMB檔案伺服器。
+
+.步驟
+. 若要新增檔案伺服器、請選取*新增檔案伺服器*。
+
+
+image:xcp_image3.png["新增檔案伺服器畫面"]
+
+新增檔案伺服器IP位址、選取NFS或SMB選項、然後按一下「*新增*」。
+
+
+NOTE: 如果GUI中沒有SMB代理程式、您將無法新增SMB伺服器。
+
+新增檔案伺服器之後、XCP會顯示：
+
+* 可用檔案共用總數
+* 檔案與分析資料共用（初始數為「0」、這是在您執行成功掃描時更新的）
+* 總空間使用率：所有匯出所使用的空間總和
+* 檔案共用和空間使用率的資料是來自NFS/SMB伺服器的即時資料。收集和處理資料需要數秒鐘的時間。
+
+
+
+NOTE: 檔案分析中使用的空間與空間、是從NFS上可用的每個匯出檔案系統計算而來。例如、如果磁碟區由qtree組成、且匯出是透過qtree建立、則整體空間是磁碟區大小和qtree大小的累計空間。

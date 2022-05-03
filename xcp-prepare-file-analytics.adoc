@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: xcp-prepare-file-analytics.html 
+keywords: netapp, xcp, prepare, preparing, preparation, file analytics 
+summary: 使用檔案分析準備資料移轉。 
+---
+= 準備檔案分析
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用檔案分析準備資料移轉。
+
+檔案分析包含下列兩個部分：
+
+* 在Linux上執行的檔案分析伺服器
+* 在Windows上執行的XCP SMB服務
+
+
+檔案分析安裝有下列需求：
+
+* 支援的作業系統和系統需求與NFS和SMB安裝的要求相同。由於資料庫將位於Linux機箱上、因此您必須確保至少有10 GB的可用空間。
+* 安裝檔案分析伺服器的Linux機器必須連線至網際網路或yum儲存庫。安裝指令碼會向yum儲存庫說明、以便下載所需的套件、例如PostgreSQL、HTTP和SSL。
+* 檔案分析GUI只能裝載在Linux機器上、而在同一個機器上執行的適用於Linux的XCP服務也只能裝載在一起。
+* 若要執行SMB服務、請完成下列步驟：
++
+** 請確認您的Windows Box能夠ping通執行檔案分析伺服器的Linux機器。
+** 如果您位於防火牆內、請確認連接埠5030和5432已開啟。連接埠5030用於撥打Windows的REST呼叫。連接埠5432連接埠用於PostgreSQL連線。
+
+
+
+
+
+NOTE: XCP檔案分析伺服器一律會在Linux機器上執行。SMB檔案分析沒有個別的安裝可供使用。如果您是Windows使用者、想要執行SMB共用的檔案分析、則必須安裝適用於Linux的檔案分析、並將Windows Box連線至Linux資料庫。如果您只使用XCP檔案分析、就不需要設定XCP目錄for NFS。

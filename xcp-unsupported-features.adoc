@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: xcp-unsupported-features.html 
+keywords: xcp, nfs, smb, features, unsupported, configuration 
+summary: XCP NFS或XCP SMB不支援某些功能。 
+---
+= 不支援的功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS不支援下列功能：
+
+[cols="40,60"]
+|===
+| 功能名稱 | 說明 
+
+
+| IPv6 | 不支援IP版本6（IPv6） 
+
+
+| NFSv4存取控制清單（ACL）（第三方） | 不支援NetApp NFSv4 ACL的第三方 
+
+
+| POSIX連接器  a| 
+* 「shync」命令不支援POSIX連接器
+* 當來源處於作用中狀態時、您不應使用「copy」命令
+
+
+
+
+| Hadoop分散式檔案系統（HDFS）連接器  a| 
+* 「shync」命令不支援HDFS連接器
+* HDFS檔案系統不支援符號連結（symlinks）、硬式連結或特殊檔案
+* 當來源處於作用中狀態時、您不應使用「copy」命令
+
+
+
+
+| ACL | 當來源為非NetApp系統時、XCP不會複製ACL。 
+
+
+| Linux | XCP 1.6.3支援的舊版Linux不再支援XCP。 
+|===
+XCP SMB不支援下列功能：
+
+[cols="40,60"]
+|===
+| 功能名稱 | 說明 
+
+
+| NFS符號連結（symlink） | XCP SMB不支援NFS symlink 
+
+
+| 用於掃描的ACL選項 | 不支援掃描ACL選項 
+
+
+| IPv6 | 不支援IP版本6（IPv6） 
+
+
+| NTFS替代資料串流 | XCP目前不支援替代資料串流 
+
+
+| XCP篩選器 | XCP SMB exclude選項目前會根據目錄在篩選器中的模式排除目錄、並遍歷這些目錄的檔案系統。 
+
+
+| 主動來源支援 | XCP不支援使用基準或遞增Snapshot複本、接著進行即時來源移轉以進行遞增同步。 
+|===
+XCP NFS和SMB無法使用下列一般功能：
+
+* 同一主機*上有多個執行個體*：在同一主機上執行多個XCP執行個體時、可能會產生無法預測的結果。
+* *完成移轉的時間*：XCP前期並未提供完成移轉的時間、也沒有時間完成任何用於移轉的命令。如果您正在進行最終轉換、請確認來源磁碟區上的資料流失率過低。
+* *在未清理的目標上再次執行複本*：當目的地目標上有部分資料時、XCP基礎複本將會失敗。若要成功完成XCP基礎複本和XCP驗證、目的地必須是乾淨的。
+* *即時目的地*：XCP不支援在移轉期間或遞增同步期間修改目的地磁碟區上的資料。
+* *檔案分析*的非root使用者：XCP不支援非root使用者或Sudo使用者執行的安裝和組態。
+

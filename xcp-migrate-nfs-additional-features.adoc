@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: xcp-migrate-nfs-additional-features.html 
+keywords: xcp, nfs, chomod, chown, posix, ownership, change, file, path, directory, command, scan 
+summary: XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共用區或POSIX路徑的檔案和目錄擁有權和權限。 
+---
+= 其他NFS功能
+:allow-uri-read: 
+
+
+[role="lead"]
+XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共用區或POSIX路徑的檔案和目錄擁有權和權限。您可以使用XCP「chown」和「chmod」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。
+
+在變更檔案的擁有權之前、您必須先設定新的擁有者。否則、命令將會失敗。XCP「chown」和「chmod」命令的運作方式類似於Linux「chown」和「chmod」命令。
+
+
+
+== chmod
+
+"chmod"命令會掃描並變更所選目錄結構中所有檔案的檔案權限。"chmod"命令需要模式或參考、NFS共用或POSIX路徑做為變數。XCP「chmod」會以遞迴方式變更指定路徑的權限。您可以使用「chmod」命令來顯示掃描的檔案總數、以及輸出中已變更的權限。
+
+*範例：*
+
+....
+xcp chmod -mode 777 NFS [server:/export path | file://<NFS mounted path>]
+xcp chmod -mode 707 nfs_server01.netapp.com:/export1
+xcp chmod -reference nfs_server01.netapp.com:/export/dir1/file.txt  nfs_server02.netapp.com: export1
+xcp chmod -match “fnm(‘file.txt’)” -mode 111 file:///mnt/nfs_mount_point/
+xcp chmod -exclude “fnm(‘file.txt’)” -mode 111 file:///demo/user1/
+....
+如需詳細資訊、請執行「XCP說明chmod」命令。
+
+
+
+== chown
+
+「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞歸方式變更指定路徑的擁有權。
+
+* 範例 *
+
+....
+xcp chown -user user1 NFS [server:/export path | file://<NFS mounted path>
+xcp chown -user user1 nfs_server01.netapp.com:/export1
+xcp chown -user user1 -group group1 nfs_server01.netapp.com:/export1/dir1/
+xcp chown  -reference nfs_server01.netapp.com:/export/dir1/file.txt  nfs_server02.netapp.com:/export1
+xcp chown -match “fnm(‘file.txt’)” -user user1 file:///mnt/nfs_mount_point/
+xcp chown -exclude “fnm(‘file.txt’)” -user user1 -group group1
+xcp chown -user-from user1 -user user2 file:///mnt/nfs_mount_point/
+xcp chown -group-from group1 -group group2 nfs_server01.netapp.com:/export1/
+....
+如需詳細資訊、請執行「XCP說明chown」命令。

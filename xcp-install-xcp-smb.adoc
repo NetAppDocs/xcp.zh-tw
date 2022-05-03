@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: xcp-install-xcp-smb.html 
+keywords: netapp, xcp, install, smb 
+summary: 安裝XCP SMB 
+---
+= 安裝XCP SMB
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+本節詳細說明VC++可轉散發安裝的系統需求、以及在Windows用戶端上初始設定XCP的程序。
+
+
+NOTE: 沒有升級選項；請重新安裝XCP以取代任何現有版本。
+
+*系統要求*
+
+[cols="35,65"]
+|===
+| 項目 | 需求 
+
+
+| 系統 | 64位元Intel或AMD伺服器、至少4核心和32 GB RAM 
+
+
+| 作業系統與軟體 | Windows 2012 R2或更新版本。如需支援的Microsoft OS版本、請參閱 link:https://mysupport.netapp.com/matrix/#welcome["互通性對照表工具"^]。必須在XCP主機上安裝Visual C++ 2017可轉散發套件。 
+
+
+| 特殊需求 | 來源儲存系統、XCP主機和目標ONTAP 版的系統必須是同一個Active Directory網域的一部分 
+
+
+| 儲存設備 | XCP二進位檔案需要20 MB的磁碟空間、而儲存在C：\NetApp\XCP目錄中的記錄則需要至少50 MB的磁碟空間 
+
+
+| 支援的傳輸協定版本 | 所有SMB傳輸協定版本 
+
+
+| 支援的瀏覽器（僅限檔案分析） | XCP檔案分析支援Google Chrome 76版及更新版本。請參閱IMT 支援的瀏覽器所有版本的《支援資訊表》 
+|===
+
+
+=== XCP SMB Microsoft VC++可轉散發套件安裝
+
+請依照下列步驟進行VC++可轉散發安裝。
+
+.步驟
+. 按一下 link:https://go.microsoft.com/fwlink/?LinkId=746572["VC++ 2017可轉散發套件"^] 可將可執行文件下載至您的預設下載文件夾。
+. 若要開始安裝、請按兩下安裝程式。接受條款與條件、然後選取*安裝*。
+. 安裝完成後、請重新啟動Windows用戶端。
+
+
+
+
+=== XCP SMB初始設定程序
+
+請依照下列步驟執行XCP SMB的初始設定。
+
+.步驟
+. 在Windows用戶端下載授權和XCP SMB二進位檔「NetApp_XCP _<版本>.tgz」。
+. 擷取「NetApp_XCP」<版本>.tgz」檔案。
+. 將「XCP：exe」檔案複製到Windows C：磁碟機、此二進位檔可在擷取「tgz」檔案之後於「NetApp_XCP _1.8\NetApp_XCP \windows」中找到。
+. 驗證系統上是否有舊版XCP的「C：\NetApp\XCP」路徑可用。如果有「C：\NetApp\XCP」、請使用「xcp.exe activate」命令啟動XCP、然後繼續資料移轉。
++
+如果無法使用「C：\NetApp\XCP」、系統會在您第一次執行「xcp.exe activate」命令時、建立XCP主機組態目錄、並將其檔案置於「C：\NetApp\XCP」。「xcp.exe actactivate」命令失敗、並建立錯誤訊息、要求取得新授權。
+
++
+[listing]
+----
+C:\>xcp.exe activate
+(c) yyyy NetApp, Inc.
+
+License file C:\NetApp\XCP\license not found.
+Register for a license at https://xcp.netapp.com
+----
+. 將授權複製到新建立的資料夾「C：\NetApp\XCP：」
++
+[listing]
+----
+C:\>copy license c:\NetApp\XCP
+        1 file(s) copied.
+----
+. 啟動XCP：
++
+[listing]
+----
+C:\>xcp.exe activate
+XCP SMB; (c) yyyy NetApp, Inc.;
+
+XCP activated
+
+C:\>
+----
+

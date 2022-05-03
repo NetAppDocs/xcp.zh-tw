@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: xcp-migrate-nfs-data.html 
+keywords: netapp, xcp, migrate, data, nfs, smb, copy, resume, sync, verify 
+summary: 移轉NFS資料 
+---
+= 移轉NFS資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用「show」和「shcan」命令規劃移轉作業之後、您就可以移轉資料。
+
+
+
+=== 複本
+
+「copy」命令會掃描整個來源目錄結構、並將其複製到目的地NFSv3匯出。「copy」命令需要將來源和目的地路徑做為變數。掃描與複製的檔案、處理量/速度和經過時間詳細資料會顯示在複製作業結束時。
+
+*範例：*
+
+[listing]
+----
+xcp copy -newid <id> src_server:/src_export dst_server:/dst_export
+----
+* POSIX路徑範例：*
+
+[listing]
+----
+xcp copy -newid <id> file:///mnt/source file:///mnt/dest
+----
+* HDFS路徑範例：*
+
+[listing]
+----
+xcp copy -newid <id> hdfs:///demo/user file:///mnt/dest
+----
+如需詳細資訊、請參閱「XCP說明複本」。
+
+
+
+=== 繼續
+
+「假定」命令會指定目錄索引名稱或編號、重新啟動先前中斷的複製作業。上一個複製作業的目錄索引名稱或編號會儲存在「目錄路徑」：/型 錄/索引目錄中。
+
+*範例：*
+
+[listing]
+----
+xcp resume [options] -id <id used for copy>
+----
+如需詳細資訊、請參閱《XCP說明恢復》。
+
+
+
+=== 同步
+
+「sync」命令會使用目錄索引標籤名稱或先前複製作業的編號、掃描來源NFS目錄上所執行的變更和修改。來源遞增變更會複製並套用至目標目錄。舊的目錄索引編號會在同步operation#之後以新的[.Underlines]#取代。
+
+*範例：*
+
+[listing]
+----
+xcp sync [options] -id <id used for copy>
+----
+如需詳細資料、請參閱「XCP說明同步」。
+
+
+
+=== 驗證
+
+在複製作業之後、「驗證」命令會在來源目錄和目標目錄之間使用逐位元組的完整資料比較、而不使用目錄索引編號。此命令會檢查修改時間及其他檔案或目錄屬性、包括權限。命令也會讀取兩側的檔案、並比較資料。
+
+*範例：*
+
+[listing]
+----
+xcp verify src_server:/src_export dst_server:/dst_export
+----
+* POSIX路徑範例：*
+
+[listing]
+----
+xcp verify file:///mnt/source file:///mnt/dest
+----
+* HDFS路徑範例：*
+
+[listing]
+----
+xcp verify hdfs:///user/demo1/data file:///user/demo1/dest
+----
+如需詳細資訊、請參閱「XCP說明驗證」。

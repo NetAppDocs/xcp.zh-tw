@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: xcp-migrate-smb-data.html 
+keywords: netapp, xcp, migrate, data, smb, copy, resume, sync, verify 
+summary: 移轉SMB資料 
+---
+= 移轉SMB資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+使用「show」和「shcan」命令規劃移轉作業之後、您就可以移轉資料。
+
+
+
+=== 複本
+
+「copy」命令會掃描整個來源目錄結構、並將其複製到目的地SMB共用區。「copy」命令需要將來源和目的地路徑做為變數。掃描和複製的檔案、處理量/速度和經過時間等詳細資料、每五秒會列印一次到主控台。
+
+
+NOTE: 在複製作業期間、您可以使用「-preserve-atime」旗標搭配「copy」命令、以保留來源的存取時間。
+
+*範例：*
+
+[listing]
+----
+C:\xcp>xcp copy \\<source SMB share> \\<destination SMB share>
+----
+如需詳細資訊、請參閱「XCP說明複本」。
+
+
+
+=== 同步
+
+「sync」命令會平行掃描來源和目標共用區的變更和修改、並將適當的動作（移除、修改、重新命名等）套用至目標、以確保目標與來源相同。
+
+sync命令會比較資料內容、時間戳記、檔案屬性、擁有權和安全性資訊。
+
+
+NOTE: 在同步作業期間、您可以使用「-preserve-atime」旗標搭配「synch」命令、以保留來源的存取時間。
+
+*範例：*
+
+[listing]
+----
+C:\xcp>xcp sync \\<source SMB share> \\<destination SMB share>
+----
+如需詳細資料、請參閱「XCP說明同步」。
+
+
+
+=== 驗證
+
+「驗證」命令會同時讀取來源和目標共用區、並加以比較、提供不同內容的相關資訊。無論用於執行複本或同步的工具為何、您都可以在任何來源和目的地上使用命令。
+
+[NOTE]
+====
+* 在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。
+* 在驗證作業期間、您可以使用「-nodatime」旗標搭配「VERRIFY」命令、排除存取時間差異。
+
+
+====
+*範例：*
+
+[listing]
+----
+C:\xcp>xcp verify \\<source SMB share> \\<destination SMB share>
+----
+如需詳細資訊、請參閱「XCP說明驗證」。
