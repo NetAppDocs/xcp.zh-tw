@@ -44,7 +44,7 @@ NOTE: 沒有升級選項；請重新安裝XCP以取代任何現有版本。
 |===
 
 
-=== XCP SMB Microsoft VC++可轉散發套件安裝
+== XCP SMB Microsoft VC++可轉散發套件安裝
 
 請依照下列步驟進行VC++可轉散發安裝。
 
@@ -56,7 +56,7 @@ NOTE: 沒有升級選項；請重新安裝XCP以取代任何現有版本。
 
 
 
-=== XCP SMB初始設定程序
+== XCP SMB初始設定程序
 
 請依照下列步驟執行XCP SMB的初始設定。
 

@@ -5,12 +5,13 @@ keywords: netapp, xcp, configure, configuring, how, performing, tuning, nfs, smb
 summary: XCP NFS和SMB的記錄 
 ---
 = NFS和SMB記錄（選用）
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
 
-
-
-
-== NFS和SMB記錄（選用）
 
 [role="lead"]
 XCP NFS和SMB的記錄。
@@ -82,7 +83,7 @@ XCP支援的常見選項；將其值設為true、會在要支援的訊息（記�
 |===
 
 
-= 建立Json組態檔
+== 建立Json組態檔
 
 若要啟用事件記錄訊息、syslog用戶端或客戶記錄、請完成下列步驟。
 
