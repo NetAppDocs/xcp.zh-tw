@@ -120,9 +120,7 @@
   <block id="2bb343c5c64b5c34c9de8bcf47e92785" category="list-text">修改「xcp.ini`」檔案並新增目錄路徑。</block>
   <block id="e7465a44f40c1871dc86247362cb9c17" category="list-text">從主節點將無密碼的安全Shell（SSH）設定為工作節點：</block>
   <block id="d0d53af0a600e75b327575d75c03861c" category="list-text">在主節點上產生金鑰：</block>
-  <block id="370b7e68abea8b7e619db3ecec836d13" category="paragraph">「sh-keygen-b 2048-t ra -f / root/.ssh / id_ra -q -N ''」</block>
   <block id="9d55d07ef712b748878175a6aa889333" category="list-text">將金鑰複製到所有工作節點：</block>
-  <block id="f7d8f65267808fa7b9fdab1fdcff8657" category="paragraph">「sh-copy -id -i /root/.ssh / id_ras.pub root@worker1」</block>
   <block id="70e4f46a27cb6199ac7f605ef48989f9" category="paragraph">XCP主節點使用SSH在其他節點上執行工作人員。您必須設定工作節點、為在主節點上執行XCP的使用者啟用無密碼SSH存取。例如、若要讓主節點上的使用者示範使用節點「worker1」做為XCP工作者節點、您必須將XCP二進位檔從主節點複製到主目錄中的所有工作節點。</block>
   <block id="8b76ed249e6db9e50569a0493601ca7b" category="paragraph">當您同時啟動多個XCP工作者時、為了避免錯誤、您應該增加每個工作者節點上的「shd MaxStartups」參數、如下列範例所示：</block>
   <block id="e88c2696512e18442eb3ff58e07b493a" category="paragraph">當XCP在叢集節點上執行工作者時、工作者處理序會從主節點上的主要XCP處理序繼承環境變數。若要自訂特定的節點環境、您必須在「nodes.ini`」檔案中設定變數、該檔案僅位於主節點的組態目錄（工作節點沒有組態目錄或目錄）。例如、在不同位置的Ubuntu伺服器mars（如Wave（即CentOS）中、其「libjvm.so」位於主節點的不同位置、則需要一個組態目錄、才能讓Mars上的員工使用HDFS連接器。以下範例顯示此設定：</block>
@@ -146,7 +144,6 @@
   <block id="0c8468e8bc6e9c8ce8e4de412fee0c10" category="cell">/opt/NetApp/xFiles/XCP</block>
   <block id="0355e9d1594e3a57c3f88a95ae90e7b7" category="cell">C：\NetApp\XCP \ConfigFile</block>
   <block id="688880844a9d73f7e3cf8f7c8f2f1da6" category="cell">自訂位置需要「XCP組態目錄」環境變數</block>
-  <block id="223d3a19cc16f37abc58628c0df5ee27" category="cell">錯誤！找不到參考來源。</block>
   <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">不適用</block>
   <block id="c71c45be8ac72499222cb1690d308dde" category="paragraph">Json組態檔案選項區分大小寫。XCP NFS和XCP SMB的選項相同。</block>
   <block id="00a20684d8065f1c9d26a305e2eadcd0" category="cell">子選項名稱</block>
@@ -190,7 +187,6 @@
   <block id="d4f0fd36ab870ee5b451ed975a3b840d" category="list-text">開啟任何文字編輯器、例如記事本或VI。</block>
   <block id="d4b54477c37b7ad7e878a796746f262b" category="list-text">使用下列Json範本建立新檔案。</block>
   <block id="0db76c5e35f0f2f03c2d9b09a9c5b6ab" category="list-text">如果您想要啟用任何功能、請將「isEnabled」值變更為「true」。</block>
-  <block id="fd162698220e1fdc813cf6219f85e6c6" category="list-text">將檔案命名為「xcpLogConfig.json」、並將其儲存至*錯誤！找不到參考來源。*</block>
   <block id="7c584a16cbf4210dc0a344179e274e09" category="cell">預設組態</block>
   <block id="a2f0a9650b74152ef4105d29bb0e92f0" category="cell">json組態檔範例</block>
   <block id="1718dc53be562ce70afa56df4e40aac0" category="summary">效能調校（僅限NFS）</block>
@@ -742,4 +738,9 @@
   <block id="ef8cdecd9388166741c6ddeb9e648a30" category="sidebar">設定XCP</block>
   <block id="43f3f6a392074dfc63604c7b136e457f" category="sidebar">設定XCP NFS的Ini檔案</block>
   <block id="d60c463bb4096f3ed4bd1618626dfe10" category="sidebar">疑難排解</block>
+  <block id="3f2483126bfaf4f145dc2ccaaf50a96d" category="cell">使用您針對「XCP組態目錄」變數所設定的位置</block>
+  <block id="422b2633c200093920a3504cacd40ac4" category="list-text">將檔案命名為「xcpLogConfig.json」、並將其儲存至預設位置：/opp/NetApp/xFiles/XCP</block>
+  <block id="5a80d55457d11b6a6649cb8e31a68ae9" category="paragraph">如果設定了「XCP組態目錄」環境變數、請將「xcpLogConfig.json」檔案儲存在與「XCP組態目錄」變數相同的位置。</block>
+  <block id="eeb488eb1940aa6eb63fb96f6766209e" category="paragraph">「sh-keygen-b 2048-t ra -f /root/.ssh / id_ra -q -N ''」</block>
+  <block id="6fa3c056ccd312364628a9d8779047d9" category="paragraph">「sh-copy -id -i /root/.ssh / id_ras.pub root@worker1」</block>
 </blocks>

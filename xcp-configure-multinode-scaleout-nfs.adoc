@@ -29,7 +29,7 @@ summary: 若要克服單一節點的效能限制、您可以使用單一XCP copy
 +
 .. 在主節點上產生金鑰：
 +
-「sh-keygen-b 2048-t ra -f / root/.ssh / id_ra -q -N ''」
+「sh-keygen-b 2048-t ra -f /root/.ssh / id_ra -q -N ''」
 
 .. 將金鑰複製到所有工作節點：
 +

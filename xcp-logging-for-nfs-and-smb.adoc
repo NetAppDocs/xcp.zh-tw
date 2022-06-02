@@ -32,7 +32,7 @@ XCP支援使用「xcpLogConfig.json」Json組態檔來設定多項選用功能�
 | 組態檔預設位置 | /opt/NetApp/xFiles/XCP | C：\NetApp\XCP \ConfigFile 
 
 
-| 自訂位置需要「XCP組態目錄」環境變數 | 錯誤！找不到參考來源。 | 不適用 
+| 自訂位置需要「XCP組態目錄」環境變數 | 使用您針對「XCP組態目錄」變數所設定的位置 | 不適用 
 |===
 Json組態檔案選項區分大小寫。XCP NFS和XCP SMB的選項相同。
 
@@ -113,7 +113,10 @@ XCP支援的常見選項；將其值設為true、會在要支援的訊息（記�
 }
 ----
 . 如果您想要啟用任何功能、請將「isEnabled」值變更為「true」。
-. 將檔案命名為「xcpLogConfig.json」、並將其儲存至*錯誤！找不到參考來源。*
+. 將檔案命名為「xcpLogConfig.json」、並將其儲存至預設位置：/opp/NetApp/xFiles/XCP
++
+如果設定了「XCP組態目錄」環境變數、請將「xcpLogConfig.json」檔案儲存在與「XCP組態目錄」變數相同的位置。
+
 
 
 |===
