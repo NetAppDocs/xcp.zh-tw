@@ -18,7 +18,7 @@ XCP NFS現在支援使用POSIX連接器來提供資料移轉的來源和目的�
 POSIX連接器支援下列功能：
 
 * 對於支援奈秒「atim」、「mtime」和「ctime」的POSIX檔案系統、「shcan」命令會取得完整值（秒和納秒）、而「copy」命令則會設定完整值
-* POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。請參閱 link:xcp-configure-security-nfs.html["設定安全性"]
+* POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。
 
 
 

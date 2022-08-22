@@ -18,7 +18,7 @@ HDFS連接器的路徑語法為「HDFS：//[user@host:port]/完整路徑」。
 
 NOTE: 如果您未指定使用者、主機和連接埠、XCP會呼叫「hdfsConnect」、並將主機設定為「預設」、連接埠設定為「0」。
 
-若要執行HDFS「copy」命令、您必須在Linux系統上設定HDFS用戶端、並根據Hadoop廠商、遵循網際網路上可用的設定組態。例如、您可以使用「https://docs.datafabric.hpe.com/60/AdvancedInstallation/SettingUptheClient- redhat.html」設定MapR叢集的用戶端。
+若要執行HDFS「copy」命令、您必須在Linux系統上設定HDFS用戶端、並根據Hadoop廠商、遵循網際網路上可用的設定組態。例如、您可以使用「https://docs.datafabric.hpe.com/60/AdvancedInstallation/SettingUptheClient-redhat.html`」設定MapR叢集的用戶端。
 
 完成HfDS用戶端設定之後、您必須在用戶端上完成設定。若要搭配XCP命令使用HDFS路徑、您必須具備下列環境變數：
 

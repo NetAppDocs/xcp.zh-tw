@@ -44,5 +44,5 @@ summary: 排除XCP SMB錯誤
 | 「XCP copy：錯誤」無法取得後援安全性主體（在hosts檔案中新增目的地方塊項目）錯誤訊息登入xcp.log檔案：「pywinTypes。錯誤：（87、「LookupAccountName」、「The蔘數不正確。」） | 後援使用者/群組選項的參數不正確。以正確的語法重新執行命令、以使用容錯移轉使用者/群組選項 
 
 
-| xcp.log文件中記錄了帶ACL遷移Erorr消息的'XCP COPy'：'pywintypes.error'：'（1314、'GetNamedSecurityInfo'、'A required privaceis not haced by the client.'）' | 使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、但無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： link:https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn221953%28v%3Dws.11%29["管理稽核與安全性記錄"^] 
+| xcp.log檔案中記錄「XCP copy（XCP複製）」及「ACL移轉錯誤」訊息：「pywintypes.error（pywintypes.error）」：「（1314、「GetNamedSecurityInfo」、「用戶端不擁有必要的權限」） | 使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、因此無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： link:https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn221953%28v%3Dws.11%29["管理稽核與安全性記錄"^] 
 |===

@@ -50,7 +50,8 @@ XCP NFS轉換與移轉具有下列來源與目標儲存需求：
 [NOTE]
 ====
 * 為了避免系統管理員意外修改來源Volume、您應該將NFSv3和NFSv4匯出目錄的來源Volume設定為唯讀。
-* 在BIOS中ONTAP 、您可以使用診斷「-atime-update」（-atime-update）選項來保留atime。此功能僅在ONTAP 執行XCP時、才能在來源物件中保留atime、而且非常實用。
+* 在BIOS中ONTAP 、您可以使用診斷「-atime-update」（-atime-update）選項、在來源物件上保留atime（atime-update）。此功能僅在ONTAP 執行XCP時、才能在來源物件中保留atime、而且非常實用。
+* 在XCP中、您可以使用「-preserve-atime」選項來保留來源物件的atime。此選項適用於存取來源物件的所有命令。
 
 
 ====

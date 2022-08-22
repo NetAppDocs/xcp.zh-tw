@@ -9,15 +9,22 @@ summary: XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共�
 
 
 [role="lead"]
-XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共用區或POSIX路徑的檔案和目錄擁有權和權限。您可以使用XCP「chown」和「chmod」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。
-
-在變更檔案的擁有權之前、您必須先設定新的擁有者。否則、命令將會失敗。XCP「chown」和「chmod」命令的運作方式類似於Linux「chown」和「chmod」命令。
+XCP包含一些額外的NFS功能。
 
 
 
-== chmod
+== chown和chmod
 
-"chmod"命令會掃描並變更所選目錄結構中所有檔案的檔案權限。"chmod"命令需要模式或參考、NFS共用或POSIX路徑做為變數。XCP「chmod」會以遞迴方式變更指定路徑的權限。您可以使用「chmod」命令來顯示掃描的檔案總數、以及輸出中已變更的權限。
+您可以使用XCP「chown」和「chmod」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。
+
+
+NOTE: 在變更檔案的擁有權之前、您必須先設定新的擁有者。否則、命令將會失敗。XCP「chown」和「chmod」命令的運作方式類似於Linux「chown」和「chmod」命令。
+
+
+
+=== chmod
+
+"chmod"命令會掃描並變更所選目錄結構中所有檔案的檔案權限。"chmod"命令需要一個模式或參照、以及NFS共用區或POSIX路徑做為變數。XCP「chmod」會以遞迴方式變更指定路徑的權限。您可以使用「chmod」命令來顯示掃描的檔案總數、以及輸出中已變更的權限。
 
 *範例：*
 
@@ -32,9 +39,11 @@ xcp chmod -exclude “fnm(‘file.txt’)” -mode 111 file:///demo/user1/
 
 
 
-== chown
+=== chown
 
-「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞歸方式變更指定路徑的擁有權。
+您可以使用XCP「chown」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。
+
+「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞迴方式變更指定路徑的擁有權。
 
 * 範例 *
 

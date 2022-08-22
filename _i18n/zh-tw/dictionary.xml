@@ -19,7 +19,6 @@
   <block id="773d6c478422286a9fad650c3ddd09dd" category="paragraph">「Udo systemctl狀態httpd | grep Active」</block>
   <block id="2113faff27761298b76e18e9d9dc0831" category="cell">安裝成功後、無法開啟登入頁面</block>
   <block id="c5dcd35af16918a17ee9c3a5c153f0af" category="inline-link-macro">IMT</block>
-  <block id="7c6efba1432d256b5f2c9286332f395e" category="cell">確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
   <block id="d50784b3674870554d4c3159c77d15ea" category="cell">使用者登入失敗</block>
   <block id="fca5f9179b264aa12937804595452dfa" category="list-text">確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
   <block id="3721f4d27bf1373c3dce1560f7ad4013" category="list-text">確認使用者為「admin」、且密碼正確無誤。</block>
@@ -43,9 +42,6 @@
   <block id="4467bdfaff09862977dbfe2f4fb9dca5" category="doc">環境變數</block>
   <block id="36836fd13aeec5b924ea6cf294316fa1" category="paragraph">XCP NFS系統的選用環境變數組態。</block>
   <block id="9d7df06a85bdd4b5d7f134e518ba0eb5" category="admonition">非root使用者也可以使用下列變數。</block>
-  <block id="0dd6ca798bb0f2d45b2b59c074793ac6" category="paragraph">環境變數XCP組態DIR會覆寫預設位置：「/opt / NetApp/xFiles/XCP」。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定自訂組態目錄時、記錄檔會命名為「XCP。hostname.log」、而非預設的「XCP。log」。</block>
-  <block id="ded2d02a4fd60f232dc6bbe8614960b6" category="paragraph">環境變數XCP記錄_DIR會覆寫儲存XCP記錄檔的預設位置、並將其儲存在組態目錄中。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定自訂記錄目錄時、記錄檔會命名為「XCP。hostname.log」、而非預設的「XCP。log」。</block>
-  <block id="b2a82a89c888f120cc61565aed8191c8" category="paragraph">環境變數XCP目錄路徑會覆寫xcp.in中的設定如果設定、則該值應為XCP路徑格式「伺服器：匯出[:subnet]」。</block>
   <block id="8dec2942730a578afac995d1f6dbb48c" category="admonition">對於非root使用者、您必須將匯出路徑中的「XCP目錄路徑」取代為POSIX路徑。</block>
   <block id="63debe27683f1f8c225ad14c415dffcc" category="summary">移轉資料</block>
   <block id="c108d80b5cb48ca6e66a2b5bb8516f73" category="summary">使用檔案分析準備資料移轉。</block>
@@ -240,8 +236,6 @@
   <block id="f6d7a1a39c7e76b0a2ad7044af130caf" category="section-title">支援的功能</block>
   <block id="95ddd83f06b46164d9007a3fec84bd09" category="paragraph">POSIX連接器支援下列功能：</block>
   <block id="61d64caacf6145ab9260325232ace1f3" category="list-text">對於支援奈秒「atim」、「mtime」和「ctime」的POSIX檔案系統、「shcan」命令會取得完整值（秒和納秒）、而「copy」命令則會設定完整值</block>
-  <block id="f17259fd5fd04df8d00de9bae40078cc" category="inline-link-macro">設定安全性</block>
-  <block id="efed384e39c6ae674248adc931cd6fe9" category="list-text">POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。請參閱 <block ref="884f9726fabc578536c00929cd2fe7e3" category="inline-link-macro-rx"></block></block>
   <block id="020ec197b81e56345052745b2d507168" category="section-title">路徑語法</block>
   <block id="d67f0d6f3689c0b2c96700d038812574" category="paragraph">POSIX連接器的路徑語法為「\file//&lt;掛載路徑on Linux &gt;」。</block>
   <block id="e46c2c3b78dd65a39b82aaeb11382265" category="section-title">設定POSIX連接器</block>
@@ -314,14 +308,11 @@
   <block id="04469d5cc45573e655231acc341bf212" category="list-text">交會：僅適用於SMB</block>
   <block id="258c43132f7d0ee8dca2932b84e55383" category="summary">XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共用區或POSIX路徑的檔案和目錄擁有權和權限。</block>
   <block id="ce0d872fae9d962e1e9e1ff7397f5840" category="doc">其他NFS功能</block>
-  <block id="237f1be769ddaca2a6c7f5fb510296bc" category="paragraph">XCP包含一些額外的NFS功能、可讓您輕鬆變更任何NFS共用區或POSIX路徑的檔案和目錄擁有權和權限。您可以使用XCP「chown」和「chmod」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。</block>
   <block id="c353351e2cab6270e61ca76351aa5192" category="paragraph">在變更檔案的擁有權之前、您必須先設定新的擁有者。否則、命令將會失敗。XCP「chown」和「chmod」命令的運作方式類似於Linux「chown」和「chmod」命令。</block>
   <block id="c8f43293a0d371a440cac8bb93307056" category="section-title">chmod</block>
-  <block id="a4d26be6e1a014201192b6f7a5db4c72" category="paragraph">"chmod"命令會掃描並變更所選目錄結構中所有檔案的檔案權限。"chmod"命令需要模式或參考、NFS共用或POSIX路徑做為變數。XCP「chmod」會以遞迴方式變更指定路徑的權限。您可以使用「chmod」命令來顯示掃描的檔案總數、以及輸出中已變更的權限。</block>
   <block id="c26fe677a830587ef1c141567a86c86a" category="paragraph">*範例：*</block>
   <block id="ed4ffa57a1bdcb56aaf1d22b8d722821" category="paragraph">如需詳細資訊、請執行「XCP說明chmod」命令。</block>
   <block id="845fbaad258ca858251e4c4c0ad53eb0" category="section-title">chown</block>
-  <block id="12ef08f5f383690078c3df9936bfe139" category="paragraph">「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞歸方式變更指定路徑的擁有權。</block>
   <block id="8fa3ac473e7edac7e52a655e5271e49f" category="paragraph">如需詳細資訊、請執行「XCP說明chown」命令。</block>
   <block id="8c1d67b3b1e3cf97c5f054bf8d66089c" category="summary">規劃SMB資料移轉</block>
   <block id="f4eb381e275885c806213db1203bf102" category="paragraph">規劃您的SMB資料移轉。</block>
@@ -333,7 +324,6 @@
   <block id="22efdbe132eabc102306bd7a334fb434" category="section-title">掃描</block>
   <block id="fe3babe18b970588464b8384c50d8cb3" category="paragraph">「掃描」命令會以遞歸方式掃描整個SMB共用區、並在掃描結束時列出所有檔案。</block>
   <block id="e7cd4019e47684c4ac82ed229910b175" category="admonition">在掃描作業期間、您可以使用「-preserve-atime」旗標搭配「掃描」命令、以保留來源的存取時間。</block>
-  <block id="8d79bfe51b141cbe8fb2c30741dbfe14" category="paragraph">*範例：*</block>
   <block id="70cc69758e4efa422fa0bec10f65dffb" category="list-text">「XCP掃描」\SMB server\share1'</block>
   <block id="a8386d7454f57e945b9af398be1f740a" category="list-text">《XCP掃描smb_server01.netapp.com:/share1`》</block>
   <block id="57e9ab68ece2e80c1dd072f065c05577" category="paragraph">請執行《XCP說明掃描》以取得更多詳細資料。</block>
@@ -363,8 +353,6 @@
   <block id="0ab4127ba4947453135e709735a6fc6c" category="cell">後援使用者/群組不存在於目標系統（目的地方塊）或作用中目錄。以正確的後援使用者/群組選項重新執行命令</block>
   <block id="4be936fd7e612c47d18eaec68c3932c3" category="cell">「XCP copy：錯誤」無法取得後援安全性主體（在hosts檔案中新增目的地方塊項目）錯誤訊息登入xcp.log檔案：「pywinTypes。錯誤：（87、「LookupAccountName」、「The蔘數不正確。」）</block>
   <block id="2e4e559c9f6001c3134b8795d8e47e81" category="cell">後援使用者/群組選項的參數不正確。以正確的語法重新執行命令、以使用容錯移轉使用者/群組選項</block>
-  <block id="ca5b87c22d59ad15700c80cec3677245" category="cell">xcp.log文件中記錄了帶ACL遷移Erorr消息的'XCP COPy'：'pywintypes.error'：'（1314、'GetNamedSecurityInfo'、'A required privaceis not haced by the client.'）'</block>
-  <block id="19989536bdfa1e7f11ff53bc7877ff66" category="cell">使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、但無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
   <block id="dc3e4b78f385d96eee62d48189bd45ed" category="summary">設定Ini檔案XCP的步驟</block>
   <block id="27844988f363a5f923e9334ae145a1fd" category="doc">設定Ini檔案</block>
   <block id="29c2f1feeb1231581bf05d60a3d62a9a" category="paragraph">設定XCP的Ini檔案的步驟。</block>
@@ -509,7 +497,6 @@
   <block id="e31d321ee0fdaaaf8ac9ef21026a1fd0" category="paragraph">HDFS連接器支援從HDFS到NFS的「複製」命令作業。</block>
   <block id="2fcca0f204e97a80f73f130b2a96c173" category="paragraph">HDFS連接器的路徑語法為「HDFS：//[user@host:port]/完整路徑」。</block>
   <block id="895513c3073c7d8c0c3b54666a487132" category="admonition">如果您未指定使用者、主機和連接埠、XCP會呼叫「hdfsConnect」、並將主機設定為「預設」、連接埠設定為「0」。</block>
-  <block id="e47d29cbfac9b28d909784fb18f8d023" category="paragraph">若要執行HDFS「copy」命令、您必須在Linux系統上設定HDFS用戶端、並根據Hadoop廠商、遵循網際網路上可用的設定組態。例如、您可以使用「https://docs.datafabric.hpe.com/60/AdvancedInstallation/SettingUptheClient- redhat.html」設定MapR叢集的用戶端。</block>
   <block id="c00c4274d8d993e8f4e353057a47bf05" category="paragraph">完成HfDS用戶端設定之後、您必須在用戶端上完成設定。若要搭配XCP命令使用HDFS路徑、您必須具備下列環境變數：</block>
   <block id="daf45f14fc0d11979b90c046f09e7692" category="list-text">NHDFs_LIBHDFs_path</block>
   <block id="ca3c0ce4cd4cbb196cc438fa98d8e563" category="list-text">NHDFS_libjvm_path</block>
@@ -622,7 +609,6 @@
   <block id="fcb3966f14183a157ac92b7ebeb80e86" category="list-text">來源與目標磁碟區必須以「root」存取權匯出至XCP Linux用戶端主機</block>
   <block id="de71db72eafd60fc2c3c26a9416f0909" category="list-text">對於NFSv4 ACL移轉、NFSv4要求您針對需要ACL移轉的磁碟區使用編碼語言UTF-8。</block>
   <block id="69477f24ee2c92ba61ec9bdcb1ad4de5" category="list-text">為了避免系統管理員意外修改來源Volume、您應該將NFSv3和NFSv4匯出目錄的來源Volume設定為唯讀。</block>
-  <block id="90e6485e4d08b9e0728e2671dfa4ced2" category="list-text">在BIOS中ONTAP 、您可以使用診斷「-atime-update」（-atime-update）選項來保留atime。此功能僅在ONTAP 執行XCP時、才能在來源物件中保留atime、而且非常實用。</block>
   <block id="2d79e432838e40bf14c022092a9ee7c7" category="section-title">root使用者</block>
   <block id="1b644fae3096d18c32ea2eb163d208d7" category="paragraph">Linux機器上的root使用者有權掛載來源、目的地及目錄磁碟區。</block>
   <block id="b1330e2178f1e768cc94859ba49ae6bd" category="section-title">非root使用者</block>
@@ -647,8 +633,6 @@
   <block id="365fed029c9130511d651745702873b6" category="list-text">您可以在相同的Linux主機上部署檔案分析GUI、資料庫和XCP服務。</block>
   <block id="958e2b400bf30068195bfa78570cd469" category="list-text">部署適用於SMB檔案系統的XCP檔案分析解決方案：您必須在Linux主機上部署檔案分析GUI和資料庫、並在Windows主機上部署XCP服務。</block>
   <block id="7f9cccf134351e9df9c324fb764603f3" category="summary">歡迎使用XCP資訊庫、其中包含舊版的連結。</block>
-  <block id="c3aaf0d0d35accc2221dcf51014b407d" category="doc">XCP v1.8文件</block>
-  <block id="5cf3f2c5fac08fae3fa80a4e2a9266eb" category="paragraph">歡迎使用XCP資訊庫。您可在此找到XCP v1.8軟體的文件、包括如何安裝、設定及使用XCP。</block>
   <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="inline-link-macro">NetApp 支援網站</block>
   <block id="76c8844b91693e12fac2abf6d423c3f5" category="paragraph">如需舊版XCP的文件、請參閱 <block ref="a4ccf985ba56b702a384be031a3cd5f9" category="inline-link-macro-rx"></block>。</block>
   <block id="899cb0fc6e09b056f086b2106c805708" category="summary">安裝XCP SMB</block>
@@ -717,8 +701,6 @@
   <block id="bbf70f0c406dea3e7fa1ac49fe5687a8" category="inline-link-macro">Microsoft Windows系統上的XCP SMB</block>
   <block id="8428460c8f54a104a00424c2f1cdfa14" category="paragraph">如果您使用 <block ref="0e898f1ccb329a0a604cc59e92092982" category="inline-link-macro-rx"></block>、您必須準備儲存設備。</block>
   <block id="a3100bf3334206028c894a5568ddcf09" category="summary">說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
-  <block id="bfd97ee6bc45bf0c46cc517744e9e74f" category="doc">XCP v1.8.1版本資訊</block>
-  <block id="2361f2046255643526d0bc654680e3f7" category="paragraph">。 <block ref="658eea0f41de67e93f9c7baad3cdc904" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="dbd469acdcbd52648cb242bcfda6add3" category="paragraph">您必須登入NetApp支援網站、才能存取版本資訊。</block>
   <block id="26bddf6d4b393b265322f78d679e9266" category="summary">規劃資料移轉</block>
   <block id="a045552c7614c121b614d5387d1d7e15" category="paragraph">您可以使用CLI或檔案分析GUI來規劃移轉作業。</block>
@@ -743,4 +725,31 @@
   <block id="5a80d55457d11b6a6649cb8e31a68ae9" category="paragraph">如果設定了「XCP組態目錄」環境變數、請將「xcpLogConfig.json」檔案儲存在與「XCP組態目錄」變數相同的位置。</block>
   <block id="eeb488eb1940aa6eb63fb96f6766209e" category="paragraph">「sh-keygen-b 2048-t ra -f /root/.ssh / id_ra -q -N ''」</block>
   <block id="6fa3c056ccd312364628a9d8779047d9" category="paragraph">「sh-copy -id -i /root/.ssh / id_ras.pub root@worker1」</block>
+  <block id="e5970308b839bb1af1aefcf9dad2fed2" category="paragraph">環境變數「XCP組態目錄」會覆寫預設位置「/opt/NetApp/xFiles/XCP」。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定「XCP組態目錄」變數時、會在自訂組態目錄路徑中建立名稱與主機名稱相同的新目錄、新記錄會儲存在此位置。</block>
+  <block id="193182b59524f80db2dfb99b91b8e2d2" category="paragraph">環境變數「XCP記錄_DIR」會覆寫將XCP記錄儲存在組態目錄中的預設位置。如果設定、則該值應該是OS檔案系統路徑、可能是掛載的NFS目錄。設定「XCP記錄目錄」變數時、會在自訂記錄目錄路徑中建立名稱與主機名稱相同的新目錄、並在此位置儲存新記錄。</block>
+  <block id="f9c9daf8c094d7173f6aa05e00e89394" category="paragraph">環境變數「XCP目錄路徑」會覆寫xcp.in中的設定如果設定、則該值應為XCP路徑格式「伺服器：匯出[:subnet]」。</block>
+  <block id="0b5b78e477505196ea9cd8e57fe855fd" category="list-text">在BIOS中ONTAP 、您可以使用診斷「-atime-update」（-atime-update）選項、在來源物件上保留atime（atime-update）。此功能僅在ONTAP 執行XCP時、才能在來源物件中保留atime、而且非常實用。</block>
+  <block id="9d2ab81c393d1ef2f0a8cefba68af9a1" category="list-text">在XCP中、您可以使用「-preserve-atime」選項來保留來源物件的atime。此選項適用於存取來源物件的所有命令。</block>
+  <block id="fba36a51a969015158fea284508e24b5" category="paragraph">XCP包含一些額外的NFS功能。</block>
+  <block id="5b014105285dfb3396658b56a0e6a980" category="section-title">chown和chmod</block>
+  <block id="e502bd5d6fd36f24fe83faf495b01250" category="paragraph">您可以使用XCP「chown」和「chmod」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。</block>
+  <block id="09d12addf13fc84e75f41dc976e24bd2" category="paragraph">"chmod"命令會掃描並變更所選目錄結構中所有檔案的檔案權限。"chmod"命令需要一個模式或參照、以及NFS共用區或POSIX路徑做為變數。XCP「chmod」會以遞迴方式變更指定路徑的權限。您可以使用「chmod」命令來顯示掃描的檔案總數、以及輸出中已變更的權限。</block>
+  <block id="d36f032e221f3900149f9473b5c0ce4f" category="paragraph">您可以使用XCP「chown」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。</block>
+  <block id="a0b553d099f15801f1726ee64318e949" category="paragraph">「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞迴方式變更指定路徑的擁有權。</block>
+  <block id="d9b1d76e05f593fa781c1a1da0c9012b" category="list-text">POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。</block>
+  <block id="539be75a76dadebbca3424b2f7b46bde" category="doc">XCP v1.9發行說明</block>
+  <block id="0bd1668ea08c54bc067675d64e6f83a4" category="paragraph">。 <block ref="08ad1ee2f6369863d444accaa8181f3c" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
+  <block id="18f2ba0369aea7a98cca4c137d4b6372" category="paragraph">若要執行HDFS「copy」命令、您必須在Linux系統上設定HDFS用戶端、並根據Hadoop廠商、遵循網際網路上可用的設定組態。例如、您可以使用「https://docs.datafabric.hpe.com/60/AdvancedInstallation/SettingUptheClient-redhat.html`」設定MapR叢集的用戶端。</block>
+  <block id="5477a542a80c11f2da04e8a045970ccc" category="section-title">XCP問題與解決方案</block>
+  <block id="2c21e7858fb5fc86fe2510cb996c6926" category="cell">「XCP：錯誤」：索引檔案不相容。請僅使用目前XCP版本所產生的索引檔案。或者、您也可以從xcp.netapp.com下載較舊的XCP二進位檔。</block>
+  <block id="ee919e739e668a270db61ab6e8e94e16" category="cell">您正嘗試對使用XCP 1.9之前版本的XCP所產生的索引執行作業。這不受支援。建議您完成任何進行中的移轉、然後切換至此版本的XCP。或者、您也可以重新執行「掃描」、「複製」或「驗證」命令、以使用XCP 1.9產生新索引。</block>
+  <block id="78e3c3d20c30f31e40219bc4fc26d005" category="section-title">記錄傾印</block>
+  <block id="f2223b790f3262b778f881ea47ce4191" category="paragraph">如果您遇到XCP命令或工作問題、可使用「logdump」命令將與問題相關的記錄檔傾印到可傳送給NetApp進行偵錯的「.Zip」檔案中。「logdump」命令會根據移轉ID或工作ID來篩選記錄、並將這些記錄傾印到目前目錄中的「.zip」檔案中。此「.Zip」檔案的名稱與命令所使用的移轉或工作ID相同。</block>
+  <block id="f6e8987d5e2d203c406379ba9e8b8a47" category="admonition">移轉之後、如果您使用「XCP組態目錄」或「XCP記錄目錄」環境變數來覆寫預設的組態位置或記錄位置、則在使用舊版移轉或工作ID時、「logdump」命令會失敗。若要避免這種情況、請使用相同的記錄路徑、直到移轉完成為止。</block>
+  <block id="20f0f3784e710ced2f992c9e868a329f" category="cell">xcp.log檔案中記錄「XCP copy（XCP複製）」及「ACL移轉錯誤」訊息：「pywintypes.error（pywintypes.error）」：「（1314、「GetNamedSecurityInfo」、「用戶端不擁有必要的權限」）</block>
+  <block id="ec548dc7e9c4428d0af475d94ed8628f" category="cell">使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、因此無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
+  <block id="fdbdc0e84f617d7346b90d43e65e3e78" category="doc">XCP v1.9文件</block>
+  <block id="acca97deb653a678580117072b78b763" category="paragraph">歡迎使用XCP資訊庫。您可在此找到XCP v1.9軟體的文件、包括如何安裝、設定及使用XCP。</block>
+  <block id="8d199d68726e0baa3da715584c92e083" category="admonition">XCP二進位元是程式碼簽署。如需詳細資訊、請參閱「NetApp_XCP _&lt;版本&gt;.tgz」中的README。</block>
+  <block id="259c9d5f301d6e350422d2ebfe2bcc87" category="cell">確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
 </blocks>

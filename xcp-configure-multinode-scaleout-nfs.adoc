@@ -45,8 +45,8 @@ XCP主節點使用SSH在其他節點上執行工作人員。您必須設定工�
 
 [listing]
 ----
-echo "MaxStartups 100" | sudo tee -a /etc/ssh/sshd_config sudo systemctl
-restart sshd
+echo "MaxStartups 100" | sudo tee -a /etc/ssh/sshd_config
+sudo systemctl restart sshd
 ----
 當XCP在叢集節點上執行工作者時、工作者處理序會從主節點上的主要XCP處理序繼承環境變數。若要自訂特定的節點環境、您必須在「nodes.ini`」檔案中設定變數、該檔案僅位於主節點的組態目錄（工作節點沒有組態目錄或目錄）。例如、在不同位置的Ubuntu伺服器mars（如Wave（即CentOS）中、其「libjvm.so」位於主節點的不同位置、則需要一個組態目錄、才能讓Mars上的員工使用HDFS連接器。以下範例顯示此設定：
 
