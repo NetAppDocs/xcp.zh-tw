@@ -225,10 +225,8 @@
   <block id="42f425824cc531c78175d67346f8f124" category="list-text">請使用連結「https://&lt;IP」、以取得Linux機器的位址&gt;/XCP、以存取檔案分析GUI。出現提示時、請接受安全性憑證：</block>
   <block id="d1b673b157daeb18c4d73618946f7ef4" category="list-text">選取隱私權聲明下方的進階。</block>
   <block id="d6d3a57c5e8a09cb5cc8bf5e2c0810ce" category="list-text">選擇Proceedto "&lt; Linux機器的IP位址&gt;'連結。</block>
-  <block id="d92966d58b78d88161004cfe9020ede8" category="list-text">使用使用者名稱「admin」和您在組態期間設定的密碼登入GUI</block>
   <block id="2ffe186b43f4d120ec24b17fcb23452a" category="inline-image-macro">XCP檔案分析登入畫面</block>
   <block id="289a5bc6b34705c66837c45715417ecd" category="paragraph"><block ref="289a5bc6b34705c66837c45715417ecd" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fefbdb3c0131ccf14272f959d23390d5" category="list-text">登入時、您可以看到NFS代理程式已新增：出現綠色勾號、顯示Linux系統和XCP版本的最低系統組態。</block>
   <block id="dcc65cd71fd805adc9f9914a4cf41d78" category="list-text">如果您已設定SMB代理程式、則可以在同一個代理程式卡中看到新增的SMB代理程式。</block>
   <block id="bf86284529584845670edb0c3a95e5ec" category="summary">POSIX連接器可讓XCP存取任何Linux掛載的檔案系統、例如NFSv4、XFS和Veritas。</block>
   <block id="4e8be65645e1c09ea65c5bf2fa334289" category="doc">設定POSIX連接器</block>
@@ -553,10 +551,6 @@
   <block id="7e4d5419d4fcf4ceade27ffac84d4e92" category="list-text">在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。</block>
   <block id="0e97e9bc1c0f6d8ea9bc140cab258f9a" category="list-text">在驗證作業期間、您可以使用「-nodatime」旗標搭配「VERRIFY」命令、排除存取時間差異。</block>
   <block id="8bcf9c6b645253521b5145414a80aecc" category="paragraph">如需詳細資訊、請參閱「XCP說明驗證」。</block>
-  <block id="eb498a91409025b6f7459d1487819ac5" category="paragraph">建立Json組態檔。</block>
-  <block id="4839d2f25cc35b249d5db15efa1afd75" category="paragraph">*步驟*</block>
-  <block id="4c38ab1ef38cac28ef430c2be0673437" category="list-text">如果您想要啟用任何功能、請將「isEnabled」值變更為「true」。</block>
-  <block id="6bdc741a35e3429fb316e331210901e8" category="list-text">將檔案命名為「xcpLogConfig.json」、並將其命名為*錯誤！找不到參考來源。*</block>
   <block id="dfdcc7639b3e014792b21c9f7d5c85c0" category="summary">安裝XCP NFS</block>
   <block id="4e5b1a9c903c0437af920974c6501bd6" category="paragraph">如果您要升級XCP、請刪除目前的安裝、並以最新版本的新安裝取代。本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。</block>
   <block id="b9982e4a219c9f069ec01b724fff8274" category="paragraph">*系統要求*</block>
@@ -737,11 +731,8 @@
   <block id="d36f032e221f3900149f9473b5c0ce4f" category="paragraph">您可以使用XCP「chown」命令、以遞歸方式變更指定NFS共用區或POSIX路徑的所有檔案和目錄。如此可提升數百萬個檔案的效能。</block>
   <block id="a0b553d099f15801f1726ee64318e949" category="paragraph">「chown」命令會掃描並變更所選目錄結構中所有檔案的擁有權。「chown」命令需要NFS共用區或POSIX路徑做為變數。XCP「chown」會以遞迴方式變更指定路徑的擁有權。</block>
   <block id="d9b1d76e05f593fa781c1a1da0c9012b" category="list-text">POSIX連接器比使用NFSv3 TCP通訊端的XCP更安全。</block>
-  <block id="539be75a76dadebbca3424b2f7b46bde" category="doc">XCP v1.9發行說明</block>
-  <block id="0bd1668ea08c54bc067675d64e6f83a4" category="paragraph">。 <block ref="08ad1ee2f6369863d444accaa8181f3c" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="18f2ba0369aea7a98cca4c137d4b6372" category="paragraph">若要執行HDFS「copy」命令、您必須在Linux系統上設定HDFS用戶端、並根據Hadoop廠商、遵循網際網路上可用的設定組態。例如、您可以使用「https://docs.datafabric.hpe.com/60/AdvancedInstallation/SettingUptheClient-redhat.html`」設定MapR叢集的用戶端。</block>
   <block id="5477a542a80c11f2da04e8a045970ccc" category="section-title">XCP問題與解決方案</block>
-  <block id="2c21e7858fb5fc86fe2510cb996c6926" category="cell">「XCP：錯誤」：索引檔案不相容。請僅使用目前XCP版本所產生的索引檔案。或者、您也可以從xcp.netapp.com下載較舊的XCP二進位檔。</block>
   <block id="ee919e739e668a270db61ab6e8e94e16" category="cell">您正嘗試對使用XCP 1.9之前版本的XCP所產生的索引執行作業。這不受支援。建議您完成任何進行中的移轉、然後切換至此版本的XCP。或者、您也可以重新執行「掃描」、「複製」或「驗證」命令、以使用XCP 1.9產生新索引。</block>
   <block id="78e3c3d20c30f31e40219bc4fc26d005" category="section-title">記錄傾印</block>
   <block id="f2223b790f3262b778f881ea47ce4191" category="paragraph">如果您遇到XCP命令或工作問題、可使用「logdump」命令將與問題相關的記錄檔傾印到可傳送給NetApp進行偵錯的「.Zip」檔案中。「logdump」命令會根據移轉ID或工作ID來篩選記錄、並將這些記錄傾印到目前目錄中的「.zip」檔案中。此「.Zip」檔案的名稱與命令所使用的移轉或工作ID相同。</block>
@@ -752,4 +743,39 @@
   <block id="acca97deb653a678580117072b78b763" category="paragraph">歡迎使用XCP資訊庫。您可在此找到XCP v1.9軟體的文件、包括如何安裝、設定及使用XCP。</block>
   <block id="8d199d68726e0baa3da715584c92e083" category="admonition">XCP二進位元是程式碼簽署。如需詳細資訊、請參閱「NetApp_XCP _&lt;版本&gt;.tgz」中的README。</block>
   <block id="259c9d5f301d6e350422d2ebfe2bcc87" category="cell">確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
+  <block id="bfccbf3e891050373f71f1230130222b" category="cell"><block ref="ad3b549c4b03e0598dee96d17d3ccc66" prefix="" category="inline-code"></block>：比較批次：索引檔案不相容。請僅使用目前XCP版本所產生的索引檔案。或者、您也可以從xcp.netapp.com下載較舊的XCP二進位檔。</block>
+  <block id="481da41cf08734ac99d07aca58644781" category="cell"><block ref="6d7d8e19dacf4142870d92b873503ded" prefix="" category="inline-code"></block></block>
+  <block id="2dc9d74fea656209a3e6734b2bd09c40" category="cell">如果檔案路徑中有一個分號（：）、請改用三個分號（：：）。</block>
+  <block id="e9bef9a5a04a193f8f77a5867e82c24b" category="doc">XCP v1.1.9發行說明</block>
+  <block id="a76dc4faed369cb6713d049dbc0ca400" category="paragraph">。 <block ref="5a4a1c694a80c57bbface50f0a4d4a69" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
+  <block id="410bc026d79ee8d7b9f82dd6b03feb98" category="list-text">登入檔案分析GUI。</block>
+  <block id="fce3933747223b348680fa7fa109330b" category="paragraph">登入檔案分析GUI的方法有兩種：</block>
+  <block id="f54b0f1d442f1ec5a7de065a3541d957" category="list-text">使用您在組態期間設定的使用者名稱「admin」和密碼。</block>
+  <block id="9232193990a75b1e49392f2b2617103d" category="list-text">設定並啟用企業級單一登入（SSO）功能。</block>
+  <block id="2e3c9f20aee1951e2d90c60c3895ab58" category="paragraph">您可以使用此登入功能、在特定機器上設定XCP檔案分析、並在企業範圍內共用Web UI URL、讓使用者使用SSO認證登入UI。</block>
+  <block id="69bb9c4e14480c847abc95d5c42499ad" category="admonition">SSO登入為選用項目、可永久設定及啟用。若要設定安全聲明標記語言（SAML）型SSO登入、請參閱 <block ref="24bd22f7d0a05b19a03434bac975689d" category="inline-xref-macro-rx"></block>。</block>
+  <block id="5011fee80695c860b0a39f97d0dcb95c" category="list-text">登入之後、您可以看到NFS代理程式；此時會出現綠色勾號、顯示Linux系統和XCP版本的最低系統組態。</block>
+  <block id="bb589a1b8201c2239ba76232e361cafc" category="section-title">設定SSO認證</block>
+  <block id="fffd3dfdf9fa53044cdb134dcc69c528" category="paragraph">SSO登入功能是在使用SAML的XCP檔案分析中實作、並受Active Directory Federation Services（ADFS）身分識別供應商支援。SAML會將驗證工作卸載至貴企業的第三方身分識別供應商（IDP）、以便運用多種MFA（多因素驗證）方法。</block>
+  <block id="f2d88d647c936a165a3e77edcbea1d96" category="list-text">向企業身分識別供應商註冊XCP檔案分析應用程式。</block>
+  <block id="1f93f245c9251dd40bbdd43eacc5372c" category="paragraph">檔案分析現在以服務供應商的身分執行、因此必須向企業身分識別供應商註冊。一般而言、企業中有一個團隊負責此SSO整合程序。第一步是找出並聯絡相關團隊、並與他們分享檔案分析應用程式中繼資料詳細資料。</block>
+  <block id="2fa5a2b9e39c8c52b4712c4defadf219" category="paragraph">以下是您必須分享的必填詳細資料、以便向身分識別供應商註冊：</block>
+  <block id="9563382993688c51fdc3a46e81eb172f" category="list-text">*服務供應商實體ID：*<block ref="e1fe6adfd56c8994795ceb238170e3b4" prefix=" " category="inline-code"></block></block>
+  <block id="bf1e51171726684d1ee1b309557acd01" category="list-text">*服務供應商聲明消費者服務（ACS）URL：*<block ref="21d0fedea22f326cba161956dc12f67c" prefix=" " category="inline-code"></block></block>
+  <block id="f57c5b8986c37b4a0952ba786b74f802" category="paragraph">您也可以登入檔案分析UI來驗證這些詳細資料：</block>
+  <block id="80dae1bc5036b7e9bda13b9e72ac846e" category="list-text">使用安裝期間設定的使用者名稱「admin」和密碼登入UI。</block>
+  <block id="ccd1f9a4a3996dec7dcc1222859ee8f1" category="list-text">選取頁面右上角的*使用者*圖示、然後選取* SAML設定*。</block>
+  <block id="363cae04551b1b1a61f8792a42d5332c" category="paragraph">在出現的下拉式功能表中、勾選*服務供應商設定*。</block>
+  <block id="957c109b84ab3a9745776f942062afea" category="inline-image-macro">SAML設定範例</block>
+  <block id="82d38923543ba21104350ca2e054aed6" category="paragraph"><block ref="82d38923543ba21104350ca2e054aed6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="231aa7872617b02f47d61c8a448d71d3" category="paragraph">註冊之後、您會收到企業的IDP端點詳細資料。您必須將此IDP端點中繼資料提供給檔案分析UI。</block>
+  <block id="0fabd32fee9ac3582435784332323cf0" category="list-text">提供IDP詳細資料：</block>
+  <block id="13cdf4657d47700947243dc2788b7179" category="list-text">轉至*儀表板*。選取頁面右上角的*使用者*圖示、然後選取* SAML設定*。</block>
+  <block id="d8adeda321a41aaa17a27edc3b9f91af" category="list-text">輸入您在註冊後取得的IDP詳細資料。</block>
+  <block id="632a19fe4f9dbcb608d0fc15adce1abd" category="inline-image-macro">IDP設定範例</block>
+  <block id="d9f5a9253d4897150b89f01bd1fff5b8" category="paragraph"><block ref="d9f5a9253d4897150b89f01bd1fff5b8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="52a2204afc476b63dc6724a5bd0b634b" category="list-text">選取「*啟用SAML」核取方塊、以永久啟用SAML型SSO。</block>
+  <block id="10492389e94efdebbb66f7b0cd8a1324" category="list-text">選擇*保存*。</block>
+  <block id="280adca2af76ab2f6d95dd020df20c76" category="list-text">登出File Analytics、然後重新登入。</block>
+  <block id="26fe07940d9a7bac7605ee7fc243d89a" category="paragraph">您會重新導向至企業SSO頁面。</block>
 </blocks>

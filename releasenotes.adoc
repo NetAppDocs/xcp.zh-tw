@@ -4,10 +4,10 @@ sidebar: sidebar
 keywords: release, notes, new, features, fixed, issues, known, xcp 
 summary: 說明新功能、升級附註、修正問題、已知限制及已知問題。 
 ---
-= XCP v1.9發行說明
+= XCP v1.1.9發行說明
 :allow-uri-read: 
 
 
-。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2883342["XCP v1.9發行說明"^] 說明新功能、升級附註、修正問題、已知限制及已知問題。
+。 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2884968["XCP v1.1.9發行說明"^] 說明新功能、升級附註、修正問題、已知限制及已知問題。
 
 您必須登入NetApp支援網站、才能存取版本資訊。
