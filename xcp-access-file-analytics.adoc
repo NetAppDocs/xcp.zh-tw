@@ -43,7 +43,7 @@ image:xcp_image2.png["XCP檔案分析登入畫面"]
 
 +
 
-NOTE: SSO登入為選用項目、可永久設定及啟用。若要設定安全聲明標記語言（SAML）型SSO登入、請參閱  SSO credentials。
+NOTE: SSO登入為選用項目、可永久設定及啟用。若要設定安全聲明標記語言（SAML）型SSO登入、請參閱 <<設定SSO認證>>。
 
 
 

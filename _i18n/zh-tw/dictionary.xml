@@ -778,4 +778,10 @@
   <block id="10492389e94efdebbb66f7b0cd8a1324" category="list-text">選擇*保存*。</block>
   <block id="280adca2af76ab2f6d95dd020df20c76" category="list-text">登出File Analytics、然後重新登入。</block>
   <block id="26fe07940d9a7bac7605ee7fc243d89a" category="paragraph">您會重新導向至企業SSO頁面。</block>
+  <block id="c1f4df75471b19c987dbe105102a06b3" category="paragraph-title">設定HDFS連接器</block>
+  <block id="e8ecd4ac92f1665c72c96cf750e9a180" category="paragraph-title">路徑語法</block>
+  <block id="71b54d34b9a2e562b60a5f348143df04" category="paragraph-title">設定多節點橫向擴充</block>
+  <block id="e275d5c35bd98d51f375595425721b8e" category="paragraph-title">MaxStartups</block>
+  <block id="4fc18ed56b82e48babebaac5b07abd72" category="paragraph-title">nodes.ini"檔案</block>
+  <block id="08ad268a318e49778022d6aa0d84e057" category="paragraph-title">結合POSIX和HDFS連接器、多節點橫向擴充和安全功能</block>
 </blocks>
