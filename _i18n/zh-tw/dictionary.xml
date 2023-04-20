@@ -465,7 +465,6 @@
   <block id="f4915fbc2a7713a0eeea8adce10091de" category="cell">XCP篩選器</block>
   <block id="ca2e34fd1c2de7fa4ca5bb236706760b" category="cell">XCP SMB exclude選項目前會根據目錄在篩選器中的模式排除目錄、並遍歷這些目錄的檔案系統。</block>
   <block id="76e35710ec65c5c13523e53f9290946d" category="cell">主動來源支援</block>
-  <block id="4df0ea8d6ab650858ac62da3aa9f0f41" category="cell">XCP不支援使用基準或遞增Snapshot複本、接著進行即時來源移轉以進行遞增同步。</block>
   <block id="abef06ad7d7930b60b54d21ecda87d96" category="paragraph">XCP NFS和SMB無法使用下列一般功能：</block>
   <block id="67563b580602624cbe59ec4a7939e8fe" category="list-text">同一主機*上有多個執行個體*：在同一主機上執行多個XCP執行個體時、可能會產生無法預測的結果。</block>
   <block id="163e080f44afc4f1a3717f3330b0859b" category="list-text">*完成移轉的時間*：XCP前期並未提供完成移轉的時間、也沒有時間完成任何用於移轉的命令。如果您正在進行最終轉換、請確認來源磁碟區上的資料流失率過低。</block>
@@ -784,4 +783,7 @@
   <block id="e275d5c35bd98d51f375595425721b8e" category="paragraph-title">MaxStartups</block>
   <block id="4fc18ed56b82e48babebaac5b07abd72" category="paragraph-title">nodes.ini"檔案</block>
   <block id="08ad268a318e49778022d6aa0d84e057" category="paragraph-title">結合POSIX和HDFS連接器、多節點橫向擴充和安全功能</block>
+  <block id="c7d37295c1bdef1e9ae306db70634663" category="cell">XCP 不支援將基礎或增量 Snapshot 複本作業與即時來源移轉結合。</block>
+  <block id="dbef0b1dd5263aa13674ecebca1b7756" category="cell">即時來源移轉</block>
+  <block id="93571d5812c4c39edcca3e27487acbe9" category="cell">XCP 不支援在移轉期間修改來源磁碟區上的資料。</block>
 </blocks>
