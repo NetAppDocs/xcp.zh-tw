@@ -42,9 +42,6 @@ XCP NFS不支援下列功能：
 
 
 
-| ACL | 當來源為非NetApp系統時、XCP不會複製ACL。 
-
-
 | Linux | XCP 1.6.3支援的舊版Linux不再支援XCP。 
 
 
