@@ -195,7 +195,6 @@
   <block id="66f9acc1b514e86b97784fe390326ce3" category="paragraph">XCP SMB使用Windows用戶端主機系統來產生平行I/O串流、並充分運用可用的網路和儲存效能。</block>
   <block id="d25223f4065ca21361aff2e7cdc61203" category="section-title">設定儲存設備</block>
   <block id="c8fe60bf1229083e3bb54f5366226e26" category="paragraph">XCP SMB轉換與移轉具有下列使用者登入需求：</block>
-  <block id="511057ab7032e10b44554037f83be0f0" category="list-text">XCP主機系統：XCP主機使用者必須擁有系統管理員權限（該使用者必須是XCP SMB主機系統上「BUILTIN\Administrators」群組的一部分）。</block>
   <block id="543905c9e8d793e24798d62739fd285b" category="list-text">將移轉或XCP主機使用者新增至Active Directory的稽核和安全性記錄原則。若要在Windows 10上找到「管理稽核與安全性記錄」原則、請依照下列步驟執行：</block>
   <block id="efaadd4be852741a24b28d66addf7e17" category="list-text">開啟「*群組原則編輯器*」對話方塊。</block>
   <block id="58f61041ffa1d14e245af8a57dce1c48" category="list-text">移至*電腦組態&gt; Windows設定&gt;安全性設定&gt;本機原則&gt;使用者權限指派*。</block>
@@ -451,8 +450,6 @@
   <block id="90637cbab382a9675c5bad0c7aeef15f" category="cell">Hadoop分散式檔案系統（HDFS）連接器</block>
   <block id="b03665438ed7a747020c197d671b61c3" category="list-text">「shync」命令不支援HDFS連接器</block>
   <block id="f5f0878108a9a99caae85df13ed2e0ac" category="list-text">HDFS檔案系統不支援符號連結（symlinks）、硬式連結或特殊檔案</block>
-  <block id="3fabfbd2744533c3c888e15445477652" category="cell">ACL</block>
-  <block id="3706b1828c935d3a1a30b30080320b22" category="cell">當來源為非NetApp系統時、XCP不會複製ACL。</block>
   <block id="edc9f0a5a5d57797bf68e37364743831" category="cell">Linux</block>
   <block id="bd2cc77640d48204c25994ade9373d0d" category="cell">XCP 1.6.3支援的舊版Linux不再支援XCP。</block>
   <block id="577d13f7684f9c1dad51523d52a28bf9" category="paragraph">XCP SMB不支援下列功能：</block>
@@ -786,4 +783,5 @@
   <block id="c7d37295c1bdef1e9ae306db70634663" category="cell">XCP 不支援將基礎或增量 Snapshot 複本作業與即時來源移轉結合。</block>
   <block id="dbef0b1dd5263aa13674ecebca1b7756" category="cell">即時來源移轉</block>
   <block id="93571d5812c4c39edcca3e27487acbe9" category="cell">XCP 不支援在移轉期間修改來源磁碟區上的資料。</block>
+  <block id="61355ec3f68ee20926a222027dcb3d7b" category="list-text">XCP 主機系統： XCP 主機使用者必須具有系統管理員權限（使用者必須是目標 SMB 伺服器上「 BUILTIN\Administrators 」群組的一部分）。</block>
 </blocks>

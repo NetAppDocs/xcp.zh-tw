@@ -22,7 +22,7 @@ XCP SMB使用Windows用戶端主機系統來產生平行I/O串流、並充分運
 
 XCP SMB轉換與移轉具有下列使用者登入需求：
 
-* XCP主機系統：XCP主機使用者必須擁有系統管理員權限（該使用者必須是XCP SMB主機系統上「BUILTIN\Administrators」群組的一部分）。
+* XCP 主機系統： XCP 主機使用者必須具有系統管理員權限（使用者必須是目標 SMB 伺服器上「 BUILTIN\Administrators 」群組的一部分）。
 * 將移轉或XCP主機使用者新增至Active Directory的稽核和安全性記錄原則。若要在Windows 10上找到「管理稽核與安全性記錄」原則、請依照下列步驟執行：
 +
 .步驟
