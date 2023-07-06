@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: xcp-run-multiple-jobs-on-same-host.html 
+keywords: xcp, configure, nfs, posix, connector 
+summary: POSIX連接器可讓XCP存取任何Linux掛載的檔案系統、例如NFSv4、XFS和Veritas。 
+---
+= 在同一台 XCP 主機上執行多個 XCP 工作
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+從 XCP 1.0.2 開始、您可以使用「 -minmem 」功能在單一 XCP 主機上執行多個 XCP 工作或命令、前提是主機必須有足夠的資源來處理每項工作。當您執行支援「 -minmem 」功能的命令時、 XCP 會使用最小的主機記憶體來完成工作、以建立在同一主機組態上執行其他工作的容量。
+
+
+
+== 最低系統需求
+
+對於每項 XCP 工作、您應該允許最多 64GB 的主機記憶體和八個核心、以便進行大中型移轉。
+
+
+NOTE: SMB 資料移轉不支援「 -minmem 」功能。
+
+
+
+== 記錄
+
+根據預設、每個 XCP 工作都會記錄在工作 ID 唯一的個別記錄檔中。當在同一個別主機上執行多個工作時、此記錄機制運作良好。NetApp 不建議變更 `xcpLogConfig.Json` 使用單一檔案 `xcp.log` 用於記錄在同一主機上平行執行的多個 XCP 工作的檔案。
+
+
+
+== 支援的命令
+
+下列 XCP 命令支援「 -minmem 」功能：
+
+* `scan`
+* `copy`
+* `resume`
+* `verify`
+* `isync`
+* `chmod`
+* `chown`
+* `delete`
+
+
+
+
+== 不支援的命令
+
+「 -minmem 」功能不支援 `sync` 命令。
+
+
+
+== 命令範例
+
+若要使用「 -minmem 」功能、您必須在 XCP 命令中加入「 -minmem 」選項、如下列範例所示：
+
+* `xcp copy -newid _new ID_ *-minmem* src_server:/src_export dst_server:/dst_export`
+* `xcp resume [options] -id *-minmem* _copy ID_`
+* `xcp verify *-minmem* src_server:/src_export dst_server:/dst_export`
+
+
+* HDFS 路徑範例 * ：
+
+* `xcp copy *-minmem* hdfs:///user/demo1/data \file:///user/demo1/dest`
+* `xcp verify *-minmem* hdfs:///user/demo1/data \file:///user/demo1/dest`
+* `xcp copy -minmem hdfs:///user/demo1/data s3://bucket1`
+
+
+* POSIX 路徑範例 * ：
+
+* `xcp copy *-minmem* -newid _new ID_ \file:///mnt/source \file:///mnt/dest`
+* `xcp verify *-minmem* \file:///mnt/source \file:///mnt/dest`
+

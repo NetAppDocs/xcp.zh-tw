@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: xcp-configure-s3-connector-nfs.html 
+keywords: xcp, configure, nfs, S3, connector 
+summary: S3 連接器可讓 XCP 將資料從 NFS 或 HDFS 檔案系統移轉至 S3 物件儲存設備 
+---
+= 設定 S3 連接器
+:allow-uri-read: 
+
+
+[role="lead"]
+從 XCP 1.0.2 開始、 Simple Storage Service （ S3 ）連接器可將資料從 Hadoop 分散式檔案系統（ HDFS ）檔案系統移轉至 S3 物件儲存設備、進而強化 XCP 資料移轉的範圍。
+
+.支援的移轉使用案例
+S3 連接器支援下列移轉使用案例：
+
+* 從 HDFS 或 NFS 移轉至 NetApp StorageGRID
+* 從 HDFS 或 NFS 移轉至 Amazon S3
+* 從 HDFS 或 NFS 移轉至 NetApp ONTAP S3
+
+
+
+NOTE: 目前只有符合條件且支援 HDFS 的 MapR 。
+
+.支援的功能
+支援 `scan`、 `copy`、 `verify`、 `resume` 和 `delete` S3 連接器可使用命令。
+
+.不支援的功能
+支援 `sync` S3 連接器無法使用命令。
+
+.路徑語法
+S3 連接器的路徑語法為 `s3://<bucket in S3>`。
+
+* 您可以使用為 XCP 命令提供特定的 S3 設定檔 `-s3.profile` 選項。
+* 您可以使用 `s3.endpoint` 修改端點值以與 S3 通訊的選項
+
+
+
+NOTE: StorageGRID 和 ONTAP S3 必須使用端點。
+
+
+
+== 設定 S3 連接器
+
+.步驟
+. 若要在 S3 連接器上執行 XCP 命令、請依照各平台的線上文件、在 S3 中建立儲存區：
++
+** link:https://docs.netapp.com/us-en/ontap/object-storage-management/index.html["ONTAP S3 物件儲存管理"^]
+** link:https://docs.netapp.com/us-en/storagegrid-116/tenant/index.html["StorageGRID ：使用租戶帳戶總覽"^]
++
+
+NOTE: 在繼續之前、您必須擁有 `access key`、 `secret key`、憑證授權單位（ CA ）憑證套裝組合、以及 `endpoint url` 資訊：XCP 在開始作業之前、會使用這些參數來識別及連接 S3 儲存貯體。
+
+
+
+. 安裝 Amazon Web Services （ AWS ） CLI 套件並執行 AWS CLI 命令、為 S3 帳戶設定金鑰和安全通訊端層（ SSL ）憑證：
++
+** 請參閱 link:https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html["安裝或更新 AWS CLI 的最新版本"^] 以安裝 AWS 套件。
+** 請參閱 link:https://docs.aws.amazon.com/cli/latest/reference/configure/set.html["AWS CLI 命令參考"^] 以取得更多資訊。
+
+
+. 使用 `aws configure` 設定認證檔案的命令。根據預設、檔案的位置是 `/root/.aws/credentials`。認證檔案應指定存取金鑰和秘密存取金鑰。
+. 使用 `aws configure set` 用於指定 CA 憑證套件的命令、該套件是的檔案 `.pem` 驗證 SSL 憑證時使用的延伸。根據預設、檔案的位置是 `/root/.aws/config`。
++
+*範例：*
+
++
+[listing]
+----
+[root@client1 ~]# aws configure
+AWS Access Key ID [None]: <access_key>
+AWS Secret Access Key [None]: <secret_key>
+Default region name [None]:
+Default output format [None]:
+[root@client1 ~]# cat /root/.aws/credentials
+[default]
+aws_access_key_id = <access_key>
+aws_secret_access_key = <secret_key>
+[root@client1 ~]#
+[root@client1 ~]# aws configure set default.ca_bundle /u/xxxx/s3/ca/aws_cacert.pem
+[root@client1 ~]# cat /root/.aws/config
+[default]
+ca_bundle = /u/xxxx/s3/ca/aws_cacert.pem
+----
+. 完成所需的設定組態後、請確認 AWS CLI 命令可以從 Linux 用戶端存取 S3 儲存區、然後再執行 XCP 命令：
+`aws s3 ls --endpoint-url <endpoint_url> s3://bucket-name/`
++
+`aws s3 ls --profile <profile> --endpoint-url <endpoint_url> s3://bucket-name`
+
++
+*範例：*
+
++
+[listing]
+----
+[root@client1 linux]# aws s3 ls --profile <profile> --endpoint <endpoint_url>  s3://<bucket-name>
+                           PRE 1G/
+                           PRE aws_files/
+                           PRE copied_folders/
+                           PRE d1/
+                           PRE d2/
+                           PRE giant_size_dirs/
+                           PRE medium_size_dirs/
+                           PRE small_size_dirs/
+[root@client1 l
+----
+

@@ -60,9 +60,7 @@ C:\xcp>xcp sync \\<source SMB share> \\<destination SMB share>
 
 [NOTE]
 ====
-* 在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。
-* 在驗證作業期間、您可以使用「-nodatime」旗標搭配「VERRIFY」命令、排除存取時間差異。
-
+在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。
 
 ====
 *範例：*

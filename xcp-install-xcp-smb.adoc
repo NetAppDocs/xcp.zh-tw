@@ -40,7 +40,7 @@ NOTE: 沒有升級選項；請重新安裝XCP以取代任何現有版本。
 | 支援的傳輸協定版本 | 所有SMB傳輸協定版本 
 
 
-| 支援的瀏覽器（僅限檔案分析） | XCP檔案分析支援Google Chrome 76版及更新版本。請參閱IMT 支援的瀏覽器所有版本的《支援資訊表》 
+| 支援的瀏覽器（僅限檔案分析） | 請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] XCP File Analytics 所有支援瀏覽器版本的對照表。 
 |===
 
 

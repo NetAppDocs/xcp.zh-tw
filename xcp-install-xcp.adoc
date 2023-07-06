@@ -4,7 +4,7 @@ permalink: xcp-install-xcp.html
 keywords: netapp, xcp, install, installing, download, downloading, license, preparing, system 
 summary: 安裝XCP 
 ---
-= 安裝XCP
+= 準備安裝 XCP
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 安裝XCP
 
 
 [role="lead"]
-安裝XCP。
+為準備安裝、您可以下載 XCP 、取得授權、並準備好系統。
 
 
 

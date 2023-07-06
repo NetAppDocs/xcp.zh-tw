@@ -20,7 +20,9 @@ summary: 規劃NFS資料移轉
 
 == 顯示
 
-「show」命令會查詢一或多個儲存伺服器的RPC服務和NFS匯出。此命令會列出可用的服務和匯出、以及每個匯出的已使用和可用容量、以及每個匯出的根屬性。範例：
+。 `show` 命令會查詢一或多個儲存伺服器的 RPC 服務和 NFS 匯出。此命令會列出可用的服務和匯出、以及每個匯出的已使用和可用容量、以及每個匯出的根屬性。
+
+*範例：*
 
 * 「XCP show <NFS file server ip/FQDN」
 * 「XCP顯示nfs_server01.netapp.com`
@@ -32,12 +34,13 @@ summary: 規劃NFS資料移轉
 
 == 掃描
 
-「掃描」命令會以遞歸方式掃描整個來源NFSv3匯出路徑、並在掃描結束時列印檔案結構的統計資料。NetApp建議在掃描作業期間、將來源NFS匯出掛載置為唯讀模式。範例：
+。 `scan` 命令會遞迴掃描整個來源 NFSv3 匯出路徑、並在掃描結束時列印檔案結構的統計資料。NetApp建議在掃描作業期間、將來源NFS匯出掛載置為唯讀模式。
 
-* 「XCP掃描NFS [伺服器：/匯出路徑|\file//<NFS掛載路徑>| HDFS：//<HDFS掛載路徑>]」
+*範例：*
+
+* `xcp scan NFS [server:/export path | file:// ]`
 * 《XCP掃描nfs_server01.netapp.com:/export1`》
 * 「XCP掃描\檔案：//mnt/nf-sources'
-* 「XCP掃描HDFS：///DEMO /使用者1」
 
 
 請執行《XCP說明掃描》以取得更多詳細資料。

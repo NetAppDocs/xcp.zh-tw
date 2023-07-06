@@ -58,3 +58,25 @@ xcp chown -user-from user1 -user user2 file:///mnt/nfs_mount_point/
 xcp chown -group-from group1 -group group2 nfs_server01.netapp.com:/export1/
 ....
 如需詳細資訊、請執行「XCP說明chown」命令。
+
+
+
+== XCP 預估
+
+XCP 預估功能可預估完成基準的時間 `copy` 從來源到目的地的作業。它會計算完成基準的預估時間 `copy` 使用所有目前可用的系統資源（例如 CPU 、 RAM 、網路或其他參數）來執行作業。當您使用時 `-target` 選項： XCP 會執行範例複本作業、以找出預估時間。
+
+* 範例 *
+
+....
+server : NFS server IP
+export : NFS exported path for the above IP
+
+xcp static estimation
+xcp estimate -id <scan id>
+
+xcp live estimation with default time
+xcp estimate -id <scan id> -target server:/export
+
+xcp live estimation with -t option
+xcp estimate -id <scan id> -t <time for which estimation should run> -target server:/export
+....

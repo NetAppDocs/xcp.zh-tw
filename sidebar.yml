@@ -47,6 +47,8 @@ entries:
     url: "/xcp-configure-hdfs-connector-nfs.html"
   - title: 設定多節點橫向擴充
     url: "/xcp-configure-multinode-scaleout-nfs.html"
+  - title: 設定 S3 連接器
+    url: "/xcp-configure-s3-connector-nfs.html"
 - title: 規劃資料移轉
   url: "/xcp-plan-data-migration.html"
   entries:
@@ -54,6 +56,8 @@ entries:
     url: "/xcp-plan-nfs-data-migration.html"
   - title: 規劃SMB資料移轉
     url: "/xcp-plan-smb-data-migration.html"
+  - title: 規劃 HDFS 資料移轉
+    url: "/xcp-plan-hdfs-data-migration.html"
   - title: 使用檔案分析進行規劃
     url: "/xcp-using-file-analytics.html"
     entries:
@@ -73,6 +77,10 @@ entries:
     url: "/xcp-migrate-nfs-data.html"
   - title: 移轉SMB資料
     url: "/xcp-migrate-smb-data.html"
+  - title: 移轉 HDFS 資料
+    url: "/xcp-migrate-hdfs-data.html"
+  - title: 在同一主機上執行多個 XCP 工作
+    url: "/xcp-run-multiple-jobs-on-same-host.html"
   - title: 其他NFS功能
     url: "/xcp-migrate-nfs-additional-features.html"
 - title: 疑難排解

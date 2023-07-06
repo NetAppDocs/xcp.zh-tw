@@ -4,7 +4,7 @@ permalink: xcp-migrate-nfs-data.html
 keywords: netapp, xcp, migrate, data, nfs, smb, copy, resume, sync, verify 
 summary: 移轉NFS資料 
 ---
-= 移轉NFS資料
+= 用於移轉 NFS 資料的命令
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -33,12 +33,6 @@ xcp copy -newid <id> src_server:/src_export dst_server:/dst_export
 [listing]
 ----
 xcp copy -newid <id> file:///mnt/source file:///mnt/dest
-----
-* HDFS路徑範例：*
-
-[listing]
-----
-xcp copy -newid <id> hdfs:///demo/user file:///mnt/dest
 ----
 如需詳細資訊、請參閱「XCP說明複本」。
 
@@ -87,11 +81,5 @@ xcp verify src_server:/src_export dst_server:/dst_export
 [listing]
 ----
 xcp verify file:///mnt/source file:///mnt/dest
-----
-* HDFS路徑範例：*
-
-[listing]
-----
-xcp verify hdfs:///user/demo1/data file:///user/demo1/dest
 ----
 如需詳細資訊、請參閱「XCP說明驗證」。

@@ -22,7 +22,7 @@ summary: 安裝XCP NFS
 | 項目 | 需求 
 
 
-| 系統 | 64位元Intel或AMD伺服器、至少4核心和32 GB RAM 
+| 系統 | 64 位元 Intel 或 AMD 伺服器、至少 8 核心和 64 GB RAM 
 
 
 | 作業系統與軟體 | RHEL8：請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 支援的作業系統 
@@ -37,7 +37,7 @@ summary: 安裝XCP NFS
 | 支援的傳輸協定版本 | NFSv3和NFSv4（POSIX和ACL） 
 
 
-| 支援的瀏覽器（僅限檔案分析） | XCP檔案分析支援Google Chrome 76版及更新版本。請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 所有受支援版本瀏覽器的對照表 
+| 支援的瀏覽器（僅限檔案分析） | 請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] XCP File Analytics 所有支援瀏覽器版本的對照表。 
 |===
 
 NOTE: 即時來源移轉的建議組態為8核心和64 GB RAM。

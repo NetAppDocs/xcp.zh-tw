@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: xcp-plan-hdfs-data-migration.html 
+keywords: netapp, xcp, plan, planning, data, migration, migrate, migrating, hdfs, file, analytics 
+summary: 規劃NFS資料移轉 
+---
+= 規劃 HDFS 資料移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+規劃 HDFS 資料移轉。
+
+
+
+== 掃描
+
+。 `scan` 命令會遞迴掃描整個來源路徑、並在掃描結束時列印檔案結構的統計資料。
+
+* `xcp scan HDFS [hdfs://<hdfs mounted path> ]`
+* 「XCP掃描HDFS：///DEMO /使用者1」
+* `xcp scan s3://my-bucket`
+* `xcp scan -s3.profile <s3 profile name> -s3.endpoint <endpoint-url> s3://my-bucket`
+
+
+請執行《XCP說明掃描》以取得更多詳細資料。

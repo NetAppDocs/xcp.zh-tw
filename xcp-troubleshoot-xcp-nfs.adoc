@@ -108,7 +108,23 @@ summary: 疑難排解XCP NFS錯誤
 | 「XCP：錯誤：批次2：子程序失敗（結束代碼-6）：recv <type 'exates.EOFError'>:' | 增加系統記憶體、然後重新執行測試。 
 
 
-| `xcp:ERROR: invalid path 'IP:/users009/user1/2022-07-01_04:36:52_1489367` | 如果檔案路徑中有一個分號（：）、請改用三個分號（：：）。 
+| `xcp:ERROR: invalid path 'IP:/users009/user1/2022-07-01_04:36:52_1489367` | 如果 NFS 伺服器共用路徑名稱中有一或多個冒號、請使用雙冒號（：）而非單一冒號（：）來分隔 NFS 伺服器 IP 和 NFS 伺服器共用路徑。 
+
+
+| SnapLock Volume 之後不會保留 WORM 檔案 `xcp copy` 營運。  a| 
+XCP 會將 WORM 檔案成功複製到磁碟區、但 SnapLock 磁碟區不會保留這些檔案。
+
+. 執行 `xcp copy` 從來源磁碟區到目的地磁碟區的作業：
+`xcp copy src_server:/src_export dst_server:/dst_export`
+. 使用 `xcp chmod` 命令將目的地磁碟區上的檔案權限變更為 * 唯讀 * ：
+`xcp chmod -mode  a-w  dst_server:/dst_export`
+
+
+完成上述步驟後、 SnapLock Volume 就會開始保留複製的檔案。
+
+
+NOTE: SnapLock 磁碟區的保留時間取決於磁碟區的預設保留原則。開始移轉之前、請先檢查 Volume 保留設定： link:https://docs.netapp.com/us-en/ontap/snaplock/set-retention-period-task.html["設定保留時間"^]
+
 |===
 
 
