@@ -85,9 +85,7 @@ sidebar:
   - title: 移轉資料
     entries:
     - title: 移轉NFS資料
-      entries:
-      - title: 用於移轉 NFS 資料的命令
-        url: "/xcp-migrate-nfs-data.html"
+      url: "/xcp-migrate-data.html"
     - title: 移轉SMB資料
       url: "/xcp-migrate-smb-data.html"
     - title: 移轉 HDFS 資料

@@ -673,7 +673,6 @@
   <block id="8c41baf1ca98e1184f48c4721d44d431" category="inline-link-macro">NetApp支援網站</block>
   <block id="110444d197d67f7d16c29fa0e2022b7f" category="paragraph">您可以從下載XCP <block ref="ff34957a5613d93a82e79914bce07df2" category="inline-link-macro-rx"></block>。</block>
   <block id="5d813edbc38ed8b3a73ab3c485aa5daf" category="section-title">XCP授權</block>
-  <block id="a6ed02e973991972186d8dbd4bd0e16e" category="paragraph">NetApp提供90天免費XCP授權。您可以從取得授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。授權入口網站提供不同的授權選項。90天之後、您可以使用相同的入口網站將授權續約90天。</block>
   <block id="0f217d96dd705618a7386cd8e0f4a5e4" category="paragraph">XCP授權是以離線或線上授權形式提供。若要傳送移轉統計資料、請使用線上授權。線上授權需要網際網路連線。離線授權不需要網際網路連線。</block>
   <block id="b4c8d461cf544f3b1324e87e550416e1" category="section-title">準備您的系統</block>
   <block id="e20233267adbb44f966c8c601a37ab48" category="inline-link-macro">Linux系統上的XCP NFS</block>
@@ -724,8 +723,6 @@
   <block id="f6e8987d5e2d203c406379ba9e8b8a47" category="admonition">移轉之後、如果您使用「XCP組態目錄」或「XCP記錄目錄」環境變數來覆寫預設的組態位置或記錄位置、則在使用舊版移轉或工作ID時、「logdump」命令會失敗。若要避免這種情況、請使用相同的記錄路徑、直到移轉完成為止。</block>
   <block id="20f0f3784e710ced2f992c9e868a329f" category="cell">xcp.log檔案中記錄「XCP copy（XCP複製）」及「ACL移轉錯誤」訊息：「pywintypes.error（pywintypes.error）」：「（1314、「GetNamedSecurityInfo」、「用戶端不擁有必要的權限」）</block>
   <block id="ec548dc7e9c4428d0af475d94ed8628f" category="cell">使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、因此無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
-  <block id="fdbdc0e84f617d7346b90d43e65e3e78" category="doc">XCP v1.9文件</block>
-  <block id="acca97deb653a678580117072b78b763" category="paragraph">歡迎使用XCP資訊庫。您可在此找到XCP v1.9軟體的文件、包括如何安裝、設定及使用XCP。</block>
   <block id="8d199d68726e0baa3da715584c92e083" category="admonition">XCP二進位元是程式碼簽署。如需詳細資訊、請參閱「NetApp_XCP _&lt;版本&gt;.tgz」中的README。</block>
   <block id="259c9d5f301d6e350422d2ebfe2bcc87" category="cell">確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
   <block id="bfccbf3e891050373f71f1230130222b" category="cell"><block ref="ad3b549c4b03e0598dee96d17d3ccc66" prefix="" category="inline-code"></block>：比較批次：索引檔案不相容。請僅使用目前XCP版本所產生的索引檔案。或者、您也可以從xcp.netapp.com下載較舊的XCP二進位檔。</block>
@@ -888,4 +885,7 @@
   <block id="27ce933e59d1bd3bfff8d6118fb7a35e" category="paragraph">。 <block ref="b98ddb4c6025a76df69bcccfdb0bd760" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="b179bbcf6f57100cffb18d2558916e9d" category="cell">64 位元 Intel 或 AMD 伺服器、至少 8 核心和 64 GB RAM</block>
   <block id="11db15a14a5186a893fe15b0e03f3213" category="sidebar">在同一主機上執行多個 XCP 工作</block>
+  <block id="bd843a39d27307ca3a4420e90c5e228f" category="doc">XCP v1.0.2 說明文件</block>
+  <block id="84f3449f04bbc191eb611f160d99dcfc" category="paragraph">歡迎使用 NetApp XCP 資訊庫。您可在此找到 XCP v1.1.2 軟體的說明文件、包括如何安裝、設定及使用 XCP 。</block>
+  <block id="ac1b0e3122e91e04b7f9d9e2eea0accb" category="paragraph">NetApp 提供一年免費 XCP 授權。您可以從取得授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。授權入口網站提供不同的授權選項。一年後、您可以使用同一個入口網站將授權續約一年。</block>
 </blocks>
