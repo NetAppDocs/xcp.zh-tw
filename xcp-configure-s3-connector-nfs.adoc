@@ -14,9 +14,9 @@ summary: S3 連接器可讓 XCP 將資料從 NFS 或 HDFS 檔案系統移轉至 
 .支援的移轉使用案例
 S3 連接器支援下列移轉使用案例：
 
-* 從 HDFS 或 NFS 移轉至 NetApp StorageGRID
-* 從 HDFS 或 NFS 移轉至 Amazon S3
-* 從 HDFS 或 NFS 移轉至 NetApp ONTAP S3
+* 從 HDFS 移轉至 NetApp StorageGRID
+* 從 HDFS 移轉至 Amazon S3
+* 從 HDFS 移轉至 NetApp ONTAP S3
 
 
 

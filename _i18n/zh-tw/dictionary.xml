@@ -812,9 +812,6 @@
   <block id="16933dfe56aff83cb6998c3667c2f0cf" category="paragraph">從 XCP 1.0.2 開始、 Simple Storage Service （ S3 ）連接器可將資料從 Hadoop 分散式檔案系統（ HDFS ）檔案系統移轉至 S3 物件儲存設備、進而強化 XCP 資料移轉的範圍。</block>
   <block id="677857bd3ebd1f41c85f70280b227d8f" category="paragraph-title">支援的移轉使用案例</block>
   <block id="ed0f619faede22039440d1fe21bcb0e9" category="paragraph">S3 連接器支援下列移轉使用案例：</block>
-  <block id="2268dc053f46fc24ae89f30faa812246" category="list-text">從 HDFS 或 NFS 移轉至 NetApp StorageGRID</block>
-  <block id="f10c40e18ecc26639294205a739fbd18" category="list-text">從 HDFS 或 NFS 移轉至 Amazon S3</block>
-  <block id="d3457be5101b05e590b80f8f7107b022" category="list-text">從 HDFS 或 NFS 移轉至 NetApp ONTAP S3</block>
   <block id="9caa7c5b602fa58bf008c08a7e479da6" category="admonition">目前只有符合條件且支援 HDFS 的 MapR 。</block>
   <block id="d006b10e4564e8049b786f2138530862" category="paragraph">支援<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block>、<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block>、<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block>、<block ref="69f2afc2390cec954f7c208b07212d39" prefix=" " category="inline-code"></block> 和<block ref="099af53f601532dbd31e0ea99ffdeb64" prefix=" " category="inline-code"></block> S3 連接器可使用命令。</block>
   <block id="c29d1e0e67cc2410608faeefbb62dcb8" category="paragraph-title">不支援的功能</block>
@@ -888,4 +885,7 @@
   <block id="bd843a39d27307ca3a4420e90c5e228f" category="doc">XCP v1.0.2 說明文件</block>
   <block id="84f3449f04bbc191eb611f160d99dcfc" category="paragraph">歡迎使用 NetApp XCP 資訊庫。您可在此找到 XCP v1.1.2 軟體的說明文件、包括如何安裝、設定及使用 XCP 。</block>
   <block id="ac1b0e3122e91e04b7f9d9e2eea0accb" category="paragraph">NetApp 提供一年免費 XCP 授權。您可以從取得授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。授權入口網站提供不同的授權選項。一年後、您可以使用同一個入口網站將授權續約一年。</block>
+  <block id="9351e261865c10b81be01c7298324b0f" category="list-text">從 HDFS 移轉至 NetApp StorageGRID</block>
+  <block id="c19152294b5e6dfeaa6ca9c77e0f12e1" category="list-text">從 HDFS 移轉至 Amazon S3</block>
+  <block id="3df8a75d6363358c9c30a90e1f018d65" category="list-text">從 HDFS 移轉至 NetApp ONTAP S3</block>
 </blocks>
