@@ -721,8 +721,6 @@
   <block id="78e3c3d20c30f31e40219bc4fc26d005" category="section-title">記錄傾印</block>
   <block id="f2223b790f3262b778f881ea47ce4191" category="paragraph">如果您遇到XCP命令或工作問題、可使用「logdump」命令將與問題相關的記錄檔傾印到可傳送給NetApp進行偵錯的「.Zip」檔案中。「logdump」命令會根據移轉ID或工作ID來篩選記錄、並將這些記錄傾印到目前目錄中的「.zip」檔案中。此「.Zip」檔案的名稱與命令所使用的移轉或工作ID相同。</block>
   <block id="f6e8987d5e2d203c406379ba9e8b8a47" category="admonition">移轉之後、如果您使用「XCP組態目錄」或「XCP記錄目錄」環境變數來覆寫預設的組態位置或記錄位置、則在使用舊版移轉或工作ID時、「logdump」命令會失敗。若要避免這種情況、請使用相同的記錄路徑、直到移轉完成為止。</block>
-  <block id="20f0f3784e710ced2f992c9e868a329f" category="cell">xcp.log檔案中記錄「XCP copy（XCP複製）」及「ACL移轉錯誤」訊息：「pywintypes.error（pywintypes.error）」：「（1314、「GetNamedSecurityInfo」、「用戶端不擁有必要的權限」）</block>
-  <block id="ec548dc7e9c4428d0af475d94ed8628f" category="cell">使用者面臨與安全性描述元相關的問題、因為藉由移轉使用者擁有的權限、XCP只能取得擁有者、群組和DACL、因此無法取得SACL。將移轉使用者新增至Active Directory的「管理稽核與安全性記錄」原則。參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
   <block id="8d199d68726e0baa3da715584c92e083" category="admonition">XCP二進位元是程式碼簽署。如需詳細資訊、請參閱「NetApp_XCP _&lt;版本&gt;.tgz」中的README。</block>
   <block id="259c9d5f301d6e350422d2ebfe2bcc87" category="cell">確認您的系統可以ping安裝XCP檔案分析且正在執行HTTPD的Linux機器。如果服務未執行、請執行「configure」並選擇修復選項。確認您使用的是支援的瀏覽器版本。請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。</block>
   <block id="bfccbf3e891050373f71f1230130222b" category="cell"><block ref="ad3b549c4b03e0598dee96d17d3ccc66" prefix="" category="inline-code"></block>：比較批次：索引檔案不相容。請僅使用目前XCP版本所產生的索引檔案。或者、您也可以從xcp.netapp.com下載較舊的XCP二進位檔。</block>
@@ -888,4 +886,12 @@
   <block id="9351e261865c10b81be01c7298324b0f" category="list-text">從 HDFS 移轉至 NetApp StorageGRID</block>
   <block id="c19152294b5e6dfeaa6ca9c77e0f12e1" category="list-text">從 HDFS 移轉至 Amazon S3</block>
   <block id="3df8a75d6363358c9c30a90e1f018d65" category="list-text">從 HDFS 移轉至 NetApp ONTAP S3</block>
+  <block id="392f97fdb8ea70faba5877ca90ad7c42" category="paragraph">如果來源、目的地或兩者都是沒有目錄的交會、且移轉時使用線上授權、則可能會發生追蹤錯誤。如果發生這種情況、則 XCP 命令的狀態為<block ref="269f3d1562cbd15624e7d2c4b10122e3" prefix=" " category="inline-code"></block> 但在主控台輸出結束時會傳回下列錯誤：</block>
+  <block id="c1397a1836478812e944515ecd5ff969" category="cell">請使用離線授權、而非線上授權。</block>
+  <block id="747dd4d48798d325d388dd4ba57db561" category="cell"><block ref="e64df9c2f5a72d0adb1dbea21a609c16" prefix="" category="inline-code"></block> 透過 ACL 移轉
+
+xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b39bb13" prefix=" " category="inline-code"></block>：<block ref="da1b6bcd0d8118b98426d3a306332234" prefix=" " category="inline-code"></block></block>
+  <block id="5b68f649e30aa676e6765ad7d93ced85" category="cell">與安全性描述元相關的問題、因為移轉使用者帳戶只有 XCP 所需的權限、才能擷取擁有者、群組和 DACL 。無法擷取 SACL 。
+將您的移轉使用者帳戶新增至 Active Directory 中的「管理稽核與安全性記錄」原則。
+參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
 </blocks>
