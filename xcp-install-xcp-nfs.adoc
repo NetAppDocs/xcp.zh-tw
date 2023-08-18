@@ -11,9 +11,15 @@ summary: 安裝XCP NFS
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revnumber: 
+:revdate: delete the current installation and replace it with a new installation of the latest version.
 
 
-如果您要升級XCP、請刪除目前的安裝、並以最新版本的新安裝取代。本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。
+本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。
 
 *系統要求*
 

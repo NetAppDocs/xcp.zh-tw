@@ -358,8 +358,6 @@
   <block id="15b9d4023566740949c10a9a9533c35c" category="list-text">確認已修改目錄的XCP Linux用戶端主機組態檔項目：</block>
   <block id="4c82d2eef29d76c200ed39d04be95fc0" category="section-title">為非root使用者設定Ini檔案</block>
   <block id="c9beec711f96849f59fc8b461a17c844" category="paragraph">身為非root使用者、您沒有掛載NFS檔案系統的權限。root使用者必須先掛載目錄磁碟區、然後以執行XCP的非root使用者身分、如果您擁有目錄磁碟區的讀取/寫入權限、就可以使用POSIX連接器來存取掛載的目錄磁碟區。掛載磁碟區之後、您可以新增目錄路徑：</block>
-  <block id="00fc0d4b3a5e71116d21a80782c5bdd5" category="summary">設定XCP的步驟</block>
-  <block id="bbea4d9be7e41369b354c0a01cc56390" category="doc">設定XCP NFS</block>
   <block id="8ebcb6923388924859f2dac1791081e8" category="summary">疑難排解XCP NFS錯誤</block>
   <block id="938d4078879782553ee606a9107059ee" category="doc">疑難排解XCP NFS錯誤</block>
   <block id="ef8fd37900d2911bb2ff728bb4f9ec8b" category="cell">XCP問題</block>
@@ -544,7 +542,6 @@
   <block id="7e4d5419d4fcf4ceade27ffac84d4e92" category="list-text">在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。</block>
   <block id="8bcf9c6b645253521b5145414a80aecc" category="paragraph">如需詳細資訊、請參閱「XCP說明驗證」。</block>
   <block id="dfdcc7639b3e014792b21c9f7d5c85c0" category="summary">安裝XCP NFS</block>
-  <block id="4e5b1a9c903c0437af920974c6501bd6" category="paragraph">如果您要升級XCP、請刪除目前的安裝、並以最新版本的新安裝取代。本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。</block>
   <block id="b9982e4a219c9f069ec01b724fff8274" category="paragraph">*系統要求*</block>
   <block id="7d74f3b92b19da5e606d737d339a9679" category="cell">項目</block>
   <block id="9b97b7bd5e0a87be7bf218224ada83cf" category="cell">需求</block>
@@ -617,11 +614,7 @@
   <block id="0b857c6e7bf19abf29c47f989b4715dc" category="list-text">部署適用於NFS檔案系統的XCP檔案分析解決方案：</block>
   <block id="365fed029c9130511d651745702873b6" category="list-text">您可以在相同的Linux主機上部署檔案分析GUI、資料庫和XCP服務。</block>
   <block id="958e2b400bf30068195bfa78570cd469" category="list-text">部署適用於SMB檔案系統的XCP檔案分析解決方案：您必須在Linux主機上部署檔案分析GUI和資料庫、並在Windows主機上部署XCP服務。</block>
-  <block id="7f9cccf134351e9df9c324fb764603f3" category="summary">歡迎使用XCP資訊庫、其中包含舊版的連結。</block>
-  <block id="9d2169c1c2855b78a7aeaa4f42d27dc7" category="inline-link-macro">NetApp 支援網站</block>
-  <block id="76c8844b91693e12fac2abf6d423c3f5" category="paragraph">如需舊版XCP的文件、請參閱 <block ref="a4ccf985ba56b702a384be031a3cd5f9" category="inline-link-macro-rx"></block>。</block>
   <block id="899cb0fc6e09b056f086b2106c805708" category="summary">安裝XCP SMB</block>
-  <block id="83eac0335f97fa6241e10b9487c974e1" category="paragraph">本節詳細說明VC++可轉散發安裝的系統需求、以及在Windows用戶端上初始設定XCP的程序。</block>
   <block id="8f753e7a8965c7ae386ee6fa22a4b1bf" category="admonition">沒有升級選項；請重新安裝XCP以取代任何現有版本。</block>
   <block id="918d32b75f0ab883abba3a8dc0c3ae8d" category="inline-link-macro">互通性對照表工具</block>
   <block id="93c11dfd633dc7108de53aff18c2255b" category="cell">Windows 2012 R2或更新版本。如需支援的Microsoft OS版本、請參閱 <block ref="1ed2ba1980a264d01ab3597cde177180" category="inline-link-macro-rx"></block>。必須在XCP主機上安裝Visual C++ 2017可轉散發套件。</block>
@@ -642,19 +635,6 @@
   <block id="17b92bb56c632debb93b565e92dbd987" category="list-text">驗證系統上是否有舊版XCP的「C：\NetApp\XCP」路徑可用。如果有「C：\NetApp\XCP」、請使用「xcp.exe activate」命令啟動XCP、然後繼續資料移轉。</block>
   <block id="c9dd31b110e2c919cd80441873e975fc" category="paragraph">如果無法使用「C：\NetApp\XCP」、系統會在您第一次執行「xcp.exe activate」命令時、建立XCP主機組態目錄、並將其檔案置於「C：\NetApp\XCP」。「xcp.exe actactivate」命令失敗、並建立錯誤訊息、要求取得新授權。</block>
   <block id="a93da960db5c5b4f48c763a05f304371" category="list-text">將授權複製到新建立的資料夾「C：\NetApp\XCP：」</block>
-  <block id="15a72e0b175cfb652e426660fba4bc3c" category="summary">取得更多資訊。</block>
-  <block id="bf07f432276ee2fe7e55f9ea12c2ba5a" category="doc">取得更多資訊</block>
-  <block id="b2869ebd73bb749c2a70fb53b7fb839a" category="paragraph">您可以透過各種資源、文件和論壇取得協助並尋找更多資訊。</block>
-  <block id="739cff85d11488640d8e5cd96fd20651" category="inline-link-macro">XCP文件</block>
-  <block id="0eb64b88f402ba59777a9da3b39eb229" category="list-text"><block ref="1b5583f400587c5923833df145f2aa29" category="inline-link-macro-rx"></block> –包括本版本與先前版本的版本資訊與參考資料</block>
-  <block id="7c5a354d83d8ccdcea8502404b2e4326" category="inline-link-macro">NetApp TechCommTV</block>
-  <block id="2b97e6564e79d94d38203d366b354ed0" category="list-text"><block ref="ac9c1e071b76d74223d967c993054c22" category="inline-link-macro-rx"></block>–NetApp XCP影片</block>
-  <block id="6efa8f47d1a76af77ce311b436e4dca9" category="inline-link-macro">NetApp XCP</block>
-  <block id="3a9dc4d356f0267053bacfcd1d12f2a0" category="list-text"><block ref="8eb894646a418e33ca3d088f11e4914c" category="inline-link-macro-rx"></block> –包括取得授權的連結</block>
-  <block id="ed08ca4078374e76c6df3f1999af7274" category="inline-link-macro">NetApp資源</block>
-  <block id="8a05209ac1af42c76c9bfccbe981b710" category="list-text"><block ref="51a0489d16489f7754f2ce96a32b3156" category="inline-link-macro-rx"></block> （包括技術報告和知識庫文章的連結）</block>
-  <block id="dd490b81914dd945601e442a41cb4222" category="inline-link-macro">NetApp社群</block>
-  <block id="5069a642e7e1b77c303271d4c51a31be" category="list-text"><block ref="a6159e77c91be3ab1d481e4c7c939636" category="inline-link-macro-rx"></block> –論壇</block>
   <block id="6a5ff98f1029ddc23bd3537c5e16785f" category="summary">規劃NFS資料移轉</block>
   <block id="963344c97166a9491696af9417e60eed" category="doc">規劃NFS資料移轉</block>
   <block id="2d3f0225db2a5974e9dd3efa2510ede8" category="paragraph">規劃NFS資料移轉。</block>
@@ -693,7 +673,6 @@
   <block id="12c832a1abd774cf0f4601d95c913d20" category="paragraph">如需詳細資訊、請參閱《XCP說明恢復》。</block>
   <block id="1504bd4779c3c062c9078099fad0ac19" category="paragraph">「sync」命令會使用目錄索引標籤名稱或先前複製作業的編號、掃描來源NFS目錄上所執行的變更和修改。來源遞增變更會複製並套用至目標目錄。舊的目錄索引編號會在同步operation#之後以新的[.Underlines]#取代。</block>
   <block id="990d138c681bf32e178b6390caea1423" category="paragraph">在複製作業之後、「驗證」命令會在來源目錄和目標目錄之間使用逐位元組的完整資料比較、而不使用目錄索引編號。此命令會檢查修改時間及其他檔案或目錄屬性、包括權限。命令也會讀取兩側的檔案、並比較資料。</block>
-  <block id="8cf04a9734132302f96da8e113e80ce5" category="sidebar">主頁</block>
   <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">版本資訊</block>
   <block id="ef8cdecd9388166741c6ddeb9e648a30" category="sidebar">設定XCP</block>
   <block id="43f3f6a392074dfc63604c7b136e457f" category="sidebar">設定XCP NFS的Ini檔案</block>
@@ -771,7 +750,6 @@
   <block id="a819ba1b3efc04fee9100a7ab0ee93ca" category="paragraph"><block ref="a73ccca27c22e20f2b42c66b62244db5" prefix="" category="inline-code"></block></block>
   <block id="6f59af5df257d27f8f7f83e150cb44c7" category="list-text">如果您看到下列錯誤、請使用 yum 安裝 CodeReady 套件、例如<block ref="195584d46184f28385e2ae5bd9f0af62" prefix=" " category="inline-code"></block>：</block>
   <block id="b326b5062b2f0e69046810717534cb09" category="cell">是的</block>
-  <block id="a660b358e105189a720dbb4a9176decf" category="paragraph">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。XCP的設計旨在利用所有可用的系統資源來管理高容量資料集和高效能移轉、以擴充並達到更高的效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。</block>
   <block id="f11ba2ba1e8e44e293e56351fbc05edf" category="doc">在同一台 XCP 主機上執行多個 XCP 工作</block>
   <block id="328be41686da6fdb0454cdc13b57cf2d" category="paragraph">從 XCP 1.0.2 開始、您可以使用「 -minmem 」功能在單一 XCP 主機上執行多個 XCP 工作或命令、前提是主機必須有足夠的資源來處理每項工作。當您執行支援「 -minmem 」功能的命令時、 XCP 會使用最小的主機記憶體來完成工作、以建立在同一主機組態上執行其他工作的容量。</block>
   <block id="d9647e192eec469f5ef0ff6b04e9a7f0" category="section-title">最低系統需求</block>
@@ -880,8 +858,6 @@
   <block id="27ce933e59d1bd3bfff8d6118fb7a35e" category="paragraph">。 <block ref="b98ddb4c6025a76df69bcccfdb0bd760" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="b179bbcf6f57100cffb18d2558916e9d" category="cell">64 位元 Intel 或 AMD 伺服器、至少 8 核心和 64 GB RAM</block>
   <block id="11db15a14a5186a893fe15b0e03f3213" category="sidebar">在同一主機上執行多個 XCP 工作</block>
-  <block id="bd843a39d27307ca3a4420e90c5e228f" category="doc">XCP v1.0.2 說明文件</block>
-  <block id="84f3449f04bbc191eb611f160d99dcfc" category="paragraph">歡迎使用 NetApp XCP 資訊庫。您可在此找到 XCP v1.1.2 軟體的說明文件、包括如何安裝、設定及使用 XCP 。</block>
   <block id="ac1b0e3122e91e04b7f9d9e2eea0accb" category="paragraph">NetApp 提供一年免費 XCP 授權。您可以從取得授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。授權入口網站提供不同的授權選項。一年後、您可以使用同一個入口網站將授權續約一年。</block>
   <block id="9351e261865c10b81be01c7298324b0f" category="list-text">從 HDFS 移轉至 NetApp StorageGRID</block>
   <block id="c19152294b5e6dfeaa6ca9c77e0f12e1" category="list-text">從 HDFS 移轉至 Amazon S3</block>
@@ -894,4 +870,52 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="5b68f649e30aa676e6765ad7d93ced85" category="cell">與安全性描述元相關的問題、因為移轉使用者帳戶只有 XCP 所需的權限、才能擷取擁有者、群組和 DACL 。無法擷取 SACL 。
 將您的移轉使用者帳戶新增至 Active Directory 中的「管理稽核與安全性記錄」原則。
 參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
+  <block id="b26aa33242c67db906e87e2438c94d27" category="paragraph">NetApp XCP 的設計、是要利用所有可用的系統資源來管理高容量資料集和高效能資料移轉、藉此擴充並提升效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。</block>
+  <block id="60f3d88855f39291216e88879e7016bd" category="paragraph">本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。</block>
+  <block id="8f9dd51720e75b125d13cc0941d2cb30" category="summary">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。</block>
+  <block id="bb3aa4713d330863980f0c63bf214969" category="doc">NetApp XCP 文件</block>
+  <block id="a3f155c6d354f670674d0fefc33ab908" category="doc">規劃資料移轉</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律聲明</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律聲明提供版權聲明、商標、專利等存取權限。</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版權</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商標</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp 標誌及 NetApp 商標頁面上列出的標章均為 NetApp 、 Inc. 的商標。其他公司與產品名稱可能為其各自所有者的商標。</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">專利</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">如需最新的 NetApp 擁有專利清單、請參閱：</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隱私權政策</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">開放原始碼</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知檔案提供有關 NetApp 軟體所使用之協力廠商版權與授權的資訊。</block>
+  <block id="c2b224ab0d31234f6b60612f6540c534" category="inline-link-macro">NetApp XCP 1.9.2 注意事項</block>
+  <block id="bb59aef0c9f5d2c9cdbd6a4f2f57242b" category="list-text"><block ref="bb59aef0c9f5d2c9cdbd6a4f2f57242b" category="inline-link-macro-rx"></block></block>
+  <block id="2b83916321c793aeb5bffce5ddd49d3d" category="inline-link-macro">NetApp XCP 1.9.1 注意事項</block>
+  <block id="dbc8e8be00730d6953956c8b0aa305cb" category="list-text"><block ref="dbc8e8be00730d6953956c8b0aa305cb" category="inline-link-macro-rx"></block></block>
+  <block id="92e978f51b6854f19cb102afb6e7c7f9" category="inline-link-macro">NetApp XCP 1.9 注意事項</block>
+  <block id="3503fc6ddb1aa6f7c157ac78bac45cbc" category="list-text"><block ref="3503fc6ddb1aa6f7c157ac78bac45cbc" category="inline-link-macro-rx"></block></block>
+  <block id="ee797c259878f2839455105abb65106c" category="inline-link-macro">NetApp XCP 1.8.1 注意事項</block>
+  <block id="d010dc762575a62b4743cdf67aaca20a" category="list-text"><block ref="d010dc762575a62b4743cdf67aaca20a" category="inline-link-macro-rx"></block></block>
+  <block id="bb56f67a148cc2f2b0fefdf3ad31d862" category="inline-link-macro">NetApp XCP 1.8 注意事項</block>
+  <block id="947d36e55b7e5eaafa3b9365e2c2f048" category="list-text"><block ref="947d36e55b7e5eaafa3b9365e2c2f048" category="inline-link-macro-rx"></block></block>
+  <block id="8460555eb240926a8ff0bb9963c60097" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。此處提供 XCP 1.9.2 軟體的說明文件、包括如何安裝、設定及使用 XCP 。舊版 XCP 的文件可在 NetApp 支援網站 上取得。</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
+  <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">舊版</block>
+  <block id="bb94e7367791f982596ac461b54c7eab" category="sidebar">NetApp XCP 1.9.1</block>
+  <block id="1314b92278223dc2ab46c6dd8b3bf655" category="sidebar">NetApp XCP 1.9</block>
+  <block id="0b883cd31dc0a70033ec3260cc84cde2" category="sidebar">NetApp XCP 1.8.1</block>
+  <block id="c2349270a2c5b206946456729c613d88" category="sidebar">NetApp XCP 1.8</block>
+  <block id="a6ec16db3258e39e9ea07a28c8bc6f0c" category="sidebar">NetApp XCP 1.7 及更早版本</block>
+  <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">更多資源</block>
+  <block id="b5ebef46ca4c7353a47405db847d5f8d" category="sidebar">XCP 文件（包括參考資料）</block>
+  <block id="d00f838899e1bae3eeafc63b8e4a4be2" category="sidebar">NetApp TechCommTV （ NetApp XCP 影片）</block>
+  <block id="e0805d6bd6649b148eb00741ca006a8d" category="sidebar">NetApp XCP （包括取得授權的連結）</block>
+  <block id="69325177d6c1169f9e91f28d3c39250a" category="sidebar">適用於 XCP 的 NetApp 資源</block>
+  <block id="05d2f8b110a50afd169a5d85f77bf23c" category="sidebar">NetApp 社群（論壇）</block>
 </blocks>

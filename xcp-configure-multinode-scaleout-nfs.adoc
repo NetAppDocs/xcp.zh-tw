@@ -79,9 +79,9 @@ hdfs:///user/demo/d1
 file:///mnt/nfs-server0/d3
 ----
 * 「驗證’命令範例：
-
-
++
 [listing]
 ----
 ./xcp verify hdfs:///user/demo/d2 file:///mnt/nfs-server0/d3
 ----
+

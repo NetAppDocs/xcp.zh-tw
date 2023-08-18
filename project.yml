@@ -9,15 +9,15 @@ settings:
   langs: zh-tw,us-en,ja-jp,ko-kr,zh-cn,de-de,es-es,fr-fr,it-it
 sidebar:
   entries:
-  - title: 主頁
-    url: "/home.html"
+  - title: NetApp XCP 文件
+    url: "/index.html"
   - title: 版本資訊
     url: "/releasenotes.html"
   - title: 開始使用XCP
     type: solutions
     entries:
     - title: 深入瞭解XCP
-      url: "/index.html"
+      url: "/xcp-index.html"
     - title: XCP NFS附加功能
       url: "/xcp-nfs-add-ons.html"
     - title: 不支援的功能
@@ -70,8 +70,9 @@ sidebar:
     - title: 規劃 HDFS 資料移轉
       url: "/xcp-plan-hdfs-data-migration.html"
     - title: 使用檔案分析進行規劃
-      url: "/xcp-using-file-analytics.html"
       entries:
+      - title: 規劃資料移轉
+        url: "/xcp-file-analytics-plan-data-migration.html"
       - title: 存取檔案分析
         url: "/xcp-access-file-analytics.html"
       - title: 新增檔案伺服器
@@ -102,5 +103,5 @@ sidebar:
       url: "/xcp-troubleshoot-xcp-smb-errors.html"
     - title: 疑難排解XCP檔案分析錯誤
       url: "/xcp-troubleshoot-xcp-file-analytics-errors.html"
-  - title: 取得更多資訊
-    url: "/get-more-information.html"
+  - title: 法律聲明
+    url: "/legal-notices.html"
