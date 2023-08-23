@@ -527,7 +527,6 @@
   <block id="296424663e8e3bf16ffbb2dffed95868" category="paragraph">您可以在XCP橫向擴充組態中納入HDFS叢集、因為它們使用多部高階Linux機器。如此可將額外XCP工作者節點的需求降至最低。對於資料移轉、您可以選擇重複使用HDFS叢集節點、或是使用不同的主機。</block>
   <block id="df6c0aff915e6eb3864841ff85b7cd84" category="admonition">HDFS連接器符合資格、可支援MapR和Cloudera叢集、但只能執行基礎「複製」作業。</block>
   <block id="2cb211d6d9065080871b03dc58cc2f5f" category="summary">移轉SMB資料</block>
-  <block id="37704fe51312a12ba870e785cefa70f4" category="paragraph">使用「show」和「shcan」命令規劃移轉作業之後、您就可以移轉資料。</block>
   <block id="5fb63579fc981698f97d55bfecb213ea" category="section-title">複本</block>
   <block id="28f2900c35a6a416b39cb9a71b13649a" category="paragraph">「copy」命令會掃描整個來源目錄結構、並將其複製到目的地SMB共用區。「copy」命令需要將來源和目的地路徑做為變數。掃描和複製的檔案、處理量/速度和經過時間等詳細資料、每五秒會列印一次到主控台。</block>
   <block id="c64a522ee6418ae33077670975c2798b" category="admonition">在複製作業期間、您可以使用「-preserve-atime」旗標搭配「copy」命令、以保留來源的存取時間。</block>
@@ -825,7 +824,6 @@
   <block id="0a009b2626b03b4c70bb4dcb73832482" category="doc">用於移轉 NFS 資料的命令</block>
   <block id="322df0ac50172a48935aaba57e5dee70" category="cell">請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block> XCP File Analytics 所有支援瀏覽器版本的對照表。</block>
   <block id="8ba09dc2aec500b8eabed3efd8eb8bc9" category="summary">移轉 HDFS 資料</block>
-  <block id="f30e2bc9de919d5c6249cea25c2f9a74" category="paragraph">使用規劃移轉之後<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉資料。</block>
   <block id="ea6a8ab5a9e8b23dc8df0571125234f4" category="paragraph">。<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block> 命令會掃描整個來源 Hadoop 分散式檔案系統（ HDFS ）資料、並將其複製到 NFS 或簡易儲存服務（ S3 ）貯體。。<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block> 命令需要將來源和目的地路徑做為變數。掃描和複製的檔案、處理量、速度和經過時間詳細資料會顯示在複製作業結束時。</block>
   <block id="beea424f6b4dbe034f0047f1f1a1cd57" category="paragraph">* NFS 路徑範例： *</block>
   <block id="02880d02dff3a15e38a0afe75b110262" category="paragraph">* S3 路徑範例： *</block>
@@ -870,7 +868,6 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="5b68f649e30aa676e6765ad7d93ced85" category="cell">與安全性描述元相關的問題、因為移轉使用者帳戶只有 XCP 所需的權限、才能擷取擁有者、群組和 DACL 。無法擷取 SACL 。
 將您的移轉使用者帳戶新增至 Active Directory 中的「管理稽核與安全性記錄」原則。
 參考資料： <block ref="47c554f6b2ce744e50a1b2318fbe4ec3" category="inline-link-macro-rx"></block></block>
-  <block id="b26aa33242c67db906e87e2438c94d27" category="paragraph">NetApp XCP 的設計、是要利用所有可用的系統資源來管理高容量資料集和高效能資料移轉、藉此擴充並提升效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。</block>
   <block id="60f3d88855f39291216e88879e7016bd" category="paragraph">本節詳細說明Linux用戶端和Ini檔案組態上的系統需求、以及XCP初始設定程序。</block>
   <block id="8f9dd51720e75b125d13cc0941d2cb30" category="summary">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。</block>
   <block id="bb3aa4713d330863980f0c63bf214969" category="doc">NetApp XCP 文件</block>
@@ -918,4 +915,8 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="e0805d6bd6649b148eb00741ca006a8d" category="sidebar">NetApp XCP （包括取得授權的連結）</block>
   <block id="69325177d6c1169f9e91f28d3c39250a" category="sidebar">適用於 XCP 的 NetApp 資源</block>
   <block id="05d2f8b110a50afd169a5d85f77bf23c" category="sidebar">NetApp 社群（論壇）</block>
+  <block id="c33c58a3b01e45d3964a4e2414a84970" category="paragraph">使用規劃移轉之後<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 和<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉 SMB 資料。</block>
+  <block id="d1bf561d563aa7c75c975ba869dd56ac" category="paragraph">使用規劃移轉之後<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉 HDFS 資料。</block>
+  <block id="715c4a9e063aa9667b43f7d5478b9037" category="paragraph">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。XCP 的設計旨在利用所有可用的系統資源來管理高容量資料集和高效能資料移轉、藉此擴充並提升效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。</block>
+  <block id="e42bfcdf0ad235b13c49f73caf47eb14" category="paragraph">使用規劃移轉之後<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 和<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉 NFS 資料。</block>
 </blocks>

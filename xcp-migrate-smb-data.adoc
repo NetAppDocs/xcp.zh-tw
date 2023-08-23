@@ -14,7 +14,7 @@ summary: 移轉SMB資料
 
 
 [role="lead"]
-使用「show」和「shcan」命令規劃移轉作業之後、您就可以移轉資料。
+使用規劃移轉之後 `show` 和 `scan` 命令、您可以移轉 SMB 資料。
 
 
 

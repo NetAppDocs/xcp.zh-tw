@@ -14,7 +14,7 @@ summary: 移轉 HDFS 資料
 
 
 [role="lead"]
-使用規劃移轉之後 `scan` 命令、您可以移轉資料。
+使用規劃移轉之後 `scan` 命令、您可以移轉 HDFS 資料。
 
 
 
