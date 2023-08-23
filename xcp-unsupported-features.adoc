@@ -34,14 +34,6 @@ XCP NFS不支援下列功能：
 
 
 
-| Hadoop分散式檔案系統（HDFS）連接器  a| 
-* 「shync」命令不支援HDFS連接器
-* HDFS檔案系統不支援符號連結（symlinks）、硬式連結或特殊檔案
-* 當來源處於作用中狀態時、您不應使用「copy」命令
-
-
-
-
 | Linux | XCP 1.6.3支援的舊版Linux不再支援XCP。 
 
 
