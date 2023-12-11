@@ -80,3 +80,16 @@ xcp estimate -id <scan id> -target server:/export
 xcp live estimation with -t option
 xcp estimate -id <scan id> -t <time for which estimation should run> -target server:/export
 ....
+
+
+== 索引刪除
+
+您可以使用 `indexdelete` 刪除目錄索引的命令。
+
+* 範例 *
+
+[listing]
+----
+xcp indexdelete
+----
+執行 `xcp help indexdelete` 以取得更多詳細資料。

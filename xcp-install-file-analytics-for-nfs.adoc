@@ -16,26 +16,63 @@ summary: 安裝或升級File Analytics for NFS
 [role="lead"]
 安裝或升級File Analytics for NFS。
 
-如需NFS的系統需求、請參閱 link:xcp-install-xcp-nfs.html["安裝XCP NFS"]。「configure．sh」指令碼會安裝並啟用適用於Linux伺服器的預設HTTPD和PostgreSQL組態。您可以視需要變更或更新至較新的版本、並遵守安全性準則。
+.關於這項工作
+如需 NFS 的系統需求、請參閱 link:xcp-install-xcp-nfs.html["安裝XCP NFS"]。
+
+。 `configure.sh` 指令碼會在 Red Hat Enterprise Linux （ RHEL ）主機機器上安裝 XCP File Analytics 。在安裝過程中、指令碼會在主機 Linux 機器上安裝 Postgres 資料庫、 Apache HTTPD 伺服器和其他必要的套件。如需特定支援 RHEL 版本的相關資訊、請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^]。您可以視需要變更或更新至較新的版本、並遵守安全性準則。以深入瞭解 `configure.sh` 指令碼、執行 `./configure.sh -h` 在命令列上。
 
 .開始之前
-* 您無法在同一部主機上同時執行XCP應用程式和XCP AS服務。如果有任何XCP作業正在執行、請在開始組態之前完成作業。
+* 如果有任何 XCP 作業正在執行、 NetApp 建議您在開始設定之前先完成作業。
 * 您的Linux機器必須連線至Yum儲存庫伺服器或網際網路。
-* 如果Linux機器上已設定防火牆、您必須變更防火牆設定、以啟用XCP、XCP服務和XCP檔案分析所使用的服務所使用的連接埠。如需詳細資訊、請前往 xref:xcp-ports-used.html[XCP使用的連接埠]。
+* 如果在 Linux 機器上設定防火牆、您必須變更防火牆設定、以啟用 XCP 服務所使用的連接埠 5030 。
 
 
 .步驟
-. 移至您的XCP資料夾、然後執行「./configure .sh」指令碼。指令碼需要三到十分鐘的時間來設定Linux機器、並完成下列工作：
+. 安裝或升級File Analytics for NFS。
 +
-.. 下載PostgreSQL套件
-.. 安裝PostgreSQL伺服器
-.. 安裝HTTPD
-.. 使用開放式SSL建立自我簽署的憑證（「erver.key與server.crt」）
-.. 建立XCP檔案分析資料庫
+[role="tabbed-block"]
+====
+.安裝檔案分析
+--
+.. 瀏覽至 `xcp` 資料夾並執行 `./configure.sh` 指令碼：
++
+如果安裝成功、則會顯示下列訊息：
+
++
+[listing]
+----
+You can now access XCP file analytics using (<username>:<password>)
+https://<ip_address>/xcp
+----
++
+
+NOTE: 您可以使用此使用者名稱和密碼登入 File Analytics GUI 。
 
 
-. 從XCP組態功能表中選取「Option 1 Configure Client System」（選項1設定用戶端系統）。
-. 若為新安裝、請更新系統管理員和資料庫使用者的密碼。升級時、系統會提示您停止XCP服務。完成後、選取「選項0」。
-. 啟動XCP服務。使用下列命令檢查XCP服務是否正在執行：服務XCP狀態
-. 在瀏覽器中啟動「檔案分析」：Linux的*\https://<ip位址>/XCP *。
+
+--
+.升級檔案分析
+--
+.. 瀏覽至 `xcp` 資料夾與執行 `./configure.sh -f`。
+.. 在提示字元下輸入 `y` 以清理及重新設定系統。
++
+指令碼核准後、它會清除現有的組態並重新設定系統。
+
++
+如果成功、會顯示下列訊息：
+
++
+[listing]
+----
+You can now access XCP file analytics using (<username>:<password>)
+https://<ip_address>/xcp
+----
+
+
+--
+====
+. 在支援的瀏覽器中啟動檔案分析： * \https://<ip 位址： Linux/XCP* 。
++
+請參閱 link:xcp-install-xcp-nfs.html["安裝XCP NFS"] 如需支援瀏覽器的相關資訊、
+
 

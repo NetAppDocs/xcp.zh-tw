@@ -36,6 +36,9 @@ summary: 規劃NFS資料移轉
 
 。 `scan` 命令會遞迴掃描整個來源 NFSv3 匯出路徑、並在掃描結束時列印檔案結構的統計資料。NetApp建議在掃描作業期間、將來源NFS匯出掛載置為唯讀模式。
 
+
+NOTE: 如果檔案或目錄名稱包含非 UTF-8 字元、這些字元會轉換成 UTF-8 格式、並在執行時顯示 `xcp-scan` 命令。視來源編碼轉譯為 UTF-8 而定、字元可能無法如預期般顯示。
+
 *範例：*
 
 * `xcp scan NFS [server:/export path | file:// ]`

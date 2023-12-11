@@ -41,7 +41,7 @@ xcp copy -newid <id> hdfs:///demo/user file:///mnt/dest
 xcp copy -newid <id> hdfs:///demo/user s3://my-bucket
 xcp copy -newid <id> -s3.profile <s3 profile name> -s3.endpoint <endpoint-url> hdfs:///demo/user s3://my-bucket
 ----
-如需詳細資訊、請參閱「XCP說明複本」。
+執行 `xcp help copy` 以取得更多詳細資料。
 
 
 
@@ -59,7 +59,7 @@ xcp resume [options] -s3.profile <s3 profile name> -s3.endpoint <endpoint-url> -
 
 NOTE: 根據預設、 XCP `resume` 命令會使用中所使用複本索引的 S3 端點和 S3 設定檔 `copy` 命令。不過、如果是新的 `-s3.endpoint` 和 `-s3.profile` 值隨附於 `resume` 命令中使用選項的新值和複本中使用的值 `command` 會被覆寫。
 
-如需詳細資訊、請參閱《XCP說明恢復》。
+執行 `xcp help resume` 以取得更多詳細資料。
 
 
 
@@ -86,4 +86,4 @@ xcp verify hdfs:///user/demo1/data file:///user/demo1/dest
 xcp verify hdfs:///user/demo1/data s3://my-bucket
 xcp verify -s3.profile <s3 profile name> -s3.endpoint <endpoint-url> hdfs:///demo/user s3://my-bucket
 ----
-如需詳細資訊、請參閱「XCP說明驗證」。
+執行 `xcp help verify` 以取得更多詳細資料。

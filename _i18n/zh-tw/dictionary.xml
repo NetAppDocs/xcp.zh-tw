@@ -75,31 +75,19 @@
   <block id="6a6947b743abcf4f9aaa1664bb88feba" category="paragraph">安裝或升級適用於SMB的File Analytics。</block>
   <block id="4501bedf7a80968ef55dd21ff51af4a3" category="inline-link-macro">安裝XCP SMB</block>
   <block id="28f1937a3cc3eb0d6912c14361aae86a" category="paragraph">如需SMB的系統需求、請參閱 <block ref="b1b298f808db7e093ee9abb7cc8bfdef" category="inline-link-macro-rx"></block>。</block>
-  <block id="17e2d63e3b45ecbfe13bcc32fec929d0" category="paragraph">*開始之前*</block>
   <block id="e5e58d5cdf81973c4955d5ea6aede873" category="list-text">您必須在Linux機器上設定適用於NFS的XCP檔案分析、才能使用XCP SMB服務。</block>
   <block id="1a192e854cfe5d8168d0d05ae2e502e3" category="list-text">在Windows機器上開始設定XCP檔案分析之前、請先確定XCP服務正在Linux機器上執行。</block>
   <block id="b62051beb7fd4a143b6c815f0754ce91" category="section-title">全新安裝適用於SMB的檔案分析</block>
   <block id="8d61f5ee9cebc1323e4406cd9c74bee3" category="paragraph">若要針對SMB執行全新的檔案分析安裝、請完成下列步驟。</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">步驟</block>
-  <block id="202b59069600c80dee2f3b31bf33ce1a" category="list-text">將「XCP：exe」檔案複製到Windows「C：」磁碟機、在解壓縮tgz之後、此二進位檔可在「/XCP / windows」中取得。</block>
   <block id="36cc7dd1df7adb145df0ee9cebe250c5" category="list-text">從下載XCP授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。</block>
   <block id="6bbb03e83c8f1500cacb227482558dd0" category="list-text">建立資料夾「C：\NetApp\XCP」、然後將XCP授權複製到此位置。</block>
   <block id="f9a7c45c2f9e869ce9359173c559dd03" category="list-text">在命令提示字元「xcp.exe actactactivate（啟動）」下使用下列命令啟動XCP授權</block>
-  <block id="771f1f61b29ddab00383860a9b8fe8df" category="list-text">將'sherver.key'和'sherver.cr'檔案從'/ope/NetApp/xFiles/XCP（在已設定XCP檔案分析的Linux方塊中）複製到「C：\NetApp\XCP選用」-如果您擁有CA憑證、請將該憑證放在此具有相同名稱和副檔名的位置。</block>
   <block id="ad50f79627822b073378935381e28b0a" category="list-text">在Windows CLI命令提示字元中、執行「XCP configure」。</block>
   <block id="34a5eb12a40f3a927cd1680032a68a8c" category="list-text">出現提示時、請提供配置XCP檔案分析伺服器的Linux機器IP位址。</block>
-  <block id="e43b30072e1c1e31e80bd2433db31830" category="list-text">出現提示時、請提供在XCP Linux檔案分析組態期間輸入的資料庫密碼。</block>
-  <block id="cff644aa1716d68a9351188e54a1a712" category="list-text">移至Linux機器並執行「./configure .sh」。</block>
-  <block id="d8da99a82dddfba37d491206159ee22d" category="list-text">在主功能表中選取「Option 4（Update XCP windows agentIP）」、並提供Windows機器的IP位址。</block>
-  <block id="46be349b53621b4434308c0bbe45ebaf" category="list-text">請前往您的Windows機器執行「XCP listen」、現在已設定適用於SMB的XCP檔案分析。讓視窗保持開啟狀態、以持續執行服務。</block>
-  <block id="7ff768d8b3e0e35c252ee2e9baf28bc8" category="list-text">在Google Chrome瀏覽器上啟動「檔案分析」、然後重新整理頁面：「https://&lt;ip addressof Linux/XCP」（Linux的位址）</block>
-  <block id="01f49d7de6d116ea373b4aef4a75b8bb" category="list-text">顯示對話方塊時、請選取「OK」。隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。接受URL的隱私權政策、並顯示下列訊息：「MB代理程式已準備就緒可供使用。請重新整理分析頁面</block>
-  <block id="d7c434c15db5d12a3bed35613610f824" category="list-text">返回裝載XCP檔案分析GUI的原始索引標籤、然後重新整理頁面。這會在「代理程式」卡下顯示SMB代理程式。</block>
   <block id="55b7006f6e8a19f0555a6b82ca85a801" category="section-title">升級適用於SMB的檔案分析</block>
   <block id="1688d86172caf9b3ed1acabe15285a4f" category="paragraph">若要升級現有的SMB檔案分析、請完成下列步驟。</block>
-  <block id="a2c5f205fc0a35a88463bae625aa351b" category="list-text">執行檔案分析之前、請先確認執行檔案分析的Linux伺服器也已升級、而且服務正在執行中。</block>
   <block id="a7a81082a60152f2eb36b8d78016b292" category="list-text">在Windows中、在命令列輸入「CTRL - C」來停止現有的XCP服務。</block>
-  <block id="62001cf2823c6318575f560eaf3a11b2" category="list-text">用最新的二進位檔取代「XCP。exe」。</block>
   <block id="e981fe37c8879e923e07dadeb9379fe4" category="summary">若要克服單一節點的效能限制、您可以使用單一XCP copy命令、在多個Linux系統或叢集節點上執行工作人員。</block>
   <block id="153ac2dbf14a38bdfdf76ac38b946158" category="doc">設定多節點橫向擴充</block>
   <block id="ab655b44682f313f14f6de4d1867d0b6" category="paragraph">對於XCP NFS、您可以使用單一「copy」（複製）（或「shcan -md5」）命令、在多個Linux系統或叢集節點上執行工作人員、藉此克服單一節點的效能限制。</block>
@@ -216,12 +204,9 @@
   <block id="23f08f66a8c926598f110a30ea423fdb" category="summary">檔案分析提供掃描結果的圖形檢視</block>
   <block id="f0d39ea007ba94b40e0daf5ae44f9298" category="doc">存取檔案分析</block>
   <block id="c2fe5fdcb3117ff21509e23d6dfca2de" category="paragraph">檔案分析提供掃描結果的圖形檢視。</block>
-  <block id="e660dfc676d8a29f573aee58d2bc89f9" category="paragraph">XCP檔案分析GUI提供一個儀表板、其中包含可視覺化檔案分析的圖形。在Linux機器上設定XCP時、會啟用XCP檔案分析GUI。</block>
   <block id="471ff51c89daf6e35e8e2b5111039744" category="inline-link-macro">NetApp IMT</block>
   <block id="ae12aa4d83d4e71d628b8ca5184b9d66" category="admonition">若要查看支援的瀏覽器以存取檔案分析、請參閱 <block ref="dff6889ed90b9930dbb6c11bc90c8854" category="inline-link-macro-rx"></block>。</block>
   <block id="42f425824cc531c78175d67346f8f124" category="list-text">請使用連結「https://&lt;IP」、以取得Linux機器的位址&gt;/XCP、以存取檔案分析GUI。出現提示時、請接受安全性憑證：</block>
-  <block id="d1b673b157daeb18c4d73618946f7ef4" category="list-text">選取隱私權聲明下方的進階。</block>
-  <block id="d6d3a57c5e8a09cb5cc8bf5e2c0810ce" category="list-text">選擇Proceedto "&lt; Linux機器的IP位址&gt;'連結。</block>
   <block id="2ffe186b43f4d120ec24b17fcb23452a" category="inline-image-macro">XCP檔案分析登入畫面</block>
   <block id="289a5bc6b34705c66837c45715417ecd" category="paragraph"><block ref="289a5bc6b34705c66837c45715417ecd" category="inline-image-macro-rx" type="image"></block></block>
   <block id="dcc65cd71fd805adc9f9914a4cf41d78" category="list-text">如果您已設定SMB代理程式、則可以在同一個代理程式卡中看到新增的SMB代理程式。</block>
@@ -288,7 +273,6 @@
   <block id="e9f26e76bb6ef3ae1813e1df1d8cc8e2" category="paragraph">「使用者佔用空間」圖表會顯示使用者使用的空間。使用者名稱欄包含使用者名稱（無法擷取使用者名稱時為UID）、而「已使用空間」欄則指出每個使用者名稱所使用的空間。</block>
   <block id="41d6dafcb16f845ca70e42044e5de0dc" category="section-title">存取/修改/建立的檔案圖表</block>
   <block id="ffe6eca8066769d129ed82d6dacd94c9" category="paragraph"><block ref="ffe6eca8066769d129ed82d6dacd94c9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1ba708bb040c1401145fd6696909842d" category="paragraph">「檔案存取/修改/建立」圖表會顯示超時變更的檔案數。X軸代表所做變更的期間、y軸代表變更的檔案數量。</block>
   <block id="58ef3ad87f99012fe52ae141775b7f98" category="admonition">若要在SMB掃描中取得存取時間（atime）圖表、請勾選「在執行掃描之前保留時間」方塊。</block>
   <block id="f3903eed8d82fea3de1576f67505c364" category="section-title">副檔名圖形的檔案發佈</block>
   <block id="b6bb426f627b924dfa93dab5250445ea" category="paragraph"><block ref="b6bb426f627b924dfa93dab5250445ea" category="inline-image-macro-rx" type="image"></block></block>
@@ -416,22 +400,9 @@
   <block id="acb7eae841bcc60d63918737629eaab5" category="doc">安裝適用於NFS的檔案分析</block>
   <block id="65957491431a9d992b0f37939d999254" category="paragraph">安裝或升級File Analytics for NFS。</block>
   <block id="c8d71099d454656d5157731fb1f4830e" category="inline-link-macro">安裝XCP NFS</block>
-  <block id="1075ac7ace86aea85d4fb5c46d76893a" category="paragraph">如需NFS的系統需求、請參閱 <block ref="3cd449c1c5d47073a7e303a49efe123e" category="inline-link-macro-rx"></block>。「configure．sh」指令碼會安裝並啟用適用於Linux伺服器的預設HTTPD和PostgreSQL組態。您可以視需要變更或更新至較新的版本、並遵守安全性準則。</block>
   <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">開始之前</block>
-  <block id="bffa4fb11a93d7fe3b05e9a0ae6ca562" category="list-text">您無法在同一部主機上同時執行XCP應用程式和XCP AS服務。如果有任何XCP作業正在執行、請在開始組態之前完成作業。</block>
   <block id="179301ccc5709fc7e02ecd874b26f686" category="list-text">您的Linux機器必須連線至Yum儲存庫伺服器或網際網路。</block>
   <block id="1c7bd6403e16df46e3e2b614a9e9b462" category="inline-xref-macro">XCP使用的連接埠</block>
-  <block id="0094a24d5be18635ed7692bb7af4b2cc" category="list-text">如果Linux機器上已設定防火牆、您必須變更防火牆設定、以啟用XCP、XCP服務和XCP檔案分析所使用的服務所使用的連接埠。如需詳細資訊、請前往 <block ref="f0232e18255c6ead68096119d370fed7" category="inline-xref-macro-rx"></block>。</block>
-  <block id="0373d3a871a446e1453b9dac2f65fc16" category="list-text">移至您的XCP資料夾、然後執行「./configure .sh」指令碼。指令碼需要三到十分鐘的時間來設定Linux機器、並完成下列工作：</block>
-  <block id="764d468e664b446f1d826729929ecfb9" category="list-text">下載PostgreSQL套件</block>
-  <block id="95729f46d8929016635ddf649e35e2f2" category="list-text">安裝PostgreSQL伺服器</block>
-  <block id="f2a5f5cc88869d4a87e6ec728f7b0c03" category="list-text">安裝HTTPD</block>
-  <block id="94c38da4879043620e5524ff110c37f2" category="list-text">使用開放式SSL建立自我簽署的憑證（「erver.key與server.crt」）</block>
-  <block id="25209e61095bba68fa40e4487aa75db5" category="list-text">建立XCP檔案分析資料庫</block>
-  <block id="fc7df983e4500ca08968614afbec45ab" category="list-text">從XCP組態功能表中選取「Option 1 Configure Client System」（選項1設定用戶端系統）。</block>
-  <block id="651c2776198de248bf3626cd676b3f1c" category="list-text">若為新安裝、請更新系統管理員和資料庫使用者的密碼。升級時、系統會提示您停止XCP服務。完成後、選取「選項0」。</block>
-  <block id="4f6cea84c64bcd2cbef1950791410c78" category="list-text">啟動XCP服務。使用下列命令檢查XCP服務是否正在執行：服務XCP狀態</block>
-  <block id="e58e3ebc6749ebd9f5c6ca3564e928e8" category="list-text">在瀏覽器中啟動「檔案分析」：Linux的*\https://&lt;ip位址&gt;/XCP *。</block>
   <block id="57b6232ac0f92803d0544e702c641050" category="summary">XCP NFS或XCP SMB不支援某些功能。</block>
   <block id="c40f016d6141c65a8e7a7ea0b5573496" category="doc">不支援的功能</block>
   <block id="176653f59747c11963ac42478984763c" category="paragraph">XCP NFS不支援下列功能：</block>
@@ -443,9 +414,6 @@
   <block id="ea5a201cf8a5f489b67f974cdbe8ec60" category="cell">POSIX連接器</block>
   <block id="b095640f647d7c14d7c809d0232cd3be" category="list-text">「shync」命令不支援POSIX連接器</block>
   <block id="be449fd5b6a09000629daade7fdd5583" category="list-text">當來源處於作用中狀態時、您不應使用「copy」命令</block>
-  <block id="90637cbab382a9675c5bad0c7aeef15f" category="cell">Hadoop分散式檔案系統（HDFS）連接器</block>
-  <block id="b03665438ed7a747020c197d671b61c3" category="list-text">「shync」命令不支援HDFS連接器</block>
-  <block id="f5f0878108a9a99caae85df13ed2e0ac" category="list-text">HDFS檔案系統不支援符號連結（symlinks）、硬式連結或特殊檔案</block>
   <block id="edc9f0a5a5d57797bf68e37364743831" category="cell">Linux</block>
   <block id="bd2cc77640d48204c25994ade9373d0d" category="cell">XCP 1.6.3支援的舊版Linux不再支援XCP。</block>
   <block id="577d13f7684f9c1dad51523d52a28bf9" category="paragraph">XCP SMB不支援下列功能：</block>
@@ -453,8 +421,6 @@
   <block id="1645c787b92316670d1a71b780ece8d5" category="cell">XCP SMB不支援NFS symlink</block>
   <block id="0b3fd979e0d4902fd7e38deb4745c1a2" category="cell">用於掃描的ACL選項</block>
   <block id="d96217bc0f4d5233c2c5639e16dc5d01" category="cell">不支援掃描ACL選項</block>
-  <block id="88f8d7ad6b44fe7948a187bb130df22d" category="cell">NTFS替代資料串流</block>
-  <block id="3f48c017cdd30142ab0d06198fb84098" category="cell">XCP目前不支援替代資料串流</block>
   <block id="f4915fbc2a7713a0eeea8adce10091de" category="cell">XCP篩選器</block>
   <block id="ca2e34fd1c2de7fa4ca5bb236706760b" category="cell">XCP SMB exclude選項目前會根據目錄在篩選器中的模式排除目錄、並遍歷這些目錄的檔案系統。</block>
   <block id="76e35710ec65c5c13523e53f9290946d" category="cell">主動來源支援</block>
@@ -530,16 +496,13 @@
   <block id="5fb63579fc981698f97d55bfecb213ea" category="section-title">複本</block>
   <block id="28f2900c35a6a416b39cb9a71b13649a" category="paragraph">「copy」命令會掃描整個來源目錄結構、並將其複製到目的地SMB共用區。「copy」命令需要將來源和目的地路徑做為變數。掃描和複製的檔案、處理量/速度和經過時間等詳細資料、每五秒會列印一次到主控台。</block>
   <block id="c64a522ee6418ae33077670975c2798b" category="admonition">在複製作業期間、您可以使用「-preserve-atime」旗標搭配「copy」命令、以保留來源的存取時間。</block>
-  <block id="09a50a5f71f40a01932aba8c86a8c6b2" category="paragraph">如需詳細資訊、請參閱「XCP說明複本」。</block>
   <block id="d8e87c0927539672f54462c837be0b7f" category="section-title">同步</block>
   <block id="40fa419bffb820819ac71ba039348155" category="paragraph">「sync」命令會平行掃描來源和目標共用區的變更和修改、並將適當的動作（移除、修改、重新命名等）套用至目標、以確保目標與來源相同。</block>
   <block id="bb7e8df484499f0f598a871fa277086a" category="paragraph">sync命令會比較資料內容、時間戳記、檔案屬性、擁有權和安全性資訊。</block>
   <block id="9d83a2ce37bac2516a6b570ccc972b69" category="admonition">在同步作業期間、您可以使用「-preserve-atime」旗標搭配「synch」命令、以保留來源的存取時間。</block>
-  <block id="02ab7688ebf75947479b5e30267d1d55" category="paragraph">如需詳細資料、請參閱「XCP說明同步」。</block>
   <block id="5a750f86ef41f22f852c43351e3ff383" category="section-title">驗證</block>
   <block id="53ab8108c26b577654ebb4cf27404e03" category="paragraph">「驗證」命令會同時讀取來源和目標共用區、並加以比較、提供不同內容的相關資訊。無論用於執行複本或同步的工具為何、您都可以在任何來源和目的地上使用命令。</block>
   <block id="7e4d5419d4fcf4ceade27ffac84d4e92" category="list-text">在驗證作業期間、您可以使用「-preserve-atime」旗標搭配「VERRIFY」命令、以保留來源的存取時間。</block>
-  <block id="8bcf9c6b645253521b5145414a80aecc" category="paragraph">如需詳細資訊、請參閱「XCP說明驗證」。</block>
   <block id="dfdcc7639b3e014792b21c9f7d5c85c0" category="summary">安裝XCP NFS</block>
   <block id="b9982e4a219c9f069ec01b724fff8274" category="paragraph">*系統要求*</block>
   <block id="7d74f3b92b19da5e606d737d339a9679" category="cell">項目</block>
@@ -547,7 +510,6 @@
   <block id="a45da96d0bf6575970f2d27af22be28a" category="cell">系統</block>
   <block id="cf484097e9c1cd5f080006a9a0550714" category="cell">64位元Intel或AMD伺服器、至少4核心和32 GB RAM</block>
   <block id="0ed45b799d99029a04d945ba2794df83" category="cell">作業系統與軟體</block>
-  <block id="b7b4f4d0374211895e3064e560d36b51" category="cell">RHEL8：請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block> 支援的作業系統</block>
   <block id="889e70a278e37320b95f39105b61c0bf" category="cell">特殊需求</block>
   <block id="cfca5f031a4e11845916d10e6d53c91e" category="cell">網路連線能力和存取來源和目的地的根層級NFSv3不會匯出其他作用中應用程式</block>
   <block id="8c4aa541ee911e8d80451ef8cc304806" category="cell">儲存設備</block>
@@ -669,7 +631,6 @@
   <block id="b2afea67c58251abc9cea9e00c6f6195" category="paragraph">* POSIX路徑範例：*</block>
   <block id="f1cefec9e2196c672a622347f1fbc325" category="section-title">繼續</block>
   <block id="8ca572f19659e7e1feff3c8dd1401ce1" category="paragraph">「假定」命令會指定目錄索引名稱或編號、重新啟動先前中斷的複製作業。上一個複製作業的目錄索引名稱或編號會儲存在「目錄路徑」：/型 錄/索引目錄中。</block>
-  <block id="12c832a1abd774cf0f4601d95c913d20" category="paragraph">如需詳細資訊、請參閱《XCP說明恢復》。</block>
   <block id="1504bd4779c3c062c9078099fad0ac19" category="paragraph">「sync」命令會使用目錄索引標籤名稱或先前複製作業的編號、掃描來源NFS目錄上所執行的變更和修改。來源遞增變更會複製並套用至目標目錄。舊的目錄索引編號會在同步operation#之後以新的[.Underlines]#取代。</block>
   <block id="990d138c681bf32e178b6390caea1423" category="paragraph">在複製作業之後、「驗證」命令會在來源目錄和目標目錄之間使用逐位元組的完整資料比較、而不使用目錄索引編號。此命令會檢查修改時間及其他檔案或目錄屬性、包括權限。命令也會讀取兩側的檔案、並比較資料。</block>
   <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">版本資訊</block>
@@ -705,11 +666,7 @@
   <block id="481da41cf08734ac99d07aca58644781" category="cell"><block ref="6d7d8e19dacf4142870d92b873503ded" prefix="" category="inline-code"></block></block>
   <block id="410bc026d79ee8d7b9f82dd6b03feb98" category="list-text">登入檔案分析GUI。</block>
   <block id="fce3933747223b348680fa7fa109330b" category="paragraph">登入檔案分析GUI的方法有兩種：</block>
-  <block id="f54b0f1d442f1ec5a7de065a3541d957" category="list-text">使用您在組態期間設定的使用者名稱「admin」和密碼。</block>
-  <block id="9232193990a75b1e49392f2b2617103d" category="list-text">設定並啟用企業級單一登入（SSO）功能。</block>
-  <block id="2e3c9f20aee1951e2d90c60c3895ab58" category="paragraph">您可以使用此登入功能、在特定機器上設定XCP檔案分析、並在企業範圍內共用Web UI URL、讓使用者使用SSO認證登入UI。</block>
   <block id="69bb9c4e14480c847abc95d5c42499ad" category="admonition">SSO登入為選用項目、可永久設定及啟用。若要設定安全聲明標記語言（SAML）型SSO登入、請參閱 <block ref="24bd22f7d0a05b19a03434bac975689d" category="inline-xref-macro-rx"></block>。</block>
-  <block id="5011fee80695c860b0a39f97d0dcb95c" category="list-text">登入之後、您可以看到NFS代理程式；此時會出現綠色勾號、顯示Linux系統和XCP版本的最低系統組態。</block>
   <block id="bb589a1b8201c2239ba76232e361cafc" category="section-title">設定SSO認證</block>
   <block id="fffd3dfdf9fa53044cdb134dcc69c528" category="paragraph">SSO登入功能是在使用SAML的XCP檔案分析中實作、並受Active Directory Federation Services（ADFS）身分識別供應商支援。SAML會將驗證工作卸載至貴企業的第三方身分識別供應商（IDP）、以便運用多種MFA（多因素驗證）方法。</block>
   <block id="f2d88d647c936a165a3e77edcbea1d96" category="list-text">向企業身分識別供應商註冊XCP檔案分析應用程式。</block>
@@ -718,11 +675,9 @@
   <block id="9563382993688c51fdc3a46e81eb172f" category="list-text">*服務供應商實體ID：*<block ref="e1fe6adfd56c8994795ceb238170e3b4" prefix=" " category="inline-code"></block></block>
   <block id="bf1e51171726684d1ee1b309557acd01" category="list-text">*服務供應商聲明消費者服務（ACS）URL：*<block ref="21d0fedea22f326cba161956dc12f67c" prefix=" " category="inline-code"></block></block>
   <block id="f57c5b8986c37b4a0952ba786b74f802" category="paragraph">您也可以登入檔案分析UI來驗證這些詳細資料：</block>
-  <block id="80dae1bc5036b7e9bda13b9e72ac846e" category="list-text">使用安裝期間設定的使用者名稱「admin」和密碼登入UI。</block>
   <block id="ccd1f9a4a3996dec7dcc1222859ee8f1" category="list-text">選取頁面右上角的*使用者*圖示、然後選取* SAML設定*。</block>
   <block id="363cae04551b1b1a61f8792a42d5332c" category="paragraph">在出現的下拉式功能表中、勾選*服務供應商設定*。</block>
   <block id="957c109b84ab3a9745776f942062afea" category="inline-image-macro">SAML設定範例</block>
-  <block id="82d38923543ba21104350ca2e054aed6" category="paragraph"><block ref="82d38923543ba21104350ca2e054aed6" category="inline-image-macro-rx" type="image"></block></block>
   <block id="231aa7872617b02f47d61c8a448d71d3" category="paragraph">註冊之後、您會收到企業的IDP端點詳細資料。您必須將此IDP端點中繼資料提供給檔案分析UI。</block>
   <block id="0fabd32fee9ac3582435784332323cf0" category="list-text">提供IDP詳細資料：</block>
   <block id="13cdf4657d47700947243dc2788b7179" category="list-text">轉至*儀表板*。選取頁面右上角的*使用者*圖示、然後選取* SAML設定*。</block>
@@ -750,14 +705,11 @@
   <block id="6f59af5df257d27f8f7f83e150cb44c7" category="list-text">如果您看到下列錯誤、請使用 yum 安裝 CodeReady 套件、例如<block ref="195584d46184f28385e2ae5bd9f0af62" prefix=" " category="inline-code"></block>：</block>
   <block id="b326b5062b2f0e69046810717534cb09" category="cell">是的</block>
   <block id="f11ba2ba1e8e44e293e56351fbc05edf" category="doc">在同一台 XCP 主機上執行多個 XCP 工作</block>
-  <block id="328be41686da6fdb0454cdc13b57cf2d" category="paragraph">從 XCP 1.0.2 開始、您可以使用「 -minmem 」功能在單一 XCP 主機上執行多個 XCP 工作或命令、前提是主機必須有足夠的資源來處理每項工作。當您執行支援「 -minmem 」功能的命令時、 XCP 會使用最小的主機記憶體來完成工作、以建立在同一主機組態上執行其他工作的容量。</block>
   <block id="d9647e192eec469f5ef0ff6b04e9a7f0" category="section-title">最低系統需求</block>
   <block id="9901879377c5f3682a62b2348ecc14ad" category="paragraph">對於每項 XCP 工作、您應該允許最多 64GB 的主機記憶體和八個核心、以便進行大中型移轉。</block>
-  <block id="b1db961ef892611c930b306acf2b45c9" category="admonition">SMB 資料移轉不支援「 -minmem 」功能。</block>
   <block id="8db7df66ab1d7ab5f1dc947acdb5fae4" category="section-title">記錄</block>
   <block id="6c5503e1799fc9bf884095cb4a7486c7" category="paragraph">根據預設、每個 XCP 工作都會記錄在工作 ID 唯一的個別記錄檔中。當在同一個別主機上執行多個工作時、此記錄機制運作良好。NetApp 不建議變更<block ref="1f0167cf593b01d4e8c31f9bea306a0d" prefix=" " category="inline-code"></block> 使用單一檔案<block ref="4bfa73c989008743279ae857adc50faf" prefix=" " category="inline-code"></block> 用於記錄在同一主機上平行執行的多個 XCP 工作的檔案。</block>
   <block id="26807eaed63a31814a5e1753d72676d8" category="section-title">支援的命令</block>
-  <block id="f0ca056f216466d7830147a4008903a4" category="paragraph">下列 XCP 命令支援「 -minmem 」功能：</block>
   <block id="644834e9d0415e057f1d7c2c00cdd281" category="list-text"><block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix="" category="inline-code"></block></block>
   <block id="cf1b3b1776d0d05e295618646490b382" category="list-text"><block ref="12cba3ee81cf4a793796a51b6327c678" prefix="" category="inline-code"></block></block>
   <block id="d64d8a3c311a3e34d98c5d12b0de2deb" category="list-text"><block ref="69f2afc2390cec954f7c208b07212d39" prefix="" category="inline-code"></block></block>
@@ -767,19 +719,7 @@
   <block id="7bfde840c21e45a59701f55f5c18ef2c" category="list-text"><block ref="4de53f769603f8e4542ee3267c08dd50" prefix="" category="inline-code"></block></block>
   <block id="3649b15e31d22a1e2210f014d843b9fa" category="list-text"><block ref="099af53f601532dbd31e0ea99ffdeb64" prefix="" category="inline-code"></block></block>
   <block id="777dd634078a1b960c79f15d2522db38" category="section-title">不支援的命令</block>
-  <block id="d2e4f5ed82446cf3023ccba7b5646092" category="paragraph">「 -minmem 」功能不支援<block ref="63ad9d34f3503826e5f649ae6b7ac92c" prefix=" " category="inline-code"></block> 命令。</block>
   <block id="32ae6defbd536645e75bc85121b5564b" category="section-title">命令範例</block>
-  <block id="64e1323e5982bf7736f58f196316da1f" category="paragraph">若要使用「 -minmem 」功能、您必須在 XCP 命令中加入「 -minmem 」選項、如下列範例所示：</block>
-  <block id="36126c9a86541e7281b955ee81970a5f" category="list-text"><block ref="31a74c4f1c865e5c03256362a477c425" prefix="" category="inline-code"></block></block>
-  <block id="9cd9bbf0e790392cca7a73545353ed80" category="list-text"><block ref="4a4341530f7d16d6f7a7c281a83f9473" prefix="" category="inline-code"></block></block>
-  <block id="daaf865ea062be33e32fee7ce6361bf2" category="list-text"><block ref="2227f4f3166de257df2d86054647a1df" prefix="" category="inline-code"></block></block>
-  <block id="4200a251b90a3e6f4a8f03a96790e241" category="paragraph">* HDFS 路徑範例 * ：</block>
-  <block id="6d2258e0ac0187b32c49ef3d86153890" category="list-text"><block ref="3d4bfec43ba02eadffa6b680f5d2ff90" prefix="" category="inline-code"></block></block>
-  <block id="108808871f93d8eb5fadba5e5396e0b1" category="list-text"><block ref="d0ff481491922a2d0b61842bfc7e1e56" prefix="" category="inline-code"></block></block>
-  <block id="5b89894d695356bcaecabb4c87252ae5" category="list-text"><block ref="354e4935785b48c4def1303908b72905" prefix="" category="inline-code"></block></block>
-  <block id="1e84e83ba1d6a6831654831e04a6e7aa" category="paragraph">* POSIX 路徑範例 * ：</block>
-  <block id="97fb7d435610adf703b3ea0785c309d6" category="list-text"><block ref="638d56e1e6406263b5111d968a0e1f1d" prefix="" category="inline-code"></block></block>
-  <block id="b7e41451ca91ae23c0a331e9b88f3663" category="list-text"><block ref="a0910009e4d60445309dd8426ef78ded" prefix="" category="inline-code"></block></block>
   <block id="bdf61b3ecae5f29d6c6b402c1adf2536" category="section-title">XCP 預估</block>
   <block id="e151d1ab502d96991c424c6cbefae2f7" category="paragraph">XCP 預估功能可預估完成基準的時間<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block> 從來源到目的地的作業。它會計算完成基準的預估時間<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block> 使用所有目前可用的系統資源（例如 CPU 、 RAM 、網路或其他參數）來執行作業。當您使用時<block ref="a02d29476c13ce0a516e16bcfe4535b6" prefix=" " category="inline-code"></block> 選項： XCP 會執行範例複本作業、以找出預估時間。</block>
   <block id="f943fe60d92b33d799a2c02de9061e3b" category="summary">S3 連接器可讓 XCP 將資料從 NFS 或 HDFS 檔案系統移轉至 S3 物件儲存設備</block>
@@ -852,15 +792,12 @@
   <block id="f3b812b32fdce09d7d06a9a0759b8546" category="cell">XCP 不支援在移轉期間、在來源處修改 HDFS 檔案系統上的資料</block>
   <block id="e8a90b649b22fddc82d6ee4cc9429807" category="paragraph">以下功能不適用於 Simple Storage Service （ S3 ）連接器：</block>
   <block id="84b02ee2d0524eb08de32d9354ade34b" category="list-text">* 以 S3 儲存貯體作為來源 * 移轉： XCP 不支援以 S3 儲存區作為來源的移轉。</block>
-  <block id="a8a17edcb9880059a216d63c9e0c2a18" category="doc">XCP v1.0.2 版本資訊</block>
-  <block id="27ce933e59d1bd3bfff8d6118fb7a35e" category="paragraph">。 <block ref="b98ddb4c6025a76df69bcccfdb0bd760" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="b179bbcf6f57100cffb18d2558916e9d" category="cell">64 位元 Intel 或 AMD 伺服器、至少 8 核心和 64 GB RAM</block>
   <block id="11db15a14a5186a893fe15b0e03f3213" category="sidebar">在同一主機上執行多個 XCP 工作</block>
   <block id="ac1b0e3122e91e04b7f9d9e2eea0accb" category="paragraph">NetApp 提供一年免費 XCP 授權。您可以從取得授權檔案 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。授權入口網站提供不同的授權選項。一年後、您可以使用同一個入口網站將授權續約一年。</block>
   <block id="9351e261865c10b81be01c7298324b0f" category="list-text">從 HDFS 移轉至 NetApp StorageGRID</block>
   <block id="c19152294b5e6dfeaa6ca9c77e0f12e1" category="list-text">從 HDFS 移轉至 Amazon S3</block>
   <block id="3df8a75d6363358c9c30a90e1f018d65" category="list-text">從 HDFS 移轉至 NetApp ONTAP S3</block>
-  <block id="392f97fdb8ea70faba5877ca90ad7c42" category="paragraph">如果來源、目的地或兩者都是沒有目錄的交會、且移轉時使用線上授權、則可能會發生追蹤錯誤。如果發生這種情況、則 XCP 命令的狀態為<block ref="269f3d1562cbd15624e7d2c4b10122e3" prefix=" " category="inline-code"></block> 但在主控台輸出結束時會傳回下列錯誤：</block>
   <block id="c1397a1836478812e944515ecd5ff969" category="cell">請使用離線授權、而非線上授權。</block>
   <block id="747dd4d48798d325d388dd4ba57db561" category="cell"><block ref="e64df9c2f5a72d0adb1dbea21a609c16" prefix="" category="inline-code"></block> 透過 ACL 移轉
 
@@ -900,7 +837,6 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="d010dc762575a62b4743cdf67aaca20a" category="list-text"><block ref="d010dc762575a62b4743cdf67aaca20a" category="inline-link-macro-rx"></block></block>
   <block id="bb56f67a148cc2f2b0fefdf3ad31d862" category="inline-link-macro">NetApp XCP 1.8 注意事項</block>
   <block id="947d36e55b7e5eaafa3b9365e2c2f048" category="list-text"><block ref="947d36e55b7e5eaafa3b9365e2c2f048" category="inline-link-macro-rx"></block></block>
-  <block id="8460555eb240926a8ff0bb9963c60097" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。此處提供 XCP 1.9.2 軟體的說明文件、包括如何安裝、設定及使用 XCP 。舊版 XCP 的文件可在 NetApp 支援網站 上取得。</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
   <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">舊版</block>
@@ -919,4 +855,100 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="d1bf561d563aa7c75c975ba869dd56ac" category="paragraph">使用規劃移轉之後<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉 HDFS 資料。</block>
   <block id="715c4a9e063aa9667b43f7d5478b9037" category="paragraph">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。XCP 的設計旨在利用所有可用的系統資源來管理高容量資料集和高效能資料移轉、藉此擴充並提升效能。XCP可協助您完整掌握檔案系統、並提供產生客戶報告的選項。有了相符和格式化功能、您可以自訂報告以符合任何報告需求。</block>
   <block id="e42bfcdf0ad235b13c49f73caf47eb14" category="paragraph">使用規劃移轉之後<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 和<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 命令、您可以移轉 NFS 資料。</block>
+  <block id="e85e0a89230fd13a1a22301e7fdd0e5e" category="doc">XCP v1.9.3 版本資訊</block>
+  <block id="d90e2bf5c75719e1544961b0bc5ad41c" category="paragraph">。 <block ref="62a6eb00e9937cb1874623411cd165a0" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
+  <block id="9a001090e66aa3b6396f3d4ed7942a29" category="admonition">如果檔案或目錄名稱包含非 UTF-8 字元、這些字元會轉換成 UTF-8 格式、並在執行時顯示<block ref="23147b001892247a3eeb087f6bfd481f" prefix=" " category="inline-code"></block> 命令。視來源編碼轉譯為 UTF-8 而定、字元可能無法如預期般顯示。</block>
+  <block id="779996940c0c39c72a1fd46bbcb0c25c" category="paragraph">若要執行 XCP 1.9.3 及更新版本、您必須從取得新的 XCP 授權 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。</block>
+  <block id="0c753cdaef3cedcd38fd31f543c8d76a" category="admonition">XCP 1.9.3 及更新版本不支援與 XCP 1.9.2 及更新版本搭配使用的授權。同樣地、 XCP 1.9.2 及更早版本也不支援與 XCP 1.9.3 及更高版本搭配使用的授權。</block>
+  <block id="d0804a022efac2458fd8afd7432ab730" category="cell">請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block> 支援的作業系統</block>
+  <block id="23d2267c3060f49c5c4656d223c16500" category="section-title">登入 File Analytics GUI</block>
+  <block id="b12b7bf427a82f1b7594d8e9c0642749" category="paragraph">XCP File Analytics GUI 提供一個儀表板、其中包含可視覺化的檔案分析圖表。在Linux機器上設定XCP時、會啟用XCP檔案分析GUI。</block>
+  <block id="7144e9d44908ac1a1e2d5d18a661e2bd" category="list-text">在隱私權聲明下方選擇 * 進階 * 。</block>
+  <block id="8a8c4a7ad5df91ccdf4a658b580267a6" category="list-text">選擇 * 繼續<block ref="c40442705fd05f103d7897f22b0b9d54" prefix=" " category="inline-code"></block>* 連結。</block>
+  <block id="523c68391d340c09a68fbb25bc7b6cad" category="open-title">使用使用者認證登入</block>
+  <block id="a6c68859111b43eac6f5a5ece12115ee" category="list-text">使用安裝 File Analytics 時取得的使用者認證登入 GUI 。</block>
+  <block id="147e6d0fad459c620088e2ffe927734f" category="list-text">您也可以將密碼變更為自己的密碼。</block>
+  <block id="b2edd278ca1556cd65ff511dad1cff4b" category="paragraph">如果要將安裝期間取得的密碼變更為您自己的密碼、請選取使用者圖示、然後選取 * 變更密碼 * 。</block>
+  <block id="f95855c75bd72ef06a584880630a948a" category="paragraph">您的新密碼長度必須至少八個字元、且至少包含一個數字、一個大寫字母、一個小寫字母、以及一個特殊字元（！@ # $ % ^ &amp; * - _ ）。</block>
+  <block id="59126595e3861c23ef1127db52d87bb2" category="admonition">變更密碼後、您會自動登出 GUI 、而且必須使用您建立的新密碼重新登入。</block>
+  <block id="11c9f8e61e36eaed8d3e1c1c7e200621" category="open-title">設定並啟用 SSO 功能</block>
+  <block id="bcac97375e974c11b495bce828d1a0ec" category="paragraph">您可以使用此登入功能在特定機器上設定 XCP File Analytics 、並在企業範圍內共用 Web UI URL 、讓使用者可以使用單一登入（ SSO ）認證登入 UI 。</block>
+  <block id="2e4e4809dbbc27f75d2e60a86e2f0d6b" category="list-text">登入後、您可以看到 NFS 代理程式；此時會出現綠色勾號、顯示 Linux 系統和 XCP 版本的最低系統組態。</block>
+  <block id="82c1e69eb8d0968a34c018907e1f78e2" category="list-text">使用中所述的步驟登入 GUI <block ref="e05c6d6f0a0bb7cafe88d22482c70e47" category="inline-xref-macro-rx"></block>。</block>
+  <block id="8257e8343d5cd665a40e90c03e8338d5" category="paragraph"><block ref="8257e8343d5cd665a40e90c03e8338d5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d8e4071f8ff887ffcc153fb5d0b96e4c" category="paragraph">當來源或目的地使用連接路徑時、 XCP 命令不會顯示預期的結果。</block>
+  <block id="0799972e59c5570f8064c5d7c435f712" category="paragraph">執行 XCP 命令時、請使用 SMB 共用路徑、而非交會路徑。</block>
+  <block id="9afa0f0b30f216c0d2e442239c3fcb68" category="paragraph">如果來源、目的地或兩者都是沒有目錄的交會、且移轉時使用線上授權、則可能會發生追蹤錯誤。如果發生這種情況、則 XCP 命令狀態為<block ref="269f3d1562cbd15624e7d2c4b10122e3" prefix=" " category="inline-code"></block> 但在主控台輸出結束時會傳回下列錯誤：</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">關於這項工作</block>
+  <block id="cccedc8829a344b387fb08c393ffa970" category="list-text">複製<block ref="42dc92c99a13a4f3e1ce5f5dbffb3d77" prefix=" " category="inline-code"></block> 檔案至您的 Windows<block ref="d7aa32b0c582222819b91c8e0ccca765" prefix=" " category="inline-code"></block> 磁碟機、此二進位檔案可在內部取得<block ref="2e9d6141fdcc44d5e2fb72979401c9c5" prefix=" " category="inline-code"></block> 解壓縮之後<block ref="05d1190d81e37d06607cc19e21f63ea7" prefix=" " category="inline-code"></block> 檔案：</block>
+  <block id="ea2ba5409e2977c3e953a67de8026eb6" category="list-text">複製<block ref="320b90518080edc05c5733db7267371a" prefix=" " category="inline-code"></block> 和<block ref="ad85a49f9eda6dfb5f9078894092f6dc" prefix=" " category="inline-code"></block> 檔案來源<block ref="0c8468e8bc6e9c8ce8e4de412fee0c10" prefix=" " category="inline-code"></block> （在已設定 XCP File Analytics 的 Linux 方塊中）<block ref="0d4f2ad60efd19069346676a3fdc788c" prefix=" " category="inline-code"></block>。</block>
+  <block id="6c7d8f4f4f290787ef78f7018dfd4e2d" category="paragraph">或者、如果您有 CA 憑證、請將憑證放入<block ref="0d4f2ad60efd19069346676a3fdc788c" prefix=" " category="inline-code"></block> 使用相同的名稱和副檔名。</block>
+  <block id="1236e8b02abb31c50db0b5adfed580fa" category="list-text">前往 Windows 機器並執行<block ref="824313c3e49c75ad7db49a6c3bb90627" prefix=" " category="inline-code"></block>、現在已設定適用於 SMB 的 XCP File Analytics 。請保持視窗開啟、以持續執行服務。</block>
+  <block id="215b4f9995d464c6d896badee64ee9b9" category="list-text">在支援的瀏覽器上啟動檔案分析：<block ref="c1df14498e319bedff7cd295edf3fdbe" prefix=" " category="inline-code"></block></block>
+  <block id="bec265af43e5553bf128ad29d47f3ec2" category="paragraph">請參閱 <block ref="b1b298f808db7e093ee9abb7cc8bfdef" category="inline-link-macro-rx"></block> 如需支援瀏覽器的相關資訊、</block>
+  <block id="366cf6c0c26349e7fd57569a205e0118" category="list-text">選取<block ref="e0aa021e21dddbd6d8cecec71e9cf564" prefix=" " category="inline-code"></block> 對話方塊出現時。</block>
+  <block id="e1654a0ebd1b4059457621d4f6159b2c" category="admonition">隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。</block>
+  <block id="aa25bb4d2ad259acab66b7c3aec0ff22" category="list-text">接受 URL 的隱私權政策。將顯示以下訊息：<block ref="52a5e45b970aa1f0355aee216766bb82" prefix=" " category="inline-code"></block></block>
+  <block id="c120eb6bd0ec2886798025c46f211510" category="list-text">返回主控 XCP File Analytics GUI 的原始索引標籤、然後重新整理頁面、即可在「代理程式」卡下顯示 SMB 代理程式。</block>
+  <block id="722b6c185c309d307c4b435ca45ddb73" category="list-text">執行 File Analytics 之前、請確認執行 File Analytics 的 Linux 伺服器也已升級、且該服務正在執行中。</block>
+  <block id="47d43dfa43648919ae8e1597263e39b7" category="list-text">更換<block ref="42dc92c99a13a4f3e1ce5f5dbffb3d77" prefix=" " category="inline-code"></block> 使用最新二進位檔案。</block>
+  <block id="32b3893a51a3d83bcf15ac914ac45246" category="list-text">前往 Windows 機器並執行<block ref="824313c3e49c75ad7db49a6c3bb90627" prefix=" " category="inline-code"></block> 為 SMB 設定 XCP 檔案分析。請保持視窗開啟、以持續執行服務。</block>
+  <block id="eab515ad69a9c68d3ff4998a7a38c168" category="list-text">顯示對話方塊時、請選取 * 確定 * 。</block>
+  <block id="2af1ae573e96f9c96edbfe34f2ecd144" category="section-title">索引刪除</block>
+  <block id="ed394357d76e4a47c544b6679113b6b6" category="paragraph">您可以使用<block ref="2af1ae573e96f9c96edbfe34f2ecd144" prefix=" " category="inline-code"></block> 刪除目錄索引的命令。</block>
+  <block id="269e3fa15ca9366f6cfcb1eac97c6cf0" category="paragraph">執行<block ref="1a1b0d47f4e6e0151b4df12640fe4bb0" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="ea7072dd30b8128f4d74568ed70d406c" category="paragraph">「存取 / 修改 / 建立的檔案」圖表會顯示隨時間變更的檔案數。X 軸代表進行變更的時間週期、 Y 軸代表變更的檔案數。</block>
+  <block id="e66cb3e85cec55480dc46a379124f46a" category="section-title">存取 / 修改 / 建立的檔案大小圖表</block>
+  <block id="5eeb433a134b50fcf2d2d02005945304" category="paragraph"><block ref="5eeb433a134b50fcf2d2d02005945304" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b483a26f1bc7e903df1139b2bea4faca" category="paragraph">存取 / 修改 / 建立的檔案大小圖表會顯示隨著時間變更的檔案大小。X 軸代表進行變更的時間週期、 Y 軸代表檔案變更的大小。</block>
+  <block id="8105201d67059c07d533dcbbe25a3c67" category="section-title">依副檔名圖表的檔案發佈</block>
+  <block id="2506a5990488ccea13845b28b0df2496" category="paragraph">此外、對於 SMB 共用、您可以在執行掃描之前勾選廣告方塊、以取得每個副檔名的替代資料流（ ADS ）檔案數量。</block>
+  <block id="699e5e6ac0568498b21221ee949dd4a3" category="paragraph"><block ref="699e5e6ac0568498b21221ee949dd4a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="79f475897ad3ccfba85aa2fc2f2d9bad" category="section-title">依副檔名圖表的檔案大小分佈</block>
+  <block id="4ab3fb97b389232d625b03e49824e147" category="paragraph"><block ref="4ab3fb97b389232d625b03e49824e147" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a07e34309c0f4fe3914143661296e902" category="paragraph">檔案大小依副檔名散佈圖表代表檔案共用中不同副檔名的累計大小。代表副檔名的部門大小取決於具有每個副檔名的檔案大小。</block>
+  <block id="c88f5d7f64740c2ea459ec0992a08786" category="paragraph">此外、對於 SMB 共享區、您可以在執行掃描之前勾選廣告方塊、以取得不同類型的替代資料流（ ADS ）檔案數量。</block>
+  <block id="fa089a630122acf5e9273fce49f4cf34" category="paragraph"><block ref="fa089a630122acf5e9273fce49f4cf34" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0c298119c26e2b6846ed04c0a3a19fc9" category="paragraph">執行<block ref="0b0f856b03e3ddcd7804298ac5bc4a97" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="1b8208be7fabaa97780c143eb5ae291e" category="paragraph">執行<block ref="dc7a0e5e50a6e16de630993f68e9061c" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="b802ccf3bd2b24d676e6542534797831" category="paragraph">執行<block ref="7aaf8f3c0f52b0fd5a97d37fbe81d5c5" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="661c53c14b5d725221aa32bea431d3e5" category="paragraph">執行<block ref="a11baf9e315624a8a210305ae8b743d0" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="364e9a46db7862ca5c256c97c53e1549" category="section-title">iSync</block>
+  <block id="9fec924044f566c44ac4b73a69159e55" category="paragraph">。<block ref="a3e4a767ccc698fa80ecaf42af64deea" prefix=" " category="inline-code"></block> 命令會比較來源和目的地、並在不使用目錄索引的情況下同步目標上的差異。</block>
+  <block id="bad38dd9274d1a634894e5113d9413a4" category="paragraph">您可以使用<block ref="a3e4a767ccc698fa80ecaf42af64deea" prefix=" " category="inline-code"></block> 使用<block ref="94e7e210543475d2dc1ee610e7b4af1d" prefix=" " category="inline-code"></block> 預估所需時間的選項<block ref="a3e4a767ccc698fa80ecaf42af64deea" prefix=" " category="inline-code"></block> 同步遞增變更的命令。。<block ref="aac2d8e3007be7e24232c39330c3c010" prefix=" " category="inline-code"></block> 參數指定先前複本作業的目錄名稱。</block>
+  <block id="9cd17ce87f50eb274407888411403ff8" category="admonition">如果您變更的資料集大小超過使用的資料集大小的 25% 、則會變更<block ref="7bd0b9105a99766e080dee8fec4aeb60" prefix=" " category="inline-code"></block> 命令可能不會顯示預期的結果。</block>
+  <block id="459c6a9653c4611cfe403e0bb61cbf46" category="paragraph">執行<block ref="c5cec64402f12bcecd0de64291764ac1" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
+  <block id="523bf576f67a5d084abd1f8132e9502a" category="paragraph">如需 NFS 的系統需求、請參閱 <block ref="3cd449c1c5d47073a7e303a49efe123e" category="inline-link-macro-rx"></block>。</block>
+  <block id="05db61bcd816f14c22b7e7f5d67ba52b" category="paragraph">。<block ref="735003ab6f5797c8b8bdecbbbb9322a8" prefix=" " category="inline-code"></block> 指令碼會在 Red Hat Enterprise Linux （ RHEL ）主機機器上安裝 XCP File Analytics 。在安裝過程中、指令碼會在主機 Linux 機器上安裝 Postgres 資料庫、 Apache HTTPD 伺服器和其他必要的套件。如需特定支援 RHEL 版本的相關資訊、請參閱 <block ref="277e95e57632f1d20d4cd8ea672c1493" category="inline-link-macro-rx"></block>。您可以視需要變更或更新至較新的版本、並遵守安全性準則。以深入瞭解<block ref="735003ab6f5797c8b8bdecbbbb9322a8" prefix=" " category="inline-code"></block> 指令碼、執行<block ref="c9e6e0c436ae9fb0ae9b2dbd71031566" prefix=" " category="inline-code"></block> 在命令列上。</block>
+  <block id="24b433b7484fd8534f2758a3f1c07835" category="list-text">如果有任何 XCP 作業正在執行、 NetApp 建議您在開始設定之前先完成作業。</block>
+  <block id="9006d8368c0451141a424c581daa4673" category="list-text">如果在 Linux 機器上設定防火牆、您必須變更防火牆設定、以啟用 XCP 服務所使用的連接埠 5030 。</block>
+  <block id="83665cc8f640f7d31e0111fa038e919b" category="open-title">安裝檔案分析</block>
+  <block id="d076d11b169432e433f473477c336200" category="list-text">瀏覽至<block ref="430e727eb7fa4c8fdeb29b396f232465" prefix=" " category="inline-code"></block> 資料夾並執行<block ref="da2e8bb7b6693780728dfaf44a42c5eb" prefix=" " category="inline-code"></block> 指令碼：</block>
+  <block id="0948892f1f3963716f1ea89c2c91ebf1" category="paragraph">如果安裝成功、則會顯示下列訊息：</block>
+  <block id="e1b70521691b346e65e9958318dacf2e" category="admonition">您可以使用此使用者名稱和密碼登入 File Analytics GUI 。</block>
+  <block id="366c2d7ffe8ad266421fea465e76182f" category="open-title">升級檔案分析</block>
+  <block id="2a98315fd4201cebbbb6d938823636fc" category="list-text">瀏覽至<block ref="430e727eb7fa4c8fdeb29b396f232465" prefix=" " category="inline-code"></block> 資料夾與執行<block ref="b5e030b73727d125476b7c53beba4142" prefix=" " category="inline-code"></block>。</block>
+  <block id="7ef1f929ba40266342a7f855750e3c3c" category="list-text">在提示字元下輸入<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> 以清理及重新設定系統。</block>
+  <block id="a708001a589c308bd39a2ac681f9dfa7" category="paragraph">指令碼核准後、它會清除現有的組態並重新設定系統。</block>
+  <block id="f5ed1028b425be910b1ffedab0b028b5" category="paragraph">如果成功、會顯示下列訊息：</block>
+  <block id="dd30d0765f043033be3f305971f0b5e7" category="list-text">在支援的瀏覽器中啟動檔案分析： * \https://&lt;ip 位址： Linux/XCP* 。</block>
+  <block id="be16d400539b1607e9a0d3a74fafc967" category="paragraph">請參閱 <block ref="3cd449c1c5d47073a7e303a49efe123e" category="inline-link-macro-rx"></block> 如需支援瀏覽器的相關資訊、</block>
+  <block id="537eb93e68db7a00b7493adb72a38d6f" category="paragraph">從 XCP 1.0.2 開始、您可以在單一 XCP 主機上執行多個 XCP 工作或命令、前提是主機必須有足夠的資源來處理每項工作。當您執行支援多個工作的命令時、 XCP 會使用最小的主機記憶體來完成工作、這會建立在相同主機組態上執行其他工作的容量。</block>
+  <block id="62b99230c0b2c5c3583167ab9dfa78cc" category="admonition">SMB 資料移轉不支援在同一部主機上執行多個 XCP 工作。</block>
+  <block id="050938c7ac42f7b10bd832a5841f7a10" category="paragraph">下列 XCP 命令可支援在同一主機上執行多個 XCP 工作：</block>
+  <block id="33a674543ba02ee23aee431f514ab6fe" category="paragraph">不支援在同一主機上執行多個 XCP 工作<block ref="63ad9d34f3503826e5f649ae6b7ac92c" prefix=" " category="inline-code"></block> 命令。</block>
+  <block id="a06060a624eec2a259a8cf550b7f95f1" category="summary">適用於 SMB 的 NTFS 替代資料串流移轉</block>
+  <block id="3b84355abf1b4d56b9caf1c19b79b59b" category="paragraph">從 XCP 1.9.3 開始、 XCP SMB 支援使用移轉 NTFS 替代資料串流（ ADS ）<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block> XCP SMB 命令選項。</block>
+  <block id="bee250b62c0906f0bc060c3df37dc24b" category="section-title">支援的使用案例</block>
+  <block id="fa44916805192fd6a7bb83303abc9eb9" category="paragraph">您可以使用 XCP SMB<block ref="12cba3ee81cf4a793796a51b6327c678" prefix=" " category="inline-code"></block> 和<block ref="63ad9d34f3503826e5f649ae6b7ac92c" prefix=" " category="inline-code"></block> 用於移轉內含 ADS 和 XCP SMB 的資料的命令<block ref="53aefec08170b2ebed981a0a86d0dbe0" prefix=" " category="inline-code"></block> 用於掃描 SMB 共享區以尋找廣告的命令。</block>
+  <block id="389cd41d4ef291a89b508abaaa3371dc" category="section-title">支援的 XCP SMB 命令</block>
+  <block id="2b58def6b3aee7ceb139f7ea48547941" category="paragraph">下列 XCP SMB 命令支援<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block> 選項：</block>
+  <block id="a4f108c6758a9ce630e9738c6a3d639c" category="list-text"><block ref="63ad9d34f3503826e5f649ae6b7ac92c" prefix="" category="inline-code"></block></block>
+  <block id="d5b7e4797a358d7d8ed35976e484c442" category="paragraph">下列命令範例說明如何使用<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block> 選項：</block>
+  <block id="6d99815f2116be9f5277c78a2eb60336" category="list-text"><block ref="24dbbd8f44d282712df87ffdaa269aa8" prefix="" category="inline-code"></block></block>
+  <block id="4d1f659adec52a779af0bd4a40cf3803" category="list-text"><block ref="49ce806aa9683f16e550953d09c1bd68" prefix="" category="inline-code"></block></block>
+  <block id="14249cefbaa5a36b0b9cb5b2cfbbb57d" category="list-text"><block ref="c264f300fbf748e364ab837928b14ee8" prefix="" category="inline-code"></block></block>
+  <block id="b99588d251bf1019e0e822689ebaf7d2" category="list-text"><block ref="b9a9b1656ba3adc03b7fa7487e42a8f6" prefix="" category="inline-code"></block></block>
+  <block id="462f82c31411e99799f7e9026350b607" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.9.3 軟體的說明文件、包括如何安裝、設定及使用 XCP 。舊版 XCP 的文件可在 NetApp 支援網站 上取得。</block>
+  <block id="01fe75bfb5351e8cb287658bc7ee5325" category="sidebar">NetApp XCP 1.9.2</block>
 </blocks>

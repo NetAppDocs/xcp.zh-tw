@@ -31,7 +31,7 @@ summary: 安裝XCP NFS
 | 系統 | 64 位元 Intel 或 AMD 伺服器、至少 8 核心和 64 GB RAM 
 
 
-| 作業系統與軟體 | RHEL8：請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 支援的作業系統 
+| 作業系統與軟體 | 請參閱 link:https://mysupport.netapp.com/matrix/["IMT"^] 支援的作業系統 
 
 
 | 特殊需求 | 網路連線能力和存取來源和目的地的根層級NFSv3不會匯出其他作用中應用程式 

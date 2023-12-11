@@ -89,6 +89,9 @@ sidebar:
       url: "/xcp-migrate-data.html"
     - title: 移轉SMB資料
       url: "/xcp-migrate-smb-data.html"
+      entries:
+      - title: 適用於 SMB 的 NTFS 替代資料串流移轉
+        url: "/xcp-smb-ads.html"
     - title: 移轉 HDFS 資料
       url: "/xcp-migrate-hdfs-data.html"
     - title: 在同一主機上執行多個 XCP 工作

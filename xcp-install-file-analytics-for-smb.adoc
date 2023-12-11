@@ -16,10 +16,10 @@ summary: 安裝或升級適用於SMB的File Analytics
 [role="lead"]
 安裝或升級適用於SMB的File Analytics。
 
+.關於這項工作
 如需SMB的系統需求、請參閱 link:xcp-install-xcp-smb.html["安裝XCP SMB"]。
 
-*開始之前*
-
+.開始之前
 * 您必須在Linux機器上設定適用於NFS的XCP檔案分析、才能使用XCP SMB服務。
 * 在Windows機器上開始設定XCP檔案分析之前、請先確定XCP服務正在Linux機器上執行。
 
@@ -31,20 +31,28 @@ summary: 安裝或升級適用於SMB的File Analytics
 若要針對SMB執行全新的檔案分析安裝、請完成下列步驟。
 
 .步驟
-. 將「XCP：exe」檔案複製到Windows「C：」磁碟機、在解壓縮tgz之後、此二進位檔可在「/XCP / windows」中取得。
+. 複製 `xcp.exe` 檔案至您的 Windows `C:` 磁碟機、此二進位檔案可在內部取得 `/xcp/windows` 解壓縮之後 `tgz` 檔案：
 . 從下載XCP授權檔案 link:https://xcp.netapp.com/["XCP網站"^]。
 . 建立資料夾「C：\NetApp\XCP」、然後將XCP授權複製到此位置。
 . 在命令提示字元「xcp.exe actactactivate（啟動）」下使用下列命令啟動XCP授權
-. 將'sherver.key'和'sherver.cr'檔案從'/ope/NetApp/xFiles/XCP（在已設定XCP檔案分析的Linux方塊中）複製到「C：\NetApp\XCP選用」-如果您擁有CA憑證、請將該憑證放在此具有相同名稱和副檔名的位置。
 . 在Windows CLI命令提示字元中、執行「XCP configure」。
 . 出現提示時、請提供配置XCP檔案分析伺服器的Linux機器IP位址。
-. 出現提示時、請提供在XCP Linux檔案分析組態期間輸入的資料庫密碼。
-. 移至Linux機器並執行「./configure .sh」。
-. 在主功能表中選取「Option 4（Update XCP windows agentIP）」、並提供Windows機器的IP位址。
-. 請前往您的Windows機器執行「XCP listen」、現在已設定適用於SMB的XCP檔案分析。讓視窗保持開啟狀態、以持續執行服務。
-. 在Google Chrome瀏覽器上啟動「檔案分析」、然後重新整理頁面：「https://<ip addressof Linux/XCP」（Linux的位址）
-. 顯示對話方塊時、請選取「OK」。隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。接受URL的隱私權政策、並顯示下列訊息：「MB代理程式已準備就緒可供使用。請重新整理分析頁面
-. 返回裝載XCP檔案分析GUI的原始索引標籤、然後重新整理頁面。這會在「代理程式」卡下顯示SMB代理程式。
+. 複製 `server.key` 和 `server.crt` 檔案來源 `/opt/NetApp/xFiles/xcp/` （在已設定 XCP File Analytics 的 Linux 方塊中） `C:\NetApp\XCP`。
++
+或者、如果您有 CA 憑證、請將憑證放入 `C:\NetApp\XCP` 使用相同的名稱和副檔名。
+
+. 前往 Windows 機器並執行 `xcp listen`、現在已設定適用於 SMB 的 XCP File Analytics 。請保持視窗開啟、以持續執行服務。
+. 在支援的瀏覽器上啟動檔案分析： `\https://<ip address of linux>/xcp`
++
+請參閱 link:xcp-install-xcp-smb.html["安裝XCP SMB"] 如需支援瀏覽器的相關資訊、
+
+. 選取 `OK` 對話方塊出現時。
++
+
+NOTE: 隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。
+
+. 接受 URL 的隱私權政策。將顯示以下訊息： `SMB agent is ready to use. Please refresh the analytics page`
+. 返回主控 XCP File Analytics GUI 的原始索引標籤、然後重新整理頁面、即可在「代理程式」卡下顯示 SMB 代理程式。
 
 
 
@@ -53,13 +61,19 @@ summary: 安裝或升級適用於SMB的File Analytics
 
 若要升級現有的SMB檔案分析、請完成下列步驟。
 
-. 執行檔案分析之前、請先確認執行檔案分析的Linux伺服器也已升級、而且服務正在執行中。
+. 執行 File Analytics 之前、請確認執行 File Analytics 的 Linux 伺服器也已升級、且該服務正在執行中。
 . 在Windows中、在命令列輸入「CTRL - C」來停止現有的XCP服務。
-. 用最新的二進位檔取代「XCP。exe」。
-. 移至Linux機器並執行「./configure .sh」。
-. 在主功能表中選取「Option 4（Update XCP windows agentIP）」、並提供Windows機器的IP位址。
-. 請前往您的Windows機器執行「XCP listen」、現在已設定適用於SMB的XCP檔案分析。讓視窗保持開啟狀態、以持續執行服務。
-. 在Google Chrome瀏覽器上啟動「檔案分析」、然後重新整理頁面：「https://<ip addressof Linux/XCP」（Linux的位址）
-. 顯示對話方塊時、請選取「OK」。隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。接受URL的隱私權政策、並顯示下列訊息：「MB代理程式已準備就緒可供使用。請重新整理分析頁面
-. 返回裝載XCP檔案分析GUI的原始索引標籤、然後重新整理頁面。這會在「代理程式」卡下顯示SMB代理程式。
+. 更換 `xcp.exe` 使用最新二進位檔案。
+. 前往 Windows 機器並執行 `xcp listen` 為 SMB 設定 XCP 檔案分析。請保持視窗開啟、以持續執行服務。
+. 在支援的瀏覽器上啟動檔案分析： `\https://<ip address of linux>/xcp`
++
+請參閱 link:xcp-install-xcp-smb.html["安裝XCP SMB"] 如需支援瀏覽器的相關資訊、
+
+. 顯示對話方塊時、請選取 * 確定 * 。
++
+
+NOTE: 隨即開啟新的索引標籤。如果快顯視窗遭到封鎖、請在瀏覽器上啟用快顯視窗。
+
+. 接受 URL 的隱私權政策。將顯示以下訊息： `SMB agent is ready to use. Please refresh the analytics page`
+. 返回主控 XCP File Analytics GUI 的原始索引標籤、然後重新整理頁面、即可在「代理程式」卡下顯示 SMB 代理程式。
 

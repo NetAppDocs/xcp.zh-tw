@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-ads.html 
+keywords: netapp, xcp, smb, ads, alternate, data, streams, ntfs 
+summary: 適用於 SMB 的 NTFS 替代資料串流移轉 
+---
+= 適用於 SMB 的 NTFS 替代資料串流移轉
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+從 XCP 1.9.3 開始、 XCP SMB 支援使用移轉 NTFS 替代資料串流（ ADS ） `-ads` XCP SMB 命令選項。
+
+
+
+== 支援的使用案例
+
+您可以使用 XCP SMB `copy` 和 `sync` 用於移轉內含 ADS 和 XCP SMB 的資料的命令 `scan` 用於掃描 SMB 共享區以尋找廣告的命令。
+
+
+
+== 支援的 XCP SMB 命令
+
+下列 XCP SMB 命令支援 `-ads` 選項：
+
+* `scan`
+* `copy`
+* `verify`
+* `sync`
+
+
+
+
+== 命令範例
+
+下列命令範例說明如何使用 `-ads` 選項：
+
+* `xcp scan -ads \\<SMB share>`
+* `xcp copy -ads \\<source SMB share>  \\<destination SB share>`
+* `xcp sync -ads \\<source SMB share>  \\<destination SB share>`
+* `xcp verify -ads \\<source SMB share>  \\<destination SB share>`
+
