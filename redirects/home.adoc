@@ -1,0 +1,8 @@
+---
+permalink: home.html 
+redirect: xcp/index.html 
+---
+= 
+:allow-uri-read: 
+
+

@@ -314,8 +314,6 @@
   <block id="8d0ffbdcda54546120df81be2fa7517a" category="paragraph">對於NFS、請執行「XCP說明資訊」、並參閱篩選器一節、瞭解如何使用「-MATCH」和「-exclude」篩選器。</block>
   <block id="8b8bd82846902c55d97040e4cf92d530" category="paragraph">對於SMB、請執行「XCP說明-比對」和「XCP說明-exclude」、以取得「匹配」和「排除」篩選器的詳細資料。</block>
   <block id="2c64852df0b21e99d0d0ef1cc5b8c6a9" category="paragraph">如果您想在XCP命令中使用篩選器、請執行「XCP說明&lt;命令&gt;」、查看是否支援這些篩選器選項。</block>
-  <block id="11047916a280f54b6bb638b4fa43d625" category="summary">排除XCP SMB錯誤</block>
-  <block id="5bf172f77cc9d71e44a586eb796e8205" category="doc">排除XCP SMB錯誤</block>
   <block id="c42217f3ea9a2824b2e6414ca47d28c1" category="cell">「XCP：錯誤」：此授權已過期</block>
   <block id="fade017532ccd86be0dd06e93349b97a" category="cell">請向續約或取得新的XCP授權 <block ref="f33ccbb3083b14f48de92a286ba83724" category="inline-link-macro-rx"></block>。</block>
   <block id="25b9d99744f022a106507715192e88dc" category="cell">此複本未經授權</block>
@@ -951,4 +949,6 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="b99588d251bf1019e0e822689ebaf7d2" category="list-text"><block ref="b9a9b1656ba3adc03b7fa7487e42a8f6" prefix="" category="inline-code"></block></block>
   <block id="462f82c31411e99799f7e9026350b607" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.9.3 軟體的說明文件、包括如何安裝、設定及使用 XCP 。舊版 XCP 的文件可在 NetApp 支援網站 上取得。</block>
   <block id="01fe75bfb5351e8cb287658bc7ee5325" category="sidebar">NetApp XCP 1.9.2</block>
+  <block id="06c7c6fe1390b1e7519864e5fd3adc1b" category="summary">XCP SMB 錯誤疑難排解</block>
+  <block id="103bae74aac9cad62c4f7826cc30141d" category="doc">疑難排解 XCP SMB 錯誤</block>
 </blocks>
