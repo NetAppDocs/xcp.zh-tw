@@ -553,7 +553,6 @@
   <block id="2d79e432838e40bf14c022092a9ee7c7" category="section-title">root使用者</block>
   <block id="1b644fae3096d18c32ea2eb163d208d7" category="paragraph">Linux機器上的root使用者有權掛載來源、目的地及目錄磁碟區。</block>
   <block id="b1330e2178f1e768cc94859ba49ae6bd" category="section-title">非root使用者</block>
-  <block id="85039b54d13b6d2bba23425f79f1e704" category="paragraph">非root使用者在掛載的磁碟區上具有下列權限：</block>
   <block id="ae489e7c64c7f4a4d143e12281642d7c" category="list-text">對來源Volume的讀取權限存取</block>
   <block id="3ec0238607113152ae7f227b92c2a43f" category="list-text">對掛載目的地Volume的讀取/寫入權限</block>
   <block id="9c3f740abe99e1e0002c446d4b4e72de" category="list-text">目錄磁碟區的讀取/寫入權限</block>
@@ -837,14 +836,12 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="947d36e55b7e5eaafa3b9365e2c2f048" category="list-text"><block ref="947d36e55b7e5eaafa3b9365e2c2f048" category="inline-link-macro-rx"></block></block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
-  <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">舊版</block>
   <block id="bb94e7367791f982596ac461b54c7eab" category="sidebar">NetApp XCP 1.9.1</block>
   <block id="1314b92278223dc2ab46c6dd8b3bf655" category="sidebar">NetApp XCP 1.9</block>
   <block id="0b883cd31dc0a70033ec3260cc84cde2" category="sidebar">NetApp XCP 1.8.1</block>
   <block id="c2349270a2c5b206946456729c613d88" category="sidebar">NetApp XCP 1.8</block>
   <block id="a6ec16db3258e39e9ea07a28c8bc6f0c" category="sidebar">NetApp XCP 1.7 及更早版本</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">更多資源</block>
-  <block id="b5ebef46ca4c7353a47405db847d5f8d" category="sidebar">XCP 文件（包括參考資料）</block>
   <block id="d00f838899e1bae3eeafc63b8e4a4be2" category="sidebar">NetApp TechCommTV （ NetApp XCP 影片）</block>
   <block id="e0805d6bd6649b148eb00741ca006a8d" category="sidebar">NetApp XCP （包括取得授權的連結）</block>
   <block id="69325177d6c1169f9e91f28d3c39250a" category="sidebar">適用於 XCP 的 NetApp 資源</block>
@@ -947,8 +944,17 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="4d1f659adec52a779af0bd4a40cf3803" category="list-text"><block ref="49ce806aa9683f16e550953d09c1bd68" prefix="" category="inline-code"></block></block>
   <block id="14249cefbaa5a36b0b9cb5b2cfbbb57d" category="list-text"><block ref="c264f300fbf748e364ab837928b14ee8" prefix="" category="inline-code"></block></block>
   <block id="b99588d251bf1019e0e822689ebaf7d2" category="list-text"><block ref="b9a9b1656ba3adc03b7fa7487e42a8f6" prefix="" category="inline-code"></block></block>
-  <block id="462f82c31411e99799f7e9026350b607" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.9.3 軟體的說明文件、包括如何安裝、設定及使用 XCP 。舊版 XCP 的文件可在 NetApp 支援網站 上取得。</block>
   <block id="01fe75bfb5351e8cb287658bc7ee5325" category="sidebar">NetApp XCP 1.9.2</block>
   <block id="06c7c6fe1390b1e7519864e5fd3adc1b" category="summary">XCP SMB 錯誤疑難排解</block>
   <block id="103bae74aac9cad62c4f7826cc30141d" category="doc">疑難排解 XCP SMB 錯誤</block>
+  <block id="7419aab07885bbaf51b080c9e425bc30" category="paragraph">非 root 使用者必須在掛載的磁碟區上擁有下列權限：</block>
+  <block id="2026fedd5139e1b0c5c821a380478704" category="inline-link-macro">NetApp XCP 1.7 注意事項</block>
+  <block id="2352ab4b1d15708f12e9c724073f0b08" category="list-text"><block ref="2352ab4b1d15708f12e9c724073f0b08" category="inline-link-macro-rx"></block></block>
+  <block id="755d31cf9123a00dd7a78550d0a499d4" category="inline-link-macro">NetApp XCP 1.6.2 注意事項</block>
+  <block id="30deffa80c4bafbf914d65bc82f97dcf" category="list-text"><block ref="30deffa80c4bafbf914d65bc82f97dcf" category="inline-link-macro-rx"></block></block>
+  <block id="48c524e7571b2b12d796413bd2177ebb" category="inline-link-macro">NetApp XCP 1.6.1 注意事項</block>
+  <block id="fa06a27bb648a5fc7a3c82f5acdaee31" category="list-text"><block ref="fa06a27bb648a5fc7a3c82f5acdaee31" category="inline-link-macro-rx"></block></block>
+  <block id="fa9d00e8e16d36faed7e27ef33cc9bb1" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.6.2 及更新版本軟體的說明文件、包括如何安裝、設定及使用 XCP 。NetApp 支援網站 提供早於 1.6.2 的 XCP 版本文件。</block>
+  <block id="0b5f5476de5c5e40cc0b9b6eac7b5003" category="sidebar">較早版本資訊版本</block>
+  <block id="a0bdfc7755831681bc292330bc4e3777" category="sidebar">XCP 1.6.1 或更早版本的文件</block>
 </blocks>
