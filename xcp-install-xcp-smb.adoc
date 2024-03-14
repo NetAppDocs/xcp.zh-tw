@@ -66,7 +66,7 @@ NOTE: 沒有升級選項；請重新安裝XCP以取代任何現有版本。
 .步驟
 . 在Windows用戶端下載授權和XCP SMB二進位檔「NetApp_XCP _<版本>.tgz」。
 . 擷取「NetApp_XCP」<版本>.tgz」檔案。
-. 將「XCP：exe」檔案複製到Windows C：磁碟機、此二進位檔可在擷取「tgz」檔案之後於「NetApp_XCP _1.8\NetApp_XCP \windows」中找到。
+. 複製 `xcp.exe` 檔案至 Windows C ：磁碟機、此二進位檔案可在內部取得 `NETAPP_XCP_<version>\xcp\windows` 擷取之後 `tgz` 檔案：
 . 驗證系統上是否有舊版XCP的「C：\NetApp\XCP」路徑可用。如果有「C：\NetApp\XCP」、請使用「xcp.exe activate」命令啟動XCP、然後繼續資料移轉。
 +
 如果無法使用「C：\NetApp\XCP」、系統會在您第一次執行「xcp.exe activate」命令時、建立XCP主機組態目錄、並將其檔案置於「C：\NetApp\XCP」。「xcp.exe actactivate」命令失敗、並建立錯誤訊息、要求取得新授權。

@@ -589,7 +589,6 @@
   <block id="4db6b4b2c123aa3cd8ad45d8003538bc" category="paragraph">請依照下列步驟執行XCP SMB的初始設定。</block>
   <block id="5dfa463a08f83c24c2d431cffb177fa8" category="list-text">在Windows用戶端下載授權和XCP SMB二進位檔「NetApp_XCP _&lt;版本&gt;.tgz」。</block>
   <block id="bdacdc2ce48f16d27d87fef257b0c28f" category="list-text">擷取「NetApp_XCP」&lt;版本&gt;.tgz」檔案。</block>
-  <block id="5721c375e95676c97876a49105a2b54c" category="list-text">將「XCP：exe」檔案複製到Windows C：磁碟機、此二進位檔可在擷取「tgz」檔案之後於「NetApp_XCP _1.8\NetApp_XCP \windows」中找到。</block>
   <block id="17b92bb56c632debb93b565e92dbd987" category="list-text">驗證系統上是否有舊版XCP的「C：\NetApp\XCP」路徑可用。如果有「C：\NetApp\XCP」、請使用「xcp.exe activate」命令啟動XCP、然後繼續資料移轉。</block>
   <block id="c9dd31b110e2c919cd80441873e975fc" category="paragraph">如果無法使用「C：\NetApp\XCP」、系統會在您第一次執行「xcp.exe activate」命令時、建立XCP主機組態目錄、並將其檔案置於「C：\NetApp\XCP」。「xcp.exe actactivate」命令失敗、並建立錯誤訊息、要求取得新授權。</block>
   <block id="a93da960db5c5b4f48c763a05f304371" category="list-text">將授權複製到新建立的資料夾「C：\NetApp\XCP：」</block>
@@ -957,4 +956,5 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="fa9d00e8e16d36faed7e27ef33cc9bb1" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.6.2 及更新版本軟體的說明文件、包括如何安裝、設定及使用 XCP 。NetApp 支援網站 提供早於 1.6.2 的 XCP 版本文件。</block>
   <block id="0b5f5476de5c5e40cc0b9b6eac7b5003" category="sidebar">較早版本資訊版本</block>
   <block id="a0bdfc7755831681bc292330bc4e3777" category="sidebar">XCP 1.6.1 或更早版本的文件</block>
+  <block id="50093a13cb17d2efa1a538b0678cc15e" category="list-text">複製<block ref="42dc92c99a13a4f3e1ce5f5dbffb3d77" prefix=" " category="inline-code"></block> 檔案至 Windows C ：磁碟機、此二進位檔案可在內部取得<block ref="b83dd8b00a764f84f57961a6d4eb38c7" prefix=" " category="inline-code"></block> 擷取之後<block ref="05d1190d81e37d06607cc19e21f63ea7" prefix=" " category="inline-code"></block> 檔案：</block>
 </blocks>
