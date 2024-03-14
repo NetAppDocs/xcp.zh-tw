@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+    
+    
+  
+
+  
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/home.html</loc>
+        
+      
+      <lastmod>2024-01-15T19:17:16+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/</loc>
+        
+      
+      <lastmod>2023-08-18T15:40:02+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/legal-notices.html</loc>
+        
+      
+      <lastmod>2024-02-16T12:47:35+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/releasenotes.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp//search.html</loc>
+        
+      
+      <lastmod>2024-03-14T15:17:45+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-access-file-analytics.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-add-file-servers.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-configure-hdfs-connector-nfs.html</loc>
+        
+      
+      <lastmod>2022-12-14T18:06:52+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-configure-multinode-scaleout-nfs.html</loc>
+        
+      
+      <lastmod>2023-08-18T15:40:02+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-configure-posix-connector-nfs.html</loc>
+        
+      
+      <lastmod>2022-08-22T13:09:01+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-configure-s3-connector-nfs.html</loc>
+        
+      
+      <lastmod>2023-07-26T10:33:08+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-configure-the-ini-file-for-xcp-nfs.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/</loc>
+        
+      
+      <lastmod>2022-11-22T08:01:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-environment-variable.html</loc>
+        
+      
+      <lastmod>2022-08-22T13:09:01+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-file-analytics-plan-data-migration.html</loc>
+        
+      
+      <lastmod>2023-08-18T15:40:02+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-filters.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-</loc>
+        
+      
+      <lastmod>2023-08-23T12:06:22+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-install-file-analytics-for-nfs.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-install-file-analytics-for-smb.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-install-xcp-nfs.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-install-xcp-smb.html</loc>
+        
+      
+      <lastmod>2024-03-14T15:17:27+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-install-xcp.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-logging-for-nfs-and-smb.html</loc>
+        
+      
+      <lastmod>2023-07-06T19:24:14+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-migrate-data.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-migrate-hdfs-data.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-migrate-nfs-additional-features.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-migrate-nfs-data.html</loc>
+        
+      
+      <lastmod>2023-07-12T08:00:22+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-migrate-smb-data.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-nfs-add-ons.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-performance-tuning.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-plan-data-migration.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-plan-hdfs-data-migration.html</loc>
+        
+      
+      <lastmod>2023-07-06T19:24:14+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-plan-nfs-data-migration.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-plan-smb-data-migration.html</loc>
+        
+      
+      <lastmod>2022-05-27T14:28:49+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-ports-used.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-prepare-file-analytics.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-prepare-linux-for-xcp-nfs.html</loc>
+        
+      
+      <lastmod>2024-02-16T12:47:35+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-prepare-windows-for-xcp-smb.html</loc>
+        
+      
+      <lastmod>2023-05-19T09:26:58+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-run-a-scan.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-run-multiple-jobs-on-same-host.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-smb-ads.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-supported-configurations.html</loc>
+        
+      
+      <lastmod>2022-05-03T06:10:20+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-troubleshoot-xcp-file-analytics-errors.html</loc>
+        
+      
+      <lastmod>2023-07-06T19:24:14+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-troubleshoot-xcp-nfs.html</loc>
+        
+      
+      <lastmod>2023-07-06T19:24:14+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-troubleshoot-xcp-smb-errors.html</loc>
+        
+      
+      <lastmod>2024-01-15T19:17:16+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-unsupported-features.html</loc>
+        
+      
+      <lastmod>2023-12-11T13:22:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      
+        <loc>https://docs.netapp.com/zh-tw/xcp/xcp-using-file-analytics.html</loc>
+        
+      
+      <lastmod>2023-08-18T15:40:02+00:00</lastmod>
+      
+    </url>
+  
+
+  
+  
+</urlset>
