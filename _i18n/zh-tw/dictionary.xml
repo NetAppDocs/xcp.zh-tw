@@ -477,7 +477,6 @@
   <block id="f0a40ab44292f93f12a2d372e02c3cc2" category="list-text">NFSv4支援僅限於POSIX路徑、而「複製」作業則不支援「同步」作業。</block>
   <block id="aa32463f7efd97cda3d13e5569a64d92" category="list-text">相較於XCP NFSv3 TCP通訊端用戶端引擎、POSIX連接器可能會變慢。</block>
   <block id="efed9a1e974f019693529d0db8556c39" category="section-title">POSIX連接器</block>
-  <block id="c3cc85c605802927b0ba556ad1712a23" category="paragraph">XCP 1.8支援使用POSIX連接器來提供資料移轉的來源、目的地和目錄路徑。POSIX連接器（檔案：//）可讓XCP存取任何Linux掛載的檔案系統、例如NFSv4、XFS和Veritas。對於非root使用者、系統管理員可以掛載檔案系統、讓任何非root使用者能夠使用具有檔案//字首的POSIX連接器來存取檔案系統。</block>
   <block id="c980562a67ab1f47ad354aa5073d24de" category="paragraph">當您沒有足夠的權限來掛載檔案、或資料中心的支援僅限於NFSv4時、您可以從使用POSIX連接器獲益。在這種情況下、任何root使用者都可以掛載來源和目的地、然後使用POSIX連接器存取路徑。使用POSIX連接器時、您只能執行「XCP複製」作業。</block>
   <block id="3a51cb36881e8e178c9bf99d64946283" category="section-title">XCP安全性</block>
   <block id="f22fc7dc06956fc47928d7d86c04b513" category="paragraph">XCP安全功能可讓您在Linux主機上以非root使用者身分執行移轉。在較早的XCP版本中、以Linux機器上的root使用者身分執行移轉、並取得來源、目的地及目錄磁碟區的所有權限、而且會由XCP作業完成掛載。</block>
@@ -829,17 +828,8 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="dbc8e8be00730d6953956c8b0aa305cb" category="list-text"><block ref="dbc8e8be00730d6953956c8b0aa305cb" category="inline-link-macro-rx"></block></block>
   <block id="92e978f51b6854f19cb102afb6e7c7f9" category="inline-link-macro">NetApp XCP 1.9 注意事項</block>
   <block id="3503fc6ddb1aa6f7c157ac78bac45cbc" category="list-text"><block ref="3503fc6ddb1aa6f7c157ac78bac45cbc" category="inline-link-macro-rx"></block></block>
-  <block id="ee797c259878f2839455105abb65106c" category="inline-link-macro">NetApp XCP 1.8.1 注意事項</block>
-  <block id="d010dc762575a62b4743cdf67aaca20a" category="list-text"><block ref="d010dc762575a62b4743cdf67aaca20a" category="inline-link-macro-rx"></block></block>
-  <block id="bb56f67a148cc2f2b0fefdf3ad31d862" category="inline-link-macro">NetApp XCP 1.8 注意事項</block>
-  <block id="947d36e55b7e5eaafa3b9365e2c2f048" category="list-text"><block ref="947d36e55b7e5eaafa3b9365e2c2f048" category="inline-link-macro-rx"></block></block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">版本資訊</block>
-  <block id="bb94e7367791f982596ac461b54c7eab" category="sidebar">NetApp XCP 1.9.1</block>
-  <block id="1314b92278223dc2ab46c6dd8b3bf655" category="sidebar">NetApp XCP 1.9</block>
-  <block id="0b883cd31dc0a70033ec3260cc84cde2" category="sidebar">NetApp XCP 1.8.1</block>
-  <block id="c2349270a2c5b206946456729c613d88" category="sidebar">NetApp XCP 1.8</block>
-  <block id="a6ec16db3258e39e9ea07a28c8bc6f0c" category="sidebar">NetApp XCP 1.7 及更早版本</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">更多資源</block>
   <block id="d00f838899e1bae3eeafc63b8e4a4be2" category="sidebar">NetApp TechCommTV （ NetApp XCP 影片）</block>
   <block id="e0805d6bd6649b148eb00741ca006a8d" category="sidebar">NetApp XCP （包括取得授權的連結）</block>
@@ -943,18 +933,20 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="4d1f659adec52a779af0bd4a40cf3803" category="list-text"><block ref="49ce806aa9683f16e550953d09c1bd68" prefix="" category="inline-code"></block></block>
   <block id="14249cefbaa5a36b0b9cb5b2cfbbb57d" category="list-text"><block ref="c264f300fbf748e364ab837928b14ee8" prefix="" category="inline-code"></block></block>
   <block id="b99588d251bf1019e0e822689ebaf7d2" category="list-text"><block ref="b9a9b1656ba3adc03b7fa7487e42a8f6" prefix="" category="inline-code"></block></block>
-  <block id="01fe75bfb5351e8cb287658bc7ee5325" category="sidebar">NetApp XCP 1.9.2</block>
   <block id="06c7c6fe1390b1e7519864e5fd3adc1b" category="summary">XCP SMB 錯誤疑難排解</block>
   <block id="103bae74aac9cad62c4f7826cc30141d" category="doc">疑難排解 XCP SMB 錯誤</block>
   <block id="7419aab07885bbaf51b080c9e425bc30" category="paragraph">非 root 使用者必須在掛載的磁碟區上擁有下列權限：</block>
-  <block id="2026fedd5139e1b0c5c821a380478704" category="inline-link-macro">NetApp XCP 1.7 注意事項</block>
-  <block id="2352ab4b1d15708f12e9c724073f0b08" category="list-text"><block ref="2352ab4b1d15708f12e9c724073f0b08" category="inline-link-macro-rx"></block></block>
-  <block id="755d31cf9123a00dd7a78550d0a499d4" category="inline-link-macro">NetApp XCP 1.6.2 注意事項</block>
-  <block id="30deffa80c4bafbf914d65bc82f97dcf" category="list-text"><block ref="30deffa80c4bafbf914d65bc82f97dcf" category="inline-link-macro-rx"></block></block>
-  <block id="48c524e7571b2b12d796413bd2177ebb" category="inline-link-macro">NetApp XCP 1.6.1 注意事項</block>
-  <block id="fa06a27bb648a5fc7a3c82f5acdaee31" category="list-text"><block ref="fa06a27bb648a5fc7a3c82f5acdaee31" category="inline-link-macro-rx"></block></block>
-  <block id="fa9d00e8e16d36faed7e27ef33cc9bb1" category="sidebar">NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。您可在此找到 XCP 1.6.2 及更新版本軟體的說明文件、包括如何安裝、設定及使用 XCP 。NetApp 支援網站 提供早於 1.6.2 的 XCP 版本文件。</block>
-  <block id="0b5f5476de5c5e40cc0b9b6eac7b5003" category="sidebar">較早版本資訊版本</block>
-  <block id="a0bdfc7755831681bc292330bc4e3777" category="sidebar">XCP 1.6.1 或更早版本的文件</block>
   <block id="50093a13cb17d2efa1a538b0678cc15e" category="list-text">複製<block ref="42dc92c99a13a4f3e1ce5f5dbffb3d77" prefix=" " category="inline-code"></block> 檔案至 Windows C ：磁碟機、此二進位檔案可在內部取得<block ref="b83dd8b00a764f84f57961a6d4eb38c7" prefix=" " category="inline-code"></block> 擷取之後<block ref="05d1190d81e37d06607cc19e21f63ea7" prefix=" " category="inline-code"></block> 檔案：</block>
+  <block id="64bed3bc26841a3e4fb958415f75300f" category="inline-link-macro">NetApp XCP 1.9.3 注意事項</block>
+  <block id="dca5dde342ad99a251c57a228d43c239" category="list-text"><block ref="dca5dde342ad99a251c57a228d43c239" category="inline-link-macro-rx"></block></block>
+  <block id="47f439894977f6bc96cef52928edb9b8" category="paragraph">XCP 支援使用 POSIX 連接器來提供資料移轉的來源、目的地和目錄路徑。POSIX 連接器（檔案： // ）可讓 XCP 存取任何 Linux 掛載的檔案系統、例如 NFSv4 、 XFS 和 Veritas 。對於非 root 使用者、系統管理員可以掛載檔案系統、讓任何非 root 使用者能夠使用含檔案： // 首碼的 POSIX 連接器來存取檔案系統。</block>
+  <block id="84de44145d9ff409fa83550ee04cedcb" category="sidebar">NetApp XCP 是一種用戶端型軟體工具、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。NetApp 提供 XCP 工具最新版本的文件、以及三個最新版本的文件。</block>
+  <block id="b3f14903402925f76060ed5cb1a4916e" category="sidebar">XCP 參考資料</block>
+  <block id="6ea11451a4a3656dc8142a8dacd71623" category="sidebar">早期版本</block>
+  <block id="a5ab22852ae2fd3078f6201799bbb713" category="sidebar">NetApp XCP 1.9.2 版本資訊</block>
+  <block id="19ce02c600fd6a447dfab5679a45e46c" category="sidebar">NetApp XCP 1.9.2 參考資料</block>
+  <block id="1f4619d979dcc240b449d95bdeabdbfa" category="sidebar">NetApp XCP 1.9.1 版本資訊</block>
+  <block id="ac7c750f71793e61aaa7093a0194ce62" category="sidebar">NetApp XCP 1.9.1 參考資料</block>
+  <block id="64ec560529ad15134191f9ed32df8455" category="sidebar">NetApp XCP 1.9 版本資訊</block>
+  <block id="40ec96b783c5b6bdf1c1a8126c25c6ae" category="sidebar">NetApp XCP 1.9 參考資料</block>
 </blocks>

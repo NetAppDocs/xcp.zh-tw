@@ -47,12 +47,8 @@ link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.co
 
 通知檔案提供有關 NetApp 軟體所使用之協力廠商版權與授權的資訊。
 
+* link:media/xcp_1.9.3_notice.pdf["NetApp XCP 1.9.3 注意事項"^]
 * link:media/xcp_1.9.2_notice.pdf["NetApp XCP 1.9.2 注意事項"^]
 * link:media/xcp_1.9.1_notice.pdf["NetApp XCP 1.9.1 注意事項"^]
 * link:media/xcp_1.9_notice.pdf["NetApp XCP 1.9 注意事項"^]
-* link:media/xcp_1.8.1_notice.pdf["NetApp XCP 1.8.1 注意事項"^]
-* link:media/xcp_1.8_notice.pdf["NetApp XCP 1.8 注意事項"^]
-* link:media/xcp_1.7_notice.pdf["NetApp XCP 1.7 注意事項"^]
-* link:media/xcp_1.6.2_notice.pdf["NetApp XCP 1.6.2 注意事項"^]
-* link:media/xcp_1.6.1_notice.pdf["NetApp XCP 1.6.1 注意事項"^]
 
