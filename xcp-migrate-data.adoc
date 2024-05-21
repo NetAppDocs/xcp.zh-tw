@@ -26,7 +26,7 @@ summary: 移轉資料
 
 [listing]
 ----
-xcp copy -newid <id> src_server:/src_export dst_server:/dst_export
+xcp copy <source_nfs_export_path> <destination_nfs_export_path>
 ----
 * POSIX路徑範例：*
 
@@ -46,7 +46,7 @@ xcp copy -newid <id> file:///mnt/source file:///mnt/dest
 
 [listing]
 ----
-xcp resume [options] -id <id used for copy>
+xcp resume -id <catalog_name>
 ----
 執行 `xcp help resume` 以取得更多詳細資料。
 
@@ -60,7 +60,7 @@ xcp resume [options] -id <id used for copy>
 
 [listing]
 ----
-xcp sync [options] -id <id used for copy>
+xcp sync -id <catalog_name>
 ----
 執行 `xcp help sync` 以取得更多詳細資料。
 
@@ -74,7 +74,7 @@ xcp sync [options] -id <id used for copy>
 
 [listing]
 ----
-xcp verify src_server:/src_export dst_server:/dst_export
+xcp verify <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
 ----
 * POSIX路徑範例：*
 

@@ -1,0 +1,424 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-copy.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: XCP SMB 「複製」命令參照 
+---
+= 複本
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+。 `copy` 命令會掃描整個來源目錄結構、並將其複製到目的地 SMB 共用。。 `copy` 命令需要來源和目的地路徑做為變數。掃描和複製的檔案、處理量/速度和經過時間等詳細資料、每五秒會列印一次到主控台。
+
+[NOTE]
+====
+* 執行階段記錄檔儲存在「 C:\NetApp\XCP 」下。
+* 這 `copy` 命令會在沒有存取控制清單（ ACL ）的情況下複製資料。
+
+
+====
+.語法
+[source, cli]
+----
+xcp copy \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp copy \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+317 scanned, 0 matched, 316 copied, 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+下表列出 `copy` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<smb_copy_help,copy -h 、 --help>> | 顯示的詳細資訊 `copy` 命令。 
+
+
+| <<複本 -v>> | 增加除錯的詳細度。 
+
+
+| <<smb_copy_parallel,複製平行  ； n>  | 指定並行處理程序的數目（預設值： <cpu-count> ）。 
+
+
+| <<smb_copy_match,複製 - 符合  ；篩選器 >  | 僅處理符合篩選條件的檔案和目錄（請參閱 `xcp help - match` 以取得詳細資料）。 
+
+
+| <<smb_copy_exclude,複製 - 排除  ；篩選器 >  | 僅排除篩選器中的檔案和目錄 
+
+
+| <<複製 - 保留 - atime>> | 還原上次存取的來源日期。 
+
+
+| <<smb_copy_acl,copy -acl>> | 複製安全性資訊。 
+
+
+| <<smb_copy_acl,複製 - 容錯移轉使用者  ；容錯移轉使用者 >  | 指定目標機器上的 Active Directory 使用者或本機（非網域）使用者、該使用者會收到本機（非網域）來源機器使用者的權限。例如、網域 \ 系統管理員。 
+
+
+| <<smb_copy_acl,複製 -backback-group  ； fallback_group>  | 指定目標機器上的 Active Directory 群組或本機（非網域）群組、以接收本機（非網域）來源機器群組的權限。例如、網域 \ 系統管理員。 
+
+
+| <<smb_copy_root,複製根目錄>> | 複製根目錄的 ACL 。 
+
+
+| <<smb_copy_aclverify,複製 -aclVerify ｛ yes 、 no ｝>> | 提供在複製 -ACL 作業期間跳過或包含 ACL 驗證的選項。 
+
+
+| <<copy -no所有權>> | 不複製所有權。 
+
+
+| <<smb_copy_bs,複製 -BS >> | 讀取 / 寫入區塊大小（預設： 1M ） 
+
+
+| <<複製廣告>> | 將 NTFS 替代資料串流從來源 SMB 共用複製到目的地 SMB 共用。 
+|===
+
+
+== copy -h 、 --help
+
+使用 `-h` 和 `–-help` 的參數 `copy` 命令以顯示有關的詳細資訊 `copy` 命令
+
+.語法
+[source, cli]
+----
+xcp copy –help
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\netapp\xcp>xcp copy –help
+
+usage: xcp copy [-h] [-v] [-parallel <n>] [-match <filter>] [-exclude <filter>] [-preserve- atime] [-acl] [-fallback-user FALLBACK_USER]
+[-fallback-group FALLBACK_GROUP] [-loglevel <name>] [-root] [-noownership] [- aclverify {yes,no}] [-bs <n>] [-ads]
+         source target
+
+positional arguments:
+   source
+   target
+
+optional arguments:
+-h, --help            show this help message and exit
+-v                    increase debug verbosity
+-parallel <n>         number of concurrent processes (default: <cpu-count>)
+-match <filter>       only process files and directories that match the filter (see `xcp help -match` for details)
+-exclude <filter>     Exclude files and directories that match the filter (see `xcp help - exclude` for details)
+-preserve-atime       restore last accessed date on source
+-acl                  copy security information
+-fallback-user FALLBACK_USER
+                      the name of the user on the target machine to receive the permissions of local (non-domain) source machine users (eg. domain\administrator)
+-fallback-group FALLBACK_GROUP
+                      the name of the group on the target machine to receive the permissions of local (non-domain) source machine groups (eg. domain\administrators)
+-loglevel <name>      option to set log level filter (default:INFO)
+-root                 copy acl for root directory
+-noownership          do not copy ownership
+-aclverify {yes,no}   choose whether you need to skip acl verification
+-bs <n>               read/write block size for copy (default: 1M)
+-ads                  copy NTFS alternate data streams.
+----
+====
+
+
+== 複本 -v
+
+使用 `-v` 參數 `copy` 提供詳細除錯資訊的命令。
+
+.語法
+[source, cli]
+----
+xcp copy -v \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -v \\<IP address of SMB destination server>\src \\<IP address of SMB destination server>\dest\d1
+
+failed to set attributes for "d1": (5, 'CreateDirectory', 'Access is denied.')
+failed to copy "f1.txt": (5, 'CreateFile', 'Access is denied.')
+failed to set attributes for "": (5, 'SetFileAttributesW', 'Access is denied.') error setting timestamps on "": errno (code: 5) Access is denied.
+H:\p 4\xcp_latest\xcp_cifs\xcp\ main .py copy -v \\<IP address of SMB destination server>\src \\<IP address of SMB destination server>\dest\d1
+3 scanned, 0 matched, 0 skipped, 1 copied, 0 (0/s), 3 errors
+Total Time : 3s
+STATUS : FAILED
+----
+====
+
+
+== 複製平行 <n>
+
+使用 `-parallel <n>` 參數 `copy` 命令可設定較高或較低數量的 XCP 並行處理程序。的預設值 `-parallel` 等於 CPU 數。
+
+
+NOTE: n 的最大值為 61 。
+
+.語法
+[source, cli]
+----
+xcp copy -parallel <n> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -parallel 7	\\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp copy -parallel 7 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+317 scanned, 0 matched, 316 copied, 0errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 複製 - 比對 <filter>
+
+使用 `-match <filter>` 參數 `copy` 命令、僅複製符合所傳遞之引數的資料。
+
+.語法
+[source, cli]
+----
+xcp copy -match <filter> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -match "'gx' in name" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp copy -match 'gx' in name \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+317 scanned, 5 matched, 4 copied, 0 errors
+Total Time : 1s
+STATUS : PASSED
+----
+====
+
+
+== 複製 - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `copy` 僅複製排除資料的命令。
+
+.語法
+[source, cli]
+----
+xcp copy -exclude <filter> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+在下列範例中、名稱中有字串「 resync 」的檔案和目錄已排除以供複製。
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -exclude "'resync' in name" \\<IP address or hostname of SMB server>\source_share \\<IP address or hostname of SMB server>\dest_share
+
+
+xcp copy -exclude 'resync' in name \\<IP address or hostname of SMB server>\source_share \\\\<IP address or hostname of SMB server>\dest_share
+18 scanned, 2 excluded, 0 skipped, 15 copied, 122KiB (50.5KiB/s), 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 複製 - 保留 - atime
+
+使用 `-preserve-atime` 參數 `copy` 命令、在 XCP 讀取檔案之前、將「 atime 」重設為原始值。
+
+.語法
+[source, cli]
+----
+xcp copy -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp copy -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+317 scanned, 0 matched, 316 copied, 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== copy -acl -fallback-user <fallback_user> -fallback-group <fallback_group>
+
+使用 `-acl` 參數 `copy` 用於啟動安全性描述元（ ACL ）傳輸的命令。
+
+使用 `-acl` 參數 `-fallback-user` 和 `-fallback-group` 用於在目標機器或 Active Directory 上指定使用者和群組的選項、以接收本機（非網域）來源機器使用者或群組的權限。這並不表示來自 Active Directory 的不相符使用者。
+
+.語法
+[source, cli]
+----
+xcp copy -acl -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+
+
+== 複製 -aclVerify ｛ yes 、 no ｝
+
+使用 `-aclverify {yes,no}` 參數 `copy` 命令提供在 ACL 複製作業期間跳過或包含 ACL 驗證的選項。
+
+您必須使用 `-aclverify {yes,no}` 參數 `copy -acl` 命令。根據預設， ACL 複製作業會驗證 ACL 。如果您設定 `-aclverify` 選項 `no`，您可以跳過 ACL 驗證和 `fallback-user` 和 `fallback-group` 不需要選項。如果您已設定 `-aclverify` 至 `yes`、需要 `fallback-user` 和 `fallback-group` 選項、如下列範例所示。
+
+.語法
+[source, cli]
+----
+xcp copy -acl -aclverify yes -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\xcp>xcp copy -acl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group"
+\\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+
+12 scanned, 0 matched, 0 skipped, 0 copied, 0 (0/s), 0 errors, 5s, 0 acls copied
+12 scanned, 0 matched, 0 skipped, 0 copied, 0 (0/s), 0 errors, 10s, 0 acls copied
+12 scanned, 0 matched, 0 skipped, 0 copied, 0 (0/s), 0 errors, 15s, 0 acls copied xcp copy -acl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+12 scanned, 0 matched, 0 skipped, 11 copied, 10KiB (634/s), 0 errors, 11 acls copied
+Total Time : 16s
+STATUS : PASSED
+
+C:\NetApp\xcp>xcp copy -acl -aclverify no \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+
+xcp copy -acl -aclverify no \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+12 scanned, 0 matched, 0 skipped, 11 copied, 10KiB (5.61KiB/s), 0 errors, 11 acls copied
+Total Time : 1s
+STATUS : PASSED
+----
+====
+
+
+== 複製根目錄
+
+使用 `-root` 參數 `copy` 用於複製根目錄 ACL 的命令。
+
+.語法
+[source, cli]
+----
+xcp copy -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\XCP>xcp copy -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp copy -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+6 scanned, 0 matched, 0 skipped, 5 copied, 200 (108/s), 0 errors, 6 acls copied
+Total Time : 1s
+STATUS : PASSED
+----
+====
+
+
+== copy -no所有權
+
+使用 `-noownership` 參數 `copy` 命令、指定不將所有權從來源複製到目的地。您必須使用 `-noownership` 使用 `-acl` 選項、而且需要 `fallback-user` 和 `fallback-group` 做為必要參數。
+
+.語法
+[source, cli]
+----
+xcp.exe copy -acl -noownership -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Netapp\xcp>xcp.exe copy -acl -noownership -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+
+568 scanned, 0 matched, 0 skipped, 0 copied, 0 (0/s), 0 errors, 5s, 0 acls copied
+568 scanned, 0 matched, 0 skipped, 0 copied, 0 (0/s), 0 errors, 10s, 0 acls copied
+568 scanned, 0 matched, 0 skipped, 135 copied, 4.26MiB (872KiB/s), 0 errors, 15s, 137 acls copied xcp.exe copy -acl -noownership -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+568 scanned, 0 matched, 0 skipped, 567 copied, 17.7MiB (1.01MiB/s), 0 errors, 567 acls copied
+Total Time : 17s
+STATUS : PASSED
+----
+====
+
+
+== Copy -BS <n>
+
+使用 `-bs <n>` 參數 `copy` 提供讀寫區塊大小的命令。預設值為 1M 。
+
+.語法
+[source, cli]
+----
+xcp.exe copy -bs <n> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\Netapp\xcp>xcp.exe copy -bs 32k \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+
+xcp.exe copy -bs 32k \\<source_IP_address>\source_share \\<destination_IP_address>\dest_share
+568 scanned, 0 matched, 0 skipped, 567 copied, 17.7MiB (6.75MiB/s), 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 複製廣告
+
+使用 `-ads` 參數 `copy` 命令將 NTFS 替代資料串流從來源 SMB 共用複製到目的地 SMB 共用。
+
+.語法
+[source, cli]
+----
+xcp copy -ads \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp copy -ads \\<source_IP_address>\source_share\src \\<dest_IP_address>\dest_share
+
+6   scanned, 0 matched, 0 skipped, 3 copied, 13 (2.41/s), 0 errors, 5s, 10 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	10s, 11 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	15s, 12 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	20s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	25s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	30s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	35s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	40s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	45s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	2m15s, 13 ads copied
+6	scanned,	0	matched,	0	skipped,	3	copied,	13	(0/s),	0	errors,	3m5s, 13 ads copied
+xcp copy -ads \\<source_IP_address>\source_share\src \\<desination_IP_address>\dest_share
+6 scanned, 0 matched, 0 skipped, 5 copied, 26 (0.137/s), 0 errors, 14 ads copied
+Total Time : 3m9s
+STATUS : PASSED
+----
+====

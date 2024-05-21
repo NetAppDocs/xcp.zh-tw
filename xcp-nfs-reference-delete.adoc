@@ -1,0 +1,483 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-delete.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= 刪除
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS `delete` 命令會刪除指定路徑中的所有內容。
+
+.語法
+[source, cli]
+----
+xcp delete <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost ]# /xcp/linux/xcp delete <IP address of destination NFSserver>:/dest_vol
+
+WARNING: You have selected <IP address of destination NFS server>:/dest_vol for
+removing data.Data in this path /dest_vol will be deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in <IP address of destination NFS server>:/dest_vol ...
+31,996 scanned, 5,786 removes, 3 rmdirs, 8.27 MiB in (1.65 MiB/s), 1.52 MiB out (312
+KiB/s), 5s
+40,324 scanned, 19,829 removes, 22 rmdirs, 12.2 MiB in (799 KiB/s), 3.89 MiB out
+(485 KiB/s),10s
+54,281 scanned, 32,194 removes, 2,365 rmdirs, 17.0 MiB in (991 KiB/s), 6.15 MiB out
+(463 KiB/s),15s
+75,869 scanned, 44,903 removes, 4,420 rmdirs, 23.4 MiB in (1.29 MiB/s), 8.60
+MiB out (501KiB/s), 20s
+85,400 scanned, 59,728 removes, 5,178 rmdirs, 27.8 MiB in (881 KiB/s), 11.1 MiB out
+(511 KiB/s),25s
+106,391 scanned, 76,229 removes, 6,298 rmdirs, 34.7 MiB in (1.39 MiB/s), 14.0
+MiB out (590KiB/s), 30s
+122,107 scanned, 93,203 removes, 7,448 rmdirs, 40.9 MiB in (1.24 MiB/s), 16.9
+MiB out (606KiB/s), 35s
+134,633 scanned, 109,815 removes, 9,011 rmdirs, 46.5 MiB in (1.12 MiB/s), 20.0
+MiB out (622KiB/s), 40s
+134,633 scanned, 119,858 removes, 9,051 rmdirs, 47.9 MiB in (288 KiB/s), 21.4
+MiB out (296KiB/s), 45s
+134,633 scanned, 119,858 removes, 9,051 rmdirs, 47.9 MiB in (0/s), 21.4 MiB out (0/s), 50s
+134,633 scanned, 121,524 removes, 9,307 rmdirs, 48.2 MiB in (51.7 KiB/s), 21.7
+MiB out (49.5KiB/s), 55s
+Xcp command : xcp delete <IP address of destination NFS
+server>:/dest_vol134,633 scanned, 0 matched, 134,632 delete
+items, 0 error
+Speed : 48.7 MiB in (869 KiB/s), 22.2 MiB out
+(396 KiB/s)Total Time : 57s.
+STATUS : PASSED
+----
+====
+下表列出 `delete` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<nfs_delete_match,刪除 - 符合  ；篩選器 >   | 僅處理與篩選器相符的檔案和目錄。 
+
+
+| <<nfs_delete_force,刪除 - 強制  >> | 刪除但不確認。 
+
+
+| <<nfs_delete_removetopdir,刪除 -remotivopdir >> | 移除目錄、包括子目錄。 
+
+
+| <<nfs_delete_exclude,刪除 - 排除  ；篩選器 >   | 排除符合篩選條件的檔案和目錄。 
+
+
+| <<nfs_delete_parallel,刪除平行  ； n>   | 指定最大並行批次處理程序數（預設值： 7 ）。 
+
+
+| <<nfs_delete_preserveatime,刪除 -preserve-atime >> | 保留檔案或目錄的存取時間（預設： false ）。 
+
+
+| <<nfs_delete_loglevel,刪除 -loglevel  ；名稱 >  | 設定記錄層級；可用層級為 info 、 debug （預設： info ）。 
+
+
+| <<nfs_delete_s3_insecure,刪除 -s3.insecure>> | 提供選項、可在 S3 Bucket 通訊中使用 HTTP 而非 HTTPS 。 
+
+
+| <<nfs_delete_endpoint,刪除 -s3.Endpoint  ； s3_Endpoint URL>  | 以 S3 Bucket 通訊的指定 URL 覆寫預設的 Amazon Web Services （ AWS ）端點 URL 。 
+
+
+| <<nfs_delete_s3_profile,刪除 -s3.profile  ； profile_name  gt;  | 從 AWS 認證檔案指定用於 S3 儲存區通訊的設定檔。 
+
+
+| <<nfs_delete_s3_noverify,刪除 -s3.noverify>> | 覆寫 S3 Bucket 通訊的 SSL 認證預設驗證。 
+|===
+
+
+== 刪除 - 比對 <filter>
+
+使用 `-match <filter>` 參數 `delete` 僅處理與篩選器相符的檔案和目錄的命令。
+
+.語法
+[source, cli]
+----
+xcp delete -match <filter> <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -match "fnm('XCP_copy_2023-04-25_05.51.28.315997')" 10.101.10.101:/xcp_catalog
+
+Job ID: Job_2023-04-25_06.10.29.637371_delete
+WARNING: You have selected 10.101.10.101:/xcp_catalog for removing data. Data in this path
+/xcp_catalog will be deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in 10.101.10.101:/xcp_catalog ...
+Xcp command : xcp delete -match fnm('XCP_copy_2023-04-25_05.51.28.315997')
+10.101.10.101:/xcp_catalog
+Stats : 209 scanned, 14 matched, 12 removes, 2 rmdirs
+Speed : 58.9 KiB in (18.6 KiB/s), 8.25 KiB out (2.60 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-04-25_06.10.29.637371_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_06.10.29.637371_delete.log
+STATUS : PASSED
+----
+====
+
+
+== 刪除 - 強制
+
+使用 `-force` 參數 `delete` 不經確認即刪除的命令。
+
+.語法
+[source, cli]
+----
+xcp delete -force <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force
+10.101.10.101:/xcp_catalog/catalog/indexes/XCP_copy_2023-04-25_05.53.58.273910
+
+Job ID: Job_2023-04-25_06.11.30.584440_delete
+WARNING: You have selected 10.101.10.101:/xcp_catalog/catalog/indexes/XCP_copy_2023-04-
+25_05.53.58.273910 for removing data. Data in this path
+/xcp_catalog/catalog/indexes/XCP_copy_2023-04-25_05.53.58.273910 will be deleted.
+Recursively removing data in 10.101.10.101:/xcp_catalog/catalog/indexes/XCP_copy_2023-04-
+25_05.53.58.273910 ...
+Xcp command : xcp delete -force 110.101.10.101:/xcp_catalog/catalog/indexes/XCP_copy_2023-04-
+25_05.53.58.273910
+Stats : 14 scanned, 12 removes, 1 rmdir
+Speed : 6.44 KiB in (4.73 KiB/s), 3.59 KiB out (2.64 KiB/s)
+Total Time : 1s.
+Job ID : Job_2023-04-25_06.11.30.584440_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_06.11.30.584440_delete.log
+STATUS : PASSED
+[root@client-1 linux] #
+----
+====
+
+
+== 刪除 -remotivopdir
+
+使用 `-removetopdir` 參數 `delete` 移除目錄的命令、包括子目錄。
+
+.語法
+[source, cli]
+----
+xcp delete -force -loglevel <name> -removetopdir <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force -loglevel DEBUG -removetopdir
+10.101.10.101:/temp7/user9
+
+Job ID: Job_2023-04-25_08.03.38.218893_delete
+WARNING: You have selected 10.101.10.101:/temp7/user9 for removing data. Data in this path
+/temp7/user9 will be deleted.
+Recursively removing data in 10.101.10.101:/temp7/user9 ...
+50,500 scanned, 16,838 removes, 11.5 MiB in (2.27 MiB/s), 2.70 MiB out (547 KiB/s), 5s
+85,595 scanned, 43,016 removes, 21.5 MiB in (1.97 MiB/s), 6.70 MiB out (806 KiB/s), 10s
+.
+.
+.
+1.01M scanned, 999,771 removes, 1,925 rmdirs, 324 MiB in (1.42 MiB/s), 153 MiB out (922
+KiB/s), 3m6s
+
+Xcp command : xcp delete -force -loglevel DEBUG -removetopdir 10.101.10.101:/temp7/user9
+Stats : 1.01M scanned, 1.01M removes, 2,041 rmdirs
+Speed : 326 MiB in (1.73 MiB/s), 155 MiB out (842 KiB/s)
+Total Time : 3m8s.
+Job ID : Job_2023-04-25_08.03.38.218893_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_08.03.38.218893_delete.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+== 刪除 - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `delete` 命令來排除符合篩選條件的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp delete -force -exclude <filter>  <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force -exclude "fnm('USER5')" 10.101.10.101:/temp7/user2/
+
+Job ID: Job_2023-04-25_07.54.25.241216_delete
+WARNING: You have selected 10.101.10.101:/temp7/user2 for removing data. Data in this path
+/temp7/user2 will be deleted.
+Recursively removing data in 10.101.10.101:/temp7/user2 ...
+29,946 scanned, 1 excluded, 6,492 removes, 977 rmdirs, 7.42 MiB in (1.48 MiB/s), 1.54 MiB out
+(316 KiB/s), 5s
+Xcp command : xcp delete -force -exclude fnm('USER5') 10.101.10.101:/temp7/user2/
+Stats : 29,946 scanned, 1 excluded, 28,160 removes, 1,785 rmdirs
+Speed : 10.6 MiB in (1.18 MiB/s), 5.03 MiB out (574 KiB/s)
+Total Time : 8s.
+Job ID : Job_2023-04-25_07.54.25.241216_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_07.54.25.241216_delete.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+== 刪除平行 <n>
+
+使用 `-parallel <n>` 參數 `delete` 命令以指定並行批次處理程序的最大數目。預設值為 7 。
+
+.語法
+[source, cli]
+----
+xcp delete -force -parallel <n> -match <filter> <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force -parallel 8 -match "fnm('2023-04-25_05.49.26.733160*')" 10.101.10.101:/xcp_catalog/
+
+Job ID: Job_2023-04-25_06.15.27.024987_delete
+WARNING: You have selected 10.101.10.101:/xcp_catalog for removing data. Data in this path /xcp_catalog will be deleted.
+Recursively removing data in 10.101.10.101:/xcp_catalog ...
+Xcp command : xcp delete -force -parallel 8 -match fnm('2023-04-25_05.49.26.733160*')
+10.101.10.101:/xcp_catalog/
+Stats : 182 scanned, 1 matched, 1 remove
+Speed : 50.0 KiB in (115 KiB/s), 5.45 KiB out (12.5 KiB/s)
+Total Time : 0s.
+Job ID : Job_2023-04-25_06.15.27.024987_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_06.15.27.024987_delete.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+== 刪除 -preserve-atime
+
+使用 `-preserve-atime <preserve-atime>` 參數 `delete` 保留檔案或目錄存取時間的命令。預設值為假。
+
+.語法
+[source, cli]
+----
+xcp delete -force -preserve-atime <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force -preserve-atime <IP_address>:/temp7/user2/
+
+Job ID: Job_2023-04-25_07.55.30.972162_delete
+WARNING: You have selected <IP_address>:/temp7/user2 for removing data. Data in this path
+/temp7/user2 will be deleted.
+Recursively removing data in <IP_address>:/temp7/user2 ...
+Xcp command : xcp delete -force -preserve-atime <IP_address>:/temp7/user2/
+Stats : 256 scanned, 255 rmdirs
+Speed : 199 KiB in (108 KiB/s), 75.7 KiB out (41.1 KiB/s)
+Total Time : 1s.
+Job ID : Job_2023-04-25_07.55.30.972162_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_07.55.30.972162_delete.log
+STATUS : PASSED
+[root@client-1 linux]#
+----
+====
+
+
+== 刪除 -logLevel <name>
+
+使用 `-loglevel <name>` 參數 `delete` 用於設置日誌級別的命令；可用級別爲 info 和 debug 。預設層級為資訊。
+
+.語法
+[source, cli]
+----
+xcp delete -force -loglevel DEBUG -removetopdir <NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -force -loglevel DEBUG -removetopdir
+10.101.10.101:/temp7/user9
+
+Job ID: Job_2023-04-25_08.03.38.218893_delete
+WARNING: You have selected 10.101.10.101:/temp7/user9 for removing data. Data in this
+path /temp7/user9 will be deleted.
+Recursively removing data in 10.101.10.101:/temp7/user9 ...
+50,500 scanned, 16,838 removes, 11.5 MiB in (2.27 MiB/s), 2.70 MiB out (547 KiB/s), 5s
+85,595 scanned, 43,016 removes, 21.5 MiB in (1.97 MiB/s), 6.70 MiB out (806 KiB/s),
+10s
+.
+.
+.
+1.01M scanned, 999,771 removes, 1,925 rmdirs, 324 MiB in (1.42 MiB/s), 153 MiB out
+(922 KiB/s), 3m6s
+Xcp command : xcp delete -force -loglevel DEBUG -removetopdir
+10.101.10.101:/temp7/user9
+Stats : 1.01M scanned, 1.01M removes, 2,041 rmdirs
+Speed : 326 MiB in (1.73 MiB/s), 155 MiB out (842 KiB/s)
+Total Time : 3m8s.
+Job ID : Job_2023-04-25_08.03.38.218893_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-04-25_08.03.38.218893_delete.log
+STATUS : PASSED
+[root@client-1 linux]#
+----
+====
+
+
+== 刪除 -s3.insecure
+
+使用 `-s3.insecure` 參數 `delete` 命令使用 HTTP 取代 HTTPS 進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp delete -s3.insecure s3://bucket1
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -s3.insecure s3:// bucket1
+
+Job ID: Job_2023-06-08_08.51.40.849991_delete
+WARNING: You have selected s3://bucket1 for removing data. Data in this path //bucket1 will be
+deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in s3://bucket1 ...
+Xcp command : xcp delete -s3.insecure s3://bucket1
+Stats : 8 scanned, 6 s3.objects, 6 s3.removed
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 5s.
+Job ID : Job_2023-06-08_08.51.40.849991_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_08.51.40.849991_delete.log
+STATUS : PASSED
+----
+====
+
+
+== 刪除 -S3.Endpoint <s3_endpoint_url>
+
+使用 `-s3.endpoint <s3_endpoint_url>` 參數 `delete` 命令以指定的 URL 取代預設 AWS 端點 URL 、以進行 S3 貯體通訊。
+
+.語法
+[source, cli]
+----
+xcp delete -s3.endpoint https://<endpoint_url>: s3://bucket
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -s3.endpoint https://<endpoint_url>: s3://xcp-testing
+
+Job ID: Job_2023-06-13_11.39.33.042545_delete
+WARNING: You have selected s3://xcp-testing for removing data. Data in this path //xcp-testing
+will be deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in s3://xcp-testing ...
+Xcp command : xcp delete -s3.endpoint https://<endpoint_url>: s3://xcp-testing
+Stats : 8 scanned, 5 s3.objects, 5 s3.removed
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 4s.
+Job ID : Job_2023-06-13_11.39.33.042545_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_11.39.33.042545_delete.log
+STATUS : PASSED
+----
+====
+
+
+== 刪除 -s3.profile <name>
+
+使用 `s3.profile` 參數 `delete` 命令、從 AWS 認證檔案中指定用於 S3 儲存區通訊的設定檔。
+
+.語法
+[source, cli]
+----
+xcp delete -s3.profile sg -s3.endpoint https://<endpoint_url>:
+s3://bucket
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp delete -s3.profile sg -s3.endpoint https://<endpoint_url>: s3://bucket
+
+Job ID: Job_2023-06-08_08.53.19.059745_delete
+WARNING: You have selected s3://bucket for removing data. Data in this path //bucket will be deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in s3://bucket ...
+1 scanned, 0 in (0/s), 0 out (0/s), 5s
+Xcp command : xcp delete -s3.profile sg -s3.endpoint https://<endpoint_url>: s3:/ bucket
+Stats : 7 scanned, 5 s3.objects, 5 s3.removed
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 9s.
+Job ID : Job_2023-06-08_08.53.19.059745_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_08.53.19.059745_delete.log
+STATUS : PASSED
+----
+====
+
+
+== 刪除 -s3.noverify
+
+使用 `-s3.noverify` 參數 `delete` 用於覆寫 S3 儲存區通訊之 SSL 憑證預設驗證的命令。
+
+.語法
+[source, cli]
+----
+xcp delete -s3.noverify s3://bucket
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client-1 linux]# ./xcp delete -s3.noverify s3://bucket1
+
+Job ID: Job_2023-06-13_10.56.19.319076_delete
+WARNING: You have selected s3://bucket1 for removing data. Data in this path //bucket1 will be
+deleted.
+Are you sure you want to delete (yes/no): yes
+Recursively removing data in s3://bucket1 ...
+2,771 scanned, 0 in (0/s), 0 out (0/s), 5s
+9,009 scanned, 9,005 s3.objects, 2,000 s3.removed, 0 in (0/s), 0 out (0/s), 10s
+Xcp command : xcp delete -s3.noverify s3://bucket1
+Stats : 9,009 scanned, 9,005 s3.objects, 9,005 s3.removed
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 15s.
+Job ID : Job_2023-06-13_10.56.19.319076_delete
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_10.56.19.319076_delete.log
+STATUS : PASSED
+----
+====

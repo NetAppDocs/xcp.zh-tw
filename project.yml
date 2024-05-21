@@ -106,5 +106,83 @@ sidebar:
       url: "/xcp-troubleshoot-xcp-smb-errors.html"
     - title: 疑難排解XCP檔案分析錯誤
       url: "/xcp-troubleshoot-xcp-file-analytics-errors.html"
+  - title: XCP 參考資料
+    entries:
+    - title: XCP 命令參考總覽
+      url: "/xcp-reference-overview.html"
+    - title: NFS 命令參照
+      entries:
+      - title: 說明
+        url: "/xcp-nfs-reference-help.html"
+      - title: 顯示
+        url: "/xcp-nfs-reference-show.html"
+      - title: 授權
+        url: "/xcp-nfs-reference-license.html"
+      - title: 啟動
+        url: "/xcp-nfs-reference-activate.html"
+      - title: 掃描
+        url: "/xcp-nfs-reference-scan.html"
+      - title: 複本
+        url: "/xcp-nfs-reference-copy.html"
+      - title: 同步
+        url: "/xcp-nfs-reference-sync.html"
+      - title: 繼續
+        url: "/xcp-nfs-reference-resume.html"
+      - title: 驗證
+        url: "/xcp-nfs-reference-verify.html"
+      - title: chmod
+        url: "/xcp-nfs-reference-chmod.html"
+      - title: Chown
+        url: "/xcp-nfs-reference-chown.html"
+      - title: 記錄傾印
+        url: "/xcp-nfs-reference-logdump.html"
+      - title: 刪除
+        url: "/xcp-nfs-reference-delete.html"
+      - title: 預估
+        url: "/xcp-nfs-reference-estimate.html"
+      - title: 索引刪除
+        url: "/xcp-nfs-reference-indexdelete.html"
+      - title: iSync
+        url: "/xcp-nfs-reference-isync.html"
+    - title: smb 命令參照
+      entries:
+      - title: 說明
+        url: "/xcp-smb-reference-help.html"
+      - title: 顯示
+        url: "/xcp-smb-reference-show.html"
+      - title: 授權
+        url: "/xcp-smb-reference-license.html"
+      - title: 啟動
+        url: "/xcp-smb-reference-activate.html"
+      - title: 掃描
+        url: "/xcp-smb-reference-scan.html"
+      - title: 複本
+        url: "/xcp-smb-reference-copy.html"
+      - title: 同步
+        url: "/xcp-smb-reference-sync.html"
+      - title: 驗證
+        url: "/xcp-smb-reference-verify.html"
+      - title: 設定
+        url: "/xcp-smb-reference-configure.html"
+      - title: 傾聽
+        url: "/xcp-smb-reference-listen.html"
+    - title: XCP 使用案例
+      entries:
+      - title: XCP 使用案例
+        url: "/xcp-reference-use-cases.html"
+    - title: XCP 記錄
+      entries:
+      - title: 設定 logconfig 選項
+        url: "/xcp-reference-logging-logconfig.html"
+      - title: 設定 eventlog 選項
+        url: "/xcp-reference-logging-eventlog.html"
+      - title: 啟用 Syslog 用戶端
+        url: "/xcp-reference-logging-syslog.html"
+    - title: XCP 事件記錄
+      entries:
+      - title: NFS 事件記錄
+        url: "/xcp-reference-event-logs-nfs.html"
+      - title: SMB 事件記錄
+        url: "/xcp-reference-event-logs-smb.html"
   - title: 法律聲明
     url: "/legal-notices.html"

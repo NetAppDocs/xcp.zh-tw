@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-license.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: XCP SMB 「授權」命令參考 
+---
+= 授權
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+中小企業 `license` 命令會顯示 XCP 授權資訊。
+
+.語法
+[source, cli]
+----
+xcp license
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Users\Administrator\Desktop\xcp>xcp license
+xcp license
+XCP <version>; (c) yyyy NetApp, Inc.; Licensed to XXX [NetApp Inc] until Mon Dec 31 00:00:00 yyyy
+License type: SANDBOX
+License status: ACTIVE
+Customer name: N/A
+Project number: N/A
+Offline Host: Yes
+Send statistics: No
+Host activation date: N/A
+License management URL: https://xcp.netapp.com
+----
+====

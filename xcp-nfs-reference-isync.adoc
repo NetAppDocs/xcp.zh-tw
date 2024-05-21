@@ -1,0 +1,1305 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-isync.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= iSync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+檢視 XCP 的說明、參數和範例 `isync` 命令、包括何時執行 `isync` 命令可搭配使用 `estimate` 選項。
+
+
+
+== iSync
+
+XCP NFS `isync` 命令會比較來源和目的地、並在不使用目錄索引的情況下同步目標上的差異。
+
+.語法
+[source, cli]
+----
+xcp isync <source_ip_address>:/src <destination_ip_address>:/dest
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync <source_ip_address>:/src <destination_ip_address>:/dest
+
+Job ID: Job_2023-11-20_04.11.03.128824_isync
+41,030 scanned, 935 MiB in (162 MiB/s), 4.23 MiB out (752 KiB/s), 6s
+57,915 scanned, 2.10 GiB in (239 MiB/s), 10.00 MiB out (1.13 MiB/s), 11s
+57,915 scanned, 3.20 GiB in (210 MiB/s), 14.6 MiB out (879 KiB/s), 16s
+92,042 scanned, 4.35 GiB in (196 MiB/s), 21.6 MiB out (1.17 MiB/s), 22s
+123,977 scanned, 5.70 GiB in (257 MiB/s), 29.6 MiB out (1.49 MiB/s), 27s
+137,341 scanned, 6.75 GiB in (212 MiB/s), 36.0 MiB out (1.25 MiB/s), 32s
+154,503 scanned, 8.00 GiB in (226 MiB/s), 43.0 MiB out (1.24 MiB/s), 38s
+181,578 scanned, 36 copied, 8.68 GiB in (132 MiB/s), 49.7 MiB out (1.26 MiB/s), 43s
+target scan completed: 181,656 scanned, 1,477 copied, 1 removed, 8.76 GiB in (200 MiB/s), 123 MiB
+out (2.75 MiB/s), 44s.
+181,907 scanned, 10,013 copied, 1 removed, 9.17 GiB in (95.3 MiB/s), 545 MiB out (95.2 MiB/s), 49s
+Xcp command : xcp isync <source_ip_address>:/src <destination_ip_address>:/dest
+Stats : 1 removed, 181,907 scanned, 10,263 copied
+Speed : 9.17 GiB in (190 MiB/s), 548 MiB out (11.1 MiB/s)
+Total Time : 49s.
+Job ID : Job_2023-11-20_04.11.03.128824_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-20_04.11.03.128824_isync.log
+STATUS : PASSED
+[root@client1 linux]
+----
+====
+下表列出 `isync` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<nfs_isync_nodata,iSync -nodata >> | 不檢查資料。 
+
+
+| <<nfs_isync_noattrs,iSync -noattos>> | 不檢查屬性。 
+
+
+| <<nfs_isync_nomods,iSync - nomods >> | 不會檢查檔案修改時間。 
+
+
+| <<nfs_isync_mtimewindow,iSync -mtimeWindow  >> | 指定可接受的修改時間差異以進行驗證。 
+
+
+| <<nfs_isync_match,iSync - 符合  ；篩選器 >   | 僅處理與篩選器相符的檔案和目錄。 
+
+
+| <<nfs_isync_bs,iSync -BS  ； n[k]>  | 指定讀寫區塊大小（預設值： 64K ）。 
+
+
+| <<nfs_isync_parallel,iSync -parallel  ； n>  | 指定並行批次處理程序的最大數目（預設值： 7 ）。 
+
+
+| <<nfs_isync_dircount,iSync -dircount  ； n[k]>  | 指定讀取目錄時的要求大小（預設為 64k ）。 
+
+
+| <<nfs_isync_exclude,iSync - 排除  ；篩選器 >  | 排除符合篩選條件的檔案和目錄。 
+
+
+| <<nfs_isync_newid,iSync -nevid  ；名稱 >  | 指定新索引目錄的目錄名稱。 
+
+
+| <<nfs_isync_loglevel,iSync -loglevel  ；名稱 >   | 設定記錄層級；可用層級為 info 、 debug （預設： info ）。 
+
+
+| <<nfs_isync_preserve_atime,iSync -preserve-atime>> | 將來源上的所有檔案還原至上次存取的日期。 
+
+
+| <<nfs_isync_s3_insecure,iSync -s3.insecure>> | 提供選項、可在 S3 Bucket 通訊中使用 HTTP 而非 HTTPS 。 
+
+
+| <<nfs_isync_endpoint,iSync -S3.Endpoint  ； S3_端 點 _URL>  | 以 S3 Bucket 通訊的指定 URL 覆寫預設的 Amazon Web Services （ AWS ）端點 URL 。 
+
+
+| <<nfs_isync_s3_profile,iSync -s3.profile  ； profile_name  gt;  | 從 AWS 認證檔案指定用於 S3 儲存區通訊的設定檔。 
+
+
+| <<nfs_isync_s3_noverify,iSync -s3.noverify>> | 覆寫 S3 Bucket 通訊的 SSL 認證預設驗證。 
+|===
+
+
+=== iSync -nodata
+
+使用 `-nodata` 參數 `isync` 指定不檢查資料的命令。
+
+.語法
+[source, cli]
+----
+xcp isync -nodata <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -nodata <source_ip_address>:/source_vol<destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-16_22.47.20.930900_isync
+11,301 scanned, 3.26 MiB in (414 KiB/s), 479 KiB out (59.5 KiB/s), 8s
+28,644 scanned, 437 copied, 33.7 MiB in (5.39 MiB/s), 27.2 MiB out (4.75 MiB/s), 13s
+29,086 scanned, 1,001 copied, 58.2 MiB in (3.54 MiB/s), 51.8 MiB out (3.55 MiB/s), 20s
+29,490 scanned, 1,001 copied, 597 removed, 61.1 MiB in (592 KiB/s), 53.7 MiB out (375 KiB/s),
+25s
+98
+.
+.
+.
+43,391 scanned, 1,063 copied, 1,001 removed, 2.49 GiB in (115 MiB/s), 2.48 GiB out (115 MiB/s),
+1m17s
+43,391 scanned, 1,082 copied, 1,001 removed, 3.08 GiB in (119 MiB/s), 3.07 GiB out (119 MiB/s),
+1m23s
+43,391 scanned, 1,088 copied, 1,001 removed, 3.68 GiB in (122 MiB/s), 3.67 GiB out (122 MiB/s),
+1m28s
+Xcp command : xcp isync -nodata <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Stats : 1,001 removed, 43,391 scanned, 1,108 copied
+Speed : 4.19 GiB in (46.7 MiB/s), 4.18 GiB out (46.5 MiB/s)
+Total Time : 1m31s.
+Job ID : Job_2023-11-16_22.47.20.930900_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.47.20.930900_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.47.20.930900_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync -noattos
+
+使用 `-noattrs` 參數 `isync` 指定不檢查屬性的命令。
+
+.語法
+[source, cli]
+----
+xcp isync -noattrs <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -noattrs <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-16_22.49.22.056646_isync
+18,036 scanned, 940 MiB in (168 MiB/s), 2.67 MiB out (488 KiB/s), 5s
+30,617 scanned, 285 removed, 4.23 GiB in (666 MiB/s), 12.0 MiB out (1.82 MiB/s), 10s
+32,975 scanned, 746 removed, 6.71 GiB in (505 MiB/s), 18.3 MiB out (1.25 MiB/s), 15s
+34,354 scanned, 1,000 removed, 9.39 GiB in (543 MiB/s), 24.9 MiB out (1.32 MiB/s), 20s
+34,594 scanned, 1,000 removed, 12.1 GiB in (540 MiB/s), 31.2 MiB out (1.24 MiB/s), 26s
+36,142 scanned, 722 copied, 1,000 removed, 14.9 GiB in (540 MiB/s), 73.7 MiB out (7.93 MiB/s),
+31s
+.
+.
+.
+42,496 scanned, 1,000 copied, 1,000 removed, 234 GiB in (716 MiB/s), 582 MiB out (1.55 MiB/s),
+7m22s
+Xcp command : xcp isync -noattrs <<source_ip_address>>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 1,000 removed, 42,496 scanned, 1,000 copied
+Speed : 234 GiB in (542 MiB/s), 583 MiB out (1.32 MiB/s)
+Total Time : 7m22s.
+Job ID : Job_2023-11-16_22.49.22.056646_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.49.22.056646_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.49.22.056646_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync - nomods
+
+使用 `-nomods` 參數 `isync` 指定不檢查檔案修改時間的命令。
+
+.語法
+[source, cli]
+----
+isync -nomods <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -nomodes <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-16_22.56.48.571392_isync
+13,897 scanned, 763 MiB in (152 MiB/s), 2.28 MiB out (463 KiB/s), 5s
+21,393 scanned, 148 removed, 4.81 GiB in (739 MiB/s), 12.5 MiB out (1.81 MiB/s), 11s
+28,517 scanned, 148 removed, 7.68 GiB in (578 MiB/s), 19.1 MiB out (1.31 MiB/s), 16s
+28,517 scanned, 148 removed, 10.7 GiB in (619 MiB/s), 26.3 MiB out (1.43 MiB/s), 21s
+29,167 scanned, 396 copied, 148 removed, 13.2 GiB in (434 MiB/s), 51.4 MiB out (4.33 MiB/s), 27s
+.
+.
+.
+42,790 scanned, 1,000 copied, 1,000 removed, 229 GiB in (641 MiB/s), 571 MiB out (1.40 MiB/s),
+6m42s
+42,790 scanned, 1,000 copied, 1,000 removed, 232 GiB in (668 MiB/s), 578 MiB out (1.46 MiB/s),
+6m47s
+Xcp command : xcp isync -nomods <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 1,000 removed, 42,790 scanned, 1,000 copied
+Speed : 234 GiB in (585 MiB/s), 583 MiB out (1.42 MiB/s)
+Total Time : 6m50s.
+Job ID : Job_2023-11-16_22.56.48.571392_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.56.48.571392_isync.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync -mtimeWindow <s>
+
+使用 `-mtimewindow <s>` 參數 `isync` 命令以指定可接受的修改時間差異以進行驗證。
+
+.語法
+[source, cli]
+----
+xcp isync -mtimewindow <s> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -mtimewindow 10 10.101.101.101:/source_vol 10.101.101.101:/dest_vol
+
+
+Job ID: Job_2023-11-16_23.03.41.617300_isync
+
+ 23,154 scanned, 146 removed, 1.26 GiB in (247 MiB/s), 4.50 MiB out (882 KiB/s), 5s
+
+ 29,587 scanned, 485 removed, 4.51 GiB in (659 MiB/s), 13.4 MiB out (1.77 MiB/s), 10s
+
+ 29,587 scanned, 485 removed, 7.40 GiB in (590 MiB/s), 20.0 MiB out (1.32 MiB/s), 16s
+
+ 32,712 scanned, 485 removed, 10.3 GiB in (592 MiB/s), 26.9 MiB out (1.34 MiB/s), 21s
+
+ 33,712 scanned, 485 removed, 13.2 GiB in (578 MiB/s), 33.6 MiB out (1.33 MiB/s), 26s
+
+ 33,712 scanned, 961 copied, 485 removed, 15.5 GiB in (445 MiB/s), 86.6 MiB out (9.89 MiB/s), 31s
+
+.
+
+.
+
+.
+
+42,496 scanned, 1,000 copied, 1,000 removed, 233 GiB in (655 MiB/s), 581 MiB out (1.43 MiB/s), 7m11s
+
+
+Xcp command : xcp isync -mtimewindow 10 -loglevel DEBUG 10.101.101.101:/source_vol 10.101.101.101:/dest_vol
+
+Stats       : 1,000 removed, 42,496 scanned, 1,000 copied
+
+Speed       : 234 GiB in (554 MiB/s), 583 MiB out (1.35 MiB/s)
+
+Total Time  : 7m12s.
+
+Job ID      : Job_2023-11-16_23.03.41.617300_isync
+
+Log Path    : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.03.41.617300_isync.log
+
+Error Path  : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.03.41.617300_isync.error
+
+STATUS      : PASSED
+----
+====
+
+
+=== iSync -Match <filter>
+
+使用 `-match <filter>` 參數 `isync` 僅處理與篩選器相符的檔案和目錄的命令。
+
+.語法
+[source, cli]
+----
+xcp isync  -match <filter> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -match fnm("FILE_USER5*") <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Job ID: Job_2023-11-16_23.25.03.734323_isync
+24,006 scanned, 570 matched, 32.5 MiB in (5.31 MiB/s), 221 KiB out (36.2 KiB/s), 6s
+33,012 scanned, 570 matched, 34.2 MiB in (223 KiB/s), 237 KiB out (2.06 KiB/s), 14s
+33,149 scanned, 572 matched, 275 MiB in (38.3 MiB/s), 781 KiB out (86.6 KiB/s), 20s
+39,965 scanned, 572 matched, 276 MiB in (214 KiB/s), 812 KiB out (4.95 KiB/s), 27s
+40,542 scanned, 572 matched, 276 MiB in (15.4 KiB/s), 818 KiB out (1.00 KiB/s), 32s
+40,765 scanned, 1,024 matched, 1.88 GiB in (297 MiB/s), 4.51 MiB out (682 KiB/s), 38s
+target scan completed: 41,125 scanned, 1,055 matched, 1.88 GiB in (48.9 MiB/s), 4.51 MiB out
+(117 KiB/s), 39s.
+42,372 scanned, 1,206 matched, 4.26 GiB in (445 MiB/s), 9.92 MiB out (1013 KiB/s), 43s
+Filtered: 1206 matched, 41290 did not match
+Xcp command : xcp isync -match fnm("FILE_USER5*") <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Stats : 42,496 scanned, 1,206 matched
+Speed : 6.70 GiB in (145 MiB/s), 15.4 MiB out (332 KiB/s)
+Total Time : 47s.
+Job ID : Job_2023-11-16_23.25.03.734323_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.25.03.734323_isync.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync -BS <n[k]>
+
+使用 `-bs <n[k]>` 參數 `isync` 指定讀寫區塊大小的命令。預設區塊大小為 64k 。
+
+.語法
+[source, cli]
+----
+xcp isync -loglevel DEBUG -bs <n[k]> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -loglevel DEBUG -bs 32k <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-17_00.49.20.336389_isync
+20,616 scanned, 1.62 GiB in (332 MiB/s), 8.23 MiB out (1.64 MiB/s), 5s
+30,240 scanned, 4.55 GiB in (594 MiB/s), 22.4 MiB out (2.81 MiB/s), 10s
+30,439 scanned, 7.47 GiB in (589 MiB/s), 35.6 MiB out (2.60 MiB/s), 15s
+30,439 scanned, 10.5 GiB in (617 MiB/s), 49.5 MiB out (2.75 MiB/s), 20s
+30,863 scanned, 1 copied, 13.3 GiB in (547 MiB/s), 62.7 MiB out (2.56 MiB/s), 25s
+.
+.
+.
+42,497 scanned, 71 copied, 227 GiB in (637 MiB/s), 5.12 GiB out (2.79 MiB/s), 6m40s
+42,497 scanned, 71 copied, 229 GiB in (538 MiB/s), 5.13 GiB out (2.35 MiB/s), 6m45s
+Xcp command : xcp isync -loglevel DEBUG -bs 32k <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Stats : 42,497 scanned, 71 copied
+Speed : 231 GiB in (579 MiB/s), 5.14 GiB out (12.9 MiB/s)
+Total Time : 6m48s.
+Job ID : Job_2023-11-17_00.49.20.336389_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_00.49.20.336389_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_00.49.20.336389_isync.error
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+=== iSync - 平行
+
+使用 `-parallel <n>` 參數 `isync` 命令以指定並行批次處理程序的最大數目。預設值為 7 。
+
+.語法
+[source, cli]
+----
+xcp isync -parallel <n> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# xcp isync -parallel 16 <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-16_23.25.57.058655_isync
+21,279 scanned, 765 MiB in (104 MiB/s), 2.43 MiB out (337 KiB/s), 7s
+30,208 scanned, 126 removed, 3.00 GiB in (461 MiB/s), 9.11 MiB out (1.33 MiB/s), 12s
+35,062 scanned, 592 removed, 6.01 GiB in (615 MiB/s), 17.2 MiB out (1.61 MiB/s), 17s
+35,062 scanned, 592 removed, 7.35 GiB in (272 MiB/s), 20.3 MiB out (642 KiB/s), 22s
+.
+.
+.
+42,496 scanned, 1,027 copied, 1,027 removed, 231 GiB in (602 MiB/s), 576 MiB out (1.31 MiB/s),
+7m40s
+Xcp command : xcp isync -parallel 16 <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Stats : 1,027 removed, 42,496 scanned, 1,027 copied
+Speed : 234 GiB in (515 MiB/s), 584 MiB out (1.26 MiB/s)
+Total Time : 7m45s.
+Job ID : Job_2023-11-16_23.25.57.058655_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.25.57.058655_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.25.57.058655_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync -dircount <n[k]>
+
+使用 `-dircount <n[k]>` 參數 `isync` 用於指定讀取目錄時的要求大小的命令。預設值為 64k 。
+
+.語法
+[source, cli]
+----
+xcp isync -dircount <n[k]> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -dircount 32k <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Job ID: Job_2023-11-16_23.33.45.854686_isync
+16,086 scanned, 824 MiB in (164 MiB/s), 2.75 MiB out (558 KiB/s), 5s
+24,916 scanned, 4.42 GiB in (727 MiB/s), 12.5 MiB out (1.91 MiB/s), 11s
+31,633 scanned, 237 removed, 7.19 GiB in (567 MiB/s), 19.0 MiB out (1.30 MiB/s), 16s
+31,633 scanned, 237 removed, 9.74 GiB in (512 MiB/s), 24.7 MiB out (1.13 MiB/s), 21s
+33,434 scanned, 237 removed, 11.6 GiB in (385 MiB/s), 29.3 MiB out (935 KiB/s), 26s
+33,434 scanned, 499 copied, 237 removed, 13.1 GiB in (298 MiB/s), 57.7 MiB out (5.66 MiB/s), 31s
+.
+.
+.
+42,496 scanned, 1,000 copied, 1,000 removed, 229 GiB in (609 MiB/s), 572 MiB out (1.34 MiB/s),
+7m3s
+42,496 scanned, 1,000 copied, 1,000 removed, 232 GiB in (549 MiB/s), 578 MiB out (1.20 MiB/s),
+7m8s
+Xcp command : xcp isync -dircount 32k <source_ip_address>:/source_vol
+<destination_ip_address>:/dest_vol
+Stats : 1,000 removed, 42,496 scanned, 1,000 copied
+Speed : 234 GiB in (555 MiB/s), 583 MiB out (1.35 MiB/s)
+Total Time : 7m11s.
+Job ID : Job_2023-11-16_23.33.45.854686_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.33.45.854686_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.33.45.854686_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `isync` 命令來排除符合篩選條件的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp isync -exclude <filter> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -exclude fnm("FILE_USER5*") <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Job ID: Job_2023-11-16_23.41.00.713151_isync
+14,514 scanned, 570 excluded, 675 MiB in (133 MiB/s), 2.03 MiB out (411 KiB/s), 5s
+24,211 scanned, 570 excluded, 4.17 GiB in (713 MiB/s), 11.0 MiB out (1.79 MiB/s), 10s
+30,786 scanned, 574 excluded, 116 removed, 7.07 GiB in (589 MiB/s), 17.7 MiB out (1.32
+MiB/s), 15s
+30,786 scanned, 574 excluded, 116 removed, 10.1 GiB in (629 MiB/s), 24.7 MiB out (1.40
+MiB/s), 20s
+31,106 scanned, 222 copied, 574 excluded, 116 removed, 12.8 GiB in (510 MiB/s), 42.3 MiB out
+(3.33 MiB/s), 26s
+.
+.
+.
+41,316 scanned, 1,000 copied, 1,206 excluded, 1,000 removed, 225 GiB in (616 MiB/s), 563 MiB
+out (1.36 MiB/s), 6m35s
+Excluded: 1206 excluded, 0 did not match exclude criteria
+Xcp command : xcp isync -exclude fnm("FILE_USER5*") <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 1,000 removed, 41,316 scanned, 1,000 copied, 1,206 excluded
+Speed : 227 GiB in (584 MiB/s), 568 MiB out (1.42 MiB/s)
+Total Time : 6m38s.
+Job ID : Job_2023-11-16_23.41.00.713151_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.41.00.713151_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_23.41.00.713151_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync -newid <name>
+
+使用 `-newid <name>` 參數 `isync` 用於指定新索引目錄的目錄名稱的命令。
+
+.語法
+[source, cli]
+----
+xcp isync -newid <name> -s3.endpoint <S3_endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -newid testing -s3.endpoint <S3_endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+
+Job ID: Job_2023-11-16_04.33.32.381458_isync
+target scan completed: 502 scanned, 250 s3.objects, 251 indexed, 118 KiB in (38.9 KiB/s), 63.7
+KiB out (20.9 KiB/s), 3s.
+Xcp command : xcp isync -newid testing -s3.endpoint S3_endpoint_url>
+<source_ip_address>:/src/USER4 s3://isyncestimate/
+Stats : 502 scanned, 250 s3.objects, 251 indexed
+Speed : 118 KiB in (38.8 KiB/s), 63.7 KiB out (20.9 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-11-16_04.33.32.381458_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_04.33.32.381458_isync.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync -logLevel <name>
+
+使用 `-loglevel <name>` 參數 `isync` 用於設置日誌級別的命令；可用級別爲 info 和 debug 。預設值為 info 。
+
+.語法
+[source, cli]
+----
+xcp isync -loglevel <name> -bs <n[k]> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -loglevel DEBUG -bs 32k <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-17_00.49.20.336389_isync
+20,616 scanned, 1.62 GiB in (332 MiB/s), 8.23 MiB out (1.64 MiB/s), 5s
+30,240 scanned, 4.55 GiB in (594 MiB/s), 22.4 MiB out (2.81 MiB/s), 10s
+30,439 scanned, 7.47 GiB in (589 MiB/s), 35.6 MiB out (2.60 MiB/s), 15s
+30,439 scanned, 10.5 GiB in (617 MiB/s), 49.5 MiB out (2.75 MiB/s), 20s
+30,863 scanned, 1 copied, 13.3 GiB in (547 MiB/s), 62.7 MiB out (2.56 MiB/s), 25s
+.
+.
+.
+42,497 scanned, 71 copied, 227 GiB in (637 MiB/s), 5.12 GiB out (2.79 MiB/s), 6m40s
+42,497 scanned, 71 copied, 229 GiB in (538 MiB/s), 5.13 GiB out (2.35 MiB/s), 6m45s
+Xcp command : xcp isync -loglevel DEBUG -bs 32k <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 42,497 scanned, 71 copied
+Speed : 231 GiB in (579 MiB/s), 5.14 GiB out (12.9 MiB/s)
+Total Time : 6m48s.
+Job ID : Job_2023-11-17_00.49.20.336389_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_00.49.20.336389_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_00.49.20.336389_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync -preserve-atime
+
+使用 `-preserve-atime` 參數 `isync` 命令將所有檔案還原至來源上上次存取的日期。
+
+.語法
+[source, cli]
+----
+xcp isync -preserve-atime <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -preserve-atime <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-17_01.31.26.077154_isync
+21,649 scanned, 1.41 GiB in (260 MiB/s), 5.63 MiB out (1.01 MiB/s), 5s
+32,034 scanned, 10.9 GiB in (400 MiB/s), 29.3 MiB out (925 KiB/s), 30s
+33,950 scanned, 1 copied, 12.9 GiB in (399 MiB/s), 35.5 MiB out (1.24 MiB/s), 35s
+33,950 scanned, 1 copied, 14.7 GiB in (361 MiB/s), 39.6 MiB out (830 KiB/s), 41s
+.
+.
+.
+42,499 scanned, 1 copied, 229 GiB in (623 MiB/s), 529 MiB out (1.37 MiB/s), 7m16s
+42,499 scanned, 1 copied, 233 GiB in (719 MiB/s), 536 MiB out (1.56 MiB/s), 7m21s
+Xcp command : xcp isync -preserve-atime <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 42,499 scanned, 1 copied
+Speed : 234 GiB in (541 MiB/s), 540 MiB out (1.22 MiB/s)
+Total Time : 7m23s.
+Job ID : Job_2023-11-17_01.31.26.077154_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_01.31.26.077154_isync.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-17_01.31.26.077154_isync.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync -s3.insecure
+
+使用 `-s3.insecure` 參數 `isync` 命令使用 HTTP 取代 HTTPS 進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp isync -newid <name> -s3.insecure -s3.endpoint <S3_endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -newid testing2 -s3.insecure -s3.endpoint <S3_endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+
+Job ID: Job_2023-11-16_05.09.28.579606_isync
+target scan completed: 502 scanned, 250 s3.objects, 118 KiB in (47.6 KiB/s), 50.8 KiB out (20.5
+KiB/s), 2s.
+Xcp command : xcp isync -newid testing2 -s3.insecure -s3.endpoint <S3_endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+Stats : 502 scanned, 250 s3.objects, 251 indexed
+Speed : 118 KiB in (38.5 KiB/s), 63.8 KiB out (20.7 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-11-16_05.09.28.579606_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_05.09.28.579606_isync.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+=== iSync -S3.Endpoint <s3_endpoint_url>
+
+使用 `-s3.endpoint <s3_endpoint_url>` 參數 `isync` 命令以指定的 URL 取代預設 AWS 端點 URL 、以進行 S3 貯體通訊。
+
+.語法
+[source, cli]
+----
+xcp isync -newid <name> -s3.noverify -s3.endpoint <endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -newid testing -s3.endpoint <S3-endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+
+Job ID: Job_2023-11-16_04.33.32.381458_isync
+target scan completed: 502 scanned, 250 s3.objects, 251 indexed, 118 KiB in (38.9 KiB/s), 63.7 KiB
+out (20.9 KiB/s), 3s.
+Xcp command : xcp isync -newid testing -s3.endpoint S3-endpoint_url>
+<source_ip_address>:/src/USER4 s3://isyncestimate/
+Stats : 502 scanned, 250 s3.objects, 251 indexed
+Speed : 118 KiB in (38.8 KiB/s), 63.7 KiB out (20.9 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-11-16_04.33.32.381458_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_04.33.32.381458_isync.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync -s3.profile <name>
+
+使用 `s3.profile` 參數 `isync` 命令、從 AWS 認證檔案中指定用於 S3 儲存區通訊的設定檔。
+
+.語法
+[source, cli]
+----
+xcp isync -s3.profile <name> -s3.endpoint <S3-endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# /xcp/linux/xcp isync -s3.profile s3_profile -s3.endpoint <S3-endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate
+
+Job ID: Job_2023-11-16_05.29.21.279709_isync
+target scan completed: 502 scanned, 250 s3.objects, 108 KiB in (46.5 KiB/s), 38.4 KiB out (16.5
+KiB/s), 2s.
+Xcp command : xcp isync -s3.profile s3_profile -s3. <S3-endpoint_url>
+<source_ip_address>:/src/USER4 s3://isyncestimate
+Stats : 502 scanned, 250 s3.objects
+Speed : 108 KiB in (34.2 KiB/s), 38.4 KiB out (12.1 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-11-16_05.29.21.279709_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_05.29.21.279709_isync.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+=== iSync -s3.noverify
+
+使用 `-s3.noverify` 參數 `isync` 用於覆寫 S3 儲存區通訊之 SSL 憑證預設驗證的命令。
+
+.語法
+[source, cli]
+----
+xcp isync -newid <name> -s3.noverify -s3.endpoint <endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp isync -newid testing5 -s3.noverify -s3.endpoint <endpoint_url> <source_ip_address>:/src/USER4 s3://isyncestimate/
+
+Job ID: Job_2023-11-16_05.11.12.803441_isync
+target scan completed: 502 scanned, 250 s3.objects, 118 KiB in (40.8 KiB/s), 50.8 KiB out (17.6
+KiB/s), 2s.
+Xcp command : xcp isync -newid testing5 -s3.noverify -s3.endpoint <endpoint_url>
+<source_ip_address>:/src/USER4 s3://isyncestimate/
+Stats : 502 scanned, 250 s3.objects, 251 indexed
+Speed : 118 KiB in (34.7 KiB/s), 63.8 KiB out (18.6 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-11-16_05.11.12.803441_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_05.11.12.803441_isync.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+== iSync 預估
+
+。 `isync` 命令可搭配使用 `estimate` 預估所需時間的選項 `isync` 同步遞增變更的命令。。 `-id` 參數指定先前複本作業的目錄名稱。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -id <name>
+----
+
+IMPORTANT: 。 `-id` 參數是必要的 `isync estimate` 命令選項。
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -id <name>
+
+Job ID: Job_2023-11-20_04.08.18.967541_isync_estimate
+Index: aa1batch_error1 {source: <source_ip_address>:/src, target: <destination_ip_address>:/dest}
+30,611 scanned, 786 MiB in (141 MiB/s), 3.60 MiB out (661 KiB/s), 5s
+45,958 scanned, 1.92 GiB in (223 MiB/s), 8.48 MiB out (939 KiB/s), 10s
+53,825 scanned, 3.11 GiB in (216 MiB/s), 13.5 MiB out (912 KiB/s), 16s
+67,260 scanned, 4.33 GiB in (231 MiB/s), 18.6 MiB out (961 KiB/s), 22s
+81,328 scanned, 5.57 GiB in (253 MiB/s), 23.8 MiB out (1.05 MiB/s), 27s
+85,697 scanned, 6.85 GiB in (241 MiB/s), 29.2 MiB out (1005 KiB/s), 32s
+85,697 scanned, 8.14 GiB in (262 MiB/s), 34.5 MiB out (1.06 MiB/s), 37s
+Xcp command : xcp isync estimate -id <name>
+Estimated Time : 45.1s
+Job ID : Job_2023-11-20_04.08.18.967541_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-20_04.08.18.967541_isync_estimate.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-20_04.08.18.967541_isync_estimate.error
+STATUS : PASSED
+----
+====
+下表列出 `isync estimate` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<nfs_isync_estimate_nodata,iSync 預估 -nodata >> | 不檢查資料。 
+
+
+| <<nfs_isync_estimate_noattrs,iSync 預估 -noattis>> | 不檢查屬性。 
+
+
+| <<nfs_isync_estimate_nomods,iSync 預估 - nomods >> | 不會檢查檔案修改時間。 
+
+
+| <<nfs_isync_estimate_mtimewindow,iSync 預估 -mtimeWindow  >> | 指定可接受的修改時間差異以進行驗證。 
+
+
+| <<nfs_isync_estimate_match,iSync 預估值 - 符合  ；篩選器 >   | 僅處理與篩選器相符的檔案和目錄。 
+
+
+| <<nfs_isync_estimate_bs,iSync 預估 - bs ； n[k]>  | 指定讀寫區塊大小（預設值： 64K ）。 
+
+
+| <<nfs_isync_estimate_parallel,iSync 預估 - 平行  ； n>  | 指定並行批次處理程序的最大數目（預設值： 7 ）。 
+
+
+| <<nfs_isync_estimate_dircount,iSync 預估 -dircount  ； n[k]>  | 指定讀取目錄時的要求大小（預設為 64k ）。 
+
+
+| <<nfs_isync_estimate_exclude,iSync 預估 - 排除  ；篩選器 >  | 排除符合篩選條件的檔案和目錄。 
+
+
+| <<nfs_isync_estimate_id,iSync 預估 -id  ；名稱 >  | 指定先前複本作業的目錄名稱。 
+
+
+| <<nfs_isync_estimate_loglevel,iSync 估計值 -loglevel  ；名稱 >   | 設定記錄層級；可用層級為 info 、 debug （預設： info ）。 
+
+
+| <<nfs_isync_estimate_preserve_atime,iSync 預估 - Preserve-atime>> | 將來源上的所有檔案還原至上次存取的日期。 
+
+
+| <<nfs_isync_estimate_s3_insecure,iSync 預估 -s3.insecure>> | 提供選項、可在 S3 Bucket 通訊中使用 HTTP 而非 HTTPS 。 
+
+
+| <<nfs_isync_estimate_endpoint,iSync 預估 -S3.Endpoint  ； S3_Endpoint _URL>  | 以 S3 Bucket 通訊的指定 URL 覆寫預設的 Amazon Web Services （ AWS ）端點 URL 。 
+
+
+| <<nfs_isync_estimate_s3_profile,iSync -s3.profile  ； profile_name  gt;  | 從 AWS 認證檔案指定用於 S3 儲存區通訊的設定檔。 
+
+
+| <<nfs_isync_estimate_s3_noverify,iSync 預估 -s3.noverify>> | 覆寫 S3 Bucket 通訊的 SSL 認證預設驗證。 
+|===
+
+
+=== iSync 預估 -nodata
+
+使用 `-nodata` 參數 `isync estimate` 指定不檢查資料。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -nodata -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -nodata -id <name>
+
+Job ID: Job_2023-11-23_23.19.45.648691_isync_estimate
+Index: isync_est {source: <source_ip_address>:/fg1, target: <destination_ip_address>:/fv}
+Xcp command : xcp isync estimate -nodata -id <name>
+Estimated Time : 0.6s
+Job ID : Job_2023-11-23_23.19.45.648691_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-23_23.19.45.648691_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -noattis
+
+使用 `-noattrs` 參數 `isync estimate` 指定不檢查屬性。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -noattrs -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -noattrs -id <name>
+
+Job ID: Job_2023-11-23_23.20.25.042500_isync_estimate
+Index: isync_est {source: <source_ip_address>:/fg1, target: <target_ip_address>:/fv}
+Xcp command : xcp isync estimate -noattrs -id <name>
+Estimated Time : 2.4s
+Job ID : Job_2023-11-23_23.20.25.042500_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-23_23.20.25.042500_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 - nomods
+
+使用 `-nomods` 參數 `isync estimate` 指定不檢查檔案修改時間。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -nomods -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync -nomodes <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+Job ID: Job_2023-11-16_22.56.48.571392_isync
+13,897 scanned, 763 MiB in (152 MiB/s), 2.28 MiB out (463 KiB/s), 5s
+21,393 scanned, 148 removed, 4.81 GiB in (739 MiB/s), 12.5 MiB out (1.81 MiB/s), 11s
+28,517 scanned, 148 removed, 7.68 GiB in (578 MiB/s), 19.1 MiB out (1.31 MiB/s), 16s
+28,517 scanned, 148 removed, 10.7 GiB in (619 MiB/s), 26.3 MiB out (1.43 MiB/s), 21s
+29,167 scanned, 396 copied, 148 removed, 13.2 GiB in (434 MiB/s), 51.4 MiB out (4.33 MiB/s), 27s
+.
+.
+.
+42,790 scanned, 1,000 copied, 1,000 removed, 229 GiB in (641 MiB/s), 571 MiB out (1.40 MiB/s),
+6m42s
+42,790 scanned, 1,000 copied, 1,000 removed, 232 GiB in (668 MiB/s), 578 MiB out (1.46 MiB/s),
+6m47s
+Xcp command : xcp isync -nomods <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+Stats : 1,000 removed, 42,790 scanned, 1,000 copied
+Speed : 234 GiB in (585 MiB/s), 583 MiB out (1.42 MiB/s)
+Total Time : 6m50s.
+Job ID : Job_2023-11-16_22.56.48.571392_isync
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_22.56.48.571392_isync.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 估算 -mtimeWindow <s>
+
+使用 `-mtimewindow <s>` 參數 `isync estimate` 指定可接受的修改時間差異以進行驗證。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -mtimewindow <s> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -mtimewindow 10 -id <name>
+
+Job ID: Job_2023-11-16_01.47.05.139847_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -mtimewindow 10 -id <name>
+Estimated Time : 2m42s
+Job ID : Job_2023-11-16_01.47.05.139847_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_01.47.05.139847_isync_estimate.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-
+16_01.47.05.139847_isync_estimate.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 - 符合 <filter>
+
+使用 `-match <filter>` 參數 `isync estimate` 僅處理與篩選器相符的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -match <filter> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -match <filter> -id <name>
+
+Job ID: Job_2023-11-16_02.13.34.904794_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Filtered: 0 matched, 6 did not match
+Xcp command : xcp isync estimate -match fnm('FILE_*') -id <name>
+Estimated Time : 0.8s
+Job ID : Job_2023-11-16_02.13.34.904794_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.13.34.904794_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -BS <n[k]>
+
+使用 `-bs <n[k]>` 參數 `isync estimate` 指定讀取 / 寫入區塊大小。預設區塊大小為 64k 。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -bs <n[k]> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -bs 128k -id <name>
+
+Job ID: Job_2023-11-16_02.14.21.263618_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -bs 128k -id <name>
+Estimated Time : 6m48s
+Job ID : Job_2023-11-16_02.14.21.263618_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.14.21.263618_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 - 平行
+
+使用 `-parallel <n>` 參數 `isync estimate` 指定並行批次處理程序的最大數目。預設值為 7 。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -parallel <n> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -parallel 10 -id <name>
+
+Job ID: Job_2023-11-16_02.15.25.109554_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -parallel 10 -id <name>
+Estimated Time : 8m3s
+Job ID : Job_2023-11-16_02.15.25.109554_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.15.25.109554_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -dircount <n[k]>
+
+使用 `-dircount <n[k]>` 參數 `isync estimate` 指定讀取目錄時的要求大小。預設值為 64k 。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -dircount <n[k]> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -dircount 128k -id <name>
+
+Job ID: Job_2023-11-16_02.15.56.200697_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -dircount 128k -id <name>
+Estimated Time : 8m6s
+Job ID : Job_2023-11-16_02.15.56.200697_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.15.56.200697_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `isync estimate` 可排除與篩選器匹配的文件和目錄。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -exclude <filter> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -exclude "fnm('DIR1*')" -id <name>
+
+Job ID: Job_2023-11-16_02.16.30.449378_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Excluded: 60 excluded, 0 did not match exclude criteria
+Xcp command : xcp isync estimate -exclude fnm('DIR1*') -id <name>
+Estimated Time : 3m29s
+Job ID : Job_2023-11-16_02.16.30.449378_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.16.30.449378_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -id <name>
+
+使用 `-id <name>` 參數 `isync estimate` 指定目錄名稱 pf 先前的複本作業。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -id <name>
+
+Job ID: Job_2023-11-20_04.08.18.967541_isync_estimate
+Index: <name> {source: <source_ip_address>:/src, target: <destination_ip_address>:/dest}
+30,611 scanned, 786 MiB in (141 MiB/s), 3.60 MiB out (661 KiB/s), 5s
+45,958 scanned, 1.92 GiB in (223 MiB/s), 8.48 MiB out (939 KiB/s), 10s
+53,825 scanned, 3.11 GiB in (216 MiB/s), 13.5 MiB out (912 KiB/s), 16s
+67,260 scanned, 4.33 GiB in (231 MiB/s), 18.6 MiB out (961 KiB/s), 22s
+81,328 scanned, 5.57 GiB in (253 MiB/s), 23.8 MiB out (1.05 MiB/s), 27s
+85,697 scanned, 6.85 GiB in (241 MiB/s), 29.2 MiB out (1005 KiB/s), 32s
+85,697 scanned, 8.14 GiB in (262 MiB/s), 34.5 MiB out (1.06 MiB/s), 37s
+Xcp command : xcp isync estimate -id <name>
+Estimated Time : 45.1s
+Job ID : Job_2023-11-20_04.08.18.967541_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-20_04.08.18.967541_isync_estimate.log
+Error Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-
+20_04.08.18.967541_isync_estimate.error
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -logLevel <name>
+
+使用 `-loglevel <name>` 參數 `isync estimate` 若要設定記錄層級、可用的層級為 info 和 debug 。預設值為 info 。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -loglevel <name> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -loglevel DEBUG -id <name>
+
+Job ID: Job_2023-11-16_02.16.58.212518_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -loglevel DEBUG -id <name>
+Estimated Time : 8m18s
+Job ID : Job_2023-11-16_02.16.58.212518_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.16.58.212518_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 - Preserve-atime
+
+使用 `-preserve-atime` 參數 `isync estimate` 將所有檔案還原至來源上上次存取的日期。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -preserve-atime -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -preserve-atime -id <name>
+
+Job ID: Job_2023-11-16_02.17.32.085754_isync_estimate
+Index: <name> {source: <source_ip_address>:/source_vol, target:
+<destination_ip_address>:/dest_vol}
+Xcp command : xcp isync estimate -preserve-atime -id <name>
+Estimated Time : 8m26s
+Job ID : Job_2023-11-16_02.17.32.085754_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.17.32.085754_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -s3.insecure
+
+使用 `-s3.insecure` 參數 `isync estimate` 使用 HTTP 取代 HTTPS 進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -s3.insecure -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -s3.insecure -id S3_index
+
+Job ID: Job_2023-11-16_02.22.36.481539_isync_estimate
+Index: S3_index {source: <source_ip_address>:/source_vol/USER5, target: s3://
+xcptesting/test_ankit/}
+2,002 scanned, 432 KiB in (86.1 KiB/s), 5.53 KiB out (1.10 KiB/s), 5s
+2,002 scanned, 432 KiB in (0/s), 5.53 KiB out (0/s), 10s
+Xcp command : xcp isync estimate -s3.insecure -id S3_index
+Estimated Time : 9.4s
+Job ID : Job_2023-11-16_02.22.36.481539_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.22.36.481539_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -S3.Endpoint <s3_endpoint_url>
+
+使用 `-s3.endpoint <s3_endpoint_url>` 參數 `isync estimate` 以指定的 URL 覆寫預設 AWS 端點 URL 以進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -s3.endpoint <S3_endpoint_url> -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -s3.endpoint <S3_endpoint_url> -id S3_index1
+
+Job ID: Job_2023-11-16_02.35.49.911194_isync_estimate
+Index: S3_index1 {source: <source_ip_address>:/source_vol/USER5, target: s3://isyncestimate/}
+2,002 scanned, 432 KiB in (85.6 KiB/s), 5.54 KiB out (1.10 KiB/s), 5s
+2,002 scanned, 432 KiB in (0/s), 5.54 KiB out (0/s), 10s
+Xcp command : xcp isync estimate -s3.endpoint <S3_endpoint_url> -id S3_index1
+Estimated Time : 13.3s
+Job ID : Job_2023-11-16_02.35.49.911194_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.35.49.911194_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -s3.profile <name>
+
+使用 `s3.profile` 參數 `isync estimate` 從 AWS 認證檔案中指定用於 S3 儲存區通訊的設定檔。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -s3.profile s3_profile -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -s3.profile s3_profile -id S3_index
+
+Job ID: Job_2023-11-16_02.25.57.045692_isync_estimate
+Index: S3_index {source: <source_ip_address>:/source_vol/USER5, target: s3://
+xcptesting/test_ankit/}
+2,002 scanned, 432 KiB in (84.9 KiB/s), 5.53 KiB out (1.09 KiB/s), 5s
+2,002 scanned, 432 KiB in (0/s), 5.53 KiB out (0/s), 10s
+Xcp command : xcp isync estimate -s3.profile s3_profile -id S3_index
+Estimated Time : 9.7s
+Job ID : Job_2023-11-16_02.25.57.045692_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.25.57.045692_isync_estimate.log
+STATUS : PASSED
+----
+====
+
+
+=== iSync 預估 -s3.noverify
+
+使用 `-s3.noverify` 參數 `isync estimate` 覆寫 S3 Bucket 通訊的 SSL 憑證預設驗證。
+
+.語法
+[source, cli]
+----
+xcp isync estimate -s3.noverify -id <name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp isync estimate -s3.noverify -id S3_index
+
+Job ID: Job_2023-11-16_02.23.36.515890_isync_estimate
+Index: S3_index {source: <source_ip_address>:/source_vol/USER5, target: s3://
+xcptesting/test_ankit/}
+2,002 scanned, 432 KiB in (85.7 KiB/s), 5.53 KiB out (1.10 KiB/s), 5s
+2,002 scanned, 432 KiB in (0/s), 5.53 KiB out (0/s), 10s
+Xcp command : xcp isync estimate -s3.noverify -id S3_index
+Estimated Time : 9.3s
+Job ID : Job_2023-11-16_02.23.36.515890_isync_estimate
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-11-16_02.23.36.515890_isync_estimate.log
+STATUS : PASSED
+----
+====

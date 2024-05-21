@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-configure.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: XCP SMB 「組態」命令參照 
+---
+= 設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+。 `configure` 命令會設定 SMB 系統、並連線到 PostgreSQL 資料庫執行的系統。
+
+.語法
+[source, cli]
+----
+xcp.exe configure
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\XCP>xcp.exe configure
+
+Please choose the menu you want to start:
+1. Configure xcp.ini file
+0. Quit
+----
+====

@@ -1,0 +1,1144 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-verify.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= 驗證
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+。 `verify` 命令會在複製作業之後、在來源目錄和目標目錄之間使用每位元組的完整資料比較、而無需使用目錄索引編號。此命令會檢查修改時間及其他檔案或目錄屬性、包括權限。命令也會讀取兩側的檔案、並比較資料。
+
+.語法
+[source, cli]
+----
+xcp verify <source NFS export path> <destination NFS exportpath>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+04_23.54.40.893449
+32,493 scanned, 11,303 found, 7,100 compared, 7,100 same data, 374 MiB in (74.7 MiB/s), 4.74 MiB
+out (971 KiB/s), 5s
+40,109 scanned, 24,208 found, 18,866 compared, 18,866 same data, 834 MiB in (91.5 MiB/s), 10.5
+MiB out (1.14 MiB/s), 10s
+56,030 scanned, 14,623 indexed, 33,338 found, 27,624 compared, 27,624 same data, 1.31 GiB in
+(101 MiB/s), 15.9 MiB out (1.07 MiB/s), 15s
+73,938 scanned, 34,717 indexed, 45,583 found, 38,909 compared, 38,909 same data, 1.73 GiB in
+(86.3 MiB/s), 22.8 MiB out (1.38 MiB/s), 20s
+76,308 scanned, 39,719 indexed, 61,810 found, 54,885 compared, 54,885 same data, 2.04 GiB in
+(62.8 MiB/s), 30.2 MiB out (1.48 MiB/s), 25s
+103,852 scanned, 64,606 indexed, 77,823 found, 68,301 compared, 68,301 same data, 2.31 GiB in
+(56.0 MiB/s), 38.2 MiB out (1.60 MiB/s), 30s
+110,047 scanned, 69,579 indexed, 89,082 found, 78,794 compared, 78,794 same data, 2.73 GiB in
+(85.6 MiB/s), 43.6 MiB out (1.06 MiB/s), 35s
+113,871 scanned, 79,650 indexed, 99,657 found, 89,093 compared, 89,093 same data, 3.23 GiB in
+(103 MiB/s), 49.3 MiB out (1.14 MiB/s), 40s
+125,092 scanned, 94,616 indexed, 110,406 found, 98,369 compared, 98,369 same data, 3.74 GiB in
+(103 MiB/s), 55.0 MiB out (1.15 MiB/s), 45s
+134,630 scanned, 104,764 indexed, 120,506 found, 106,732 compared, 106,732 same data, 4.23 GiB
+in (99.9 MiB/s), 60.4 MiB out (1.05 MiB/s), 50s
+134,630 scanned, 114,823 indexed, 129,832 found, 116,198 compared, 116,198 same data, 4.71 GiB
+in (97.2 MiB/s), 65.5 MiB out (1.04 MiB/s), 55s
+Xcp command : xcp verify <IP address of NFS server>:/source_vol <IP address of destination NFS
+server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (86.4 MiB/s), 69.2 MiB out (1.18 MiB/s)
+Total Time : 58s.
+STATUS : PASSED
+----
+====
+下表列出 `verify` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<nfs_verify_stats_csv,驗證 -stats>> | 平行掃描來源和目標樹、並比較樹狀結構統計資料。 
+
+
+| <<nfs_verify_stats_csv,驗證 -csv>> | 平行掃描來源和目標樹、並比較樹狀結構統計資料。 
+
+
+| <<nfs_verify_nodata,驗證 -nodata>> | 不檢查資料。 
+
+
+| <<nfs_verify_noatts,驗證 -noatt些>> | 不檢查屬性。 
+
+
+| <<nfs_verify_nomods,驗證 -nomods >> | 不會檢查檔案修改時間。 
+
+
+| <<nfs_verify_mtimewindow,驗證 -mtimeWindow  >> | 指定可接受的修改時間差異以進行驗證。 
+
+
+| <<nfs_verify_v_l,驗證 -v >> | 擷取輸出格式以列出找到的任何差異。 
+
+
+| <<nfs_verify_v_l,驗證 -l >> | 擷取輸出格式以列出找到的任何差異。 
+
+
+| <<nfs_verify_nonames,驗證 -nonames >> | 從檔案清單或報告中排除使用者和群組名稱。 
+
+
+| <<nfs_verify_match,驗證 -MATCH  >> | 僅處理符合格式的檔案和目錄。 
+
+
+| <<nfs_verify_bs,驗證 -BS  ； n[k]>  | 指定讀寫區塊大小（預設值： 64K ）。 
+
+
+| <<nfs_verify_parallel,驗證 -parallel  ； n>  | 指定並行批次處理程序的最大數目（預設值： 7 ）。 
+
+
+| <<nfs_verify_dircount,驗證 -dircount  ； n[k]>  | 指定讀取目錄時的要求大小。 
+
+
+| <<nfs_verify_noid,驗證 -noId >> | 停用預設索引的建立（預設值： false ）。 
+
+
+| <<nfs_verify_preserveatime,驗證 -preserve-atime >> | 將來源上的所有檔案還原至上次存取的日期。 
+
+
+| <<nfs_verify_s3_insecure,驗證 -s3.insecure >> | 提供選項、可在 S3 Bucket 通訊中使用 HTTP 而非 HTTPS 。 
+
+
+| <<nfs_verify_s3_endpoint,驗證 -s3.Endpoint  ； s3_Endpoint URL>  | 以 S3 Bucket 通訊的指定 URL 覆寫預設的 Amazon Web Services （ AWS ）端點 URL 。 
+
+
+| <<nfs_verify_s3_profile,驗證 -s3.profile  ； profile 名稱 >  | 從 AWS 認證檔案指定用於 S3 儲存區通訊的設定檔。 
+
+
+| <<nfs_verify_s3_noverify,驗證 -s3.noverify>> | 覆寫 S3 Bucket 通訊的 SSL 認證預設驗證。 
+|===
+
+
+== 驗證 -stats 並驗證 -csv
+
+使用 `-stats` 和 `-csv` 的參數 `verify` 用於平行掃描來源和目標樹的命令、並比較樹狀結構統計資料。
+
+.語法
+[source, cli]
+----
+cp verify -stats <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -stats <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+228,609 scanned, 49.7 MiB in (9.93 MiB/s), 3.06 MiB out (625 KiB/s), 5s
+== Number of files ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+235 73,916 43,070 4,020 129 15
+same same same same same same
+== Directory entries ==
+empty 1-10 10-100 100-1K 1K-10K >10K
+3
+same
+10,300
+same
+2,727
+same
+67
+same
+11
+same
+== Depth ==
+0-5 6-10 11-15 16-20 21-100 >100
+47,120
+same
+79,772
+same
+7,608
+same
+130
+same
+== Modified ==
+>1 year >1 month 1-31 days 1-24 hrs <1 hour <15 mins future
+15
+same 116,121
+same 5,249
+same
+Total count: 134,630 / same
+Directories: 13,108 / same
+Regular files: 121,385 / same
+Symbolic links: 137 / same
+Special files: None / same
+Hard links: None / same, Multilink files: None / same
+Xcp command : xcp verify -stats <source_ip_address>:/source_vol <<destination_ip_address>:/dest_vol
+269,260 scanned, 0 matched, 0 error
+Speed : 59.5 MiB in (7.44 MiB/s), 3.94 MiB out (506 KiB/s)
+Total Time : 7s.
+STATUS : PASSED
+----
+====
+.語法
+[source, cli]
+----
+xcp verify -csv <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -csv <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+
+222,028 scanned, 48.2 MiB in (9.63 MiB/s), 2.95 MiB out (603 KiB/s), 5s
+== Number of files ==
+empty
+235
+same	<8KiB 73,916
+same	8-64KiB
+43,070
+same	64KiB-1MiB
+4,020
+same	1-10MiB
+129
+same	10-100MiB	>100MiB
+15
+same
+== Directory entries ==
+empty	1-10	10-100	100-1K	1K-10K	>10K
+3
+same	10,300
+same	2,727
+same	67
+same	11
+same
+== Depth ==
+0-5
+6-10
+11-15
+16-20
+21-100
+>100
+47,120
+same	79,772
+same	7,608
+same	130
+same
+== Modified ==
+>1 year	>1 month
+1-31 days
+1-24 hrs
+<1 hour
+<15 mins
+future
+	15
+same	121,370
+same
+
+Total count: 134,630 / same Directories: 13,108 / same Regular files: 121,385 / same Symbolic links: 137 / same Special files: None / same
+Hard links: None / same, Multilink files: None / same
+
+Xcp command : xcp verify -csv <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+269,260 scanned, 0 matched, 0 error
+Speed	: 59.5 MiB in (7.53 MiB/s), 3.94 MiB out (512 KiB/s) Total Time : 7s.
+STATUS	: PASSED
+----
+====
+.語法
+[source, cli]
+----
+xcp verify -stats -csv <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -stats -csv <IP address of source NFS server>:/source_vol <IP
+address of destination NFS server>:/dest_vol
+
+224,618 scanned, 48.7 MiB in (9.54 MiB/s), 2.98 MiB out (597 KiB/s), 5s
+== Number of files ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+235 73,916 43,070 4,020 129 15
+same same same same same same
+== Directory entries ==
+empty 1-10 10-100 100-1K 1K-10K >10K
+3
+same
+10,300
+same
+2,727
+same
+67
+same
+11
+same
+== Depth ==
+0-5 6-10 11-15 16-20 21-100 >100
+47,120
+same
+79,772
+same
+7,608
+same
+130
+same
+== Modified ==
+>1 year >1 month 1-31 days 1-24 hrs <1 hour <15 mins future
+15
+same 121,370
+same
+Total count: 134,630 / same
+Directories: 13,108 / same
+Regular files: 121,385 / same
+Symbolic links: 137 / same
+Special files: None / same
+Hard links: None / same, Multilink files: None / same
+Xcp command : xcp verify -stats -csv <IP address of source NFS server>:/source_vol <IP
+address of destination NFS server>:/dest_vol
+269,260 scanned, 0 matched, 0 error
+Speed : 59.5 MiB in (7.49 MiB/s), 3.94 MiB out (509 KiB/s)
+Total Time : 7s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -nodata
+
+使用 `-nodata` 參數 `verify` 指定不檢查資料的命令。
+
+.語法
+[source, cli]
+----
+xcp verify -nodata <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -nodata <IP address of source NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_02.18.01.159115
+70,052 scanned, 29,795 indexed, 43,246 found, 25.8 MiB in (5.14 MiB/s), 9.39 MiB out
+(1.87 MiB/s), 5s
+117,136 scanned, 94,723 indexed, 101,434 found, 50.3 MiB in (4.90 MiB/s), 22.4 MiB out (2.60
+MiB/s), 10s
+Xcp command : xcp verify -nodata <IP address of source NFS server>:/source_vol <IP address of
+destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (attrs, mods), 0
+different item, 0 error
+Speed : 62.7 MiB in (4.65 MiB/s), 30.2 MiB out (2.24MiB/s)
+Total Time : 13s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -noatt些
+
+使用 `-noattrs` 參數 `verify` 指定不檢查屬性的命令。
+
+.語法
+[source, cli]
+----
+xcp verify -noattrs <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -noattrs <IP address of source NFS server>:/source_vol <IP address
+of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-05_02.19.14.011569
+
+40,397 scanned, 9,917 found, 4,249 compared, 4,249 same data, 211 MiB in (41.6 MiB/s), 3.78 MiB
+out (764 KiB/s), 5s
+40,397 scanned, 14,533 found, 8,867 compared, 8,867 same data, 475 MiB in (52.9 MiB/s), 6.06 MiB
+out (466 KiB/s), 10s
+40,397 scanned, 20,724 found, 15,038 compared, 15,038 same data, 811 MiB in (67.0 MiB/s), 9.13
+MiB out (628 KiB/s), 15s
+40,397 scanned, 25,659 found, 19,928 compared, 19,928 same data, 1.02 GiB in (46.6 MiB/s), 11.5
+MiB out (477 KiB/s), 20s
+40,397 scanned, 30,535 found, 24,803 compared, 24,803 same data, 1.32 GiB in (62.0 MiB/s), 14.0
+MiB out (513 KiB/s), 25s
+75,179 scanned, 34,656 indexed, 39,727 found, 32,595 compared, 32,595 same data, 1.58 GiB in
+(53.4 MiB/s), 20.1 MiB out (1.22 MiB/s), 30s
+75,179 scanned, 34,656 indexed, 47,680 found, 40,371 compared, 40,371 same data, 1.74 GiB in
+(32.3 MiB/s), 23.6 MiB out (717 KiB/s), 35s
+75,179 scanned, 34,656 indexed, 58,669 found, 51,524 compared, 51,524 same data, 1.93 GiB in
+(37.9 MiB/s), 28.4 MiB out (989 KiB/s), 40s
+78,097 scanned, 39,772 indexed, 69,343 found, 61,858 compared, 61,858 same data, 2.12 GiB in
+(39.0 MiB/s), 33.4 MiB out (1015 KiB/s), 45s
+110,213 scanned, 69,593 indexed, 80,049 found, 69,565 compared, 69,565 same data, 2.37 GiB in
+(51.3 MiB/s), 39.3 MiB out (1.18 MiB/s), 50s
+110,213 scanned, 69,593 indexed, 86,233 found, 75,727 compared, 75,727 same data, 2.65 GiB in
+(57.8 MiB/s), 42.3 MiB out (612 KiB/s), 55s
+110,213 scanned, 69,593 indexed, 93,710 found, 83,218 compared, 83,218 same data, 2.93 GiB in
+(56.1 MiB/s), 45.8 MiB out (705 KiB/s), 1m0s
+110,213 scanned, 69,593 indexed, 99,700 found, 89,364 compared, 89,364 same data, 3.20 GiB in
+(56.9 MiB/s), 48.7 MiB out (593 KiB/s), 1m5s
+124,888 scanned, 94,661 indexed, 107,509 found, 95,304 compared, 95,304 same data, 3.54 GiB in
+(68.6 MiB/s), 53.5 MiB out (1000 KiB/s), 1m10s
+134,630 scanned, 104,739 indexed, 116,494 found, 102,792 compared, 102,792 same data, 3.94 GiB
+in (81.7 MiB/s), 58.2 MiB out (949 KiB/s), 1m15s
+134,630 scanned, 104,739 indexed, 123,475 found, 109,601 compared, 109,601 same data, 4.28 GiB
+in (70.0 MiB/s), 61.7 MiB out (711 KiB/s), 1m20s
+134,630 scanned, 104,739 indexed, 129,354 found, 115,295 compared, 115,295 same data, 4.55 GiB
+in (55.3 MiB/s), 64.5 MiB out (572 KiB/s), 1m25s
+Xcp command : xcp verify -noattrs <IP address of source NFS server>:/source_vol <IP address
+of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (56.5 MiB/s), 69.2 MiB out (789 KiB/s)
+Total Time : 1m29s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -nomods
+
+使用 `-nomods` 參數 `verify` 指定不檢查檔案修改時間的命令。
+
+.語法
+[source, cli]
+----
+xcp verify -nomods <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -nomods <IP address of NFS server>:/source_vol <IP address of
+destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_02.22.33.738593
+40,371 scanned, 10,859 found, 5,401 compared, 5,401 same data, 296 MiB in (59.1 MiB/s), 4.29 MiB
+out (876 KiB/s), 5s
+40,371 scanned, 22,542 found, 17,167 compared, 17,167 same data, 743 MiB in (88.9 MiB/s), 9.67
+MiB out (1.07 MiB/s), 10s
+43,521 scanned, 4,706 indexed, 32,166 found, 26,676 compared, 26,676 same data, 1.17 GiB in
+(91.3 MiB/s), 14.5 MiB out (996 KiB/s), 15s
+70,260 scanned, 29,715 indexed, 43,680 found, 37,146 compared, 37,146 same data, 1.64 GiB in
+(96.0 MiB/s), 21.5 MiB out (1.38 MiB/s), 20s
+75,160 scanned, 34,722 indexed, 60,079 found, 52,820 compared, 52,820 same data, 2.01 GiB in
+(74.4 MiB/s), 29.1 MiB out (1.51 MiB/s), 25s
+102,874 scanned, 69,594 indexed, 77,322 found, 67,907 compared, 67,907 same data, 2.36 GiB in
+(71.2 MiB/s), 38.3 MiB out (1.85 MiB/s), 30s
+110,284 scanned, 69,594 indexed, 89,143 found, 78,952 compared, 78,952 same data, 2.82 GiB in
+(92.8 MiB/s), 43.9 MiB out (1.08 MiB/s), 35s
+112,108 scanned, 79,575 indexed, 100,228 found, 89,856 compared, 89,856 same data, 3.25 GiB in
+(89.3 MiB/s), 49.6 MiB out (1.15 MiB/s), 40s
+128,122 scanned, 99,743 indexed, 111,358 found, 98,663 compared, 98,663 same data, 3.80 GiB in
+(112 MiB/s), 55.8 MiB out (1.24 MiB/s), 45s
+134,630 scanned, 104,738 indexed, 123,253 found, 109,472 compared, 109,472 same data, 4.36 GiB
+in (114 MiB/s), 61.7 MiB out (1.16 MiB/s), 50s
+134,630 scanned, 119,809 indexed, 133,569 found, 120,008 compared, 120,008 same data, 4.94 GiB
+in (115 MiB/s), 67.8 MiB out (1.20 MiB/s), 55s]
+
+Xcp command : xcp verify -nomods <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs), 0
+different item, 0 error
+Speed : 4.95 GiB in (90.5 MiB/s), 69.2 MiB out (1.24 MiB/s)
+Total Time : 56s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -mtimeWindow <s>
+
+使用 `-mtimewindow <s>` 參數 `verify` 命令以指定可接受的修改時間差異以進行驗證。
+
+.語法
+[source, cli]
+----
+xcp verify -mtimewindow <s> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -mtimewindow 2 <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+06_02.26.03.797492
+27,630 scanned, 9,430 found, 5,630 compared, 5,630 same data, 322 MiB in (64.1 MiB/s), 3.91 MiB
+out (798 KiB/s), 5s
+38,478 scanned, 19,840 found, 14,776 compared, 14,776 same data, 811 MiB in (97.8 MiB/s), 8.86
+MiB out (1012 KiB/s), 10s
+55,304 scanned, 14,660 indexed, 29,893 found, 23,904 compared, 23,904 same data, 1.33 GiB in
+(109 MiB/s), 14.6 MiB out (1.14 MiB/s), 15s
+64,758 scanned, 24,700 indexed, 43,133 found, 36,532 compared, 36,532 same data, 1.65 GiB in
+(65.3 MiB/s), 21.0 MiB out (1.28 MiB/s), 20s
+75,317 scanned, 34,655 indexed, 56,020 found, 48,942 compared, 48,942 same data, 2.01 GiB in
+(72.5 MiB/s), 27.4 MiB out (1.25 MiB/s), 25s
+95,024 scanned, 54,533 indexed, 70,675 found, 61,886 compared, 61,886 same data, 2.41 GiB in
+(81.3 MiB/s), 34.9 MiB out (1.49 MiB/s), 30s
+102,407 scanned, 64,598 indexed, 85,539 found, 76,158 compared, 76,158 same data, 2.74 GiB in
+(67.3 MiB/s), 42.0 MiB out (1.42 MiB/s), 35s
+113,209 scanned, 74,661 indexed, 97,126 found, 86,525 compared, 86,525 same data, 3.09 GiB in
+(72.6 MiB/s), 48.0 MiB out (1.19 MiB/s), 40s
+125,040 scanned, 84,710 indexed, 108,480 found, 96,253 compared, 96,253 same data, 3.51 GiB in
+(84.0 MiB/s), 53.6 MiB out (1.10 MiB/s), 45s
+132,726 scanned, 99,775 indexed, 117,252 found, 103,740 compared, 103,740 same data, 4.04 GiB in
+(108 MiB/s), 58.4 MiB out (986 KiB/s), 50s
+134,633 scanned, 109,756 indexed, 126,700 found, 112,978 compared, 112,978 same data, 4.52 GiB
+in (97.6 MiB/s), 63.6 MiB out (1.03 MiB/s), 55s
+134,633 scanned, 129,807 indexed, 134,302 found, 120,779 compared, 120,779 same data, 4.95 GiB
+in (86.5 MiB/s), 68.8 MiB out (1.02 MiB/s), 1m0s
+Xcp command : xcp verify -mtimewindow 2 <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,633 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (83.6 MiB/s), 69.2 MiB out (1.14 MiB/s)
+Total Time : 1m0s.
+STATUS : PASSED
+
+----
+====
+
+
+== 驗證 -v 並驗證 -l
+
+使用 `-v` 和 `l` 的參數 `verify` 命令以擷取輸出格式、並列出發現的任何差異。
+
+.語法
+[source, cli]
+----
+xcp verify -v <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -v <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_02.26.30.055115
+32,349 scanned, 10,211 found, 5,946 compared, 5,946 same data, 351 MiB in (70.1 MiB/s), 4.27 MiB
+out (872 KiB/s), 5s
+40,301 scanned, 21,943 found, 16,619 compared, 16,619 same data, 874 MiB in (104 MiB/s), 9.74
+MiB out (1.09 MiB/s), 10s
+52,201 scanned, 14,512 indexed, 33,173 found, 27,622 compared, 27,622 same data, 1.35 GiB in
+(102 MiB/s), 16.0 MiB out (1.24 MiB/s), 15s
+70,886 scanned, 34,689 indexed, 46,699 found, 40,243 compared, 40,243 same data, 1.77 GiB in
+(86.2 MiB/s), 23.3 MiB out (1.47 MiB/s), 20s
+80,072 scanned, 39,708 indexed, 63,333 found, 55,743 compared, 55,743 same data, 2.04 GiB in
+(55.4 MiB/s), 31.0 MiB out (1.54 MiB/s), 25s
+100,034 scanned, 59,615 indexed, 76,848 found, 67,738 compared, 67,738 same data, 2.35 GiB in
+(61.6 MiB/s), 37.6 MiB out (1.31 MiB/s), 30s
+110,290 scanned, 69,597 indexed, 88,493 found, 78,203 compared, 78,203 same data, 2.75 GiB in
+(81.7 MiB/s), 43.4 MiB out (1.14 MiB/s), 35s
+116,829 scanned, 79,603 indexed, 102,105 found, 90,998 compared, 90,998 same data, 3.32 GiB in
+(117 MiB/s), 50.3 MiB out (1.38 MiB/s), 40s
+59
+128,954 scanned, 94,650 indexed, 114,340 found, 101,563 compared, 101,563 same data, 3.91 GiB in
+(121 MiB/s), 56.8 MiB out (1.30 MiB/s), 45s
+134,630 scanned, 109,858 indexed, 125,760 found, 112,077 compared, 112,077 same data, 4.41 GiB
+in (99.9 MiB/s), 63.0 MiB out (1.22 MiB/s), 50s
+Xcp command : xcp verify -v <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (91.7 MiB/s), 69.2 MiB out (1.25 MiB/s)
+Total Time : 55s.
+STATUS : PASSED
+----
+====
+.語法
+[source, cli]
+----
+xcp verify -l <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -l <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_02.27.58.969228
+32,044 scanned, 11,565 found, 7,305 compared, 7,305 same data, 419 MiB in (83.7 MiB/s), 4.93 MiB
+out (1008 KiB/s), 5s
+40,111 scanned, 21,352 found, 16,008 compared, 16,008 same data, 942 MiB in (104 MiB/s), 9.64
+MiB out (962 KiB/s), 10s
+53,486 scanned, 14,677 indexed, 30,840 found, 25,162 compared, 25,162 same data, 1.34 GiB in
+(86.4 MiB/s), 15.0 MiB out (1.07 MiB/s), 15s
+71,202 scanned, 34,646 indexed, 45,082 found, 38,555 compared, 38,555 same data, 1.72 GiB in
+(76.7 MiB/s), 22.5 MiB out (1.51 MiB/s), 20s
+75,264 scanned, 34,646 indexed, 60,039 found, 53,099 compared, 53,099 same data, 2.00 GiB in
+(58.5 MiB/s), 29.1 MiB out (1.30 MiB/s), 25s
+95,205 scanned, 54,684 indexed, 76,004 found, 67,054 compared, 67,054 same data, 2.34 GiB in
+(67.5 MiB/s), 37.0 MiB out (1.57 MiB/s), 30s
+110,239 scanned, 69,664 indexed, 87,892 found, 77,631 compared, 77,631 same data, 2.78 GiB in
+(89.7 MiB/s), 43.2 MiB out (1.23 MiB/s), 35s
+115,192 scanned, 79,627 indexed, 100,246 found, 89,450 compared, 89,450 same data, 3.22 GiB in
+(90.0 MiB/s), 49.4 MiB out (1.24 MiB/s), 40s
+122,694 scanned, 89,740 indexed, 109,158 found, 97,422 compared, 97,422 same data, 3.65 GiB in
+(89.4 MiB/s), 54.2 MiB out (978 KiB/s), 45s
+134,630 scanned, 104,695 indexed, 119,683 found, 106,036 compared, 106,036 same data, 4.17 GiB
+in (105 MiB/s), 59.9 MiB out (1.11 MiB/s), 50s
+134,630 scanned, 109,813 indexed, 129,117 found, 115,432 compared, 115,432 same data, 4.59 GiB
+in (86.1 MiB/s), 64.7 MiB out (979 KiB/s), 55s
+Xcp command : xcp verify -l <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (84.9 MiB/s), 69.2 MiB out (1.16 MiB/s)
+Total Time : 59s.
+STATUS : PASSED
+----
+====
+.語法
+[source, cli]
+----
+xcp verify -v -l <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -v -l <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_02.30.00.952454
+24,806 scanned, 8,299 found, 4,817 compared, 4,817 same data, 296 MiB in (59.1 MiB/s), 3.44 MiB
+out (704 KiB/s), 5s
+39,720 scanned, 20,219 found, 14,923 compared, 14,923 same data, 716 MiB in (84.0 MiB/s), 8.78
+MiB out (1.07 MiB/s), 10s
+44,395 scanned, 9,648 indexed, 29,851 found, 24,286 compared, 24,286 same data, 1.20 GiB in (102
+MiB/s), 14.0 MiB out (1.05 MiB/s), 15s
+62,763 scanned, 24,725 indexed, 40,946 found, 34,760 compared, 34,760 same data, 1.69 GiB in
+(101 MiB/s), 20.2 MiB out (1.24 MiB/s), 20s
+76,181 scanned, 39,708 indexed, 57,566 found, 50,595 compared, 50,595 same data, 1.98 GiB in
+(58.7 MiB/s), 28.3 MiB out (1.61 MiB/s), 25s
+90,411 scanned, 49,594 indexed, 73,357 found, 64,912 compared, 64,912 same data, 2.37 GiB in
+(79.0 MiB/s), 35.8 MiB out (1.48 MiB/s), 30s
+
+110,222 scanned, 69,593 indexed, 87,733 found, 77,466 compared, 77,466 same data, 2.77 GiB in
+(80.5 MiB/s), 43.1 MiB out (1.45 MiB/s), 35s
+116,417 scanned, 79,693 indexed, 100,053 found, 89,258 compared, 89,258 same data, 3.23 GiB in
+(94.3 MiB/s), 49.4 MiB out (1.26 MiB/s), 40s
+122,224 scanned, 89,730 indexed, 111,684 found, 100,059 compared, 100,059 same data, 3.83 GiB in
+(123 MiB/s), 55.5 MiB out (1.22 MiB/s), 45s
+134,630 scanned, 109,758 indexed, 121,744 found, 108,152 compared, 108,152 same data, 4.36 GiB
+in (107 MiB/s), 61.3 MiB out (1.14 MiB/s), 50s
+134,630 scanned, 119,849 indexed, 131,678 found, 118,015 compared, 118,015 same data, 4.79 GiB
+in (87.2 MiB/s), 66.7 MiB out (1.08 MiB/s), 55s
+Xcp command : xcp verify -v -l <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (87.6 MiB/s), 69.2 MiB out (1.20 MiB/s)
+Total Time : 57s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -nonames
+
+使用 `-nonames` 參數 `verify` 從檔案清單或報告中排除使用者和群組名稱的命令
+
+.語法
+[source, cli]
+----
+xcp verify -nonames <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -nonames <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_04.03.58.173082
+30,728 scanned, 9,242 found, 5,248 compared, 5,248 same data, 363 MiB in (72.6 MiB/s), 3.93 MiB
+out (805 KiB/s), 5s
+40,031 scanned, 20,748 found, 15,406 compared, 15,406 same data, 837 MiB in (94.5 MiB/s), 9.19
+MiB out (1.05 MiB/s), 10s
+50,859 scanned, 9,668 indexed, 32,410 found, 26,305 compared, 26,305 same data, 1.30 GiB in
+(99.5 MiB/s), 15.2 MiB out (1.20 MiB/s), 15s
+73,631 scanned, 34,712 indexed, 45,362 found, 38,567 compared, 38,567 same data, 1.75 GiB in
+(92.2 MiB/s), 22.6 MiB out (1.49 MiB/s), 20s
+82,931 scanned, 44,618 indexed, 59,988 found, 52,270 compared, 52,270 same data, 2.08 GiB in
+(66.7 MiB/s), 29.6 MiB out (1.39 MiB/s), 25s
+96,691 scanned, 59,630 indexed, 77,567 found, 68,573 compared, 68,573 same data, 2.50 GiB in
+(85.2 MiB/s), 38.2 MiB out (1.73 MiB/s), 30s
+110,763 scanned, 74,678 indexed, 92,246 found, 82,010 compared, 82,010 same data, 2.93 GiB in
+(88.8 MiB/s), 45.5 MiB out (1.45 MiB/s), 35s
+120,101 scanned, 79,664 indexed, 105,420 found, 94,046 compared, 94,046 same data, 3.47 GiB in
+(110 MiB/s), 51.9 MiB out (1.27 MiB/s), 40s
+131,659 scanned, 99,780 indexed, 116,418 found, 103,109 compared, 103,109 same data, 4.05 GiB in
+(120 MiB/s), 58.1 MiB out (1.25 MiB/s), 45s
+134,630 scanned, 114,770 indexed, 127,154 found, 113,483 compared, 113,483 same data, 4.54 GiB
+in (100 MiB/s), 64.1 MiB out (1.20 MiB/s), 50s
+Xcp command : xcp verify -nonames <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (92.5 MiB/s), 69.2 MiB out (1.26 MiB/s)
+Total Time : 54s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 <filter> 是否相符
+
+使用 `-match <filter>` 參數 `verify` 僅處理與篩選器相符的檔案和目錄的命令。
+
+.語法
+[source, cli]
+----
+xcp verify -match bin <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -match bin <IP address of NFS server>:/source_vol <IP address
+of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_04.16.46.005121
+32,245 scanned, 25,000 matched, 10,657 found, 6,465 compared, 6,465 same data, 347 MiB in (69.4
+MiB/s), 4.44 MiB out (908 KiB/s), 5s
+40,306 scanned, 35,000 matched, 21,311 found, 15,969 compared, 15,969 same data, 850 MiB in (101
+MiB/s), 9.44 MiB out (1024 KiB/s), 10s
+55,582 scanned, 45,000 matched, 14,686 indexed, 31,098 found, 25,293 compared, 25,293 same data,
+1.33 GiB in (102 MiB/s), 15.1 MiB out (1.12 MiB/s), 15s
+75,199 scanned, 65,000 matched, 34,726 indexed, 45,587 found, 38,738 compared, 38,738 same data,
+1.72 GiB in (77.9 MiB/s), 22.7 MiB out (1.52 MiB/s), 20s
+78,304 scanned, 70,000 matched, 39,710 indexed, 61,398 found, 54,232 compared, 54,232 same data,
+2.08 GiB in (75.0 MiB/s), 30.0 MiB out (1.45 MiB/s), 25s
+102,960 scanned, 95,000 matched, 69,682 indexed, 78,351 found, 69,034 compared, 69,034 same
+data, 2.43 GiB in (71.9 MiB/s), 38.8 MiB out (1.76 MiB/s), 30s
+110,344 scanned, 105,000 matched, 69,682 indexed, 93,873 found, 83,637 compared, 83,637 same
+data, 2.85 GiB in (84.2 MiB/s), 45.6 MiB out (1.36 MiB/s), 35s
+121,459 scanned, 120,000 matched, 84,800 indexed, 107,012 found, 95,357 compared, 95,357 same
+data, 3.30 GiB in (92.8 MiB/s), 52.3 MiB out (1.33 MiB/s), 40s
+130,006 scanned, 125,000 matched, 94,879 indexed, 115,077 found, 102,104 compared, 102,104 same
+data, 3.97 GiB in (136 MiB/s), 57.2 MiB out (1001 KiB/s), 45s
+134,630 scanned, 134,630 matched, 109,867 indexed, 125,755 found, 112,025 compared, 112,025 same
+data, 4.53 GiB in (115 MiB/s), 63.2 MiB out (1.20 MiB/s), 50s
+Xcp command : xcp verify -match bin <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 134,630 matched, 100% found (121,150 have data), 100% verified (data, attrs,
+mods), 0 different item, 0 error
+Speed : 4.95 GiB in (92.2 MiB/s), 69.2 MiB out (1.26 MiB/s)
+Total Time : 54s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -Bs <n>
+
+使用 `-bs <n>` 參數 `verify` 指定讀寫區塊大小的命令。預設值為 64k 。
+
+.語法
+[source, cli]
+----
+xcp verify -bs 32k  <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -bs 32k <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_04.20.19.266399
+29,742 scanned, 9,939 found, 5,820 compared, 5,820 same data, 312 MiB in (62.3 MiB/s), 4.58 MiB
+out (938 KiB/s), 5s
+40,156 scanned, 20,828 found, 15,525 compared, 15,525 same data, 742 MiB in (85.0 MiB/s), 10.2
+MiB out (1.10 MiB/s), 10s
+41,906 scanned, 9,846 indexed, 30,731 found, 25,425 compared, 25,425 same data, 1.14 GiB in
+(85.6 MiB/s), 16.1 MiB out (1.18 MiB/s), 15s
+66,303 scanned, 29,712 indexed, 42,861 found, 36,708 compared, 36,708 same data, 1.61 GiB in
+(94.9 MiB/s), 23.7 MiB out (1.53 MiB/s), 20s
+70,552 scanned, 34,721 indexed, 58,157 found, 51,528 compared, 51,528 same data, 1.96 GiB in
+(73.0 MiB/s), 31.4 MiB out (1.53 MiB/s), 25s
+100,135 scanned, 59,611 indexed, 76,047 found, 66,811 compared, 66,811 same data, 2.29 GiB in
+(66.3 MiB/s), 40.7 MiB out (1.82 MiB/s), 30s
+105,951 scanned, 69,665 indexed, 90,022 found, 80,330 compared, 80,330 same data, 2.71 GiB in
+(85.3 MiB/s), 48.1 MiB out (1.49 MiB/s), 35s
+113,440 scanned, 89,486 indexed, 101,634 found, 91,152 compared, 91,152 same data, 3.19 GiB in
+(97.8 MiB/s), 55.4 MiB out (1.45 MiB/s), 40s
+128,693 scanned, 94,484 indexed, 109,999 found, 97,319 compared, 97,319 same data, 3.59 GiB in
+(82.6 MiB/s), 60.2 MiB out (985 KiB/s), 45s
+134,630 scanned, 94,484 indexed, 119,203 found, 105,402 compared, 105,402 same data, 3.98 GiB in
+(78.3 MiB/s), 65.1 MiB out (986 KiB/s), 50s
+134,630 scanned, 104,656 indexed, 127,458 found, 113,774 compared, 113,774 same data, 4.49 GiB
+in (103 MiB/s), 70.8 MiB out (1.15 MiB/s), 55s
+Xcp command : xcp verify -bs 32k <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.96 GiB in (84.5 MiB/s), 77.5 MiB out (1.29 MiB/s)
+Total Time : 1m0s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證平行 <n>
+
+使用 `-parallel <n>` 參數 `verify` 命令以指定並行批次處理程序的最大數目。
+
+.語法
+[source, cli]
+----
+xcp verify -parallel <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -parallel 2 <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_04.35.10.356405
+15,021 scanned, 6,946 found, 4,869 compared, 4,869 same data, 378 MiB in (74.5 MiB/s), 3.24 MiB
+out (654 KiB/s), 5s
+25,165 scanned, 9,671 indexed, 15,945 found, 12,743 compared, 12,743 same data, 706 MiB in (65.4
+MiB/s), 7.81 MiB out (934 KiB/s), 10s
+35,367 scanned, 19,747 indexed, 24,036 found, 19,671 compared, 19,671 same data, 933 MiB in
+(45.3 MiB/s), 11.9 MiB out (827 KiB/s), 15s
+45,267 scanned, 29,761 indexed, 32,186 found, 26,909 compared, 26,909 same data, 1.38 GiB in
+(94.6 MiB/s), 16.5 MiB out (943 KiB/s), 20s
+55,690 scanned, 39,709 indexed, 40,413 found, 34,805 compared, 34,805 same data, 1.69 GiB in
+(62.8 MiB/s), 20.9 MiB out (874 KiB/s), 25s
+55,690 scanned, 39,709 indexed, 48,325 found, 42,690 compared, 42,690 same data, 1.88 GiB in
+(38.1 MiB/s), 24.3 MiB out (703 KiB/s), 31s
+65,002 scanned, 49,670 indexed, 57,872 found, 51,891 compared, 51,891 same data, 2.04 GiB in
+(33.2 MiB/s), 29.0 MiB out (967 KiB/s), 36s
+75,001 scanned, 59,688 indexed, 66,789 found, 60,291 compared, 60,291 same data, 2.11 GiB in
+(14.8 MiB/s), 33.4 MiB out (883 KiB/s), 41s
+85,122 scanned, 69,690 indexed, 75,009 found, 67,337 compared, 67,337 same data, 2.42 GiB in
+(62.3 MiB/s), 37.6 MiB out (862 KiB/s), 46s
+91,260 scanned, 79,686 indexed, 82,097 found, 73,854 compared, 73,854 same data, 2.69 GiB in
+(55.0 MiB/s), 41.4 MiB out (770 KiB/s), 51s
+95,002 scanned, 79,686 indexed, 88,238 found, 79,707 compared, 79,707 same data, 2.99 GiB in
+(60.7 MiB/s), 44.4 MiB out (608 KiB/s), 56s
+105,002 scanned, 89,787 indexed, 96,059 found, 86,745 compared, 86,745 same data, 3.19 GiB in
+(41.3 MiB/s), 48.4 MiB out (810 KiB/s), 1m1s
+110,239 scanned, 99,872 indexed, 104,757 found, 94,652 compared, 94,652 same data, 3.47 GiB in
+(57.0 MiB/s), 52.7 MiB out (879 KiB/s), 1m6s
+120,151 scanned, 104,848 indexed, 111,491 found, 100,317 compared, 100,317 same data, 3.95 GiB
+in (97.2 MiB/s), 56.3 MiB out (733 KiB/s), 1m11s
+130,068 scanned, 114,860 indexed, 119,867 found, 107,260 compared, 107,260 same data, 4.25 GiB
+in (60.5 MiB/s), 60.6 MiB out (871 KiB/s), 1m16s
+134,028 scanned, 119,955 indexed, 125,210 found, 111,886 compared, 111,886 same data, 4.65 GiB
+in (83.2 MiB/s), 63.7 MiB out (647 KiB/s), 1m21s
+134,630 scanned, 129,929 indexed, 132,679 found, 119,193 compared, 119,193 same data, 4.93 GiB
+in (56.8 MiB/s), 67.9 MiB out (846 KiB/s), 1m26s
+Xcp command : xcp verify -parallel 2 <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+
+----
+====
+
+
+== 驗證 -dircount <n[k]>
+
+使用 `-dircount <n[k]>` 參數 `verify` 用於指定讀取目錄時的要求大小的命令。預設值為 64k 。
+
+.語法
+[source, cli]
+----
+xcp verify -dircount <n[k]> <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -dircount 32k <IP address of NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: autoname_verify_2020-03-
+05_04.28.58.235953
+32,221 scanned, 10,130 found, 5,955 compared, 5,955 same data, 312 MiB in (62.1 MiB/s), 4.15 MiB
+out (848 KiB/s), 5s
+40,089 scanned, 21,965 found, 16,651 compared, 16,651 same data, 801 MiB in (97.5 MiB/s), 9.55
+MiB out (1.07 MiB/s), 10s
+
+51,723 scanned, 14,544 indexed, 33,019 found, 27,288 compared, 27,288 same data, 1.24 GiB in
+(93.8 MiB/s), 15.6 MiB out (1.22 MiB/s), 15s
+67,360 scanned, 34,733 indexed, 45,615 found, 39,341 compared, 39,341 same data, 1.73 GiB in
+(100 MiB/s), 22.8 MiB out (1.43 MiB/s), 20s
+82,314 scanned, 44,629 indexed, 63,276 found, 55,559 compared, 55,559 same data, 2.05 GiB in
+(64.7 MiB/s), 31.0 MiB out (1.63 MiB/s), 25s
+100,085 scanned, 59,585 indexed, 79,799 found, 70,618 compared, 70,618 same data, 2.43 GiB in
+(77.2 MiB/s), 38.9 MiB out (1.57 MiB/s), 30s
+110,158 scanned, 69,651 indexed, 93,005 found, 82,654 compared, 82,654 same data, 2.87 GiB in
+(89.1 MiB/s), 45.4 MiB out (1.28 MiB/s), 35s
+120,047 scanned, 79,641 indexed, 104,539 found, 93,226 compared, 93,226 same data, 3.40 GiB in
+(108 MiB/s), 51.4 MiB out (1.20 MiB/s), 40s
+130,362 scanned, 94,662 indexed, 114,193 found, 101,230 compared, 101,230 same data, 3.87 GiB in
+(97.3 MiB/s), 56.7 MiB out (1.06 MiB/s), 45s
+134,630 scanned, 104,789 indexed, 124,272 found, 110,547 compared, 110,547 same data, 4.33 GiB
+in (94.2 MiB/s), 62.3 MiB out (1.12 MiB/s), 50s
+134,630 scanned, 129,879 indexed, 133,227 found, 119,717 compared, 119,717 same data, 4.93 GiB
+in (119 MiB/s), 68.2 MiB out (1.17 MiB/s), 55s
+Xcp command : xcp verify -dircount 32k <IP address of NFS server>:/source_vol <IP address ofdestination NFS server>:/dest_vol
+134,630 scanned, 0 matched, 100% found (121,150 have data), 100% verified (data, attrs, mods), 0
+different item, 0 error
+Speed : 4.95 GiB in (89.3 MiB/s), 69.2 MiB out (1.22 MiB/s)
+Total Time : 56s.
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -noId
+
+使用 `-noId` 參數 `verify` 命令以停用預設索引的建立。預設值為假。
+
+.語法
+[source, cli]
+----
+xcp verify -noId <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp verify -noid <IP address of source NFS server>:/source_vol <IP address of destination NFS server>:/dest_vol
+
+Job ID: Job_2024-04-22_07.19.41.825308_verify
+ 49,216 scanned, 10,163 found, 9,816 compared, 9.59 KiB same data, 1.15 GiB in (234 MiB/s), 5.67 MiB out (1.13 MiB/s), 6s
+ 49,615 scanned, 4,958 indexed, 27,018 found, 26,534 compared, 25.9 KiB same data, 3.08 GiB in (390 MiB/s), 15.1 MiB out (1.86 MiB/s), 11s
+ 73,401 scanned, 34,884 indexed, 46,365 found, 45,882 compared, 44.8 KiB same data, 5.31 GiB in (420 MiB/s), 26.6 MiB out (2.12 MiB/s), 16s
+ 80,867 scanned, 44,880 indexed, 63,171 found, 62,704 compared, 61.2 KiB same data, 7.23 GiB in (377 MiB/s), 36.2 MiB out (1.83 MiB/s), 21s
+ 83,102 scanned, 69,906 indexed, 79,587 found, 79,246 compared, 77.4 KiB same data, 9.13 GiB in (387 MiB/s), 46.0 MiB out (1.95 MiB/s), 26s
+
+Xcp command : xcp verify 10.235.122.70:/source_vol 10.235.122.86:/dest_vol
+Stats       : 83,102 scanned, 83,102 indexed, 100% found (82,980 have data), 82,980 compared, 100% verified (data, attrs, mods)
+Speed       : 9.55 GiB in (347 MiB/s), 48.4 MiB out (1.72 MiB/s)
+Total Time  : 28s.
+Job ID      : Job_2024-04-22_07.19.41.825308_verify
+Log Path    : /opt/NetApp/xFiles/xcp/xcplogs/Job_2024-04-22_07.19.41.825308_verify.log
+STATUS      : PASSED
+----
+====
+
+
+== 驗證 -preserve-atime
+
+使用 `-preserve-atime` 參數 `verify` 命令將所有檔案還原至來源上上次存取的日期。。 `-preserve-atime` 參數會將存取時間重設為 XCP 讀取作業之前設定的原始值。
+
+.語法
+[source, cli]
+----
+xcp verify -preserve-atime <source_ip_address>:/source_vol <destination_ip_address>:/dest_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp verify -preserve-atime
+<IP_address>:/source_vol <destination_IP_address>:/dest_vol
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2022-06-
+30_15.29.03.686503
+xcp: Job ID: Job_2022-06-30_15.29.03.723260_verify
+Xcp command : xcp verify -preserve-atime <IP_address>:/source_vol <destination_IP_address>:/dest_vol Stats :
+110 scanned, 110 indexed, 100% found (96 have data), 96 compared, 100% verified (data, attrs,
+mods)
+Speed : 4.87 MiB in (3.02 MiB/s), 160 KiB out (99.4 KiB/s) Total Time : 1s.
+Job ID : Job_2022-06-30_15.29.03.723260_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2022-06-30_15.29.03.723260_verify.log STATUS :
+PASSED
+----
+====
+
+
+== 驗證 -s3.insecure
+
+使用 `-s3.insecure` 參數 `verify` 命令使用 HTTP 取代 HTTPS 進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp verify -s3.insecure hdfs:///user/test s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp verify -s3.insecure hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+08_09.04.33.301709
+Job ID: Job_2023-06-08_09.04.33.301709_verify
+Xcp command : xcp verify -s3.insecure hdfs://<HDFS source> s3://<s3-bucket>
+Stats : 8 scanned, 8 indexed, 100% found (5 have data), 5 compared, 100% verified (data)
+Speed : 21.3 KiB in (8.20 KiB/s), 90.8 KiB out (34.9 KiB/s)
+Total Time : 2s.
+Job ID : Job_2023-06-08_09.04.33.301709_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_09.04.33.301709_verify.log
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -S3.Endpoint <s3_endpoint_url>
+
+使用 `-s3.endpoint <s3_endpoint_url>` 參數 `verify` 命令以指定的 URL 取代預設 AWS 端點 URL 、以進行 S3 貯體通訊。
+
+.語法
+[source, cli]
+----
+xcp verify -s3.endpoint https://<endpoint_url>: s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp verify -s3.endpoint https://<endpoint_url> hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+13_11.20.48.203492
+Job ID: Job_2023-06-13_11.20.48.203492_verify
+2 scanned, 2 found, 9.55 KiB in (1.90 KiB/s), 12.5 KiB out (2.50 KiB/s), 5s
+Xcp command : xcp verify -s3.endpoint https://<endpoint_url>  hdfs://<HDFS source> s3://<s3-bucket>
+Stats : 8 scanned, 8 indexed, 100% found (5 have data), 5 compared, 100% verified (data)
+Speed : 21.3 KiB in (2.28 KiB/s), 91.1 KiB out (9.72 KiB/s)
+Total Time : 9s.
+Job ID : Job_2023-06-13_11.20.48.203492_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_11.20.48.203492_verify.log
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -s3.profile <name>
+
+使用 `s3.profile` 參數 `verify` 命令、從 AWS 認證檔案中指定用於 S3 儲存區通訊的設定檔。
+
+.語法
+[source, cli]
+----
+xcp verify -s3.profile <name> -s3.endpoint https://<endpoint_url>: s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp verify -s3.profile sg -s3.endpoint https://<endpoint_url> hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+08_09.05.22.412914
+Job ID: Job_2023-06-08_09.05.22.412914_verify
+Xcp command : xcp verify -s3.profile sg -s3.endpoint https://<endpoint_url> hdfs://<HDFS source> s3://<s3-bucket>
+Stats : 8 scanned, 8 indexed, 100% found (5 have data), 5 compared, 100% verified (data)
+Speed : 21.3 KiB in (6.52 KiB/s), 91.2 KiB out (27.9 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-06-08_09.05.22.412914_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_09.05.22.412914_verify.log
+STATUS : PASSED
+[root@client1 linux]# ./xcp verify -s3.profile sg -s3.endpoint https://<endpoint_url> hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+08_09.20.53.763772
+Job ID: Job_2023-06-08_09.20.53.763772_verify
+Xcp command : xcp verify -s3.profile sg -s3.endpoint https://<endpoint_url>
+hdfs://<HDFS source> s3://<s3-bucket>
+Stats : 8 scanned, 8 indexed, 100% found (5 have data), 5 compared, 100% verified (data)
+Speed : 25.3 KiB in (14.5 KiB/s), 93.7 KiB out (53.8 KiB/s)
+Total Time : 1s.
+Job ID : Job_2023-06-08_09.20.53.763772_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_09.20.53.763772_verify.log
+STATUS : PASSED
+----
+====
+
+
+== 驗證 -s3.noverify
+
+使用 `-s3.noverify` 參數 `verify` 用於覆寫 S3 儲存區通訊之 SSL 憑證預設驗證的命令。
+
+.語法
+[source, cli]
+----
+xcp verify -s3.noverify s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp verify -s3.noverify hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+13_10.59.01.817044
+Job ID: Job_2023-06-13_10.59.01.817044_verify
+Xcp command : xcp verify -s3.noverify hdfs://<HDFS source> s3://<s3-bucket>
+Stats : 8 scanned, 8 indexed, 100% found (5 have data), 5 compared, 100% verified (data)
+Speed : 21.3 KiB in (5.84 KiB/s), 90.8 KiB out (24.9 KiB/s)
+Total Time : 3s.
+Job ID : Job_2023-06-13_10.59.01.817044_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_10.59.01.817044_verify.log
+STATUS : PASSED
+
+./xcp verify -s3.profile sg -s3.noverify -s3.endpoint https://<endpoint_url> hdfs://<HDFS source> s3://<s3-bucket>
+
+xcp: WARNING: No index name has been specified, creating one with name: XCP_verify_2023-06-
+13_11.29.00.543286
+Job ID: Job_2023-06-13_11.29.00.543286_verify
+15,009 scanned, 9 indexed, 1,194 found, 908 compared, 908 same data, 4.87 MiB in (980 KiB/s), 199 KiB
+out (39.1 KiB/s), 5s
+15,009 scanned, 9 indexed, 2,952 found, 2,702 compared, 2.64 KiB same data, 8.56 MiB in (745 KiB/s),
+446 KiB out (48.7 KiB/s), 10s
+15,009 scanned, 9 indexed, 4,963 found, 4,841 compared, 4.73 KiB same data, 12.9 MiB in (873 KiB/s),
+729 KiB out (55.9 KiB/s), 15s
+15,009 scanned, 9 indexed, 6,871 found, 6,774 compared, 6.62 KiB same data, 16.9 MiB in (813 KiB/s),
+997 KiB out (53.4 KiB/s), 20s
+15,009 scanned, 9 indexed, 8,653 found, 8,552 compared, 8.35 KiB same data, 20.6 MiB in (745 KiB/s),
+1.22 MiB out (49.3 KiB/s), 25s
+15,009 scanned, 9 indexed, 10,436 found, 10,333 compared, 10.1 KiB same data, 24.3 MiB in (754
+KiB/s), 1.46 MiB out (49.8 KiB/s), 31s
+15,009 scanned, 9 indexed, 12,226 found, 12,114 compared, 11.8 KiB same data, 28.0 MiB in (751
+KiB/s), 1.71 MiB out (49.7 KiB/s), 36s
+15,009 scanned, 9 indexed, 14,005 found, 13,895 compared, 13.6 KiB same data, 31.7 MiB in (756
+KiB/s), 1.95 MiB out (50.0 KiB/s), 41s
+15,009 scanned, 9 indexed, 14,229 found, 14,067 compared, 13.7 KiB same data, 32.2 MiB in (102
+KiB/s), 1.98 MiB out (6.25 KiB/s), 46s
+Xcp command : xcp verify -s3.profile sg -s3.noverify -s3.endpoint https://<endpoint_url> <HDFS source> s3://<s3-bucket>
+Stats : 15,009 scanned, 15,009 indexed, 100% found (15,005 have data), 15,005 compared, 100%
+verified (data)
+Speed : 33.9 MiB in (724 KiB/s), 2.50 MiB out (53.5 KiB/s)
+Total Time : 47s.
+Job ID : Job_2023-06-13_11.29.00.543286_verify
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_11.29.00.543286_verify.log
+STATUS : PASSED
+----
+====

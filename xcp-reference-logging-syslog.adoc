@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: xcp-reference-logging-syslog.html 
+keywords: netapp, xcp, reference, event, logging 
+summary: XCP 記錄 
+---
+= 啟用 Syslog 用戶端
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP 支援 Syslog 用戶端、可將 XCP 事件記錄訊息傳送至 NFS 和 SMB 的遠端 Syslog 接收器。它支援使用預設連接埠 514 的 UDP 傳輸協定。
+
+
+
+== 設定 NFS 和 SMB 的 Syslog 用戶端
+
+若要啟用 Syslog 用戶端、必須設定 `syslog` 中的選項 `xcpLogConfig.json` NFS 和 SMB 的組態檔。
+
+以下 NFS 與 SMB 的 Syslog 用戶端組態範例：
+
+[listing]
+----
+{
+"syslog":{
+"isEnabled":true,
+"level":"INFO",
+"serverIp":"10.101.101.d",
+"port":514
+},
+"sanitize":false
+}
+----
+
+
+== 系統記錄選項
+
+下表顯示 Syslog 子選項及其說明：
+
+[cols="1,1,1,3"]
+|===
+| 子選項 | Json資料類型 | 預設值 | 說明 
+
+
+| `isEnabled` | 布林值 | 錯 | 此布林選項可在 XCP 中啟用 Syslog 用戶端。設定為
+False 將忽略系統記錄組態。 
+
+
+| `level` | 字串 | 資訊 | 事件訊息嚴重性篩選器層級。事件訊息支援五個嚴重性等級、依嚴重性遞減順序排列：嚴重、錯誤、警告、資訊和偵錯 
+
+
+| `serverIp` | 字串 | 無 | 此選項會列出遠端 Syslog 伺服器 IP 位址或主機名稱。 
+
+
+| `port` | Integar | 514 | 此選項為遠端 Syslog 接收器連接埠。您可以使用此選項、將 Syslog 接收器設定為在不同的連接埠上接受 Syslog 資料報。 預設的 UDP 連接埠為 514 。 
+|===
+
+IMPORTANT: 。 `sanitize` 不應在「 Syslog 」組態中指定選項。此選項具有全域範圍、而且在 JSON 組態內的記錄、事件記錄和系統記錄都很常見。將此值設為「 true 」將會隱藏張貼至 Syslog 伺服器的 Syslog 訊息中的敏感資訊。
+
+
+
+== 系統記錄訊息格式
+
+透過 UDP 傳送至遠端 Syslog 伺服器的每個 Syslog 訊息、都會依照 NFS 和 SMB 的 RFC 5424 格式進行格式化。
+
+下表顯示 XCP 系統記錄訊息所支援的 RFC 5424 嚴重性等級：
+
+|===
+| 嚴重性值 | 嚴重性等級 
+
+
+| 3. | 錯誤：錯誤狀況 
+
+
+| 4. | 警告：警告狀況 
+
+
+| 6. | 資訊：資訊訊息 
+
+
+| 7. | 偵錯：偵錯層級訊息 
+|===
+在 NFS 和 SMB 的 Syslog 標頭中、版本的值為 1 、 XCP 所有訊息的設施值都設為 1 （使用者層級訊息）：
+`<PRI> = syslog facility * 8 + severity value`
+
+.XCP 應用程式 Syslog 訊息格式、含 NFS 的 Syslog 標頭：
+下表顯示 Syslog 訊息格式的範本和範例、以及 NFS 的 Syslog 標頭：
+
+|===
+| 範本 | 範例 
+
+
+ a| 
+`<PRI><version> <Time stamp> <hostname> xcp_nfs - - - <XCP message>`
+ a| 
+`<14>1 2020-07-08T06:30:34.341Z netapp xcp_nfs - - - INFO {"Event ID": 14,
+"Event Category": "XCP job status", "Event Type": "XCP scan completion",
+"Event Source": "netapp", "Description": "XCP scan is completed by scanning 8
+items"}`
+
+|===
+.XCP 應用程式訊息、不含 NFS 的 Syslog 標頭
+下表顯示不含 NFS 之 Syslog 標頭的 Syslog 訊息格式範本和範例：
+
+|===
+| 範本 | 範例 
+
+
+ a| 
+`<message severity level i.e CRITICAL, ERROR, WARNING, INFO, DEBUG> <XCP event log message>`
+ a| 
+`INFO {"Event ID": 14, "Event Category": "XCP job status", "Event Type": "XCP scan completion", "Event Source": "netapp", "Description": "XCP scan is completed by scanning 8 items"}`
+
+|===
+.XCP 應用程式 Syslog 訊息格式、含 SMB 的 Syslog 標頭
+下表顯示 Syslog 訊息格式的範本和範例、以及 SMB 的 Syslog 標頭：
+
+|===
+| 範本 | 範例 
+
+
+ a| 
+`<PRI><version> <Time stamp> <hostname> xcp_smb - - - <XCP message`
+ a| 
+`<14>1 2020-07-10T10:37:18.452Z bansala01 xcp_smb - - - INFO {"Event ID": 14, "Event Category": "XCP job status", "Event Type": "XCP scan completion", "Event Source": "NETAPP-01", "Description": "XCP scan is completed by scanning 17 items"}`
+
+|===
+.不含 SMB 之 Syslog 標頭的 XCP 應用程式訊息
+下表顯示不含 SMB 之 Syslog 標頭的 Syslog 訊息格式範本和範例：
+
+|===
+| 範本 | 範例 
+
+
+ a| 
+`<message severity level i.e CRITICAL, ERROR, WARNING, INFO, DEBUG> <XCP event log message>`
+ a| 
+`NFO {"Event ID": 14, "Event Category": "XCP job status", "Event Type": "XCP scan completion", "Event Source": "NETAPP-01", "Description": "XCP scan is completed by scanning 17items"}`
+
+|===

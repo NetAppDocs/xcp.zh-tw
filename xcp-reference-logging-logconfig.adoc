@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: xcp-reference-logging-logconfig.html 
+keywords: netapp, xcp, reference, event, logging 
+summary: XCP 記錄 
+---
+= 設定 logconfig 選項
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+瞭解中的 logconfig 選項 `xcpLogConfig.json` 適用於 XCP NFS 和 SMB 的 JSON 組態檔案。
+
+以下範例顯示使用 "logconfig" 選項設定的 JSON 組態檔：
+
+* 範例 *
+
+[listing]
+----
+{
+"level":"INFO",
+"maxBytes":"52428800",
+"name":"xcp.log"
+}
+----
+* 使用此組態、您可以從選取有效的層級值、根據訊息的嚴重性來篩選訊息 `CRITICAL`、 `ERROR`、 `WARNING`、 `INFO`和 `Debug`。
+* 。 `maxBytes` 設定可讓您變更旋轉記錄檔的檔案大小。預設為 50MB 。將值設為 0 會停止旋轉、並為所有記錄建立單一檔案。
+* 。 `name` 選項可設定記錄檔的名稱。
+* 如果缺少任何金鑰值配對、系統會使用預設值。如果您錯誤地指定現有金鑰的名稱、則會將其視為新的金鑰、而新的金鑰不會影響系統的運作方式或系統功能。
+

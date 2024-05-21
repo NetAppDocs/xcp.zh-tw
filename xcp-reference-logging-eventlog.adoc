@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: xcp-reference-logging-eventlog.html 
+keywords: netapp, xcp, reference, event, logging 
+summary: XCP 記錄 
+---
+= 設定 eventlog 選項
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP 支援事件訊息、您可以使用啟用 `eventlog` 中的選項 `xcpLogConfig.json` JSON 組態檔。
+
+對於 NFS 、所有事件訊息都會寫入 `xcp_event.log` 檔案位於任一預設位置 `/opt/NetApp/xFiles/xcp/` 或使用下列環境變數設定的自訂位置：
+
+`XCP_CONFIG_DIR`
+
+
+NOTE: 當兩個位置都設定好時、 `XCP_LOG_DIR` 已使用。
+
+對於 SMB 、所有事件訊息都會寫入檔案 `xcp_event.log` 位於預設位置 `C:\NetApp\XCP\`。
+
+
+
+== 適用於 NFS 和 SMB 的事件訊息的 JSON 組態
+
+在下列範例中、 JSON 組態檔案可為 NFS 和 SMB 啟用事件訊息。
+
+.啟用 eventlog 選項的 JSON 組態檔範例
+[listing]
+----
+{
+"eventlog": {
+"isEnabled": true,
+"level": "INFO"
+},
+"sanitize": false
+}
+----
+.啟用 eventlog 和其他選項的 JSON 組態檔範例
+[listing]
+----
+{
+"logConfig": {
+"level": "INFO",
+"maxBytes": 52428800,
+"name": "xcp.log"
+},
+"eventlog": {
+"isEnabled": true,
+"level": "INFO"
+},
+"syslog": {
+"isEnabled": true,
+"level": "info",
+"serverIp": "10.101.101.10",
+"port": 514
+},
+"sanitize": false
+}
+----
+下表顯示事件記錄子選項及其說明：
+
+[cols="1,1,1,3"]
+|===
+| 子選項 | Json資料類型 | 預設值 | 說明 
+
+
+| `isEnabled` | 布林值 | 錯 | 此布林選項用於啟用事件訊息。如果設為 false 、則不會產生任何事件訊息、也不會將事件記錄發佈至事件記錄檔。 
+
+
+| `level` | 字串 | 資訊 | 事件訊息嚴重性篩選器層級。事件訊息支援五個嚴重性等級、依嚴重性遞減順序排列：嚴重、錯誤、警告、資訊和偵錯 
+|===
+.NFS 事件記錄訊息的範本
+下表顯示 NFS 事件記錄訊息的範本和範例：
+
+|===
+| 範本 | 範例 
+
+
+ a| 
+`<Time stamp> - <Severity level> {"Event ID": <ID>, "Event
+Category":<category of xcp event log>, "Event Type": <type of event
+log>, "ExecutionId": < unique ID for each xcp command execution >,
+"Event Source": <host name>, "Description": <XCP event log message>}`
+ a| 
+`2020-07-14 07:07:07,286 - ERROR {"Event ID": 51, "Event Category":
+"Application failure", "Event Type": "No space left on destination
+error", " ExecutionId ": 408252316712, "Event Source": "NETAPP-01",
+"Description": "Target volume is left with no free space while executing
+: copy {}. Please increase the size of target volume
+10.101.101.101:/cat_vol"}`
+
+|===
+.Eventlog 訊息選項
+以下選項可用於 eventlog 訊息：
+
+* `Event ID`：每個事件記錄訊息的唯一識別碼。
+* `Event Category`：說明事件類型和事件記錄訊息的類別。
+* `Event Type`：這是描述事件訊息的簡短字串。多個事件類型可以屬於一個類別。
+* `Description`：說明欄位包含 XCP 產生的事件記錄訊息。
+* `ExecutionId`：每個執行的 XCP 命令的唯一識別碼。
+

@@ -1,0 +1,14 @@
+= 
+:allow-uri-read: 
+
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp activate
+
+XCP activated
+----
+====

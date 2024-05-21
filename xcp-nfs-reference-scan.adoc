@@ -1,0 +1,1193 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-scan.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= 掃描
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS `scan` 命令會遞迴掃描整個來源 NFSv3 匯出的路徑、並傳回檔案結構統計資料。
+
+NetApp 建議您在掃描作業期間、將來源 NFS 匯出裝載設為唯讀模式。
+
+.語法
+[source, cli]
+----
+xcp scan <source_nfs_export_path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan <IP address of NFS server>:/
+
+source_vol
+source_vol
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan <IP address of NFS server>:/source vol
+----
+====
+下表列出 `scan` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<scan_l,掃描 -l>> | 以長列表輸出格式列出檔案。 
+
+
+| <<scan_q,掃描 -q>> | 顯示掃描的檔案數量。 
+
+
+| <<nfs_scan_stats_csv_html,掃描 - 統計資料>> | 以樹狀結構統計報告格式列出檔案。 
+
+
+| <<nfs_scan_stats_csv_html,掃描 -csv>> | 以樹狀結構統計 CSV 報告格式列出檔案。 
+
+
+| <<nfs_scan_stats_csv_html,掃描 -HTML>> | 以樹狀結構統計 HTML 報告格式列出檔案。 
+
+
+| <<掃描 -nonames>> | 從檔案清單和報告中排除使用者和群組名稱。 
+
+
+| <<nfs_scan_newid,掃描 -nevid  ；名稱 >  | 指定新索引的目錄名稱。 
+
+
+| <<nfs_scan_id,掃描 -id  ； catalog_name>  | 指定先前複本或掃描索引的目錄名稱。 
+
+
+| <<nfs_scan_match,掃描 - 符合  ；篩選器 >  | 僅處理符合篩選條件的檔案和目錄。 
+
+
+| <<nfs_scan_fmt,掃描 -fmt ； string_expression>  | 僅處理符合格式的檔案和目錄。 
+
+
+| <<nfs_scan_du,掃描 -du>> | 摘要說明每個目錄（包括子目錄）的空間使用量。 
+
+
+| <<nfs_scan_md5,掃描 -md5 ； string_expression>  | 在檔案上產生 checksum 、並在建立索引時儲存 checksum （預設： false ）。 
+
+
+| <<nfs_scan_depth,掃描深度  ； n>  | 限制搜尋深度。 
+
+
+| <<nfs_scan_dircount,掃描 -dircount  ； n[k]>  | 指定讀取目錄時的要求大小。 
+
+
+| <<nfs_scan_edupe,掃描重複資料刪除>> | 在報告中包含重複資料刪除預估值。 
+
+
+| <<nfs_scan_bs,掃描 -BS  ； n[k]>  | 指定用於讀取資料的掃描的讀取 / 寫入區塊大小 `-md5` 或 `-edupe` （預設值： 64K ）。 
+
+
+| <<nfs_scan_parallel,掃描平行  ； n>  | 指定並行批次處理程序的最大數目（預設值： 7 ）。 
+
+
+| <<nfs_scan_noid,掃描 -noId >> | 停用預設索引的建立（預設值： false ）。 
+
+
+| <<nfs_scan_subdir,掃描 -subdir-names>> | 擷取目錄中頂層子目錄的名稱。 
+
+
+| <<掃描 -preserve-atime>> | 將來源上的所有檔案還原至上次存取的日期。 
+
+
+| <<掃描 -s3.insecure>> | 提供選項、可在 S3 Bucket 通訊中使用 HTTP 而非 HTTPS 。 
+
+
+| <<nfs_scan_endpoint,掃描 -S3.Endpoint  ； S3_Endpoint URL>  | 以 S3 Bucket 通訊的指定 URL 覆寫預設的 Amazon Web Services （ AWS ）端點 URL 。 
+
+
+| <<nfs_scan_s3_profile,掃描 -s3.profile  ； profile 名稱 >  | 從 AWS 認證檔案指定用於 S3 儲存區通訊的設定檔。 
+
+
+| <<掃描 -s3.noverify>> | 覆寫 S3 Bucket 通訊的 SSL 認證預設驗證。 
+|===
+
+
+== 掃描 -l
+
+使用 `-l` 參數 `scan` 以長清單輸出格式列出檔案的命令。
+
+.語法
+[source, cli]
+----
+xcp scan -l <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -l <IP address or hostname of NFSserver>:/source_vol
+
+drwxr-xr-x --- root root 4KiB 4KiB 6s source_vol
+drwxr-xr-x --- root root 4KiB 4KiB 42s source_vol/USER.1
+drwxr-xr-x --- root root 4KiB 4KiB 42s source_vol/USER.2
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.1/FILE_1
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.1/FILE_2
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.1/FILE_3
+rw-r--r-- --- root root 1KiB 4KiB 42ssource_vol/USER.1/FILE_4
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.1/FILE_5
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.2/FILE_1
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.2/FILE_5
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.2/FILE_2
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.2/FILE_3
+rw-r--r-- --- root root 1KiB 4KiB 42s source_vol/USER.2/FILE_4
+Xcp command : xcp scan -l <IP address or hostname of NFS server>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 3.73 KiB in (4.89 KiB/s), 756 out (989/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -q
+
+使用 `-q` 參數 `scan` 顯示掃描檔案數的命令。
+
+.語法
+[source, cli]
+----
+xcp scan -q <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -q <IP address or hostname of NFSserver>:/source_vol
+
+Xcp command : xcp scan -q <IP address or hostname of NFS server>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 3.73 KiB in (3.96 KiB/s), 756 out(801/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -stats 、掃描 -csv 和掃描 -HTML
+
+使用 `-stats`、 `-csv`和 `-html` 的參數 `scan` 以樹狀結構統計報告格式列出檔案的命令。
+
+
+NOTE: XCP 報告（ .csv 、 .html ）會儲存在中指定的目錄位置 `xcp.ini` 檔案：檔案會儲存在中 `<catalog path>/catalog/indexes/1/reports` 資料夾。您可以在附錄中檢視範例報告。
+
+.語法
+[source, cli]
+----
+xcp scan -stats <ip_address>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp scan -stats <ip_address>:/fg1
+
+Job ID: Job_2023-11-23_23.23.33.930501_scan
+== Maximum Values ==
+Size Used Depth File Path Namelen Dirsize
+50.4 MiB 50.6 MiB 1 24 20 33
+== Average Values ==
+Size Depth Namelen Dirsize
+15.3 MiB 0 6 33
+== Top Space Users ==
+root
+107 MiB
+== Top File Owners ==
+root
+34
+== Top File Extensions ==
+.sh .out .py .sh1 other
+8 2 2 1 20
+16.0 KiB 3.09 MiB 448 1.48 KiB 502 MiB
+== Number of files ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+20 1 2 10
+== Space used ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+76 KiB 12 KiB 5.16 MiB 102 MiB
+== Directory entries ==
+empty 1-10 10-100 100-1K 1K-10K >10K
+
+== Depth ==
+0-5 6-10 11-15 16-20 21-100 >100
+34
+== Accessed ==
+>1 year9-12 months 6-9 months 3-6 months 1-3 months 1-31 days 1-24 hrs <1 hour <15 mins
+future
+33
+505 MiB
+== Modified ==
+>1 year9-12 months 6-9 months 3-6 months 1-3 months 1-31 days 1-24 hrs <1 hour <15 mins
+future
+16
+17
+400 MiB 105
+MiB
+== Changed ==
+>1 year9-12 months 6-9 months 3-6 months 1-3 months 1-31 days 1-24 hrs <1 hour <15 mins
+future
+16
+17
+400 MiB 105
+MiB
+== Path ==
+0-1024 >1024
+33
+Total count: 34
+Directories: 1
+Regular files: 33
+Symbolic links: None
+Special files: None
+Hard links: None
+Multilink files: None
+Space Saved by Hard links (KB): 0
+Sparse data: N/A
+Dedupe estimate: N/A
+Total space for regular files: size: 505 MiB, used: 107 MiB
+Total space for symlinks: size: 0, used: 0
+Total space for directories: size: 8 KiB, used: 8 KiB
+Total space used: 107 MiB
+Xcp command : xcp scan -stats <ip_address>:/fg1
+Stats : 34 scanned
+Speed : 6.35 KiB in (7.23 KiB/s), 444 out (506/s)
+Total Time : 0s.
+Job ID : Job_2023-11-23_23.23.33.930501_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/
+Job_2023-11-23_23.23.33.930501_scan.log
+
+STATUS : PASSED
+[root@client 1 linux]#
+
+
+----
+====
+.語法
+[source, cli]
+----
+xcp scan -csv <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -csv <IP address or hostname of NFS server>:/source_vol
+
+scan <IP address or hostname of NFS server>:/source_vol
+options,"{'-csv': True}"
+summary,"13 scanned, 3.73 KiB in (11.3 KiB/s), 756 out (2.23 KiB/s), 0s."
+Maximum Values,Size,Used,Depth,Namelen,Dirsize
+Maximum Values,1024,4096,2,10,5
+Average Values,Namelen,Size,Depth,Dirsize
+Average Values,6,1024,1,4
+Top Space Users,root
+Top Space Users,53248
+Top File Owners,root
+Top File Owners,13
+Top File Extensions,other
+Top File Extensions,10
+Number of files,empty,<8KiB,8-64KiB,64KiB-1MiB,1-10MiB,10-100MiB,>100MiB
+Number of files,0,10,0,0,0,0,0
+Space used,empty,<8KiB,8-64KiB,64KiB-1MiB,1-10MiB,10-100MiB,>100MiB
+Space used,0,40960,0,0,0,0,0
+Directory entries,empty,1-10,10-100,100-1K,1K-10K,>10K
+Directory entries,0,3,0,0,0,0
+Depth,0-5,6-10,11-15,16-20,21-100,>100
+Depth,13,0,0,0,0,0
+Accessed,>1 year,>1 month,1-31 days,1-24 hrs,<1 hour,<15 mins,future
+Accessed,0,0,0,0,0,10,0
+Modified,>1 year,>1 month,1-31 days,1-24 hrs,<1 hour,<15 mins,future
+Modified,0,0,0,0,0,10,0
+Changed,>1 year,>1 month,1-31 days,1-24 hrs,<1 hour,<15 mins,future
+Changed,0,0,0,0,0,10,0
+
+Total count,13
+Directories,3
+Regular files,10
+Symbolic links,0
+Special files,0
+Hard links,0,
+multilink files,0,
+Space Saved by Hard links (KB),0
+Sparse data,N/A
+Dedupe estimate,N/A
+Total space for regular files,size,10240,used,40960
+Total space for symlinks,size,0,used,0
+Total space for directories,size,12288,used,12288
+Total space used,53248
+Xcp command : xcp scan -csv <IP address or hostname of NFS server>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 3.73 KiB in (11.2 KiB/s), 756 out (2.22 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+.語法
+[source, cli]
+----
+xcp scan -html <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -html <IP address or hostname of NFS server>:/source_vol
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+[redacted HTML contents]
+</body></html>
+Xcp command : xcp scan -html <IP address or hostname of NFSserver>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 3.73 KiB in (4.31 KiB/s), 756 out(873/s)
+Total Time : 0s.
+STATUS : PASSED
+[root@localhost source_vol]#
+----
+====
+
+
+== 掃描 -nonames
+
+使用 `-nonames` 參數 `scan` 從檔案清單或報告中排除使用者和群組名稱的命令。
+
+
+NOTE: 搭配使用時 `scan` 命令 `-nonames` 參數僅適用於使用傳回的檔案清單 `-l` 選項。
+
+.語法
+[source, cli]
+----
+xcp scan -nonames <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -nonames <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan -nonames <IP address or hostname of NFSserver>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 3.73 KiB in (4.66 KiB/s), 756 out(944/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -newid <name>
+
+使用 `-newid <name>` 參數 `scan` 命令，用於在執行掃描時指定新索引的目錄名稱。
+
+.語法
+[source, cli]
+----
+xcp scan -newid <name> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -newid ID001 <IP address or hostname of NFS server>:/source_vol
+
+Xcp command : xcp scan -newid ID001 <IP address or hostname of NFS server>:/source_vol
+13 scanned, 0 matched, 0 error
+Speed : 13.8 KiB in (17.7 KiB/s), 53.1 KiB out (68.0 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -id <catalog_name>
+
+使用 `-id` 參數 `scan` 命令指定先前複本或掃描索引的目錄名稱。
+
+.語法
+[source, cli]
+----
+xcp scan -id <catalog_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -id 3
+
+xcp: Index: {source: 10.10.1.10:/vol/ex_s01/etc/keymgr, target: None}
+keymgr/root/cacert.pem
+keymgr/cert/secureadmin.pem
+keymgr/key/secureadmin.pem
+keymgr/csr/secureadmin.pem
+keymgr/root
+keymgr/csr
+keymgr/key
+keymgr/cert
+keymgr
+9 reviewed, 11.4 KiB in (11.7 KiB/s), 1.33 KiB out (1.37 KiB/s), 0s.
+----
+====
+
+
+== 掃描 - 比對 <filter>
+
+使用 `-match <filter>` 參數 `scan` 命令，指定只處理與篩選器相符的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp scan -match <filter> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -match bin <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Filtered: 0 did not match
+Xcp command : xcp scan -match bin <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 18 matched, 0 error
+Speed : 4.59 KiB in (6.94 KiB/s), 756 out (1.12KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -fmt <string_expression>
+
+使用 `-fmt` 參數 `scan` 命令指定只傳回符合指定格式的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp scan -fmt <string_expression> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -fmt "'{}, {}, {}, {}, {}'.format(name, x, ctime, atime, mtime)"
+<IP address or hostname of NFS server>:/source_vol
+
+source_vol, <IP address or hostname of NFS server>:/source_vol, 1583294484.46, 1583294492.63,
+1583294484.46
+ILE_1, <IP address or hostname of NFS server>:/source_vol/USER.1/FILE_1, 1583293637.88,
+1583293637.83, 1583293637.83
+FILE_2, <IP address or hostname of NFS server>:/source_vol/USER.1/FILE_2, 1583293637.88,
+1583293637.83, 1583293637.84
+FILE_3, <IP address or hostname of NFS server>:/source_vol/USER.1/FILE_3, 1583293637.88,
+1583293637.84, 1583293637.84
+FILE_4, <IP address or hostname of NFS server>:/source_vol/USER.1/FILE_4, 1583293637.88,
+1583293637.84, 1583293637.84
+FILE_5, <IP address or hostname of NFS server>:/source_vol/USER.1/FILE_5, 1583293637.88,
+1583293637.84, 1583293637.84
+file1.txt, <IP address or hostname of NFS server>:/source_vol/USER.1/file1.txt, 1583294284.78,
+1583294284.78, 1583294284.78
+file2.txt, <IP address or hostname of NFS server>:/source_vol/USER.1/file2.txt, 1583294284.78,
+1583294284.78, 1583294284.78
+logfile.txt, <IP address or hostname of NFS server>:/source_vol/USER.1/logfile.txt,
+1583294295.79, 1583294295.79, 1583294295.79
+log1.txt, <IP address or hostname of NFS server>:/source_vol/USER.1/log1.txt, 1583294295.8,
+1583294295.8, 1583294295.8
+r1.txt, <IP address or hostname of NFS server>:/source_vol/r1.txt, 1583294484.46, 1583294484.45,
+1583294484.45
+USER.1, <IP address or hostname of NFS server>:/source_vol/USER.1, 1583294295.8, 1583294492.63,
+1583294295.8
+USER.2, <IP address or hostname of NFS server>:/source_vol/USER.2, 1583293637.95, 1583294492.63,
+1583293637.95
+FILE_1, <IP address or hostname of NFS server>:/source_vol/USER.2/FILE_1, 1583293637.95,
+1583293637.94, 1583293637.94
+FILE_5, <IP address or hostname of NFS server>:/source_vol/USER.2/FILE_5, 1583293637.96,
+1583293637.94, 1583293637.94
+FILE_2, <IP address or hostname of NFS server>:/source_vol/USER.2/FILE_2, 1583293637.96,
+1583293637.95, 1583293637.95
+FILE_3, <IP address or hostname of NFS server>:/source_vol/USER.2/FILE_3, 1583293637.96,
+1583293637.95, 1583293637.95
+FILE_4, <IP address or hostname of NFS server>:/source_vol/USER.2/FILE_4, 1583293637.96,
+1583293637.95, 1583293637.96
+Xcp command : xcp scan -fmt '{}, {}, {}, {}, {}'.format(name, x, ctime, atime, mtime) <IP address
+or hostname of NFS server>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (4.14 KiB/s), 756 out (683/s)
+Total Time : 1s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -du
+
+使用 `-du` 參數 `scan` 用於總結每個目錄（包括子目錄）的空間使用情況的命令。
+
+.語法
+[source, cli]
+----
+xcp scan -du <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -du <IP address or hostname of NFSserver>:/source_vol
+
+24KiB source_vol/USER.1
+24KiB source_vol/USER.2
+52KiB source_vol
+Xcp command : xcp scan -du <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (12.9 KiB/s), 756 out (2.07KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -MD5 <string_expression>
+
+使用 `-md5` 參數 `scan` 命令來產生檔案清單的校驗和、並在建立索引時儲存校驗和。預設值設為 false 。
+
+
+NOTE: 校驗和不用於檔案驗證；它們僅用於掃描作業期間的檔案清單。
+
+.語法
+[source, cli]
+----
+xcp scan -md5 <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -md5 <IP address or hostname of NFSserver>:/source_vol
+
+source_vol
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.1/FILE_1
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.1/FILE_2
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.1/FILE_3
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.1/FILE_4
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.1/FILE_5
+d41d8cd98f00b204e9800998ecf8427e source_vol/USER.1/file1.txt
+d41d8cd98f00b204e9800998ecf8427e source_vol/USER.1/file2.txt
+d41d8cd98f00b204e9800998ecf8427esource_vol/USER.1/logfile.txt
+d41d8cd98f00b204e9800998ecf8427e source_vol/USER.1/log1.txt
+e894f2344aaa92289fb57bc8f597ffa9 source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.2/FILE_1
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.2/FILE_5
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.2/FILE_2
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.2/FILE_3
+d47b127bc2de2d687ddc82dac354c415 source_vol/USER.2/FILE_4
+Xcp command : xcp scan -md5 <IP address or hostname of NFS server>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 16.0 KiB in (34.5 KiB/s), 2.29 KiB out (4.92 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描深度 <n>
+
+使用 `-depth <n>` 參數 `scan` 用於限制掃描搜尋深度的命令。。 `-depth <n>` 參數指定 XCP 可以掃描檔案的子目錄深度。例如、如果指定數字 2 、則 XCP 只會掃描前兩個子目錄層級。
+
+.語法
+[source, cli]
+----
+xcp scan -depth <n> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -depth 2 <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan -depth 2 <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (6.94 KiB/s), 756 out (1.12KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -dircount <n[k]>
+
+使用 `-dircount <n[k]>` 參數 `scan` 用於指定在掃描中讀取目錄時的要求大小的命令。預設值為 64k 。
+
+.語法
+[source, cli]
+----
+xcp scan -dircount <n[k]> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -dircount 64k <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+----
+====
+
+
+== 掃描重複資料刪除
+
+使用 `-edupe` 參數 `scan` 將重複資料刪除預估納入報告中的命令。
+
+
+NOTE: Simple Storage Service （ S3 ）不支援稀疏檔案。因此、請將 S3 儲存區指定為的目標目的地 `scan -edupe` 傳回稀疏資料的值「無」。
+
+.語法
+[source, cli]
+----
+xcp scan -edupe <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@localhost linux]# ./xcp scan -edupe <IP address or hostname of NFSserver>:/source_vol
+
+== Maximum Values ==
+Size Used Depth Namelen Dirsize
+1 KiB 4 KiB 2 11 9
+== Average Values ==
+Namelen Size Depth Dirsize
+6 682 1 5
+== Top Space Users ==
+root
+52 KiB
+== Top File Owners ==
+root
+18
+== Top File Extensions ==
+.txt other
+5 10
+== Number of files ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+    4 11
+== Space used ==
+empty <8KiB 8-64KiB 64KiB-1MiB 1-10MiB 10-100MiB >100MiB
+40 KiB
+== Directory entries ==
+empty 1-10 10-100 100-1K 1K-10K >10K
+3
+== Depth ==
+0-5 6-10 11-15 16-20 21-100 >100
+18
+== Accessed ==
+>1 year >1 month 1-31 days 1-24 hrs <1 hour
+4
+<15 mins
+11
+future
+== Modified ==
+>1 year >1 month 1-31 days 1-24 hrs <1 hour <15 mins future
+15
+== Changed ==
+>1 year >1 month 1-31 days 1-24 hrs <1 hour <15 mins future
+                                     15
+Total count: 18
+Directories: 3
+Regular files: 15
+Symbolic links: None
+Special files: None
+Hard links: None,
+multilink files: None,
+Space Saved by Hard links (KB): 0
+Sparse data: None
+Dedupe estimate: N/A
+Total space for regular files: size: 10.0 KiB, used: 40 KiB
+Total space for symlinks: size: 0, used: 0
+Total space for directories: size: 12 KiB, used: 12 KiB
+Total space used: 52 KiB
+Xcp command : xcp scan -edupe <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 16.0 KiB in (52.7 KiB/s), 2.29 KiB out (7.52 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -BS <n[k]>
+
+使用 `-bs <n[k]>` 參數 `scan` 指定讀寫區塊大小的命令。這適用於使用讀取資料的掃描 `-md5` 或 `-edupe` 參數。預設區塊大小為 64k 。
+
+.語法
+[source, cli]
+----
+xcp scan -bs <n[k]> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -bs 32 <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan -bs 32 <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (19.0 KiB/s), 756 out (3.06KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描平行 <n>
+
+使用 `-parallel` 參數 `scan` 命令以指定並行批次處理程序的最大數目。預設值為 7 。
+
+.語法
+[source, cli]
+----
+xcp scan -parallel <n> <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -parallel 5 <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan -parallel 5 <IP address or hostname of NFS server>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (7.36 KiB/s), 756 out (1.19 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -noId
+
+使用 `-noId` 參數 `scan` 命令以停用預設索引的建立。預設值為假。
+
+.語法
+[source, cli]
+----
+xcp scan -noId <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -noId <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+source_vol/USER.1/FILE_1
+source_vol/USER.1/FILE_2
+source_vol/USER.1/FILE_3
+source_vol/USER.1/FILE_4
+source_vol/USER.1/FILE_5
+source_vol/USER.1/file1.txt
+source_vol/USER.1/file2.txt
+source_vol/USER.1/logfile.txt
+source_vol/USER.1/log1.txt
+source_vol/r1.txt
+source_vol/USER.1
+source_vol/USER.2
+source_vol/USER.2/FILE_1
+source_vol/USER.2/FILE_5
+source_vol/USER.2/FILE_2
+source_vol/USER.2/FILE_3
+source_vol/USER.2/FILE_4
+Xcp command : xcp scan -noId <IP address or hostname of NFSserver>:/source_vol
+18 scanned, 0 matched, 0 error
+Speed : 4.59 KiB in (5.84 KiB/s), 756 out(963/s)
+Total Time : 0s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -subdir-names
+
+使用 `-subdir-names` 參數 `scan` 用於擷取目錄中頂層子目錄名稱的命令。
+
+.語法
+[source, cli]
+----
+xcp scan -subdir-names <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp scan -subdir-names <IP address or hostname of NFS server>:/source_vol
+
+source_vol
+Xcp command : xcp scan -subdir-names <IP address or hostname of NFS server>:/source_vol
+7 scanned, 0 matched, 0 error
+Speed : 1.30 KiB in (1.21 KiB/s), 444 out(414/s)
+Total Time : 1s.
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -preserve-atime
+
+使用 `-preserve-atime` 參數 `scan` 命令將所有檔案還原至來源上上次存取的日期。
+
+掃描 NFS 共用時、如果儲存系統設定為修改讀取時的存取時間、則會修改檔案的存取時間。XCP 不會直接變更存取時間。XCP 會逐一讀取檔案、這會觸發存取時間的更新。。 `-preserve-atime` 選項會將存取時間重設為 XCP 讀取作業之前設定的原始值。
+
+.語法
+[source, cli]
+----
+xcp scan -preserve-atime <ip_address_or_hostname>:/source_vol
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client 1 linux]# ./xcp scan -preserve-atime 101.10.10.10:/source_vol
+
+xcp: Job ID: Job_2022-06-30_14.14.15.334173_scan
+source_vol/USER2/DIR1_4/FILE_DIR1_4_1024_1
+source_vol/USER2/DIR1_4/FILE_DIR1_4_13926_4
+source_vol/USER2/DIR1_4/FILE_DIR1_4_65536_2
+source_vol/USER2/DIR1_4/FILE_DIR1_4_7475_3
+source_vol/USER2/DIR1_4/FILE_DIR1_4_20377_5
+source_vol/USER2/DIR1_4/FILE_DIR1_4_26828_6
+source_vol/USER2/DIR1_4/FILE_DIR1_4_33279_7
+source_vol/USER2/DIR1_4/FILE_DIR1_4_39730_8
+source_vol/USER1
+source_vol/USER2
+source_vol/USER1/FILE_USER1_1024_1
+source_vol/USER1/FILE_USER1_65536_2
+source_vol/USER1/FILE_USER1_7475_3
+source_vol/USER1/FILE_USER1_13926_4
+source_vol/USER1/FILE_USER1_20377_5
+source_vol/USER1/FILE_USER1_26828_6
+source_vol/USER1/FILE_USER1_33279_7
+source_vol/USER1/FILE_USER1_39730_8
+source_vol/USER1/DIR1_2
+source_vol/USER1/DIR1_3
+source_vol/USER2/FILE_USER2_1024_1
+source_vol/USER2/FILE_USER2_65536_2
+source_vol/USER2/FILE_USER2_7475_3
+source_vol/USER2/FILE_USER2_13926_4
+source_vol/USER2/FILE_USER2_20377_5
+source_vol/USER2/FILE_USER2_26828_6
+source_vol/USER2/FILE_USER2_33279_7
+source_vol/USER2/FILE_USER2_39730_8
+source_vol/USER2/DIR1_3
+source_vol/USER2/DIR1_4
+source_vol/USER1/DIR1_2/FILE_DIR1_2_1024_1
+source_vol/USER1/DIR1_2/FILE_DIR1_2_7475_3
+source_vol/USER1/DIR1_2/FILE_DIR1_2_33279_7
+source_vol/USER1/DIR1_2/FILE_DIR1_2_26828_6
+source_vol/USER1/DIR1_2/FILE_DIR1_2_65536_2
+source_vol/USER1/DIR1_2/FILE_DIR1_2_39730_8
+source_vol/USER1/DIR1_2/FILE_DIR1_2_13926_4
+source_vol/USER1/DIR1_2/FILE_DIR1_2_20377_5
+source_vol/USER1/DIR1_3/FILE_DIR1_3_1024_1
+source_vol/USER1/DIR1_3/FILE_DIR1_3_7475_3
+source_vol/USER1/DIR1_3/FILE_DIR1_3_65536_2
+source_vol/USER1/DIR1_3/FILE_DIR1_3_13926_4
+source_vol/USER1/DIR1_3/FILE_DIR1_3_20377_5
+source_vol/USER1/DIR1_3/FILE_DIR1_3_26828_6
+source_vol/USER1/DIR1_3/FILE_DIR1_3_33279_7
+source_vol/USER1/DIR1_3/FILE_DIR1_3_39730_8
+source_vol/USER2/DIR1_3/FILE_DIR1_3_1024_1
+source_vol/USER2/DIR1_3/FILE_DIR1_3_65536_2
+source_vol/USER2/DIR1_3/FILE_DIR1_3_7475_3
+source_vol/USER2/DIR1_3/FILE_DIR1_3_13926_4
+source_vol/USER2/DIR1_3/FILE_DIR1_3_20377_5
+source_vol/USER2/DIR1_3/FILE_DIR1_3_26828_6
+source_vol/USER2/DIR1_3/FILE_DIR1_3_33279_7
+source_vol/USER2/DIR1_3/FILE_DIR1_3_39730_8
+source_vol
+Xcp command : xcp scan -preserve-atime 101.10.10.10:/source_vol
+Stats : 55 scanned
+Speed : 14.1 KiB in (21.2 KiB/s), 2.33 KiB out (3.51 KiB/s)
+Total Time : 0s.
+Job ID : Job_2022-06-30_14.14.15.334173_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2022-06-30_14.14.15.334173_scan.log
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -s3.insecure
+
+使用 `-s3.insecure` 參數 `scan` 命令使用 HTTP 取代 HTTPS 進行 S3 儲存區通訊。
+
+.語法
+[source, cli]
+----
+xcp scan -s3.insecure s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp scan -s3.insecure s3://bucket1
+
+Job ID: Job_2023-06-08_08.16.31.345201_scan
+file5g_1
+USER1/FILE_USER1_1024_1
+USER1/FILE_USER1_1024_2
+USER1/FILE_USER1_1024_3
+USER1/FILE_USER1_1024_4
+USER1/FILE_USER1_1024_5
+Xcp command : xcp scan -s3.insecure s3:// -bucket1
+Stats : 8 scanned, 6 s3.objects
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 2s.
+Job ID : Job_2023-06-08_08.16.31.345201_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_08.16.31.345201_scan.log
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -S3.Endpoint <s3_endpoint_url>
+
+使用 `-s3.endpoint <s3_endpoint_url>` 參數 `scan` 命令以指定的 URL 取代預設 AWS 端點 URL 、以進行 S3 貯體通訊。
+
+.語法
+[source, cli]
+----
+xcp scan -s3.endpoint https://<endpoint_url>: s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp scan -s3.endpoint https://<endpoint_url>: s3://xcp-testing
+
+Job ID: Job_2023-06-13_11.23.06.029137_scan
+aws_files/USER1/FILE_USER1_1024_1
+aws_files/USER1/FILE_USER1_1024_2
+aws_files/USER1/FILE_USER1_1024_3
+aws_files/USER1/FILE_USER1_1024_4
+aws_files/USER1/FILE_USER1_1024_5
+Xcp command : xcp scan -s3.endpoint https://<endpoint_url>: s3://xcp-testing
+Stats : 8 scanned, 5 s3.objects
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 0s.
+Job ID : Job_2023-06-13_11.23.06.029137_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_11.23.06.029137_scan.log
+STATUS : PASSED
+----
+====
+
+
+== 掃描 -s3.profile <name>
+
+使用 `s3.profile` 參數 `scan` 命令、從 AWS 認證檔案中指定用於 S3 儲存區通訊的設定檔。
+
+.語法
+[source, cli]
+----
+xcp scan -s3.profile <name> -s3.endpoint https://<endpoint_url>: s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@client1 linux]# ./xcp scan -s3.profile sg -s3.endpoint https://<endpoint_url>:
+s3://bucket1
+
+Job ID: Job_2023-06-08_08.47.11.963479_scan
+1 scanned, 0 in (0/s), 0 out (0/s), 5s
+USER1/FILE_USER1_1024_1
+USER1/FILE_USER1_1024_2
+USER1/FILE_USER1_1024_3
+USER1/FILE_USER1_1024_4
+USER1/FILE_USER1_1024_5
+Xcp command : xcp scan -s3.profile sg -s3.endpoint https://<endpoint_url>: s3://bucket1
+Stats : 7 scanned, 5 s3.objects
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 6s.
+Job ID : Job_2023-06-08_08.47.11.963479_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-08_08.47.11.963479_scan.log
+STATUS : PASSED
+[root@client1 linux]#
+----
+====
+
+
+== 掃描 -s3.noverify
+
+使用 `-s3.noverify` 參數 `scan` 用於覆寫 S3 儲存區通訊之 SSL 憑證預設驗證的命令。
+
+.語法
+[source, cli]
+----
+xcp scan -s3.noverify s3://<bucket_name>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+root@client1 linux]# ./xcp scan -s3.noverify s3:// bucket1
+
+Job ID: Job_2023-06-13_11.00.59.742237_scan
+aws_files/USER1/FILE_USER1_1024_1
+aws_files/USER1/FILE_USER1_1024_2
+aws_files/USER1/FILE_USER1_1024_3
+aws_files/USER1/FILE_USER1_1024_4
+aws_files/USER1/FILE_USER1_1024_5
+Xcp command : xcp scan -s3.noverify s3://bucket1
+Stats : 8 scanned, 5 s3.objects
+Speed : 0 in (0/s), 0 out (0/s)
+Total Time : 2s.
+Job ID : Job_2023-06-13_11.00.59.742237_scan
+Log Path : /opt/NetApp/xFiles/xcp/xcplogs/Job_2023-06-13_11.00.59.742237_scan.log
+STATUS : PASSED
+----
+====

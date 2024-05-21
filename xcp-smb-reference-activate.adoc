@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-activate.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: XCP SMB 「啟動」命令參照 
+---
+= 啟動
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+中小企業 `activate` 命令會啟動 XCP 授權。執行此命令之前、請確認已下載授權檔案並複製到 XCP 主機或用戶端機器的 C ： \NetApp\XCP 目錄。授權可在任何數量的主機上啟動。
+
+.語法
+[source, cli]
+----
+xcp activate
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Users\Administrator\Desktop\xcp>xcp activate
+XCP activated
+----
+====

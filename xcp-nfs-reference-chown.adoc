@@ -1,0 +1,302 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-chown.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= Chown
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+XCP NFS `chown` 命令會掃描並變更指定目錄結構的所有檔案擁有權。。 `chown` 命令需要 NFS 共用或 POSIX 路徑做為變數。XCP 會遞迴變更指定路徑的擁有權。。 `chown` 命令會顯示檔案的已變更使用者 ID （ UID ）。
+
+.語法
+[source, cli]
+----
+xcp chown -user/-group <user-name/group-name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -user user2 -v 101.101.10.110:/s_v1/smaple_set/D1
+
+Sat Apr 2 23:06:05 2022
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1 from 1001:0 to 1004:0
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1/1.txt from 1001:0 to 1004:0
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1/softlink_1.img from 1001:0 to 1004:0
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1/1.img from 1001:0 to 1004:0
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1/hardlink_1.img from 1001:0 to 1004:0
+changed ownership of 101.101.10.110:/s_v1/smaple_set/D1/softlink_to_hardlink_1.img from 1001:0 to
+1004:0
+Xcp command : xcp chown -user user2 -v 101.101.10.110:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (1.82 KiB/s), 1.11 KiB out (923/s)
+Total Time : 1s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+下表列出 `chown` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<nfs_chown_exclude,chown - 排除  ；篩選器 >   | 排除符合篩選條件的檔案和目錄。 
+
+
+| <<nfs_chown_match,chown -match  ；篩選器 >   | 僅處理與篩選器相符的檔案和目錄。 
+
+
+| <<nfs_chown_group,chown - 群組  ；群組 >   | 設定來源的 Linux 群組 ID （ GID ）。 
+
+
+| <<nfs_chown_user,chown - 使用者  ；使用者 >  | 設定來源的 Linux UID 。 
+
+
+| <<nfs_chown_user_from,chown -user-from  ； user_from gt;  | 變更 UID 。 
+
+
+| <<nfs_chown_group_from,chown -group-from  ； group_from gt;   | 變更 GID 。 
+
+
+| <<nfs_chown_reference,chown - 參考  ；參考 >  | 指定參考的檔案或目錄點。 
+
+
+| <<nfs_chown_v,chown -v >> | 報告每個已處理物件的輸出。 
+|===
+
+
+== chown - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `chown` 命令來排除符合篩選條件的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp chown -exclude <filter> -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -exclude "fnm('1.img')" -user user2 101.101.10.210:/s_v1/smaple_set/D1
+
+Excluded: 1 excluded, 0 did not match exclude criteria
+Xcp command : xcp chown -exclude fnm('1.img') -user user2101.101.10.210:/s_v1/smaple_set/D1
+Stats : 5 scanned, 1 excluded, 5 changed ownership
+Speed : 2.10 KiB in (1.75 KiB/s), 976 out (812/s)
+Total Time : 1s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== Chown -Match <filter>
+
+使用 `-match <filter>` 參數 `chown` 僅處理與篩選器相符的檔案和目錄的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -match <filter>  -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -exclude "fnm('1.img')" -user user2 101.101.10.210:/s_v1/smaple_set/D1
+
+Excluded: 1 excluded, 0 did not match exclude criteria
+Xcp command : xcp chown -exclude fnm('1.img') -user user2101.101.10.210:/s_v1/smaple_set/D1
+Stats : 5 scanned, 1 excluded, 5 changed ownership
+Speed : 2.10 KiB in (1.75 KiB/s), 976 out (812/s)
+Total Time : 1s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== Chown 群組 <group>
+
+使用 `-group <group>` 參數 `chown` 在來源設定 Linux GID 的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -match <filter> -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -group group1 101.101.10.210:/s_v1/smaple_set/D1
+
+Xcp command : xcp chown -group group1 101.101.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (1.92 KiB/s), 1.11 KiB out (974/s)
+Total Time : 1s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== Chown - 使用者 <user>
+
+使用 `-user <user>` 參數 `chown` 在來源設定 Linux UID 的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -user -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -user user1 102.101.10.210:/s_v1/smaple_set/D1
+
+Xcp command : xcp chown -user user1 102.101.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (3.12 KiB/s), 1.11 KiB out (1.55 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== Chown -user-from <user_from>
+
+使用 `-user-from <user_from>` 參數 `chown` 變更 UID 的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -user-from user1 -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -user-from user1 -user user2
+101.101.10.210:/s_v1/smaple_set/D1
+
+Xcp command : xcp chown -user-from user1 -user user2 102.108.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (2.44 KiB/s), 1.11 KiB out (1.21 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== 來自 <group_from> 的 chown -group-
+
+使用 `-group-from <group_from>` 參數 `chown` 變更 GID 的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -group-from <group_name> -group <group_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -group-from group1 -group group2
+101.101.10.210:/s_v1/smaple_set/D1
+
+Xcp command : xcp chown -group-from group1 -group group2
+101.101.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (4.99 KiB/s), 1.11 KiB out (2.47 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== Chown - 參考 <reference>
+
+使用 `-reference <reference>` 參數 `chown` 指定參考檔案或目錄點的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -reference <reference> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -reference 101.101.10.210:/s_v1/smaple_set/D2/2.img 101.101.10.210:/s_v1/smaple_set/D1
+
+Xcp command : xcp chown -reference 101.101.10.210:/s_v1/smaple_set/D2/2.img
+101.101.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 3.11 KiB in (6.25 KiB/s), 2.01 KiB out (4.05 KiB/s)
+Total Time : 0s.
+STATUS : PASSED
+[root@user-1 linux]#
+----
+====
+
+
+== chown -v
+
+使用 `-v` 參數 `chown` 用於報告每個已處理物件輸出的命令。
+
+.語法
+[source, cli]
+----
+xcp chown -user-from <user_name> -v -user <user_name> <source NFS export path>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@user-1 linux]# ./xcp chown -user-from user2 -v -user user1
+101.101.10.210:/s_v1/smaple_set/D1
+
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1 from 1004:1003 to 1001:1003
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1/1.img from 1004:1003 to 1001:1003
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1/1.txt from 1004:1003 to 1001:1003
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1/softlink_1.img from 1004:1003 to
+1001:1003
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1/softlink_to_hardlink_1.img from
+1004:1003 to 1001:1003
+changed ownership of 101.101.10.210:/s_v1/smaple_set/D1/hardlink_1.img from 1004:1003 to
+1001:1003
+Xcp command : xcp chown -user-from user2 -v -user user1
+101.101.10.210:/s_v1/smaple_set/D1
+Stats : 6 scanned, 6 changed ownership
+Speed : 2.25 KiB in (2.02 KiB/s), 1.11 KiB out (1.00 KiB/s)
+Total Time : 1s.
+
+STATUS : PASSED
+[root@user-1]
+----
+====

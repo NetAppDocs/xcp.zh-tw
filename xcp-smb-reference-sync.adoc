@@ -1,0 +1,777 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-sync.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: 'XCP SMB "SYNC" 命令參照' 
+---
+= 同步
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+。 `sync` 命令會平行掃描來源和目標共用的變更和修改、並將適當的動作套用至目標、以確保目標與來源相同。。 `sync` 命令會比較資料內容、時間戳記、檔案屬性、擁有權和安全性資訊。
+
+.語法
+[source, cli]
+----
+xcp sync \\<source SMB share> \\<IP address of SMB destination server>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+下表列出 `sync` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| <<smb_sync_help,同步 -h 、 --help>> | 顯示此說明訊息並結束。 
+
+
+| <<同步 -v>> | 增加除錯的詳細度。 
+
+
+| <<smb_sync_parallel,同步 -parallel  ； n>  | 並行處理程序數（預設值： <cpu-count> ）。 
+
+
+| <<smb_sync_match,同步 -Match （匹配）  ；篩選器 >  | 僅處理符合篩選條件的檔案和目錄（請參閱 `xcp help - match` 以取得詳細資料）。 
+
+
+| <<smb_sync_exclude,同步 - 排除  ；篩選器 >  | 僅排除篩選器中的檔案和目錄。 
+
+
+| <<同步 -preserve-atime>> | 在來源上還原上次存取的日期。 
+
+
+| <<同步 -noatime>> | 請勿檢查檔案存取時間。 
+
+
+| <<同步處理 - 夜間作業>> | 請勿檢查檔案建立時間。 
+
+
+| <<同步 - nomtime>> | 請勿檢查檔案修改時間。（此選項已過時。同步將繼續執行、但不使用此選項。） 
+
+
+| <<Sync -noatt/s>> | 請勿檢查屬性。 
+
+
+| <<同步 -nodison>> | 請勿檢查所有權。 
+
+
+| <<sync_smb_atime,同步 -atimeWindow  ；浮點 >  | 可接受的存取時間差異、以秒為單位。 
+
+
+| <<sync_smb_ctime,同步 -ctimeWindow  >> | 可接受的建立時間差異、以秒為單位。 
+
+
+| <<sync_smb_mtime,同步 -mtimeWindow  >> | 可接受的修改時間差異（以秒為單位）、 
+
+
+| <<sync_smb_acl,SYNC -ACL>> | 複製安全資訊。 
+
+
+| <<sync_smb_acl,同步 -backbackback-user  ； fallback_user>  | 目標機器上的 Active Directory 使用者或本機（非網域）使用者、可接收本機（非網域）來源機器使用者的權限（例如：網域 \ 系統管理員）。 
+
+
+| <<sync_smb_acl,同步 -backback-group  ； fallback_group>  | 目標機器上的 Active Directory 群組或本機（非網域）群組、可接收本機（非網域）來源機器群組的權限（例如：網域 \ 系統管理員）。 
+
+
+| <<同步 -l>> | 增加輸出細節。 
+
+
+| <<smb_sync_root,Sync -root>> | 同步根目錄的 ACL 。 
+
+
+| <<smb_sync_onlyacl,僅同步>> | 僅複製安全性資訊。 
+
+
+| <<smb_sync_aclverify,同步 -aclVERIFY ｛ yes 、 no ｝ >> | 在 ACL 同步作業期間、提供包含或略過 ACL 驗證的選項。 
+
+
+| <<smb_sync_bs,同步 -BS () ； n>  | 讀取 / 寫入區塊大小（預設： 1M ）。 
+
+
+| <<同步處理廣告>> | 使用 `sync` 命令 `-ads` 用於掃描來源和目標 SMB 共用區中替代資料流變更和修改的旗標。如果有變更、則會將變更套用至目標
+確定目標與來源相同。 
+|===
+
+
+== 同步 -h 、 --help
+
+使用 `-h` 和 `–-help` 的參數 `sync` 命令以顯示有關的詳細資訊 `sync` 命令
+
+.語法
+[source, cli]
+----
+xcp sync -–help
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Netapp\xcp>xcp sync --help
+usage: xcp sync [-h] [-v] [-parallel <n>] [-match <filter>] [-exclude <filter>] [-preserve-atime] [-noatime] [-noctime] [-nomtime] [-noattrs] [-atimewindow <float>]
+[-ctimewindow <float>] [-mtimewindow <float>] [-acl] [-fallback-user FALLBACK_USER] [-fallback-group FALLBACK_GROUP] [-loglevel <name>] [-l] [-root]
+[-noownership] [-onlyacl] [-aclverify {yes,no}] [-bs <n>] [-ads] source target
+
+Note: ONTAP does not let a SMB client modify COMPRESSED or ENCRYPTED attributes. XCP sync will ignore these file attributes.
+
+positional arguments:
+   source
+   target
+
+optional arguments:
+   -h, --help              show this help message and exit
+   -v                      increase debug verbosity
+   -parallel <n>           number of concurrent processes (default: <cpu-count>)
+   -match <filter>         only process files and directories that match the filter (see `xcp help -match` for details)
+   -exclude <filter>       Exclude files and directories that match the filter (see `xcp help -exclude` for details)
+   -preserve-atime	       restore last accessed date on source
+   -noatime                do not check file access time
+   -noctime                do not check file creation time
+   -nomtime                do not check file modification time
+   -noattrs                do not check attributes
+   -atimewindow <float>    acceptable access time difference in seconds
+   -ctimewindow <float>    acceptable creation time difference in seconds
+   -mtimewindow <float>    acceptable modification time difference in seconds
+   -acl                    copy security information
+   -fallback-user FALLBACK_USER
+                           the name of the user on the target machine to receive the permissions of local (non-domain) source machine users (eg. domain\administrator)
+   -fallback-group FALLBACK_GROUP
+                           the name of the group on the target machine to receive the permissions of local (non-domain) source machine groups (eg. domain\administrators)
+   -loglevel <name>        option to set log levelfilter
+   -l                      increase output detail
+   -root                   sync acl for root directory
+   -noownership            do not sync ownership
+   -onlyacl                sync only acls
+   -aclverify {yes,no}     choose whether you need to skip acl verification
+   -bs <n>                 read/write block size for sync (default: 1M)
+   -ads                    sync ntfs alternate data stream
+----
+====
+
+
+== 同步 -v
+
+使用 `-v` 參數 `sync` 提供詳細除錯資訊的命令。
+
+.語法
+[source, cli]
+----
+xcp sync -v \\<IP address or hostname of SMB server>\vol_SMB_source_xxxxxx\warning \\<IP address of SMB destination server>\vol_SMB_target_xxxxxx
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\XCP>xcp sync -v \\<IP address or hostname of SMB server>\vol_SMB_source_xxxxxx\warning \\<IP address of SMB destination server>\vol_SMB_target_xxxxxx
+ERROR failed to remove from target "assembly\GAC_32\Microsoft.CertificateServices.PKIClient.Cmdlets\v4.0_6.3.0.0 31bf3856ad364e35\p ki.psd1": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\vol_SMB_tar shil\\assembly\\GAC_32\\Microsoft.CertificateServices.PKIClient.Cmdlets\\v4.0_6.3.0.0 31bf3856ad 364e35\\pki.psd1'
+ERROR failed to remove from target "assembly\GAC_64\Microsoft.GroupPolicy.AdmTmplEditor\v4.0_6.3.0.0 31bf3856ad364e35\Microsoft.Gro upPolicy.AdmTmplEditor.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\10.61.
+\vol_SMB_target_xxxxxx\\assembly\\GAC_64\\Microsoft.GroupPolicy.AdmTmplEditor\\v4.0_6.3.0.0 31bf 3856ad364e35\\Microsoft.GroupPolicy.AdmTmplEditor.dll'
+1,933 scanned, 1,361 compared, 2 errors, 0 skipped, 0 copied, 1,120 removed, 5s ERROR failed to remove from target
+"assembly\GAC_64\System.Printing\v4.0_4.0.0.0 31bf3856ad364e35\System.Printing.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\vol_SMB_target_xxxxxx\\assembly\
+4\\System.Printing\\v4.0_4.0.0.0 31bf3856ad364e35\\System.Printing.dll'
+ERROR failed to remove from target "assembly\GAC_MSIL\Microsoft.PowerShell.Workflow.ServiceCore\v4.0_3.0.0.0 31bf3856ad364e35\Micro soft.PowerShell.Workflow.ServiceCore.dll": [Errno 13] Access is denied: '\\\\
+\\<IP address of SMB destination server>\\vol_SMB_target_xxxxxx\\assembly\\GAC_MSIL\\Microsoft.PowerShell.Workflow.ServiceCore\\v4
+.0_3.0.0.0  31bf3856ad364e35\\Microsoft.PowerShell.Workflow.ServiceCore.dll' ERROR failed to remove from target "assembly\GAC_MSIL\Microsoft.RightsManagementServices.ServerManager.DeploymentPlugin\v4.0_6.3.0.0
+31bf3856ad364e35\Microsoft.RightsManagementServices.ServerManager.Deploymen n.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination
+server>\\vol_SMB_target_xxxxxx\\assembly\\GAC_MSIL\\Microsoft.RightsManagementServices.ServerMana ger.DeploymentPlugin\\v4.0_6.3.0.0 31bf3856ad364e35\\Mic
+.RightsManagementServices.ServerManager.DeploymentPlugin.dll'
+ERROR failed to remove from target
+"assembly\GAC_MSIL\Microsoft.WSMan.Management\v4.0_3.0.0.0 31bf3856ad364e35\Microsoft.WSMan.Mana gement.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\vol_SMB_
+_xxxxxx\\assembly\\GAC_MSIL\\Microsoft.WSMan.Management\\v4.0_3.0.0.0 31bf3856ad364e35\\Microsof t.WSMan.Management.dll'
+ERROR failed to remove from target
+"assembly\GAC_MSIL\PresentationUI\v4.0_4.0.0.0 31bf3856ad364e35\PresentationUI.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\vol_SMB_target_xxxxxx\\assembly\
+SIL\\PresentationUI\\v4.0_4.0.0.0 31bf3856ad364e35\\PresentationUI.dll'
+ERROR failed to remove from target "assembly\GAC_MSIL\System.IO.Compression.FileSystem\v4.0_4.0.0.0 b77a5c561934e089\System.IO.Comp ression.FileSystem.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\10.61.71.5
+_SMB_target_xxxxxx\\assembly\\GAC_MSIL\\System.IO.Compression.FileSystem\\v4.0_4.0.0.0 b77a5c561 934e089\\System.IO.Compression.FileSystem.dll'
+ERROR failed to remove from target "assembly\GAC_MSIL\System.IdentityModel.Selectors\v4.0_4.0.0.0 b77a5c561934e089\System.IdentityM odel.Selectors.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\v s_target_xxxxxx\\assembly\\GAC_MSIL\\System.IdentityModel.Selectors\\v4.0_4.0.0.0 b77a5c561934e0 89\\System.IdentityModel.Selectors.dll'
+2,747 scanned, 2,675 compared, 9 errors, 0 skipped, 0 copied, 2,624 removed, 10s ERROR failed to remove from target
+"assembly\GAC_MSIL\System.Web.DataVisualization\v4.0_4.0.0.0 31bf3856ad364e35\System.Web.DataVis ualization.dll": [Errno 13] Access is denied: '\\\\?\\UNC\\<IP address of SMB destination server>\\vol_c
+rget_xxxxxx\\assembly\\GAC_MSIL\\System.Web.DataVisualization\\v4.0_4.0.0.0 31bf3856ad364e35\\Sy stem.Web.DataVisualization.dll'
+cp sync -v \\<IP address or hostname of SMB server>\vol_SMB_source_xxxxxx\warning \\<IP address of SMB destination server>\vol_SMB_target_xxxxxx
+2,831 scanned, 0 copied, 2,831 compared, 0 removed, 10 errors Total Time : 10s
+STATUS : PASSED
+----
+====
+
+
+== 同步平行 <n>
+
+使用 `-parallel <n>` 參數 `sync` 命令可設定較高或較低數量的 XCP 並行處理程序。。 `sync -parallel <n>` 命令會與並行處理程序數同步（預設值： <cpu-count> ）。
+
+
+NOTE: n 的最大值為 61 。
+
+.語法
+[source, cli]
+----
+xcp sync -parallel <n>> \\<IP address or hostname of SMB server>\volxcp\\<IP address of SMB destination server>\xcp1_test1
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\xcp>xcp sync -parallel 5 \\<IP address or hostname of SMB server>\volxcp\\<IP address of SMB destination server>\xcp1_test1
+658 scanned, 244 compared, 0 errors, 0 skipped, 0 copied, 0 removed, 5s
+658 scanned, 606 compared, 0 errors, 0 skipped, 0 copied, 0 removed, 10s
+658 scanned, 658 compared, 0 errors, 0 skipped, 0 copied, 0 removed, 10s
+Sending statistics...
+----
+====
+
+
+== Sync -Match <filter>
+
+使用 `-match <filter>` 參數 `sync` 命令來掃描來源和目標樹狀結構、並僅比較符合篩選參數的檔案或目錄。如果有任何差異、命令會在目標上套用必要的動作、以保持同步。
+
+.語法
+[source, cli]
+----
+xcp sync -match <filter> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -match "'gx' in name" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -match "'gx' in name" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -match 'gx' in name \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 10 compared, 0 removed, 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 同步 - 排除 <filter>
+
+使用 `-exclude <filter>` 參數 `sync` 命令僅排除篩選器中的檔案和目錄。
+
+.語法
+[source, cli]
+----
+xcp sync -exclude <filter> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\netapp\xcp>xcp sync -exclude "path('*Exceptions*')" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -exclude path('*Exceptions*') \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+451 scanned, 427 excluded, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -preserve-atime
+
+使用 `-preserve-atime` 參數 `sync` 命令、在 XCP 讀取檔案之前、將「 atime 」重設為原始值。
+
+.語法
+[source, cli]
+----
+xcp sync -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -preserve-atime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 4s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -noatime
+
+使用 `-noatime` 參數 `sync` 將來源與目標之間的所有差異同步化的命令、不包括只有存取時間差異的檔案。
+
+.語法
+[source, cli]
+----
+xcp sync -noatime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -noatime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -noatime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -noatime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+
+----
+====
+
+
+== 同步處理 - 夜間作業
+
+使用 `-noctime` 參數 `sync` 將來源與目標之間的所有差異同步化的命令、不包括只有建立時間差異的檔案。
+
+.語法
+[source, cli]
+----
+xcp sync -noctime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -noctime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -noctime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -noctime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== 同步 - nomtime
+
+使用 `-nomtime` 參數 `sync` 將來源與目標之間的所有差異同步化的命令、不包括只有不同修改時間的檔案。（此選項已過時。。 `sync` 命令將繼續執行而不使用此選項。）
+
+.語法
+[source, cli]
+----
+xcp sync -nomtime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -nomtime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -nomtime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -nomtime \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== Sync -noatt/s
+
+使用 `-noattrs` 參數 `sync` 將來源與目標之間的所有差異同步化的命令、不包括檔案屬性只有差異的檔案。XCP 只有在檔案內容不同時才會複製檔案（ ACL 會傳輸）。
+
+.語法
+[source, cli]
+----
+xcp sync -noattrs \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -noattrs	\\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -noattrs	\\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -noattrs \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -nodison
+
+使用 `-noownership` 參數 `sync` 將來源與目標的所有差異同步化的命令、不包括只有所有權差異的檔案。
+
+.語法
+[source, cli]
+----
+xcp sync -noownership \\<IP address or hostname of SMB server>\vol_SMB_source_xxxxxx \\<IP address of SMB destination server>\vol_SMB_target_xxxxxx
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+>xcp sync -acl -noownership -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+
+      Truncated Output
+302,909 scanned,    301,365 compared,	0	errors,	0	skipped,	0	copied,	0	removed, 9m46s
+307,632	scanned,	303,530	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 9m51s
+308,434	scanned,	305,462	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 9m56s
+310,824	scanned,	307,328	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m1s
+313,238	scanned,	310,083	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m6s
+314,867	scanned,	313,407	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m11s
+318,277	scanned,	315,856	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m17s
+321,005	scanned,	318,384	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m22s
+322,189	scanned,	321,863	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m27s
+323,906	scanned,	323,906	compared,	0	errors,	0	skipped,	0	copied,	0	removed, 10m29s
+
+xcp sync -acl -noownership -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+323,906 scanned, 0 copied, 323,906 compared, 0 removed, 0 errors
+Total Time : 10m29s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -atimeWindow <float>
+
+使用 `-atimewindow <float>` 參數 `sync` 命令，以秒為單位指定檔案從來源到目的地的可接受差異。如果 atime 的差異小於 <value> 、則 XCP 不會將檔案回報為不同。
+
+.語法
+[source, cli]
+----
+xcp sync -atimewindow <float> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+在以下範例中、 XCP 接受來源和目的地檔案之間最多 10 分鐘的 atime 差異、而且不會更新目標上的 atime 。
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -atimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\source_share
+xcp sync -atimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\source_share
+
+xcp sync -atimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\source_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== Sync -ctimeWindow <float>
+
+使用 `-ctimewindow <float>` 參數 `sync` 命令，以秒為單位指定從來源到目的地的檔案之 ctime 的可接受差異。當 ctime 的差異小於 <value> 時、 XCP 不會將檔案回報為不同。
+
+.語法
+[source, cli]
+----
+xcp sync -ctimewindow <float> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+在以下範例中、 XCP 接受來源和目的地檔案之間最多 10 分鐘的 atime 差異、而且不會更新目標上的 ctime 。
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -ctimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -ctimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -ctimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -mtimeWindow <float>
+
+使用 `-mtimewindow <float>` 參數 `sync` 命令，以秒為單位指定從來源到目的地之檔案的 mtime 的可接受差異。當時間差異小於 <value> 時、 XCP 不會將檔案回報為不同。
+
+.語法
+[source, cli]
+----
+xcp sync -mtimewindow <float> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -mtimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -mtimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -mtimewindow 600 \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== SYNC -ACL-Fallback-user <fallback_user> -Fallback-group <fallback_group>
+
+使用 `-acl`、 `-fallback-user` 和 `-fallback-group` 的參數 `sync` 命令來比較來源和目標的資料和安全性資訊、並在目標上套用必要的動作。。 `-fallback-user` 和 `-fallback-group` 選項是目標機器或 Active Directory 中接收本機（非網域）來源使用者或群組權限的使用者或群組。
+
+
+NOTE: 您無法使用 `-acl` 選項、不含 `-fallback-user` 和 `-fallback-group` 選項：
+
+.語法
+[source, cli]
+----
+xcp sync -acl -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\performance_SMB_home_dirs \\<IP address of SMB destination server>\performance_SMB_home_dirs
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\xcp>xcp sync -acl -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+10,796	scanned,	4,002	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	s
+15,796	scanned,	8,038	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	0s
+15,796	scanned,	8,505	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	5s
+15,796	scanned,	8,707	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	0s
+15,796	scanned,	8,730	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	5s
+15,796	scanned,	8,749	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	0s
+15,796	scanned,	8,765	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	5s
+15,796	scanned,	8,786	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	0s
+15,796	scanned,	8,956	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	5s
+15,796	scanned,	9,320	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	0s
+15,796	scanned,	9,339	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	5s
+15,796	scanned,	9,363	compared,	0	errors,	0	skipped,	0	copied,	0	removed,	m0s
+15,796	scanned,	10,019	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m5s
+15,796	scanned,	10,042	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m10s
+15,796	scanned,	10,059	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m15s
+15,796	scanned,	10,075	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m20s
+15,796	scanned,	10,091	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m25s
+15,796	scanned,	10,108	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m30s
+15,796	scanned,	10,929	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m35s
+15,796	scanned,	12,443	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m40s
+15,796	scanned,	13,963	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m45s
+15,796	scanned,	15,488	compared,	0	errors,	0	skipped,    0	copied	0	removed,	1m50s
+15,796	scanned,	15,796	compared,	0	errors,	0	skipped,     0	copied	0	removed,	1m51s
+
+xcp sync -acl -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+15,796 scanned, 0 copied, 15,796 compared, 0 removed, 0 errors
+Total Time : 1m51
+STATUS : PASSED
+----
+====
+
+
+== 同步 -l
+
+使用 `-l` 參數 `sync` 命令、針對 XCP 在目標上執行的所有動作、在標準輸出中提供詳細的記錄資訊。
+
+.語法
+[source, cli]
+----
+xcp sync -l \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+c:\netapp\xcp>xcp sync -l \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -l \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+File "atime" changed, timestamps set for "agnostic"
+File "atime" changed, timestamps set for "<root>"
+xcp sync -l \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+634 scanned, 0 copied, 634 compared, 0 removed, 0 errors
+Total Time : 3s
+STATUS : PASSED
+----
+====
+
+
+== Sync -root
+
+使用 `-root` 參數 `sync` 用於同步根目錄 ACL 的命令。
+
+.語法
+[source, cli]
+----
+xcp sync -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\XCP>xcp sync -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -acl -root -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+12 scanned, 0 copied, 12 compared, 0 skipped, 0 removed, 0 errors, 1 acls copied
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 僅同步處理 - 容錯移轉使用者 <fallback_user> - 容錯移轉群組 <fallback_group>
+
+使用 `-onlyacl`、 `-fallback-user`和 `-fallback-group` 的參數 `sync` 命令來比較來源與目標之間的安全性資訊、並在目標上套用必要的動作。。 `-fallback-user` 和 `-fallback-group` 是目標機器或 Active Directory 中接收本機（非網域）來源使用者或群組權限的使用者或群組。
+
+
+NOTE: 您無法使用 `-onlyacl` 不含的參數 `-fallback-user` 和 `-fallback-group` 選項：
+
+.語法
+[source, cli]
+----
+xcp sync -onlyacl -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Users\ctladmin\Desktop>xcp sync -onlyacl -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+
+8,814 scanned,	0	copied,	620	compared,	0	skipped,	0	removed,	0	errors,	6s
+9,294 scanned,	0	copied,	2,064	compared,	0	skipped,	0	removed,	0	errors,	11s
+12,614 scanned,	0	copied,	3,729	compared,	0	skipped,	0	removed,	0	errors,	16s
+13,034 scanned,	0	copied,	5,136	compared,	0	skipped,	0	removed,	0	errors,	21s
+14,282 scanned,	0	copied,	7,241	compared,	0	skipped,	0	removed,	0	errors,	26s
+14,282 scanned,	0	copied,	8,101	compared,	0	skipped,	0	removed,	0	errors,	31s
+14,282 scanned,	0	copied,	8,801	compared,	0	skipped,	0	removed,	0	errors,	36s
+14,282 scanned,	0	copied,	9,681	compared,	0	skipped,	0	removed,	0	errors,	41s
+14,282 scanned,	0	copied,	10,405	compared,	0	skipped,	0	removed,	0	errors,	46s
+14,282 scanned,	0	copied,	11,431	compared,	0	skipped,	0	removed,	0	errors,	51s
+14,282 scanned,	0	copied,	12,471	compared,	0	skipped,	0	removed,	0	errors,	56s
+14,282 scanned,	0	copied,	13,495	compared,	0	skipped,	0	removed,	0	errors,	1m1s
+14,282 scanned,	0	copied,	14,282	compared,	0	skipped,	0	removed,	0	errors,	1m6s
+
+xcp sync -onlyacl -preserve-atime -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+14,282 scanned, 0 copied, 14,282 compared, 0 skipped, 0 removed, 0 errors
+Total Time : 1m7s
+STATUS : PASSED
+
+----
+====
+
+
+== 同步 -aclVERIFY ｛ yes 、 no ｝
+
+使用 `-aclverify{yes,no}` 參數 `sync` 命令，提供在 ACL 同步作業期間包含或略過 ACL 驗證的選項。此選項只能與搭配使用 `sync -acl` 和 `sync -onlyacl` 命令。ACL 同步預設會執行 ACL 驗證。如果您設定 `-aclverify` 選項 `no`，您可以跳過 ACL 驗證和 `fallback-user` 和 `fallback-group` 不需要選項。如果您已設定 `-aclverify` 至 `yes`、需要 `fallback-user` 和 `fallback-group` 選項、如下列範例所示。
+
+.語法
+[source, cli]
+----
+xcp sync -acl -aclverify yes -fallback-user <fallback_user> -fallback-group <fallback_group> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\xcp>xcp sync -acl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+
+25 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 5s, 0 acls copied
+25 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 10s, 0 acls copied
+25 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 15s, 0 acls copied xcp sync -acl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+25 scanned, 1 copied, 25 compared, 0 skipped, 0 removed, 0 errors, 12 acls copied Total Time : 16s
+STATUS : PASSED
+C:\NetApp\xcp>xcp sync -acl -aclverify no \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+
+xcp sync -acl -aclverify no \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+27 scanned, 1 copied, 27 compared, 0 skipped, 0 removed, 0 errors, 13 acls copied Total Time : 2s
+STATUS : PASSED
+C:\NetApp\xcp>xcp sync -onlyacl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+24 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 5s, 0 acls copied
+24 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 10s, 0 acls copied
+24 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 15s, 0 acls copied xcp sync -onlyacl -aclverify yes -fallback-user "DOMAIN\User" -fallback-group "DOMAIN\Group" \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+C:\NetApp\xcp>xcp sync -onlyacl -aclverify no \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+xcp sync -onlyacl -aclverify no \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+24 scanned, 0 copied, 24 compared, 0 skipped, 0 removed, 0 errors, 11 acls copied
+Total Time : 2s
+STATUS : PASSED
+----
+====
+
+
+== 同步 -BS <n>
+
+使用 `-bs <n>` 參數 `sync` 提供讀寫區塊大小的命令。預設大小為 1M 。
+
+.語法
+[source, cli]
+----
+xcp.exe sync -bs <n> \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Netapp\xcp>xcp.exe sync -bs 64k \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share
+1,136 scanned, 0 copied, 1,135 compared, 0 skipped, 95 removed, 0 errors, 5s
+xcp.exe sync -bs 64k \\<source_IP_address>\source_share \\<IP address of SMB destination server>\dest_share 1,136 scanned, 283 copied, 1,136 compared, 0 skipped, 283 removed, 0 errors
+Total Time : 10s
+STATUS : PASSED
+----
+====
+
+
+== 同步處理廣告
+
+使用 `-ads` 參數 `sync` 用於掃描來源和目標 SMB 共用區中替代資料流的變更和修改的命令。如果有變更、則會將變更套用至目標、以確保目標與來源相同。
+
+.語法
+[source, cli]
+----
+xcp sync -ads \\<IP address or hostname of SMB server>\source_share \\<IP address of SMB destination server>\dest_share
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\netapp\xcp>xcp sync -ads \\<source_IP_address>\source_share\src \\<dest_IP_address>\dest_share
+
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	5s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	10s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	15s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	20s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	25s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	30s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	1m0s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	2m50s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	2m55s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	3m0s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	3m55s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	4m0s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	4m55s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	5m0s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	5m5s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	5m10s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	5m55s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	6m0s, 1 ads copied
+13	scanned,	1	copied,	12	compared,	0	skipped,	0	removed,	0	errors,	6m5s, 1 ads copied
+xcp sync -ads \\<source_IP_address>\source_share\src \\<dest_IP_addess>\dest_share
+13 scanned, 1 copied, 13 compared, 0 skipped, 0 removed, 0 errors, 1 ads copied
+Total Time : 6m9s
+STATUS : PASSED
+----
+====

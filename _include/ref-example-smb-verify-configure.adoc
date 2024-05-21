@@ -1,0 +1,16 @@
+= 
+:allow-uri-read: 
+
+
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\NetApp\XCP>xcp.exe configure
+
+Please choose the menu you want to start:
+1. Configure xcp.ini file
+0. Quit
+----
+====

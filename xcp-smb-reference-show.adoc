@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: xcp-smb-reference-show.html 
+keywords: netapp, xcp, reference, smb, command, commands 
+summary: 'XCP SMB "show" 命令參照' 
+---
+= 顯示
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+中小企業 `show` 命令會查詢一或多個儲存伺服器的 RPC 服務和 NFS 匯出。此命令也會列出可用的服務和匯出、以及每個匯出的已使用和可用容量、以及每個匯出的根目錄屬性。
+
+.語法
+。 `show` 命令需要 NFSv3 匯出系統的主機名稱或 IP 位址：
+
+[source, cli]
+----
+xcp show \\<IP address or hostname of SMB server>
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+C:\Users\Administrator\Desktop\xcp>xcp show \\<IP address or hostname of SMB server>
+Shares Errors Server
+7 0 <IP address or hostname of SMB server>
+== SMB Shares ==
+Space Space Current
+Free Used Connections Share Path Folder Path
+0 0 N/A \\<IP address or hostname of SMB server>\IPC$ N/A
+533GiB 4.72GiB 0 \\<IP address or hostname of SMB server>\ETC$ C:\etc
+533GiB 4.72GiB 0 \\<IP address or hostname of SMB server>\HOME C:\vol\vol0\home
+533GiB 4.72GiB 0 \\<IP address or hostname of SMB server>\C$ C:\
+972MiB 376KiB 0 \\<IP address or hostname of SMB server>\testsecureC:\vol\testsecure
+12 XCP SMB v1.6 User Guide © 2020 NetApp, Inc. All rights reserved.
+47.8GiB 167MiB 1 \\<IP address or hostname of SMB server>\volxcp C:\vol\volxcp
+9.50GiB 512KiB 1 \\<IP address or hostname of SMB server>\jl C:\vol\jl
+== Attributes of SMB Shares ==
+Share Types Remark
+IPC$ PRINTQ,IPC,SPECIAL,DEVICE Remote IPC
+ETC$ SPECIAL Remote Administration
+HOME DISKTREE Default Share
+C$ SPECIAL Remote Administration
+testsecure DISKTREE for secure copy
+volxcp DISKTREE for xcpSMB
+jl DISKTREE
+== Permissions of SMB Shares ==
+Share Entity Type
+IPC$ Everyone Allow/Full Control
+ETC$ Administrators Allow/FullControl
+HOME Everyone Allow/Full Control
+C$ Administrators Allow/Full Control
+
+xcp show \\<IP address or hostname of SMB server>
+0 errors
+Total Time : 0s
+STATUS : PASSED
+----
+====
+下表列出 `show` 參數及其說明。
+
+[cols="2*"]
+|===
+| 參數 | 說明 
+
+
+| 顯示 -v | 使用 IP 位址或主機名稱列印 SMB 伺服器的詳細資料。 
+
+
+| 顯示 -h 、 --help | 顯示如何使用命令的詳細資訊。 
+|===

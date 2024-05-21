@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: xcp-nfs-reference-activate.html 
+keywords: netapp, xcp, reference, nfs, command, commands 
+summary: XCP NFS 命令參照 
+---
+= 啟動
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NFS `activate` 命令會啟動 XCP 授權。
+
+
+NOTE: 執行此命令之前 , 請確認已下載授權檔案並將其複製到 `opt/NetApp/xFiles/xcp/` XCP Linux 用戶端主機上的目錄。
+
+.語法
+[source, cli]
+----
+xcp activate
+----
+.顯示範例
+[%collapsible]
+====
+[listing]
+----
+[root@localhost linux]# ./xcp activate
+
+XCP activated
+----
+====
