@@ -22,7 +22,7 @@ summary: 安裝XCP
 
 本文件提供簡易的工作流程、可在NFS和SMB系統上安裝及設定XCP。
 
-image:xcp_image16.PNG["錯誤：缺少圖形影像"]
+image:xcp_image16.PNG["XCP 安裝與組態工作流程"]
 
 
 

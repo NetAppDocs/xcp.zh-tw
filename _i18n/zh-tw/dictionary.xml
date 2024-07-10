@@ -602,8 +602,6 @@
   <block id="95b2f11d1aece0b4ddfc5cba00384742" category="summary">安裝XCP</block>
   <block id="5157096b4994925e784b5ccc913a425c" category="section-title">安裝及設定工作流程</block>
   <block id="dda26d898eec39eecd399e188771288e" category="paragraph">本文件提供簡易的工作流程、可在NFS和SMB系統上安裝及設定XCP。</block>
-  <block id="341d84aa26cb4521474864e04ea2a63b" category="inline-image-macro">錯誤：缺少圖形影像</block>
-  <block id="e0cc20d4c07649f34c6795a45c8f54ec" category="paragraph"><block ref="e0cc20d4c07649f34c6795a45c8f54ec" category="inline-image-macro-rx" type="image"></block></block>
   <block id="af4c2fb6e7c29314dbe63e8b1d277ff8" category="section-title">下載XCP</block>
   <block id="83008f4493bba0b08400133371c2e80c" category="paragraph">從NetApp支援網站下載XCP、並從XCP網站取得授權。</block>
   <block id="8c41baf1ca98e1184f48c4721d44d431" category="inline-link-macro">NetApp支援網站</block>
@@ -2214,4 +2212,8 @@ False 將忽略系統記錄組態。</block>
   <block id="7abd8bc01e56757cc6d2d51936b79c34" category="sidebar">XCP 事件記錄</block>
   <block id="64b873b5723d0186c94db0f344f92d2b" category="sidebar">NFS 事件記錄</block>
   <block id="4749766868b7c96046bdc8c12e4653fb" category="sidebar">SMB 事件記錄</block>
+  <block id="10f9a2d4423674460e3651820224566e" category="inline-image-macro">XCP 安裝與組態工作流程</block>
+  <block id="d00c1e93acb215a134bcc17a6aafed7e" category="paragraph"><block ref="d00c1e93acb215a134bcc17a6aafed7e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e53491994f0709110c81f65b9c6dcbf5" category="cell">NetApp NTFS 存取控制清單 (ACL) 的協力廠商</block>
+  <block id="0ce0e45a25c05fb4a79ccca92ab31b0a" category="cell">XCP SMB 不支援將協力廠商 ACL 從非 NetApp 系統移轉至 NetApp 系統。</block>
 </blocks>

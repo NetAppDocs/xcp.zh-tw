@@ -49,6 +49,9 @@ XCP SMB不支援下列功能：
 | 功能名稱 | 說明 
 
 
+| NetApp NTFS 存取控制清單 (ACL) 的協力廠商 | XCP SMB 不支援將協力廠商 ACL 從非 NetApp 系統移轉至 NetApp 系統。 
+
+
 | NFS符號連結（symlink） | XCP SMB不支援NFS symlink 
 
 
