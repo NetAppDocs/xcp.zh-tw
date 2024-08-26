@@ -110,7 +110,7 @@ NOTE: 若要在SMB掃描中取得存取時間（atime）圖表、請勾選「在
 
 === 存取 / 修改 / 建立的檔案大小圖表
 
-image:xcp-filesize-amc.png[""]
+image:xcp-filesize-amc.png["顯示檔案大小隨時間變更的圖表"]
 
 存取 / 修改 / 建立的檔案大小圖表會顯示隨著時間變更的檔案大小。X 軸代表進行變更的時間週期、 Y 軸代表檔案變更的大小。
 
@@ -127,13 +127,13 @@ image:xcp_image14.png["副檔名圖形的檔案發佈"]
 
 此外、對於 SMB 共用、您可以在執行掃描之前勾選替代資料串流方塊、以取得每個副檔名的替代資料串流檔案數量。
 
-image:xcp-file-distribution-ads.png[""]
+image:xcp-file-distribution-ads.png["顯示如何取得 XCP SMB 中每個副檔名的替代資料流檔案數的圖表"]
 
 
 
 === 依副檔名圖表的檔案大小分佈
 
-image:xcp-filesize-dist-ex.png[""]
+image:xcp-filesize-dist-ex.png["顯示檔案共用中不同副檔名累計大小的圖表。"]
 
 檔案大小依副檔名散佈圖表代表檔案共用中不同副檔名的累計大小。代表副檔名的部門大小取決於具有每個副檔名的檔案大小。
 
@@ -154,4 +154,4 @@ image:xcp_image15.png["副檔名圖形的檔案發佈"]
 
 此外、對於 SMB 共用、您可以在執行掃描之前勾選替代資料串流方塊、以取得不同類型的替代資料串流檔案數量。
 
-image:xcp-file-distribution-type.png[""]
+image:xcp-file-distribution-type.png["顯示如何取得適用於 XCP SMB 之不同類型的替代資料流檔案數量的圖表"]

@@ -331,7 +331,6 @@
   <block id="4be936fd7e612c47d18eaec68c3932c3" category="cell">「XCP copy：錯誤」無法取得後援安全性主體（在hosts檔案中新增目的地方塊項目）錯誤訊息登入xcp.log檔案：「pywinTypes。錯誤：（87、「LookupAccountName」、「The蔘數不正確。」）</block>
   <block id="2e4e559c9f6001c3134b8795d8e47e81" category="cell">後援使用者/群組選項的參數不正確。以正確的語法重新執行命令、以使用容錯移轉使用者/群組選項</block>
   <block id="dc3e4b78f385d96eee62d48189bd45ed" category="summary">設定Ini檔案XCP的步驟</block>
-  <block id="27844988f363a5f923e9334ae145a1fd" category="doc">設定Ini檔案</block>
   <block id="29c2f1feeb1231581bf05d60a3d62a9a" category="paragraph">設定XCP的Ini檔案的步驟。</block>
   <block id="586dba64773da8695bdac99be604919f" category="section-title">設定root使用者的Ini檔案</block>
   <block id="21ee12acf8b4df5f11e93b279367513a" category="paragraph">您可以使用下列程序來設定XCP NFS根使用者的Ini檔案。</block>
@@ -877,14 +876,10 @@ xcp.log 檔案中記錄的錯誤訊息：<block ref="e2ac862df70b5c80b24bb2eb2b3
   <block id="269e3fa15ca9366f6cfcb1eac97c6cf0" category="paragraph">執行<block ref="1a1b0d47f4e6e0151b4df12640fe4bb0" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
   <block id="ea7072dd30b8128f4d74568ed70d406c" category="paragraph">「存取 / 修改 / 建立的檔案」圖表會顯示隨時間變更的檔案數。X 軸代表進行變更的時間週期、 Y 軸代表變更的檔案數。</block>
   <block id="e66cb3e85cec55480dc46a379124f46a" category="section-title">存取 / 修改 / 建立的檔案大小圖表</block>
-  <block id="5eeb433a134b50fcf2d2d02005945304" category="paragraph"><block ref="5eeb433a134b50fcf2d2d02005945304" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b483a26f1bc7e903df1139b2bea4faca" category="paragraph">存取 / 修改 / 建立的檔案大小圖表會顯示隨著時間變更的檔案大小。X 軸代表進行變更的時間週期、 Y 軸代表檔案變更的大小。</block>
   <block id="8105201d67059c07d533dcbbe25a3c67" category="section-title">依副檔名圖表的檔案發佈</block>
-  <block id="699e5e6ac0568498b21221ee949dd4a3" category="paragraph"><block ref="699e5e6ac0568498b21221ee949dd4a3" category="inline-image-macro-rx" type="image"></block></block>
   <block id="79f475897ad3ccfba85aa2fc2f2d9bad" category="section-title">依副檔名圖表的檔案大小分佈</block>
-  <block id="4ab3fb97b389232d625b03e49824e147" category="paragraph"><block ref="4ab3fb97b389232d625b03e49824e147" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a07e34309c0f4fe3914143661296e902" category="paragraph">檔案大小依副檔名散佈圖表代表檔案共用中不同副檔名的累計大小。代表副檔名的部門大小取決於具有每個副檔名的檔案大小。</block>
-  <block id="fa089a630122acf5e9273fce49f4cf34" category="paragraph"><block ref="fa089a630122acf5e9273fce49f4cf34" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0c298119c26e2b6846ed04c0a3a19fc9" category="paragraph">執行<block ref="0b0f856b03e3ddcd7804298ac5bc4a97" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
   <block id="1b8208be7fabaa97780c143eb5ae291e" category="paragraph">執行<block ref="dc7a0e5e50a6e16de630993f68e9061c" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
   <block id="b802ccf3bd2b24d676e6542534797831" category="paragraph">執行<block ref="7aaf8f3c0f52b0fd5a97d37fbe81d5c5" prefix=" " category="inline-code"></block> 以取得更多詳細資料。</block>
@@ -2216,4 +2211,15 @@ False 將忽略系統記錄組態。</block>
   <block id="d00c1e93acb215a134bcc17a6aafed7e" category="paragraph"><block ref="d00c1e93acb215a134bcc17a6aafed7e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e53491994f0709110c81f65b9c6dcbf5" category="cell">NetApp NTFS 存取控制清單 (ACL) 的協力廠商</block>
   <block id="0ce0e45a25c05fb4a79ccca92ab31b0a" category="cell">XCP SMB 不支援將協力廠商 ACL 從非 NetApp 系統移轉至 NetApp 系統。</block>
+  <block id="1300bd8e2d36b2d26dd0d4054937f9b7" category="admonition">XCP SMB 不需要 XCP INI 檔案。</block>
+  <block id="cfd8dd3ece7e01985a0c3284a9784c66" category="inline-image-macro">顯示檔案大小隨時間變更的圖表</block>
+  <block id="6892c40e78a41a89c3e977071754228f" category="paragraph"><block ref="6892c40e78a41a89c3e977071754228f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="23cc9fe9e052a539bfb7f4050d5cbc0c" category="inline-image-macro">顯示如何取得 XCP SMB 中每個副檔名的替代資料流檔案數的圖表</block>
+  <block id="38a84eabbe5af8a7b5f98fac70ba57da" category="paragraph"><block ref="38a84eabbe5af8a7b5f98fac70ba57da" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0ddb9db6b0a28f38a95e40d7cf8eb8cb" category="inline-image-macro">顯示檔案共用中不同副檔名累計大小的圖表。</block>
+  <block id="3364e1b19026788a2e58a0d78550ffc5" category="paragraph"><block ref="3364e1b19026788a2e58a0d78550ffc5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4a19e5a58f92d23fde8fba05519926e6" category="inline-image-macro">顯示如何取得適用於 XCP SMB 之不同類型的替代資料流檔案數量的圖表</block>
+  <block id="92420eba0222a4b23e712f8973ef3bc8" category="paragraph"><block ref="92420eba0222a4b23e712f8973ef3bc8" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="19699e63b68566e37c15a09d5b8fa402" category="sidebar">XCP 文件</block>
+  <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">總覽</block>
 </blocks>

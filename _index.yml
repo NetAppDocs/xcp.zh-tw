@@ -1,5 +1,7 @@
 ---
 indexpage:
+  title: XCP 文件
+  summary: NetApp XCP 是一種用戶端型軟體、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。
   lead: NetApp XCP 是一種用戶端型軟體工具、可讓任何對 NetApp 和 NetApp 對 NetApp 的資料移轉和檔案分析、實現可擴充且高效能的資料移轉。NetApp
     提供 XCP 工具最新版本的文件、以及三個最新版本的文件。
   tiles:
