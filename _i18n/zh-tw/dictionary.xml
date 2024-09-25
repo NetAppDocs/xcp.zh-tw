@@ -2019,8 +2019,6 @@ False 將忽略系統記錄組態。</block>
   <block id="22a256f98f6a5a2007e2ff7d6055cdac" category="cell"><block ref="91030ce82899d9d3e8da6751f6cd9954" category="inline-xref-macro-rx"></block></block>
   <block id="99aba268e2cdf9ad67ea0294423f5c60" category="cell"><block ref="2429d5903f8140ada0681c54278b2081" category="inline-xref-macro-rx"></block></block>
   <block id="2b36008e6bb3d80ff4931b726ebe58e8" category="cell"><block ref="8e86abe03c3adb2824537089c5e19458" category="inline-xref-macro-rx"></block></block>
-  <block id="2a4da7abb55a2eabb2a8926d74647292" category="cell">掃描來源和目標 SMB 共用區中的替代資料流變更和修改。如果有變更、則會將變更套用至目標
-確定目標與來源相同。</block>
   <block id="db768f7ca4f1844269d19097465dcfb2" category="cell"><block ref="6645484ae89548f2e6bf755224cc8868" category="inline-xref-macro-rx"></block></block>
   <block id="c0192927fc78881af1d43eb1dd64f912" category="cell">請勿檢查 ACL 。</block>
   <block id="d4bccd57a510556841fd214bd5911f9d" category="inline-xref">驗證 -atimeWindow &amp;lt;float&amp;gt; </block>
@@ -2061,7 +2059,6 @@ False 將忽略系統記錄組態。</block>
   <block id="ac4d9bb96e8ef1ad0bbe78626babe024" category="section-title">驗證 -No所有權</block>
   <block id="72a3c3a5690045ba56a4e2b91494c8f0" category="paragraph">使用<block ref="43ac3195b04d3ea041e234dc09bd3cc5" prefix=" " category="inline-code"></block> 參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 不檢查所有權的命令。</block>
   <block id="3a1805b687c6c7298b7dc2e2699be3b1" category="section-title">驗證 -ADS</block>
-  <block id="11897bdb83ee36b65a4bcec3b73da805" category="paragraph">使用<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block> 參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 如果來源和目的地上有任何替代資料串流、則會讀取此命令、並顯示任何差異。</block>
   <block id="3214ca34d6de3d125e366e29f655c322" category="section-title">驗證 -noacls</block>
   <block id="a7cd8d6d380391647f61ab92cdb98d3f" category="paragraph">使用<block ref="1b55011b9dcfadee503df196ac5705f3" prefix=" " category="inline-code"></block> 參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 不檢查 ACL 的命令。</block>
   <block id="344f4c1ebc39d4f9a86f2c12a7d296fa" category="section-title">驗證 -noacls -nodisoon</block>
@@ -2085,7 +2082,6 @@ False 將忽略系統記錄組態。</block>
   <block id="d10575428f0be21c79d3a4818f3d6174" category="paragraph">使用<block ref="216d1edbaf9e61d408b8789f2f1a6edc" prefix=" " category="inline-code"></block><block ref="2020813f1b997de2b620258cbc5d7c42" prefix=" " category="inline-code"></block>和<block ref="3a906969f90e3c0319a62bc12ef757ba" prefix=" " category="inline-code"></block> 的參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 命令列出 ACL 差異、並略過來源與目的地上檔案與目錄之間的所有權驗證。</block>
   <block id="b0497a2f8159eeeffe601d18c0b01811" category="section-title">驗證 -noacls-fallback-user &lt;fallback_user&gt; -fallback-group &lt;fallback_group&gt;</block>
   <block id="811030b41b3a139502ba712d5ad53ad0" category="paragraph">使用<block ref="1b55011b9dcfadee503df196ac5705f3" prefix=" " category="inline-code"></block>、<block ref="2020813f1b997de2b620258cbc5d7c42" prefix=" " category="inline-code"></block>和<block ref="3a906969f90e3c0319a62bc12ef757ba" prefix=" " category="inline-code"></block> 的參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 命令可略過 ACL 驗證、並驗證來源與目的地上檔案與目錄之間的所有權。</block>
-  <block id="cb448282bdf6aae9d5d03e424421a746" category="paragraph">使用<block ref="7524c780b2c352bc5853f2f7bd223f79" prefix=" " category="inline-code"></block> 參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 用於同步根目錄 ACL 的命令。</block>
   <block id="bf7eb3fc583ba35d198fefe161113c0f" category="section-title">驗證 -lacl -fallback-user &lt;fallback_user&gt; -fallback- group &lt;fallback_group&gt;</block>
   <block id="0cae4835e5ed662fe1e6e9bf2dd4307b" category="paragraph">使用<block ref="494986f77400fff011d8242caa76dfc0" prefix=" " category="inline-code"></block>、<block ref="2020813f1b997de2b620258cbc5d7c42" prefix=" " category="inline-code"></block> 和<block ref="3a906969f90e3c0319a62bc12ef757ba" prefix=" " category="inline-code"></block> 的參數<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block> 僅比較來源與目的地之間的安全性資訊的命令。</block>
   <block id="69f2afc2390cec954f7c208b07212d39" category="doc">繼續</block>
@@ -2222,4 +2218,9 @@ False 將忽略系統記錄組態。</block>
   <block id="92420eba0222a4b23e712f8973ef3bc8" category="paragraph"><block ref="92420eba0222a4b23e712f8973ef3bc8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="19699e63b68566e37c15a09d5b8fa402" category="sidebar">XCP 文件</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">總覽</block>
+  <block id="81c450f52ac52d741200f298f580a037" category="cell"><block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block>含有<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block>參數的命令會檢查來源和目的地上的任何替代資料流、並顯示任何差異。</block>
+  <block id="6232d628646d0b4126bf8dbfc3f59624" category="cell">驗證根目錄的 ACL 。</block>
+  <block id="15a0e61ca839449b8612ccdf969362bd" category="cell">僅驗證安全性資訊。</block>
+  <block id="5346a01724dc1468443b70d6d26b1ea4" category="paragraph">使用<block ref="c49e8400c997823541180a2559d2110e" prefix=" " category="inline-code"></block>參數搭配<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block>命令、檢查來源和目的地上是否有任何替代資料串流、並顯示任何差異。</block>
+  <block id="dd14d882bc4ad08cbdbc63060e239d7f" category="paragraph">使用<block ref="7524c780b2c352bc5853f2f7bd223f79" prefix=" " category="inline-code"></block>參數搭配<block ref="e8418d1d706cd73548f9f16f1d55ad6e" prefix=" " category="inline-code"></block>命令來驗證根目錄的 ACL 。</block>
 </blocks>

@@ -79,8 +79,7 @@ STATUS : PASSED
 | <<驗證 -No所有權>> | 請勿檢查所有權。 
 
 
-| <<驗證 -ADS>> | 掃描來源和目標 SMB 共用區中的替代資料流變更和修改。如果有變更、則會將變更套用至目標
-確定目標與來源相同。 
+| <<驗證 -ADS>> |  `verify`含有 `-ads`參數的命令會檢查來源和目的地上的任何替代資料流、並顯示任何差異。 
 
 
 | <<驗證 -noacls>> | 請勿檢查 ACL 。 
@@ -110,10 +109,10 @@ STATUS : PASSED
 | <<verify_smb_acl,驗證 -fallback-group  ； fallback_group>  | 目標機器上的 Active Directory 群組或本機（非網域）群組、可接收本機（非網域）來源機器群組的權限（例如：網域 \ 系統管理員）。 
 
 
-| <<smb_verify_root,驗證 -root>> | 同步根目錄的 ACL 。 
+| <<smb_verify_root,驗證 -root>> | 驗證根目錄的 ACL 。 
 
 
-| <<verify_smb_onlyacl,驗證 - 僅限>> | 僅複製安全性資訊。 
+| <<verify_smb_onlyacl,驗證 - 僅限>> | 僅驗證安全性資訊。 
 |===
 
 
@@ -477,7 +476,7 @@ STATUS : PASSED
 
 == 驗證 -ADS
 
-使用 `-ads` 參數 `verify` 如果來源和目的地上有任何替代資料串流、則會讀取此命令、並顯示任何差異。
+使用 `-ads`參數搭配 `verify`命令、檢查來源和目的地上是否有任何替代資料串流、並顯示任何差異。
 
 .語法
 [source, cli]
@@ -774,7 +773,7 @@ xcp verify -noacls -fallback-user <fallback_user> -fallback-group <fallback_grou
 
 == 驗證 -root
 
-使用 `-root` 參數 `verify` 用於同步根目錄 ACL 的命令。
+使用 `-root`參數搭配 `verify`命令來驗證根目錄的 ACL 。
 
 .語法
 [source, cli]
