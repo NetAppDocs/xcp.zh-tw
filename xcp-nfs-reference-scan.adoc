@@ -199,9 +199,13 @@ STATUS : PASSED
 
 使用 `-stats`、 `-csv`和 `-html` 的參數 `scan` 以樹狀結構統計報告格式列出檔案的命令。
 
+[NOTE]
+====
+* 此選項會 `-stats`將人類可讀的報告列印至主控台。其他報告格式選項包括 `-html`或 `-csv`。以逗號分隔的值（ CSV ）格式具有精確的值。如果目錄存在， CSV 和 HTML 報告會自動儲存在目錄中。
+* XCP 報告（ .csv ， .html ）會儲存在檔案中指定的目錄位置 `xcp.ini`。檔案會儲存在資料夾中 `<catalog path>/catalog/indexes/1/reports`。您可以在中檢視範例報告link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2886872["NetApp XCP 1.9.3 參考資料"^]。
 
-NOTE: XCP 報告（ .csv 、 .html ）會儲存在中指定的目錄位置 `xcp.ini` 檔案：檔案會儲存在中 `<catalog path>/catalog/indexes/1/reports` 資料夾。您可以在附錄中檢視範例報告。
 
+====
 .語法
 [source, cli]
 ----
