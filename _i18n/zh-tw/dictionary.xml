@@ -2223,6 +2223,6 @@ False 將忽略系統記錄組態。</block>
   <block id="94e333b8fe7eeb24ad8148da30611a12" category="list-text">XCP 報告（ .csv ， .html ）會儲存在檔案中指定的目錄位置<block ref="d509f49d5d9a07934f91eefcf45a7334" prefix=" " category="inline-code"></block>。檔案會儲存在資料夾中<block ref="4ab06dfafbc06c813ac00690ec02817f" prefix=" " category="inline-code"></block>。您可以在中檢視範例報告<block ref="4e380b3bd4c911d8ac7f28200efc937b" category="inline-link-macro-rx"></block>。</block>
   <block id="1ce3aa5c05c910125de58745a6c5c442" category="admonition">stats 選項會將人類可讀的報告列印至主控台。其他報告格式選項為 -HTML 或 -csv.以逗號分隔的值（ CSV ）格式具有精確的值。如果目錄存在， CSV 和 HTML 報告會自動儲存在目錄中。</block>
   <block id="7db7336d37e2a7cbb5ab4d9e623c5961" category="paragraph">您需要登入 NetApp 支援網站才能存取發行說明。</block>
-  <block id="6f9bf328f7fea62d92188f9c4c08614b" category="doc">XCP v1.9.4 發行說明</block>
-  <block id="3b61885b697e1edb6c215f90afdd792e" category="paragraph">這<block ref="98899b177c8da430fcd78f8fb0f1ab8b" category="inline-link-macro-rx"></block>描述新功能、升級說明、已修復的問題、已知限制和已知問題。</block>
+  <block id="5cb2823040d5c096016e66f50cb537d9" category="doc">XCP v1.9.4P1 發行說明</block>
+  <block id="1ffdd60f2e1036fd9fdd193a4b1f40c8" category="paragraph">這<block ref="c72f9149922a980ca48dffb603f15c20" category="inline-link-macro-rx"></block>描述新功能、升級說明、已修復的問題、已知限制和已知問題。</block>
 </blocks>
